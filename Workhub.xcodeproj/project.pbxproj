@@ -64,6 +64,7 @@
 		C34E1D341FBD939A00CE777C /* WebAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E1D331FBD939A00CE777C /* WebAPIs.swift */; };
 		C361536D1FC2E2DD001273BA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C361536C1FC2E2DD001273BA /* LoginController.swift */; };
 		C361536F1FC56D2D001273BA /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C361536E1FC56D2D001273BA /* APIModel.swift */; };
+		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 		C34E1D331FBD939A00CE777C /* WebAPIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIs.swift; sourceTree = "<group>"; };
 		C361536C1FC2E2DD001273BA /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C361536E1FC56D2D001273BA /* APIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		D2AA615F83C0D68610281CFF /* Pods-WorkhubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkhubUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkhubUITests/Pods-WorkhubUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F2DA77DCA43C53210EA7A468 /* Pods-WorkhubUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkhubUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkhubUITests/Pods-WorkhubUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FD6664B522DFBE4CC1539ED2 /* Pods_WorkhubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkhubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -518,6 +520,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C396AB791FCECF37000F0BC9 /* AlertController */,
 				5F985F341FCDDA3500CE8BBA /* ToastController */,
 				5F49CC241FC49B30004CEB29 /* RegisterController */,
 				5F49CC211FC46072004CEB29 /* LaunchController */,
@@ -654,6 +657,14 @@
 				C361536C1FC2E2DD001273BA /* LoginController.swift */,
 			);
 			path = LoginController;
+			sourceTree = "<group>";
+		};
+		C396AB791FCECF37000F0BC9 /* AlertController */ = {
+			isa = PBXGroup;
+			children = (
+				C396AB7A1FCECF37000F0BC9 /* AlertController.swift */,
+			);
+			path = AlertController;
 			sourceTree = "<group>";
 		};
 		C7083C32D96462BA9007B2AD /* Frameworks */ = {
@@ -979,6 +990,7 @@
 				5FCE5B181FC05F7400F299B9 /* BaseViewController.swift in Sources */,
 				5F49CC2C1FC49C80004CEB29 /* TextCell.swift in Sources */,
 				5FCE5B1A1FC05F7400F299B9 /* Constants.swift in Sources */,
+				C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */,
 				5FCE5B2A1FC098BA00F299B9 /* ResponseHandler.swift in Sources */,
 				5FCE5B281FC0638100F299B9 /* Workhub.xcdatamodeld in Sources */,
 				5FCE5B1F1FC05F7400F299B9 /* NavigationHelper.swift in Sources */,

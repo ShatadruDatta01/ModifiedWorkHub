@@ -19,6 +19,8 @@ class LoginController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.txtEmail.text = "abc@sociosquares.com"
+        self.txtPassword.text = "test@123"
         self.viewEmail.layer.borderWidth = 1.0
         self.viewEmail.layer.borderColor = UIColorRGB(r: 200.0, g: 200.0, b: 200.0)?.cgColor
         
@@ -73,15 +75,31 @@ class LoginController: BaseViewController {
 // MARK: - Validation
 extension LoginController {
     func validation() {
-        if (self.txtEmail.text?.isEmpty)! {
-            self.presentAlertWithTitle(title: "Workhub", message: "Please enter email id")
-        } else {
-            if (self.txtPassword.text?.isEmpty)! {
-                self.presentAlertWithTitle(title: "Workhub", message: "Please enter password")
+        
+        if !(self.txtEmail.text?.isEmpty)! {
+            if (self.txtEmail.text?.isValidEmail)! {
+                if !(self.txtPassword.text?.isEmpty)! {
+                    self.loginAPICall(email: self.txtEmail.text!, password: self.txtPassword.text!, network: "Manual")
+                } else {
+                    ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter password", didSubmit: { (text) in
+                        debugPrint("No Code")
+                    }, didFinish: {
+                        debugPrint("No Code")
+                    })
+                }
             } else {
-                self.network = "Manual"
-                self.loginAPICall()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter valid email", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
             }
+        } else {
+            ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter email", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
         }
     }
 }
@@ -126,13 +144,20 @@ extension LoginController: UITextFieldDelegate {
 
 // MARK: - Login API Call
 extension LoginController {
-    func loginAPICall() {
+    func loginAPICall(email: String, password: String, network: String) {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getLogin"), attributes: .concurrent)
-        API_MODELS_METHODS.login(queue: concurrentQueue, email: self.txtEmail.text!, password: self.txtPassword.text!, network: self.network, completion: {responseDict,isSuccess in
+        API_MODELS_METHODS.login(queue: concurrentQueue, email: email, password: password, network: network, completion: {responseDict,isSuccess in
             if isSuccess {
                 print(responseDict!)
             } else {
+                print(responseDict!, isSuccess)
+                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
                 
+                print(responseDict!["result"]!)
             }
         })
     }

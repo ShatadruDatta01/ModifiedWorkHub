@@ -702,7 +702,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE ACCOUNT USING SOCIAL ACCOUNTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZ7-3J-UW1">
-                                                    <rect key="frame" x="38" y="7" width="300" height="34"/>
+                                                    <rect key="frame" x="0.0" y="7" width="375" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="hpt-TD-yGM"/>
                                                     </constraints>
@@ -806,8 +806,8 @@
                                                 <constraint firstItem="xmg-10-1Uf" firstAttribute="top" secondItem="f1V-Sl-Nn9" secondAttribute="bottom" constant="8" id="Mtd-bu-hXr"/>
                                                 <constraint firstItem="xmg-10-1Uf" firstAttribute="leading" secondItem="Wm2-OV-395" secondAttribute="leading" constant="38" id="TKc-Db-Ykg"/>
                                                 <constraint firstItem="SZ7-3J-UW1" firstAttribute="top" secondItem="Wm2-OV-395" secondAttribute="top" constant="7" id="cX2-CW-TLJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="SZ7-3J-UW1" secondAttribute="trailing" constant="37" id="hjO-hy-uY2"/>
-                                                <constraint firstItem="SZ7-3J-UW1" firstAttribute="leading" secondItem="Wm2-OV-395" secondAttribute="leading" constant="38" id="ki8-J6-ZTU"/>
+                                                <constraint firstAttribute="trailing" secondItem="SZ7-3J-UW1" secondAttribute="trailing" id="hjO-hy-uY2"/>
+                                                <constraint firstItem="SZ7-3J-UW1" firstAttribute="leading" secondItem="Wm2-OV-395" secondAttribute="leading" id="ki8-J6-ZTU"/>
                                                 <constraint firstAttribute="trailing" secondItem="7KE-zA-ioQ" secondAttribute="trailing" constant="37" id="nuj-aN-W6c"/>
                                                 <constraint firstItem="7KE-zA-ioQ" firstAttribute="centerX" secondItem="Wm2-OV-395" secondAttribute="centerX" id="oNq-5u-HCY"/>
                                                 <constraint firstAttribute="trailing" secondItem="f1V-Sl-Nn9" secondAttribute="trailing" constant="37" id="q9d-Ln-v88"/>
@@ -1307,7 +1307,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter email" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG2-dl-kTy">
                                         <rect key="frame" x="68" y="14" width="299" height="32"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" red="0.96860879659999999" green="0.86029040810000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -1336,7 +1336,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
+                                        <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -1363,6 +1363,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G00-0k-45m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3714.4000000000001" y="1439.7301349325339"/>
+        </scene>
+        <!--Alert Controller-->
+        <scene sceneID="J3R-90-dKI">
+            <objects>
+                <viewController storyboardIdentifier="AlertController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jiu-gF-kGK" customClass="AlertController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a35-45-GwH"/>
+                        <viewControllerLayoutGuide type="bottom" id="Sh9-GZ-GMW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i2z-MQ-F8G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYs-R4-LFK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2g-aE-fzw">
+                                <rect key="frame" x="71" y="308.5" width="234" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User is not registered" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo8-YW-REA">
+                                        <rect key="frame" x="56" y="9" width="170" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="5dA-Uh-leS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name=".SFUIText" family=".SF UI Text" pointSize="21"/>
+                                        </variation>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="pDb-zT-BNY">
+                                        <rect key="frame" x="8" y="6" width="40" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="VgI-wr-RhH"/>
+                                            <constraint firstAttribute="height" constant="38" id="fV5-is-ch4"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jo8-YW-REA" secondAttribute="bottom" constant="9" id="637-M6-M7e"/>
+                                    <constraint firstAttribute="height" constant="50" id="8f6-kj-XCA"/>
+                                    <constraint firstItem="pDb-zT-BNY" firstAttribute="leading" secondItem="I2g-aE-fzw" secondAttribute="leading" constant="8" id="IuN-9K-g8A"/>
+                                    <constraint firstItem="pDb-zT-BNY" firstAttribute="centerY" secondItem="I2g-aE-fzw" secondAttribute="centerY" id="SEs-nR-yfN"/>
+                                    <constraint firstItem="jo8-YW-REA" firstAttribute="leading" secondItem="pDb-zT-BNY" secondAttribute="trailing" constant="8" id="Ubh-t8-kVa"/>
+                                    <constraint firstAttribute="trailing" secondItem="jo8-YW-REA" secondAttribute="trailing" constant="8" id="WiT-RX-W9M"/>
+                                    <constraint firstItem="jo8-YW-REA" firstAttribute="top" secondItem="I2g-aE-fzw" secondAttribute="top" constant="9" id="cuQ-Ae-MPg"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="234" id="ojx-SL-0g9"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="I2g-aE-fzw" firstAttribute="centerY" secondItem="i2z-MQ-F8G" secondAttribute="centerY" id="DKz-Io-xwT"/>
+                            <constraint firstAttribute="trailing" secondItem="iYs-R4-LFK" secondAttribute="trailing" id="IiT-mh-w8Q"/>
+                            <constraint firstItem="I2g-aE-fzw" firstAttribute="centerX" secondItem="i2z-MQ-F8G" secondAttribute="centerX" id="KYY-bv-vkA"/>
+                            <constraint firstItem="iYs-R4-LFK" firstAttribute="leading" secondItem="i2z-MQ-F8G" secondAttribute="leading" id="Qjp-wI-3dk"/>
+                            <constraint firstItem="Sh9-GZ-GMW" firstAttribute="top" secondItem="iYs-R4-LFK" secondAttribute="bottom" id="WX0-cr-ZAu"/>
+                            <constraint firstItem="iYs-R4-LFK" firstAttribute="top" secondItem="i2z-MQ-F8G" secondAttribute="top" id="se9-YE-1q6"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="labelAlert" destination="jo8-YW-REA" id="n5i-BW-33y"/>
+                        <outlet property="viewBG" destination="iYs-R4-LFK" id="Sf9-R8-Epl"/>
+                        <outlet property="viewPopUp" destination="I2g-aE-fzw" id="Ojx-dI-eUm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RTZ-s0-Mzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4392.8000000000002" y="1439.7301349325339"/>
         </scene>
     </scenes>
     <resources>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToastController: BaseViewController {
+class AlertController: BaseViewController {
 
     @IBOutlet weak var labelAlert: UILabel!
     @IBOutlet weak var viewPopUp: UIView!
@@ -19,6 +19,8 @@ class ToastController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewPopUp.layer.borderWidth = 1.0
+        self.viewPopUp.layer.borderColor = UIColor.black.cgColor
         // Do any additional setup after loading the view.
     }
     
@@ -32,7 +34,7 @@ class ToastController: BaseViewController {
     
     internal class func showAddOrClearPopUp(sourceViewController: UIViewController, alertMessage: String, didSubmit: @escaping ((_ text: String) -> ()), didFinish: @escaping (() -> ())) {
         
-        let commentPopVC = mainStoryboard.instantiateViewController(withIdentifier: "ToastController") as! ToastController
+        let commentPopVC = mainStoryboard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
         commentPopVC.didSubmitButton = didSubmit
         commentPopVC.didRemove = didFinish
         commentPopVC.presentAddOrClearPopUpWith(sourceController: sourceViewController, message: alertMessage)
@@ -52,7 +54,7 @@ class ToastController: BaseViewController {
         labelAlert.text = message
         self.viewPopUp.transform = CGAffineTransform(translationX: 0, y: SCREEN_HEIGHT)
         UIView.animate(withDuration: 0.25) {
-            self.viewBG.alpha = 0
+            self.viewBG.alpha = 0.3
             self.viewPopUp.transform = .identity
         }
         
