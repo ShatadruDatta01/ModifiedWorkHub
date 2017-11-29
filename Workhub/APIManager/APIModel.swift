@@ -14,19 +14,25 @@ class APIModel: NSObject {
 
 struct API_MODELS_METHODS{
     
-    static func login(queue: DispatchQueue? = nil,
+    static func login(queue: DispatchQueue? = nil, email: String, password: String, network: String,
                             completion: @escaping (_ responseDict:[String: String]?,_ isSuccess:Bool) -> Void){
         
         // "https://api.socioadvocacy.com/mobile/login?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0"
         let subpath =  AppWebservices.LOGIN
         let completeUrl = AppWebservices.baseUrl + subpath + appServiceVariables.accessToken + AppConstantValues.companyAccessToken
-        let parameters = ["email": "abc@sociosquares.com","password": "test@123", "isCompany": "yes", "network": "google"]
+        var parameters = [String: String]()
+        if network == "Manual" {
+            parameters = ["email": email,"password": password, "isCompany": "yes"]
+        } else {
+            parameters = ["email": email,"password": password, "isCompany": "yes", "network": network]
+        }
+        
         
         HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
             if isSuccess {
                 let swiftyJsonVar   = JSON(response)
                 DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["success"].bool! {
+                    if swiftyJsonVar["result"]["status"].bool! {
                         print(swiftyJsonVar)
                     } else {
                         let swiftyJsonVar   = JSON(response)

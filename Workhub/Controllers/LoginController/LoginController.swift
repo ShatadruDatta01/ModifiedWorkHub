@@ -10,6 +10,7 @@ import UIKit
 
 class LoginController: BaseViewController {
 
+    var network: String!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var viewEmail: UIView!
     @IBOutlet weak var viewPassword: UIView!
@@ -55,6 +56,7 @@ class LoginController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func btnSignIn(_ sender: UIButton) {
+        self.validation()
     }
     
     
@@ -66,3 +68,76 @@ class LoginController: BaseViewController {
         NavigationHelper.helper.contentNavController!.pushViewController(forgotPasswordPageVC, animated: true)
     }
 }
+
+
+// MARK: - Validation
+extension LoginController {
+    func validation() {
+        if (self.txtEmail.text?.isEmpty)! {
+            self.presentAlertWithTitle(title: "Workhub", message: "Please enter email id")
+        } else {
+            if (self.txtPassword.text?.isEmpty)! {
+                self.presentAlertWithTitle(title: "Workhub", message: "Please enter password")
+            } else {
+                self.network = "Manual"
+                self.loginAPICall()
+            }
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension LoginController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == self.txtEmail {
+            if (self.txtEmail.text?.isEmpty)! {
+                self.txtEmail.becomeFirstResponder()
+            } else {
+                self.txtEmail.resignFirstResponder()
+            }
+        } else {
+            if (self.txtPassword.text?.isEmpty)! {
+                self.txtPassword.becomeFirstResponder()
+            } else {
+                self.txtPassword.resignFirstResponder()
+            }
+        }
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == self.txtEmail {
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+                self.backView?.frame = CGRect(x: self.backView.frame.origin.x, y: self.backView.frame.origin.y - 120, width: (self.backView?.frame.size.width)!, height: (self.backView?.frame.size.height)!)
+            }, completion: { (finished: Bool) in
+                
+            })
+        } else {
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+                self.backView?.frame = CGRect(x: self.backView.frame.origin.x, y: self.backView.frame.origin.y - 120, width: (self.backView?.frame.size.width)!, height: (self.backView?.frame.size.height)!)
+            }, completion: { (finished: Bool) in
+                
+            })
+        }
+        return true
+    }
+}
+
+// MARK: - Login API Call
+extension LoginController {
+    func loginAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getLogin"), attributes: .concurrent)
+        API_MODELS_METHODS.login(queue: concurrentQueue, email: self.txtEmail.text!, password: self.txtPassword.text!, network: self.network, completion: {responseDict,isSuccess in
+            if isSuccess {
+                print(responseDict!)
+            } else {
+                
+            }
+        })
+    }
+}
+
+
+
+

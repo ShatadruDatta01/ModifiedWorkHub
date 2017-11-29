@@ -24,7 +24,7 @@ struct AppConstantValues {
     static let VALUE_OAUTH_SIGNATURE_METHOD_TEMP = "HMAC-SHA1";
     static let VALUE_OAUTH_VERSION_TEMP = "1.0";
     
-    static let companyAccessToken = "fca83adde3f313b49b9ad0d6fb7174413a28a1dc" //"6d2003577e300fccfd0e4c4be7d7a59366f94bb0";
+    static let companyAccessToken = "" //"6d2003577e300fccfd0e4c4be7d7a59366f94bb0";
     static let iTunesAppUrl = "https://itunes.apple.com/us/app/brand-champs/id1037140094?ls=1&mt=8"
 
 }
@@ -204,8 +204,10 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
             header = header.substring(to: header.index(before: header.endIndex)) + "%3D"
             
             var headersDict: HTTPHeaders = HTTPHeaders()
-            headersDict["X-Mashape-Key"] = header
-            headersDict["Accept"] = "application/json"
+            headersDict["X-WHOAuth"] = header
+            headersDict["Authorization"] = "Bearer"+""
+            headersDict["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8"
+            headersDict["User-Agent"] = "ios"+"-v"+"1.0"
             
             Alamofire.request(baseUrlString, method: .post, parameters: paramDict, encoding: URLEncoding.default, headers: headersDict)
                 .responseJSON { response in
@@ -214,7 +216,6 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                     }
             }
         }
-        
     }
     
     
@@ -294,7 +295,7 @@ struct CREATE_HEADER {
         baseString = baseString.replacingOccurrences(of: "%40", with: "%2540")
         baseString = baseString.replacingOccurrences(of: "%252520", with: "%2520")
         let instanceOfCustomObject: Helper = Helper()
-        let compositeKey =  instanceOfCustomObject.buidCompositeKey("", aToken: "fca83adde3f313b49b9ad0d6fb7174413a28a1dc")!
+        let compositeKey =  instanceOfCustomObject.buidCompositeKey("", aToken: accessToken)!
         let compositeSignature = instanceOfCustomObject.computeSignature(baseString, key: compositeKey)!
         
         let currentdate =  instanceOfCustomObject.generateCurrentTime()!

@@ -11,7 +11,7 @@ import Foundation
 /// App base urls and Urls usede in the app.
 struct AppWebservices {
     
-    static let baseUrl = "https://apils.workhubapp.com/"
+    static let baseUrl = "http://apils.workhubapp.com/"
     
     static let GET_APPCONFIG_FILES = "appconfig.json?"
     static let MOBILE_LOGIN = "mobile/login?"
