@@ -7,6 +7,10 @@ target 'Workhub' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'AlamofireImage’
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
+  pod 'Google/SignIn'
   # Pods for Workhub
 
   target 'WorkhubTests' do

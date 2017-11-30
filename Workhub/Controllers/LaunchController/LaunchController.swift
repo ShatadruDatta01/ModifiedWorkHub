@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LaunchController: BaseViewController {
 
@@ -15,6 +16,7 @@ class LaunchController: BaseViewController {
         
         let jobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
         NavigationHelper.helper.contentNavController!.pushViewController(jobPageVC, animated: false)
+        
         // Do any additional setup after loading the view.
     }
 }
