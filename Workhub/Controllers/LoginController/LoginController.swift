@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GoogleSignIn
+
 
 class LoginController: BaseViewController {
 
@@ -19,6 +21,8 @@ class LoginController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
         self.txtEmail.text = "abc@sociosquares.com"
         self.txtPassword.text = "test@123"
         self.viewEmail.layer.borderWidth = 1.0
@@ -43,7 +47,19 @@ class LoginController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func btnFacebook(_ sender: UIButton) {
-        
+        FacebookLoginAPI.initiateFacebookLogin(completion: { (response, isSuccess,error) in
+            DispatchQueue.main.async {
+                if isSuccess {
+                    let value = response as! [String:AnyObject]
+                    debugPrint("the profile fbUser: \(value)")
+                    let emailId = (value["email"] as? String)!
+                    self.loginAPICall(email: emailId, password: "", network: "facebook")
+                }else{
+                    debugPrint("error\(error)")
+                    //NVActivityIndicatorHelper.hideIndicatorInView()
+                }
+            }
+        })
     }
 
     
@@ -51,6 +67,7 @@ class LoginController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func btnGoogle(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().signIn()
     }
     
     
@@ -58,6 +75,7 @@ class LoginController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func btnSignIn(_ sender: UIButton) {
+        
         self.validation()
     }
     
@@ -70,6 +88,56 @@ class LoginController: BaseViewController {
         NavigationHelper.helper.contentNavController!.pushViewController(forgotPasswordPageVC, animated: true)
     }
 }
+
+
+// MARK: - GoogleSignInDelegate and GoogleSignInUIDelegate
+extension LoginController: GIDSignInUIDelegate, GIDSignInDelegate {
+    
+    func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+        print(signIn)
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if (error == nil) {
+            // Perform any operations on signed in user here.
+            // For client-side use only!
+            
+            //          let idToken = user.authentication.idToken // Safe to send to the server
+            //          let givenName = user.profile.givenName
+            //          let familyName = user.profile.familyName
+            
+            print(user.userID, user.profile.name, user.profile.email)
+            
+            self.loginAPICall(email: user.profile.email!, password: "", network: "google")
+            
+            // ...
+        } else {
+            print("\(error.localizedDescription)")
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+    
+}
+
+
+
+
+
+
 
 
 // MARK: - Validation

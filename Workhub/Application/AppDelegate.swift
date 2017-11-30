@@ -8,6 +8,12 @@
 
 import UIKit
 import CoreData
+import FBSDKCoreKit
+import GGLCore
+import GGLSignIn
+import GLKit
+import Google
+import GoogleSignIn
 
 @available(iOS 10.0, *)
 @UIApplicationMain
@@ -18,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
         self.pushToDashboard()
         return true
     }
@@ -25,6 +34,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func pushToDashboard() {
         let mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainNavigationController") as! UINavigationController
         NavigationHelper.helper.navController = mainViewController
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        if (url.scheme?.hasPrefix("fb"))! {
+            
+            return FBSDKApplicationDelegate.sharedInstance().application( application,
+                                                                          open: url as URL!,
+                                                                          sourceApplication: sourceApplication,
+                                                                          annotation: annotation)
+        } else if (url.scheme?.hasPrefix("com.googleusercontent.apps"))! {
+            
+            let options: [String: AnyObject] = [UIApplicationOpenURLOptionsKey.sourceApplication.rawValue: sourceApplication as AnyObject,
+                                                UIApplicationOpenURLOptionsKey.annotation.rawValue: annotation as AnyObject]
+            print(options)
+            return GIDSignIn.sharedInstance().handle(url as URL!,
+                                                     sourceApplication: sourceApplication,
+                                                     annotation: annotation)
+        } else {
+            return true
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

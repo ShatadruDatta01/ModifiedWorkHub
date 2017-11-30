@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RegisterController: BaseViewController {
 
+    var arrCountryCode = [AnyObject]()
+    var dictCountryCode = [String: String]()
     @IBOutlet weak var tblRegister: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fetchCountryCode()
         // Do any additional setup after loading the view.
     }
     
@@ -20,6 +24,22 @@ class RegisterController: BaseViewController {
         super.viewWillAppear(animated)
         NavigationHelper.helper.headerViewController?.isBack = false
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
+    }
+}
+
+
+extension RegisterController {
+    func fetchCountryCode() {
+        let path =  Bundle.main.path(forResource: "CountryCodes", ofType: "json")
+        let jsonData = try? NSData(contentsOfFile: path!, options: NSData.ReadingOptions.mappedIfSafe)
+        print(jsonData!)
+        let jsonResult: NSArray = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
+        for result in jsonResult {
+            let val = JSON(result)
+            self.dictCountryCode = ["name": val["name"].stringValue, "dial_code": val["dial_code"].stringValue, "code": val["code"].stringValue]
+            print(self.dictCountryCode)
+            self.arrCountryCode.append(self.dictCountryCode as AnyObject)
+        }
     }
 }
 
@@ -49,12 +69,14 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 let cellName = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
+                cellName.index = indexPath.row
                 cellName.datasource = "" as AnyObject
                 cellName.imgLogo.image = UIImage(named: "UserIcon")
                 cellName.txtField.placeholder = "Full Name"
                 return cellName
             case 1:
                 let cellEmail = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
+                cellEmail.index = indexPath.row
                 cellEmail.datasource = "" as AnyObject
                 cellEmail.imgLogo.image = UIImage(named: "Mail")
                 cellEmail.txtField.placeholder = "Email"
@@ -65,9 +87,19 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
                 cellMob.imgLogo.image = UIImage(named: "Call")
                 cellMob.txtMobNo.placeholder = "Mobile No"
                 cellMob.txtExt.placeholder = "Ext"
+                cellMob.didSendVal = { text in
+                    if text == "CountryCode" {
+                        CountryCodeController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Select Country", arrValue: self.arrCountryCode, didSubmit: { (countryName, countryCode) in
+                            debugPrint("No Code")
+                        }) {
+                            debugPrint("No Code")
+                        }
+                    }
+                }
                 return cellMob
             case 3:
                 let cellPassword = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
+                cellPassword.index = indexPath.row
                 cellPassword.datasource = "" as AnyObject
                 cellPassword.imgLogo.image = UIImage(named: "PasswordIcon")
                 cellPassword.txtField.placeholder = "Create Password"

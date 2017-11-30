@@ -10,6 +10,7 @@ import UIKit
 
 class MobCell: BaseTableViewCell {
 
+    var didSendVal: ((String)->())!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var txtExt: UITextField!
     @IBOutlet weak var txtMobNo: UITextField!
@@ -20,5 +21,11 @@ class MobCell: BaseTableViewCell {
             }
         }
     }
+}
 
+extension MobCell: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        self.didSendVal("CountryCode")
+        return false
+    }
 }
