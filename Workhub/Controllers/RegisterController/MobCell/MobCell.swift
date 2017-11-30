@@ -11,6 +11,7 @@ import UIKit
 class MobCell: BaseTableViewCell {
 
     var didSendVal: ((String)->())!
+    @IBOutlet weak var imgFlag: UIImageView!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var txtExt: UITextField!
     @IBOutlet weak var txtMobNo: UITextField!

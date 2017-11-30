@@ -17,7 +17,7 @@ class CountryCodeController: BaseViewController {
     @IBOutlet weak var viewPopUp: UIView!
     @IBOutlet weak var viewBG: UIView!
     
-    var didSubmitButton:((_ countryName: String, _ countryCode: String) -> ())?
+    var didSubmitButton:((_ countryName: String, _ code: String, _ countryCode: String) -> ())?
     var didRemove:(() -> ())?
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class CountryCodeController: BaseViewController {
         super.viewWillDisappear(animated)
     }
     
-    internal class func showAddOrClearPopUp(sourceViewController: UIViewController, alertMessage: String, arrValue: [AnyObject], didSubmit: @escaping ((_ countryName: String, _ countryCode: String) -> ()), didFinish: @escaping (() -> ())) {
+    internal class func showAddOrClearPopUp(sourceViewController: UIViewController, alertMessage: String, arrValue: [AnyObject], didSubmit: @escaping ((_ countryName: String, _ code: String, _ countryCode: String) -> ()), didFinish: @escaping (() -> ())) {
         
         let commentPopVC = mainStoryboard.instantiateViewController(withIdentifier: "CountryCodeController") as! CountryCodeController
         commentPopVC.didSubmitButton = didSubmit
@@ -113,11 +113,13 @@ extension CountryCodeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCodeCell", for: indexPath) as! CountryCodeCell
         cell.datasource = self.arrCountryCode[indexPath.row] as AnyObject
+        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let val = self.arrCountryCode[indexPath.row] as AnyObject
+        self.didSubmitButton!(String(describing: val["name"]!!), String(describing: val["code"]!!),String(describing: val["dial_code"]!!))
         self.dismissAnimate()
         
     }
