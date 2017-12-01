@@ -29,3 +29,12 @@ class TextCell: BaseTableViewCell {
         }
     }
 }
+
+
+extension TextCell: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.txtField.resignFirstResponder()
+        return true
+    }
+}
