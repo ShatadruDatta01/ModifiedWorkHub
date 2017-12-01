@@ -18,6 +18,18 @@ class MenuController: BaseViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func actionTermsConds(_ sender: UIButton) {
+        NavigationHelper.helper.openSidePanel(open: false)
+        let termsPageVC = mainStoryboard.instantiateViewController(withIdentifier: "TermsCondsController") as! TermsCondsController
+        NavigationHelper.helper.contentNavController!.pushViewController(termsPageVC, animated: true)
+    }
+    
+    
+    @IBAction func actionAboutWorkhub(_ sender: UIButton) {
+        
+    }
 }
 
 
@@ -86,14 +98,15 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 let registerPageVC = mainStoryboard.instantiateViewController(withIdentifier: "RegisterController") as! RegisterController
-                NavigationHelper.helper.contentNavController!.pushViewController(registerPageVC, animated: false)
+                NavigationHelper.helper.contentNavController!.pushViewController(registerPageVC, animated: true)
             default:
                 let loginPageVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
-                NavigationHelper.helper.contentNavController!.pushViewController(loginPageVC, animated: false)
+                NavigationHelper.helper.contentNavController!.pushViewController(loginPageVC, animated: true)
             }
         default:
             print("No Code")
         }
         NavigationHelper.helper.openSidePanel(open: false)
     }
+    
 }

@@ -28,6 +28,7 @@ class RegisterController: BaseViewController {
 }
 
 
+// MARK: - FetchCountryCode
 extension RegisterController {
     func fetchCountryCode() {
         let path =  Bundle.main.path(forResource: "CountryCodes", ofType: "json")
@@ -120,7 +121,7 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
         default:
             switch indexPath.row {
             case 0...3:
-                return 45.0
+                return 55.0
             default:
                 return 99.0
             }

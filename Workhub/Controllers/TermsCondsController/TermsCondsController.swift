@@ -1,0 +1,36 @@
+//
+//  TermsCondsController.swift
+//  Workhub
+//
+//  Created by Administrator on 01/12/17.
+//  Copyright © 2017 Sociosquares. All rights reserved.
+//
+
+import UIKit
+
+class TermsCondsController: BaseViewController, UIWebViewDelegate {
+
+    @IBOutlet weak var termsView: UIWebView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NavigationHelper.helper.headerViewController?.isBack = false
+        NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
+        self.termsView.delegate = self
+        let url = URL (string: "https://sociosquare.socioadvocacy.com/Terms")
+        let requestObj = URLRequest(url: url!)
+        self.termsView.loadRequest(requestObj)
+        // Do any additional setup after loading the view.
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        print("Started")
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        print("Finished")
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        print("Failure")
+    }
+}
