@@ -89,8 +89,9 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
                 cellMob.txtExt.placeholder = "Ext"
                 cellMob.didSendVal = { text in
                     if text == "CountryCode" {
-                        CountryCodeController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Select Country", arrValue: self.arrCountryCode, didSubmit: { (countryName, countryCode) in
-                            debugPrint("No Code")
+                        CountryCodeController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Select Country", arrValue: self.arrCountryCode, didSubmit: { (coountryName, code, countryCode) in
+                            cellMob.txtExt.text = "(\(code)) \(countryCode)"
+                            cellMob.imgFlag.image = UIImage(named: "\(coountryName).png")
                         }) {
                             debugPrint("No Code")
                         }
