@@ -170,8 +170,14 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                 var urlRequest = URLRequest(url: url)
                 urlRequest.httpMethod = HTTPMethod.get.rawValue
                 
-                urlRequest.addValue(header, forHTTPHeaderField: "X-SAOAuth")
-                urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+//                urlRequest.addValue(header, forHTTPHeaderField: "X-SAOAuth")
+//                urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+                
+                urlRequest.addValue(header, forHTTPHeaderField: "X-WHOAuth")
+                urlRequest.addValue("Bearer"+"", forHTTPHeaderField: "Authorization")
+                urlRequest.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
+                urlRequest.addValue("ios"+"-v"+"1.0", forHTTPHeaderField: "User-Agent")
+                
                 
                 Alamofire.request(urlRequest)
                     .responseJSON { response in
