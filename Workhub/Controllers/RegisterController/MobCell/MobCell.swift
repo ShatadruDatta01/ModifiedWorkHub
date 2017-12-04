@@ -25,20 +25,19 @@ class MobCell: BaseTableViewCell {
 }
 
 
-
 // MARK: - UITextFieldDelegate
 extension MobCell: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == self.txtExt {
             self.didSendVal("CountryCode")
             return false
-
         } else {
             return true
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.didSendVal(textField.text!)
         self.txtMobNo.resignFirstResponder()
         return true
     }

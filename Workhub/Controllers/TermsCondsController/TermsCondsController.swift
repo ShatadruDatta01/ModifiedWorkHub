@@ -13,8 +13,9 @@ class TermsCondsController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var termsView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        NavigationHelper.helper.headerViewController?.isBack = false
+        NavigationHelper.helper.headerViewController?.isBack = true
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
+        NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
         self.termsView.delegate = self
         let url = URL (string: "https://sociosquare.socioadvocacy.com/Terms")
         let requestObj = URLRequest(url: url!)

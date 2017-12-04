@@ -22,8 +22,10 @@ class RegisterController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NavigationHelper.helper.headerViewController?.isBack = false
+        NavigationHelper.helper.headerViewController?.isBack = true
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
+        NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
+
     }
 }
 
@@ -65,6 +67,7 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let cellRegister = tableView.dequeueReusableCell(withIdentifier: "RegisterCell", for: indexPath) as! RegisterCell
             cellRegister.datasource = "" as AnyObject
+            cellRegister.selectionStyle = .none
             return cellRegister
         default:
             switch indexPath.row {
@@ -74,6 +77,7 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
                 cellName.datasource = "" as AnyObject
                 cellName.imgLogo.image = UIImage(named: "UserIcon")
                 cellName.txtField.placeholder = "Full Name"
+                cellName.selectionStyle = .none
                 return cellName
             case 1:
                 let cellEmail = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
@@ -81,6 +85,7 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
                 cellEmail.datasource = "" as AnyObject
                 cellEmail.imgLogo.image = UIImage(named: "Mail")
                 cellEmail.txtField.placeholder = "Email"
+                cellEmail.selectionStyle = .none
                 return cellEmail
             case 2:
                 let cellMob = tableView.dequeueReusableCell(withIdentifier: "MobCell", for: indexPath) as! MobCell
@@ -98,6 +103,7 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
+                cellMob.selectionStyle = .none
                 return cellMob
             case 3:
                 let cellPassword = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
@@ -105,10 +111,12 @@ extension RegisterController: UITableViewDelegate, UITableViewDataSource {
                 cellPassword.datasource = "" as AnyObject
                 cellPassword.imgLogo.image = UIImage(named: "PasswordIcon")
                 cellPassword.txtField.placeholder = "Create Password"
+                cellPassword.selectionStyle = .none
                 return cellPassword
             default:
                 let cellButton = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as! ButtonCell
                 cellButton.datasource = "" as AnyObject
+                cellButton.selectionStyle = .none
                 return cellButton
             }
         }

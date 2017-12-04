@@ -31,11 +31,10 @@ class TextCell: BaseTableViewCell {
 }
 
 
-
-// MARK: - UITextFieldDelegate
 extension TextCell: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        self.txtField.resignFirstResponder()
         return true
     }
 }

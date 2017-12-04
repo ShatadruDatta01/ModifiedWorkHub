@@ -18,6 +18,7 @@ struct AppWebservices {
     static let USER_UID     = "user/uid?"
     
     static let LOGIN = "login?"
+    static let JOB_SEARCH = "job/search?"
 
     
 }
