@@ -105,7 +105,7 @@
                 <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CwH-aM-tDL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pIM-qO-ilC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIM-qO-ilC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -190,7 +190,7 @@
                 <navigationController storyboardIdentifier="ContentNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="YEJ-I8-dPo" customClass="ContentNavigationController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aoN-1O-FHa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoN-1O-FHa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1480,6 +1480,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4SF-OC-5gW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5117.6000000000004" y="787.55622188905556"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="ExM-9J-bhQ">
+            <objects>
+                <tableViewController id="YjZ-Fe-FDr" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7e-ib-RvI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wPs-jY-lJu">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wPs-jY-lJu" id="KCR-rI-XlU">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YjZ-Fe-FDr" id="ytW-q1-mEn"/>
+                            <outlet property="delegate" destination="YjZ-Fe-FDr" id="WHQ-bP-qrn"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="abJ-JA-xa3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5841" y="787"/>
         </scene>
         <!--Menu Controller-->
         <scene sceneID="bJe-xK-brz">
