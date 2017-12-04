@@ -34,6 +34,8 @@ class JobDetailsController: BaseTableViewController {
     }
 
     @IBAction func applyNow(_ sender: UIButton) {
+        let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
+        NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: false)
     }
     
     @IBAction func bookmark(_ sender: UIButton) {
