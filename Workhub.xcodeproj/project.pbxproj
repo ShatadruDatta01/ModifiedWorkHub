@@ -47,6 +47,7 @@
 		70B85818786B7D59DF59528C /* Pods_WorkhubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437B797606BA80248164E31A /* Pods_WorkhubTests.framework */; };
 		70F9330B7BE9A587FD5EB321 /* Pods_Workhub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD7731108C1274DA769F1AB6 /* Pods_Workhub.framework */; };
 		C019B3C70A7E82B4A2EF4442 /* Pods_WorkhubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6664B522DFBE4CC1539ED2 /* Pods_WorkhubUITests.framework */; };
+		C33729541FD58022000EC579 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33729531FD58022000EC579 /* CustomTextField.swift */; };
 		C33E6BF41FD1560A00E100F3 /* TermsCondsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E6BF31FD1560A00E100F3 /* TermsCondsController.swift */; };
 		C34E1CDB1FBD7D5300CE777C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E1CDA1FBD7D5300CE777C /* ViewController.swift */; };
 		C34E1CDE1FBD7D5300CE777C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34E1CDC1FBD7D5300CE777C /* Main.storyboard */; };
@@ -317,6 +318,8 @@
 		C361536D1FC2E2DD001273BA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C361536C1FC2E2DD001273BA /* LoginController.swift */; };
 		C361536F1FC56D2D001273BA /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C361536E1FC56D2D001273BA /* APIModel.swift */; };
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
+		C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */; };
+		C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +386,7 @@
 		7882F8519B53277FD29469EE /* Pods-Workhub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Workhub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Workhub/Pods-Workhub.debug.xcconfig"; sourceTree = "<group>"; };
 		79319B9E610CE83E32663E3B /* Pods-WorkhubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkhubTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkhubTests/Pods-WorkhubTests.release.xcconfig"; sourceTree = "<group>"; };
 		BD7731108C1274DA769F1AB6 /* Pods_Workhub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Workhub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C33729531FD58022000EC579 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C33E6BF31FD1560A00E100F3 /* TermsCondsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsCondsController.swift; sourceTree = "<group>"; };
 		C34E1CD51FBD7D5300CE777C /* Workhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34E1CDA1FBD7D5300CE777C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -660,6 +664,8 @@
 		C361536C1FC2E2DD001273BA /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C361536E1FC56D2D001273BA /* APIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailsController.swift; sourceTree = "<group>"; };
+		C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyJobController.swift; sourceTree = "<group>"; };
 		D2AA615F83C0D68610281CFF /* Pods-WorkhubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkhubUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkhubUITests/Pods-WorkhubUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F2DA77DCA43C53210EA7A468 /* Pods-WorkhubUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkhubUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkhubUITests/Pods-WorkhubUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FD6664B522DFBE4CC1539ED2 /* Pods_WorkhubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkhubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -951,6 +957,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C33729521FD58022000EC579 /* TextClass */ = {
+			isa = PBXGroup;
+			children = (
+				C33729531FD58022000EC579 /* CustomTextField.swift */,
+			);
+			path = TextClass;
+			sourceTree = "<group>";
+		};
 		C33E6BF21FD155F000E100F3 /* TermsCondsController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,6 +1058,8 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3EE8DE81FD5616200C2B89E /* ApplyJobController */,
+				C3EE8DE51FD5556400C2B89E /* JobDetailsController */,
 				C33E6BF21FD155F000E100F3 /* TermsCondsController */,
 				C35C253D1FD029610077B5AC /* CountryCodeController */,
 				C396AB791FCECF37000F0BC9 /* AlertController */,
@@ -1100,6 +1116,7 @@
 		C34E1D131FBD7E3200CE777C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C33729521FD58022000EC579 /* TextClass */,
 				C35C253A1FD021710077B5AC /* JsonList */,
 				5FCE5AFF1FC05F7400F299B9 /* Base Classes */,
 				5FCE5B071FC05F7400F299B9 /* Constants */,
@@ -1485,6 +1502,22 @@
 				C396AB7A1FCECF37000F0BC9 /* AlertController.swift */,
 			);
 			path = AlertController;
+			sourceTree = "<group>";
+		};
+		C3EE8DE51FD5556400C2B89E /* JobDetailsController */ = {
+			isa = PBXGroup;
+			children = (
+				C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */,
+			);
+			path = JobDetailsController;
+			sourceTree = "<group>";
+		};
+		C3EE8DE81FD5616200C2B89E /* ApplyJobController */ = {
+			isa = PBXGroup;
+			children = (
+				C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */,
+			);
+			path = ApplyJobController;
 			sourceTree = "<group>";
 		};
 		C7083C32D96462BA9007B2AD /* Frameworks */ = {
@@ -2076,6 +2109,7 @@
 				5FCE5AFD1FC047BB00F299B9 /* TabBarController.swift in Sources */,
 				5FCE5B171FC05F7400F299B9 /* BaseTableViewController.swift in Sources */,
 				C34E1D141FBD7E3200CE777C /* AppDelegate.swift in Sources */,
+				C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */,
 				5F985F361FCDDA3500CE8BBA /* ToastController.swift in Sources */,
 				C34E1D201FBD8F1200CE777C /* UIImageView + AlamofireImage.swift in Sources */,
 				5FCE5B1D1FC05F7400F299B9 /* Globals.swift in Sources */,
@@ -2101,8 +2135,10 @@
 				C34E1D321FBD92FE00CE777C /* HTTPManagerAPI.swift in Sources */,
 				C34E1CDB1FBD7D5300CE777C /* ViewController.swift in Sources */,
 				5FCE5B141FC05F7400F299B9 /* BaseCollectionViewCell.swift in Sources */,
+				C33729541FD58022000EC579 /* CustomTextField.swift in Sources */,
 				5FCE5B2F1FC0991000F299B9 /* Helper.m in Sources */,
 				C35C253F1FD0296B0077B5AC /* CountryCodeController.swift in Sources */,
+				C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */,
 				5F9FA5321FD301AA001DFB10 /* SearchJobCell.swift in Sources */,
 				C35C234F1FCFFAA90077B5AC /* FacebookAPI.swift in Sources */,
 				5FCE5AFB1FC047BB00F299B9 /* MainContainerController.swift in Sources */,
