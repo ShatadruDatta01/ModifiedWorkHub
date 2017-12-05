@@ -39,12 +39,12 @@ class JobDetailsController: BaseTableViewController {
     }
     
     @IBAction func bookmark(_ sender: UIButton) {
+        
     }
     
     @IBAction func cross(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: false)
     }
-
 }
 
 
@@ -61,6 +61,5 @@ extension JobDetailsController {
         default:
             return 110.0
         }
-        
     }
 }

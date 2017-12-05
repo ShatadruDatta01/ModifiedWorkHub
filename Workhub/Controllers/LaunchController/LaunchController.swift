@@ -16,13 +16,24 @@ class LaunchController: BaseViewController {
     @IBOutlet weak var viewWorkhubConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imgLogo.alpha = 0.3
-        NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
-        Timer.scheduledTimer(timeInterval: 0.3,
-                             target: self,
-                             selector: #selector(self.updateView),
-                             userInfo: nil,
-                             repeats: false)
+        
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getToken"), attributes: .concurrent)
+        
+        API_MODELS_METHODS.token(queue: concurrentQueue) { (responseDict,isSuccess) in
+            if isSuccess {
+                AppConstantValues.companyAccessToken = responseDict!["result"]!["data"]["access_token"].stringValue
+                
+            } else {
+            }
+        }
+        
+//        self.imgLogo.alpha = 0.3
+//        NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
+//        Timer.scheduledTimer(timeInterval: 0.3,
+//                             target: self,
+//                             selector: #selector(self.updateView),
+//                             userInfo: nil,
+//                             repeats: false)
         
         // Do any additional setup after loading the view.
     }
