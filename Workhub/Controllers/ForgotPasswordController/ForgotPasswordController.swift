@@ -25,6 +25,7 @@ class ForgotPasswordController: BaseViewController {
     }
     
     @IBAction func actionSubmit(_ sender: UIButton) {
-        self.presentAlertWithTitle(title: "WorkHub", message: "Work Under progress")
+        let OTPPageVC = mainStoryboard.instantiateViewController(withIdentifier: "OTPController") as! OTPController
+        NavigationHelper.helper.contentNavController!.pushViewController(OTPPageVC, animated: true)
     }
 }

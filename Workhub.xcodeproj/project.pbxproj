@@ -49,6 +49,7 @@
 		C019B3C70A7E82B4A2EF4442 /* Pods_WorkhubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6664B522DFBE4CC1539ED2 /* Pods_WorkhubUITests.framework */; };
 		C33729541FD58022000EC579 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33729531FD58022000EC579 /* CustomTextField.swift */; };
 		C33E6BF41FD1560A00E100F3 /* TermsCondsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E6BF31FD1560A00E100F3 /* TermsCondsController.swift */; };
+		C34843081FD7EDC200059016 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34843071FD7EDC200059016 /* OTPController.swift */; };
 		C34E1CDB1FBD7D5300CE777C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E1CDA1FBD7D5300CE777C /* ViewController.swift */; };
 		C34E1CDE1FBD7D5300CE777C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34E1CDC1FBD7D5300CE777C /* Main.storyboard */; };
 		C34E1CE31FBD7D5300CE777C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34E1CE21FBD7D5300CE777C /* Assets.xcassets */; };
@@ -388,6 +389,7 @@
 		BD7731108C1274DA769F1AB6 /* Pods_Workhub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Workhub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33729531FD58022000EC579 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C33E6BF31FD1560A00E100F3 /* TermsCondsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsCondsController.swift; sourceTree = "<group>"; };
+		C34843071FD7EDC200059016 /* OTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
 		C34E1CD51FBD7D5300CE777C /* Workhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34E1CDA1FBD7D5300CE777C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C34E1CDD1FBD7D5300CE777C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -973,6 +975,14 @@
 			path = TermsCondsController;
 			sourceTree = "<group>";
 		};
+		C34843061FD7ED6700059016 /* OTP Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C34843071FD7EDC200059016 /* OTPController.swift */,
+			);
+			path = "OTP Controller";
+			sourceTree = "<group>";
+		};
 		C34E1CCC1FBD7D5200CE777C = {
 			isa = PBXGroup;
 			children = (
@@ -1058,6 +1068,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C34843061FD7ED6700059016 /* OTP Controller */,
 				C3EE8DE81FD5616200C2B89E /* ApplyJobController */,
 				C3EE8DE51FD5556400C2B89E /* JobDetailsController */,
 				C33E6BF21FD155F000E100F3 /* TermsCondsController */,
@@ -2138,6 +2149,7 @@
 				C33729541FD58022000EC579 /* CustomTextField.swift in Sources */,
 				5FCE5B2F1FC0991000F299B9 /* Helper.m in Sources */,
 				C35C253F1FD0296B0077B5AC /* CountryCodeController.swift in Sources */,
+				C34843081FD7EDC200059016 /* OTPController.swift in Sources */,
 				C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */,
 				5F9FA5321FD301AA001DFB10 /* SearchJobCell.swift in Sources */,
 				C35C234F1FCFFAA90077B5AC /* FacebookAPI.swift in Sources */,
