@@ -16,6 +16,32 @@ class LaunchController: BaseViewController {
     @IBOutlet weak var viewWorkhubConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
+        self.tokenAPICall()
+        // Do any additional setup after loading the view.
+    }
+}
+
+
+// MARK: - Token API Call
+extension LaunchController {
+    func tokenAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getToken"), attributes: .concurrent)
+        API_MODELS_METHODS.token(queue: concurrentQueue) { (responseDict,isSuccess) in
+            if isSuccess {
+                AppConstantValues.companyAccessToken = responseDict!["result"]!["data"]["access_token"].stringValue
+                self.startingView()
+            } else {
+                
+            }
+        }
+    }
+}
+
+
+// MARK: - Starting View
+extension LaunchController {
+    func startingView() {
         self.imgLogo.alpha = 0.3
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
         Timer.scheduledTimer(timeInterval: 0.3,
@@ -23,17 +49,12 @@ class LaunchController: BaseViewController {
                              selector: #selector(self.updateView),
                              userInfo: nil,
                              repeats: false)
-        
-        // Do any additional setup after loading the view.
     }
 }
 
 
-
 // MARK: - UpdateView
 extension LaunchController {
-    
-    
     /// UpdateView
     func updateView() {
         self.viewWorkhubConstraint.constant = 0

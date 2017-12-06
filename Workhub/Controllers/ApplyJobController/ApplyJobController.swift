@@ -18,6 +18,12 @@ class ApplyJobController: BaseTableViewController {
     @IBOutlet weak var txtResume: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.txtName.layer.borderColor = UIColorRGB(r: 188, g: 188, b: 188)?.cgColor
+        self.txtName.layer.borderWidth = 1.0
+        self.txtEmail.layer.borderColor = UIColorRGB(r: 188, g: 188, b: 188)?.cgColor
+        self.txtEmail.layer.borderWidth = 1.0
+        self.txtResume.layer.borderColor = UIColorRGB(r: 188, g: 188, b: 188)?.cgColor
+        self.txtResume.layer.borderWidth = 1.0
         // Do any additional setup after loading the view.
     }
     
@@ -26,7 +32,7 @@ class ApplyJobController: BaseTableViewController {
     }
     
     @IBAction func cross(_ sender: UIButton) {
-        
+        self.navigationController?.popViewController(animated: false)
     }
     
     @IBAction func bookmark(_ sender: UIButton) {

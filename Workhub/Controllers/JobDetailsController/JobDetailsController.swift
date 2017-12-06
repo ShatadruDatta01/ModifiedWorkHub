@@ -34,15 +34,17 @@ class JobDetailsController: BaseTableViewController {
     }
 
     @IBAction func applyNow(_ sender: UIButton) {
+        let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
+        NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: false)
     }
     
     @IBAction func bookmark(_ sender: UIButton) {
+        
     }
     
     @IBAction func cross(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: false)
     }
-
 }
 
 
@@ -59,6 +61,5 @@ extension JobDetailsController {
         default:
             return 110.0
         }
-        
     }
 }
