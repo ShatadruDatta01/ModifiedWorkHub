@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import CoreData
 import FBSDKCoreKit
 import GGLCore
@@ -14,16 +15,21 @@ import GGLSignIn
 import GLKit
 import Google
 import GoogleSignIn
+import IQKeyboardManager
 
 @available(iOS 10.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var locManager = CLLocationManager()
+    var currentLocation: CLLocation!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        locManager.requestWhenInUseAuthorization()
+        locManager.requestAlwaysAuthorization()
+        IQKeyboardManager.shared().isEnabled = true
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")

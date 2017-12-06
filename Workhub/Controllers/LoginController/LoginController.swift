@@ -194,22 +194,22 @@ extension LoginController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == self.txtEmail {
-            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-                self.backView?.frame = CGRect(x: self.backView.frame.origin.x, y: self.backView.frame.origin.y - 120, width: (self.backView?.frame.size.width)!, height: (self.backView?.frame.size.height)!)
-            }, completion: { (finished: Bool) in
-                
-            })
-        } else {
-            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-                self.backView?.frame = CGRect(x: self.backView.frame.origin.x, y: self.backView.frame.origin.y - 120, width: (self.backView?.frame.size.width)!, height: (self.backView?.frame.size.height)!)
-            }, completion: { (finished: Bool) in
-                
-            })
-        }
-        return true
-    }
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        if textField == self.txtEmail {
+//            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+//                self.backView?.frame = CGRect(x: self.backView.frame.origin.x, y: self.backView.frame.origin.y - 120, width: (self.backView?.frame.size.width)!, height: (self.backView?.frame.size.height)!)
+//            }, completion: { (finished: Bool) in
+//                
+//            })
+//        } else {
+//            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+//                self.backView?.frame = CGRect(x: self.backView.frame.origin.x, y: self.backView.frame.origin.y - 120, width: (self.backView?.frame.size.width)!, height: (self.backView?.frame.size.height)!)
+//            }, completion: { (finished: Bool) in
+//                
+//            })
+//        }
+//        return true
+//    }
 }
 
 
