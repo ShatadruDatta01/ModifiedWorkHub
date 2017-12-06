@@ -49,6 +49,13 @@
 		C019B3C70A7E82B4A2EF4442 /* Pods_WorkhubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6664B522DFBE4CC1539ED2 /* Pods_WorkhubUITests.framework */; };
 		C33729541FD58022000EC579 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33729531FD58022000EC579 /* CustomTextField.swift */; };
 		C33E6BF41FD1560A00E100F3 /* TermsCondsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E6BF31FD1560A00E100F3 /* TermsCondsController.swift */; };
+		C34843081FD7EDC200059016 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34843071FD7EDC200059016 /* OTPController.swift */; };
+		C348430A1FD8016600059016 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34843091FD8016600059016 /* CoreLocation.framework */; };
+		C34843111FD809F000059016 /* open-sans.bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C348430C1FD809F000059016 /* open-sans.bold.ttf */; };
+		C34843121FD809F000059016 /* open-sans.light-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C348430D1FD809F000059016 /* open-sans.light-italic.ttf */; };
+		C34843131FD809F000059016 /* open-sans.light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C348430E1FD809F000059016 /* open-sans.light.ttf */; };
+		C34843141FD809F000059016 /* open-sans.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C348430F1FD809F000059016 /* open-sans.regular.ttf */; };
+		C34843151FD809F000059016 /* open-sans.semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C34843101FD809F000059016 /* open-sans.semibold.ttf */; };
 		C34E1CDB1FBD7D5300CE777C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E1CDA1FBD7D5300CE777C /* ViewController.swift */; };
 		C34E1CDE1FBD7D5300CE777C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34E1CDC1FBD7D5300CE777C /* Main.storyboard */; };
 		C34E1CE31FBD7D5300CE777C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34E1CE21FBD7D5300CE777C /* Assets.xcassets */; };
@@ -388,6 +395,13 @@
 		BD7731108C1274DA769F1AB6 /* Pods_Workhub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Workhub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33729531FD58022000EC579 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C33E6BF31FD1560A00E100F3 /* TermsCondsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsCondsController.swift; sourceTree = "<group>"; };
+		C34843071FD7EDC200059016 /* OTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
+		C34843091FD8016600059016 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C348430C1FD809F000059016 /* open-sans.bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-sans.bold.ttf"; sourceTree = "<group>"; };
+		C348430D1FD809F000059016 /* open-sans.light-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-sans.light-italic.ttf"; sourceTree = "<group>"; };
+		C348430E1FD809F000059016 /* open-sans.light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-sans.light.ttf"; sourceTree = "<group>"; };
+		C348430F1FD809F000059016 /* open-sans.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-sans.regular.ttf"; sourceTree = "<group>"; };
+		C34843101FD809F000059016 /* open-sans.semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-sans.semibold.ttf"; sourceTree = "<group>"; };
 		C34E1CD51FBD7D5300CE777C /* Workhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34E1CDA1FBD7D5300CE777C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C34E1CDD1FBD7D5300CE777C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -676,6 +690,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C348430A1FD8016600059016 /* CoreLocation.framework in Frameworks */,
 				C35C23511FD009E80077B5AC /* MapKit.framework in Frameworks */,
 				70F9330B7BE9A587FD5EB321 /* Pods_Workhub.framework in Frameworks */,
 			);
@@ -973,6 +988,26 @@
 			path = TermsCondsController;
 			sourceTree = "<group>";
 		};
+		C34843061FD7ED6700059016 /* OTP Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C34843071FD7EDC200059016 /* OTPController.swift */,
+			);
+			path = "OTP Controller";
+			sourceTree = "<group>";
+		};
+		C348430B1FD809F000059016 /* CustomFonts */ = {
+			isa = PBXGroup;
+			children = (
+				C348430C1FD809F000059016 /* open-sans.bold.ttf */,
+				C348430D1FD809F000059016 /* open-sans.light-italic.ttf */,
+				C348430E1FD809F000059016 /* open-sans.light.ttf */,
+				C348430F1FD809F000059016 /* open-sans.regular.ttf */,
+				C34843101FD809F000059016 /* open-sans.semibold.ttf */,
+			);
+			path = CustomFonts;
+			sourceTree = "<group>";
+		};
 		C34E1CCC1FBD7D5200CE777C = {
 			isa = PBXGroup;
 			children = (
@@ -1058,6 +1093,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C34843061FD7ED6700059016 /* OTP Controller */,
 				C3EE8DE81FD5616200C2B89E /* ApplyJobController */,
 				C3EE8DE51FD5556400C2B89E /* JobDetailsController */,
 				C33E6BF21FD155F000E100F3 /* TermsCondsController */,
@@ -1116,6 +1152,7 @@
 		C34E1D131FBD7E3200CE777C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C348430B1FD809F000059016 /* CustomFonts */,
 				C33729521FD58022000EC579 /* TextClass */,
 				C35C253A1FD021710077B5AC /* JsonList */,
 				5FCE5AFF1FC05F7400F299B9 /* Base Classes */,
@@ -1523,6 +1560,7 @@
 		C7083C32D96462BA9007B2AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C34843091FD8016600059016 /* CoreLocation.framework */,
 				C35C23501FD009E80077B5AC /* MapKit.framework */,
 				BD7731108C1274DA769F1AB6 /* Pods_Workhub.framework */,
 				437B797606BA80248164E31A /* Pods_WorkhubTests.framework */,
@@ -1717,6 +1755,7 @@
 				C35C25151FD01B500077B5AC /* Swaziland.png in Resources */,
 				C35C25091FD01B500077B5AC /* Slovenia.png in Resources */,
 				C35C25021FD01B500077B5AC /* Scotland.png in Resources */,
+				C34843141FD809F000059016 /* open-sans.regular.ttf in Resources */,
 				C35C25311FD01B500077B5AC /* Venezuela.png in Resources */,
 				C35C24E91FD01B500077B5AC /* Olimpic Movement.png in Resources */,
 				C35C25161FD01B500077B5AC /* Sweden.png in Resources */,
@@ -1740,6 +1779,7 @@
 				C35C24821FD01B500077B5AC /* Denmark.png in Resources */,
 				C35C24C51FD01B500077B5AC /* Macedonia.png in Resources */,
 				C35C24FE1FD01B500077B5AC /* Samoa.png in Resources */,
+				C34843111FD809F000059016 /* open-sans.bold.ttf in Resources */,
 				C35C24C11FD01B500077B5AC /* Liechtenstein.png in Resources */,
 				C35C24E21FD01B500077B5AC /* Nicaragua.png in Resources */,
 				C35C24A61FD01B500077B5AC /* Hungary.png in Resources */,
@@ -1782,6 +1822,7 @@
 				C35C24701FD01B500077B5AC /* Cayman Islands.png in Resources */,
 				C35C249B1FD01B500077B5AC /* Grenada.png in Resources */,
 				C35C25391FD01B500077B5AC /* Zimbabwe.png in Resources */,
+				C34843131FD809F000059016 /* open-sans.light.ttf in Resources */,
 				C34E1D2D1FBD8F8100CE777C /* Info.plist in Resources */,
 				C35C24BD1FD01B500077B5AC /* Lebanon.png in Resources */,
 				C35C24561FD01B500077B5AC /* Australia.png in Resources */,
@@ -1848,6 +1889,7 @@
 				C35C24CF1FD01B500077B5AC /* Mauritius.png in Resources */,
 				C35C24E81FD01B500077B5AC /* Norway.png in Resources */,
 				C35C249E1FD01B500077B5AC /* Guatemala.png in Resources */,
+				C34843121FD809F000059016 /* open-sans.light-italic.ttf in Resources */,
 				C35C24FB1FD01B500077B5AC /* Russian Federation.png in Resources */,
 				C35C244B1FD01B500077B5AC /* American Samoa.png in Resources */,
 				C35C247F1FD01B500077B5AC /* Cuba.png in Resources */,
@@ -1870,6 +1912,7 @@
 				C35C250F1FD01B500077B5AC /* Spain.png in Resources */,
 				C35C24CD1FD01B500077B5AC /* Martinique.png in Resources */,
 				C35C25271FD01B500077B5AC /* Uganda.png in Resources */,
+				C34843151FD809F000059016 /* open-sans.semibold.ttf in Resources */,
 				C35C24FA1FD01B500077B5AC /* Romania.png in Resources */,
 				C35C24D61FD01B500077B5AC /* Montserrat.png in Resources */,
 				C35C25171FD01B500077B5AC /* Switzerland.png in Resources */,
@@ -2056,6 +2099,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -2072,6 +2116,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2138,6 +2183,7 @@
 				C33729541FD58022000EC579 /* CustomTextField.swift in Sources */,
 				5FCE5B2F1FC0991000F299B9 /* Helper.m in Sources */,
 				C35C253F1FD0296B0077B5AC /* CountryCodeController.swift in Sources */,
+				C34843081FD7EDC200059016 /* OTPController.swift in Sources */,
 				C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */,
 				5F9FA5321FD301AA001DFB10 /* SearchJobCell.swift in Sources */,
 				C35C234F1FCFFAA90077B5AC /* FacebookAPI.swift in Sources */,

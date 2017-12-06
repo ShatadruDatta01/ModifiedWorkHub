@@ -153,11 +153,12 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                                      parameters:[String: AnyObject]? = nil,
                                      completion: @escaping (_ response: AnyObject,_ responseString:String,_ isSuccess:Bool) -> Void){
         
-        let connectivity = NetworkConnectivity.networkConnectionType("needsConnection")
+        _ = NetworkConnectivity.networkConnectionType("needsConnection")
         queue?.sync {
             
             //let baseUrlString = "https://apils.socioadvocacy.com/company/feed/2017-08-22/2017-08-23?access_token=0d63c9f79807211b736651ed943661370f838eb1&cid=365834c2&uid=064bf2c6"
-            let baseUrlString = AppWebservices.baseUrl
+            print(AppConstantValues.companyAccessToken)
+            let baseUrlString = subPath//AppWebservices.baseUrl
             var header = CREATE_HEADER.createHeaderForTheUrl(baseUrl: baseUrlString, mType: "GET", parameterDict: [:], companyCid: "", accessToken: AppConstantValues.companyAccessToken)
             
             header = header.replacingOccurrences(of: "%27", with: "'")
@@ -170,13 +171,14 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                 var urlRequest = URLRequest(url: url)
                 urlRequest.httpMethod = HTTPMethod.get.rawValue
                 
-//                urlRequest.addValue(header, forHTTPHeaderField: "X-SAOAuth")
-//                urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-                
                 urlRequest.addValue(header, forHTTPHeaderField: "X-WHOAuth")
+//                urlRequest.addValue(header, forHTTPHeaderField: "X-SAOAuth")
+                urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+                
+                
                 urlRequest.addValue("Bearer"+"", forHTTPHeaderField: "Authorization")
-                urlRequest.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-                urlRequest.addValue("ios"+"-v"+"1.0", forHTTPHeaderField: "User-Agent")
+//                urlRequest.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
+//                urlRequest.addValue("ios"+"-v"+"1.0", forHTTPHeaderField: "User-Agent")
                 
                 
                 Alamofire.request(urlRequest)
@@ -200,7 +202,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
             print(parameters!)
             let paramDict = parameters //["email":"demo@acu.com","role":"general"]
             
-            let baseUrlString = subPath//"https://apils.socioadvocacy.com/mobile/login?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0"
+            let baseUrlString = subPath
             var header = CREATE_HEADER.createHeaderForTheUrl(baseUrl: baseUrlString, mType: "POST", parameterDict: paramDict! as! [String : String], companyCid: "", accessToken: AppConstantValues.companyAccessToken)
             
             header = header.replacingOccurrences(of: "%27", with: "'")
