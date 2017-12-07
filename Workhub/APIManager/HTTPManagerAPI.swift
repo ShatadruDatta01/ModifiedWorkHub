@@ -176,7 +176,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                 urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
                 
                 
-                urlRequest.addValue("Bearer"+"", forHTTPHeaderField: "Authorization")
+                urlRequest.addValue("Bearer"+" \(AppConstantValues.companyAccessToken)", forHTTPHeaderField: "Authorization")
 //                urlRequest.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
 //                urlRequest.addValue("ios"+"-v"+"1.0", forHTTPHeaderField: "User-Agent")
                 

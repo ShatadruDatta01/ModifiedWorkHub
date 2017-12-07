@@ -119,9 +119,9 @@ struct API_MODELS_METHODS{
                             completion: @escaping (_ responseDict:[String: String]?,_ isSuccess:Bool) -> Void){
         
         // https://api.socioadvocacy.com/user/uid?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0&cid=52ad0375&email=sachitanandas@sociosquares.com&role=general
-        let createSubPathurl = "&latitude=\(String(describing: latitude!))&longitude=\(String(describing: longitude!))&pincode=\(String(describing: pincode!))&radius=\(String(describing: radius!))"
+        let createSubPathurl = "latitude=\(String(describing: latitude!))&longitude=\(String(describing: longitude!))&pincode=\(String(describing: pincode!))&radius=\(String(describing: radius!))"
         let subpath =  AppWebservices.JOB_SEARCH
-        let completeUrl = AppWebservices.baseUrl + subpath + appServiceVariables.accessToken + AppConstantValues.companyAccessToken + createSubPathurl
+        let completeUrl = AppWebservices.baseUrl + subpath + createSubPathurl
         //let completeUrl = AppWebservices.baseUrl + subpath + createSubPathurl
         let connectivity = NetworkConnectivity.networkConnectionType("needsConnection")
         print(completeUrl)
