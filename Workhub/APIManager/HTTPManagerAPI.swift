@@ -154,7 +154,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                                      completion: @escaping (_ response: AnyObject,_ responseString:String,_ isSuccess:Bool) -> Void){
         
         _ = NetworkConnectivity.networkConnectionType("needsConnection")
-        queue?.sync {
+        //queue?.sync {
             
             //let baseUrlString = "https://apils.socioadvocacy.com/company/feed/2017-08-22/2017-08-23?access_token=0d63c9f79807211b736651ed943661370f838eb1&cid=365834c2&uid=064bf2c6"
             print(AppConstantValues.companyAccessToken)
@@ -176,7 +176,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                 urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
                 
                 
-                urlRequest.addValue("Bearer"+"", forHTTPHeaderField: "Authorization")
+                urlRequest.addValue("Bearer"+" \(AppConstantValues.companyAccessToken)", forHTTPHeaderField: "Authorization")
 //                urlRequest.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
 //                urlRequest.addValue("ios"+"-v"+"1.0", forHTTPHeaderField: "User-Agent")
                 
@@ -188,7 +188,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                         }
                 }
             }
-        }
+        //}
     }
     
     

@@ -23,6 +23,11 @@ class SearchJobCell: BaseTableViewCell {
     override var datasource: AnyObject?{
         didSet {
             if datasource != nil {
+                let val = datasource as! SearchJob
+                self.lblJobTitle.text = val.role!
+                self.lblSubJobTitle.text = val.company_name!
+                self.lblHour.text = "\(val.salary_per_hour!) per hour"
+                self.imgJobIcon.setImage(withURL: NSURL(string: val.category_image!)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
                 self.viewHour.layer.borderWidth = 1.0
                 self.viewHour.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
                 self.viewMiles.layer.borderWidth = 1.0

@@ -12,6 +12,7 @@ target 'Workhub' do
   pod 'FacebookShare'
   pod 'Google/SignIn'
   pod 'IQKeyboardManager'
+  pod 'MarqueeLabel/Swift'
   # Pods for Workhub
 
   target 'WorkhubTests' do

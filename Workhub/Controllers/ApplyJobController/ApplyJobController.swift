@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import MarqueeLabel
 
 class ApplyJobController: BaseTableViewController {
 
+    var strJobIcon: String!
+    var strJobTitle: String!
+    var strJobSubTitle: String!
     @IBOutlet weak var imgJobIcon: UIImageView!
-    @IBOutlet weak var lblJobTitle: UILabel!
+    @IBOutlet weak var lblJobTitle: MarqueeLabel!
     @IBOutlet weak var lblSubJobTitle: UILabel!
     @IBOutlet weak var txtName: CustomTextField!
     @IBOutlet weak var txtEmail: CustomTextField!
@@ -24,6 +28,12 @@ class ApplyJobController: BaseTableViewController {
         self.txtEmail.layer.borderWidth = 1.0
         self.txtResume.layer.borderColor = UIColorRGB(r: 188, g: 188, b: 188)?.cgColor
         self.txtResume.layer.borderWidth = 1.0
+        self.imgJobIcon.setImage(withURL: NSURL(string: strJobIcon)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+        self.lblJobTitle.text = strJobTitle
+        self.lblJobTitle.speed = .duration(8.0)
+        self.lblJobTitle.fadeLength = 15.0
+        self.lblJobTitle.type = .continuous
+        self.lblSubJobTitle.text = strJobSubTitle
         // Do any additional setup after loading the view.
     }
     
@@ -40,8 +50,18 @@ class ApplyJobController: BaseTableViewController {
     }
     
     @IBAction func submit(_ sender: UIButton) {
-        
+        self.presentAlertWithTitle(title: "Workhub", message: "Work under progress")
     }
-    
 }
 
+
+// MARK: - UITextFieldDelegate
+extension ApplyJobController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == self.txtResume {
+            return false
+        } else {
+            return true
+        }
+    }
+}

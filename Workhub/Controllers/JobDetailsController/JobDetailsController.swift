@@ -7,11 +7,20 @@
 //
 
 import UIKit
-
+import MarqueeLabel
 class JobDetailsController: BaseTableViewController {
 
+    var strIconDetails: String!
+    var strJobTitle: String!
+    var strJobSubTitle: String!
+    var strJobHour: String!
+    var strJobLocation: String!
+    var strJobPosted: String!
+    var strShift: String!
+    var strFullTime: String!
+    var strJobDesc: String!
     @IBOutlet weak var jobIcon: UIImageView!
-    @IBOutlet weak var lblJobTitle: UILabel!
+    @IBOutlet weak var lblJobTitle: MarqueeLabel!
     @IBOutlet weak var lblJobSubtitle: UILabel!
     @IBOutlet weak var lblHour: UILabel!
     @IBOutlet weak var lblLocation: UILabel!
@@ -22,6 +31,18 @@ class JobDetailsController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.jobIcon.setImage(withURL: NSURL(string: strIconDetails)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+        self.lblJobTitle.text = strJobTitle
+        self.lblJobTitle.speed = .duration(8.0)
+        self.lblJobTitle.fadeLength = 15.0
+        self.lblJobTitle.type = .continuous
+        self.lblJobSubtitle.text = strJobSubTitle
+        self.lblHour.text = "\(strJobHour!) per hour"
+        self.lblLocation.text = strJobLocation
+        self.lblJobPosted.text = strJobPosted
+        self.lblDayShift.text = "\(strShift!) shift"
+        self.lblFulltime.text = strFullTime
+        self.lblJobDescription.text = strJobDesc
         self.tableView.estimatedRowHeight = 66.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         // Do any additional setup after loading the view.
@@ -35,6 +56,9 @@ class JobDetailsController: BaseTableViewController {
 
     @IBAction func applyNow(_ sender: UIButton) {
         let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
+        applyPageVC.strJobIcon = strIconDetails
+        applyPageVC.strJobTitle = strJobTitle
+        applyPageVC.strJobSubTitle = strJobSubTitle
         NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: false)
     }
     
