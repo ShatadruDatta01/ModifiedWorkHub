@@ -81,42 +81,10 @@ struct API_MODELS_METHODS{
 
     
     
-
-    
-    static func sendUserId(_ email: String?,_ cid: String?,queue: DispatchQueue? = nil,
-                            completion: @escaping (_ responseDict:[String: String]?,_ isSuccess:Bool) -> Void){
-        
-        // https://api.socioadvocacy.com/user/uid?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0&cid=52ad0375&email=sachitanandas@sociosquares.com&role=general
-        let createSubPathurl = "&cid=\(String(describing: cid!))&email=\(String(describing: email!))&role=general"
-        let subpath =  AppWebservices.USER_UID
-        let completeUrl = AppWebservices.baseUrl + subpath + appServiceVariables.accessToken + AppConstantValues.companyAccessToken + createSubPathurl
-        let connectivity = NetworkConnectivity.networkConnectionType("needsConnection")
-        if connectivity != ConnectionType.NONETWORK  {
-            HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
-                if isSuccess{
-                    let swiftyJsonVar   = JSON(response)
-                    DispatchQueue.main.async(execute: {
-                        if swiftyJsonVar["result"]["success"].bool! {
-                            completion(["uid":swiftyJsonVar["result"]["data"]["uid"].stringValue],true)
-                        }else {
-                            let swiftyJsonVar   = JSON(response)
-                            completion(["errorCode":swiftyJsonVar["result"]["error"]["code"].stringValue,"errorMessage":swiftyJsonVar["result"]["error"]["message"].stringValue],false)
-                        }
-                    })
-                }
-            })
-            
-        } else {
-            completion(["errorCode": "404", "errorMessage":ResponseMessageHandler.NOCONNECTIVITY],false)
-        }
-    }
-
-    
-    
     
     
     static func searchJOB(_ latitude: String?,_ longitude: String?, _ pincode: String?, radius: String? ,queue: DispatchQueue? = nil,
-                            completion: @escaping (_ responseDict:[String: String]?,_ isSuccess:Bool) -> Void){
+                            completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
         
         // https://api.socioadvocacy.com/user/uid?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0&cid=52ad0375&email=sachitanandas@sociosquares.com&role=general
         let createSubPathurl = "latitude=\(String(describing: latitude!))&longitude=\(String(describing: longitude!))&pincode=\(String(describing: pincode!))&radius=\(String(describing: radius!))"
@@ -125,23 +93,19 @@ struct API_MODELS_METHODS{
         //let completeUrl = AppWebservices.baseUrl + subpath + createSubPathurl
         let connectivity = NetworkConnectivity.networkConnectionType("needsConnection")
         print(completeUrl)
-        if connectivity != ConnectionType.NONETWORK  {
             HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
                 if isSuccess{
                     let swiftyJsonVar   = JSON(response)
                     DispatchQueue.main.async(execute: {
-                        if swiftyJsonVar["result"]["success"].bool! {
-                            completion(["uid":swiftyJsonVar["result"]["data"]["uid"].stringValue],true)
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
                         }else {
                             let swiftyJsonVar   = JSON(response)
-                            completion(["errorCode":swiftyJsonVar["result"]["error"]["code"].stringValue,"errorMessage":swiftyJsonVar["result"]["error"]["message"].stringValue],false)
+                            completion(["result": swiftyJsonVar["result"]],true)
                         }
                     })
                 }
             })
-            
-        } else {
-            completion(["errorCode": "404", "errorMessage":ResponseMessageHandler.NOCONNECTIVITY],false)
-        }
     }
 }

@@ -33,9 +33,9 @@ extension LaunchController {
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             currentLocation = locManager.location
-//            print(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
-//            SET_OBJ_FOR_KEY(obj: currentLocation.coordinate.latitude as AnyObject, key: "lat")
-//            SET_OBJ_FOR_KEY(obj: currentLocation.coordinate.longitude as AnyObject, key: "lon")
+            print(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
+            SET_OBJ_FOR_KEY(obj: currentLocation.coordinate.latitude as AnyObject, key: "lat")
+            SET_OBJ_FOR_KEY(obj: currentLocation.coordinate.longitude as AnyObject, key: "lon")
             
             //UserDefaults.standard.set(22.36, forKey: "lat")
             //UserDefaults.standard.set(88.36, forKey: "lon")

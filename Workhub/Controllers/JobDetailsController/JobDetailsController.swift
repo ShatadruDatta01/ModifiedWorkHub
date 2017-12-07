@@ -10,6 +10,15 @@ import UIKit
 
 class JobDetailsController: BaseTableViewController {
 
+    var strIconDetails: String!
+    var strJobTitle: String!
+    var strJobSubTitle: String!
+    var strJobHour: String!
+    var strJobLocation: String!
+    var strJobPosted: String!
+    var strShift: String!
+    var strFullTime: String!
+    var strJobDesc: String!
     @IBOutlet weak var jobIcon: UIImageView!
     @IBOutlet weak var lblJobTitle: UILabel!
     @IBOutlet weak var lblJobSubtitle: UILabel!
@@ -22,6 +31,15 @@ class JobDetailsController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.jobIcon.setImage(withURL: NSURL(string: strIconDetails)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+        self.lblJobTitle.text = strJobTitle
+        self.lblJobSubtitle.text = strJobSubTitle
+        self.lblHour.text = "\(strJobHour!) per hour"
+        self.lblLocation.text = strJobLocation
+        self.lblJobPosted.text = strJobPosted
+        self.lblDayShift.text = "\(strShift!) shift"
+        self.lblFulltime.text = strFullTime
+        self.lblJobDescription.text = strJobDesc
         self.tableView.estimatedRowHeight = 66.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         // Do any additional setup after loading the view.

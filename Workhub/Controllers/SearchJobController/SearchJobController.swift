@@ -8,9 +8,16 @@
 
 import UIKit
 import MapKit
+import CoreLocation
+
+
 
 class SearchJobController: BaseViewController {
 
+    var indexselected = -1
+    var arrJob = [AnyObject]()
+    var locationManager = CLLocationManager()
+    var annotationView: MKAnnotationView!
     @IBOutlet var widthGOconstraint: NSLayoutConstraint!
     @IBOutlet weak var lblDetailsContent: UILabel!
     @IBOutlet weak var lblListContent: UILabel!
@@ -19,9 +26,17 @@ class SearchJobController: BaseViewController {
     @IBOutlet weak var mapListJob: MKMapView!
     @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var viewList: UIView!
-    @IBOutlet weak var txtSearchJob: UITextField!
+    @IBOutlet weak var txtSearchJob: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        mapListJob.showsUserLocation = true
+        
         self.jobSearchAPICall()
         self.widthGOconstraint.constant = 0
         self.viewList.isHidden = true
@@ -66,7 +81,73 @@ class SearchJobController: BaseViewController {
             self.imgMapContent.isHidden = true
         }
     }
+    
+    
+    
+    /// JobLocation
+    func jobLocation() {
+        for location in self.arrJob {
+            let annotation = MKPointAnnotation()
+            let val = location as! SearchJob
+            annotation.coordinate = CLLocationCoordinate2D(latitude: Double(val.latitude!)!, longitude: Double(val.longitude!)!)
+            mapListJob.addAnnotation(annotation)
+        }
+    }
 }
+
+
+
+// MARK: - MKMapViewDelegate
+extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        manager.stopUpdatingLocation()
+        //userLocation.coordinate.latitude
+        //userLocation.coordinate.longitude
+        let coordinations = CLLocationCoordinate2D(latitude: 22.87,longitude: 88.36)
+        let span = MKCoordinateSpanMake(0.2,0.2)
+        let region = MKCoordinateRegion(center: coordinations, span: span)
+        
+        mapListJob.setRegion(region, animated: true)
+        
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            let pin = mapView.view(for: annotation) ?? MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            pin.image = UIImage(named: "LocationIcon")
+            annotationView = pin
+            return pin
+            
+        } else {
+            let annotationIdentifier = "AnnotationIdentifier"
+            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+                annotationView.rightCalloutAccessoryView = UIButton.init(type: UIButtonType.detailDisclosure)
+                annotationView!.canShowCallout = false
+            }
+            else {
+                annotationView!.annotation = annotation
+            }
+            
+            
+            annotationView!.image = UIImage(named: "JobIcon")
+            
+            return annotationView
+            
+        }
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    }
+}
+
 
 
 // MARK: - UITextFieldDelegate
@@ -91,18 +172,28 @@ extension SearchJobController: UITextFieldDelegate {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.arrJob.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchJobCell", for: indexPath) as! SearchJobCell
-        cell.datasource = "" as AnyObject
+        cell.datasource = self.arrJob[indexPath.row] as AnyObject
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let jobDetailsPageVC = mainStoryboard.instantiateViewController(withIdentifier: "JobDetailsController") as! JobDetailsController
+        let val = self.arrJob[indexPath.row] as! SearchJob
+        jobDetailsPageVC.strIconDetails = val.category_image!
+        jobDetailsPageVC.strJobHour = val.salary_per_hour!
+        jobDetailsPageVC.strJobTitle = val.role!
+        jobDetailsPageVC.strJobSubTitle = val.company_name!
+        jobDetailsPageVC.strJobLocation = "\(val.state!), \(val.city!)"
+        jobDetailsPageVC.strShift = val.shift!
+        jobDetailsPageVC.strJobPosted = val.posted_on!
+        jobDetailsPageVC.strFullTime = val.type!
+        jobDetailsPageVC.strJobDesc = val.jobDetail!
         NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
     }
     
@@ -119,7 +210,20 @@ extension SearchJobController {
     func jobSearchAPICall() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
         API_MODELS_METHODS.searchJOB("19.16803810", "72.84864010", "400001", radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
-            
+            if isSuccess {
+                print(responseDict!["result"]!["data"])
+                if responseDict!["result"]!["data"].count > 0 {
+                    for value in responseDict!["result"]!["data"].arrayObject! {
+                        let objJobList = SearchJob(withDictionary: value as! [String : AnyObject])
+                        self.arrJob.append(objJobList)
+                    }
+                    self.tblList.reloadData()
+                    self.jobLocation()
+                } else {
+                }
+            } else {
+                
+            }
         }
     }
 }

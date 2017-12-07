@@ -154,7 +154,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                                      completion: @escaping (_ response: AnyObject,_ responseString:String,_ isSuccess:Bool) -> Void){
         
         _ = NetworkConnectivity.networkConnectionType("needsConnection")
-        queue?.sync {
+        //queue?.sync {
             
             //let baseUrlString = "https://apils.socioadvocacy.com/company/feed/2017-08-22/2017-08-23?access_token=0d63c9f79807211b736651ed943661370f838eb1&cid=365834c2&uid=064bf2c6"
             print(AppConstantValues.companyAccessToken)
@@ -188,7 +188,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                         }
                 }
             }
-        }
+        //}
     }
     
     
