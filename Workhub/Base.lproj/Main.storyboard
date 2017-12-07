@@ -113,7 +113,7 @@
                 <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CwH-aM-tDL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIM-qO-ilC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pIM-qO-ilC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -198,7 +198,7 @@
                 <navigationController storyboardIdentifier="ContentNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="YEJ-I8-dPo" customClass="ContentNavigationController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoN-1O-FHa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aoN-1O-FHa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -278,11 +278,11 @@
                                         <rect key="frame" x="8" y="8" width="317" height="35"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="22"/>
+                                                <integer key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="insetX">
                                                 <real key="value" value="10"/>
@@ -364,7 +364,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="ohh-zw-fHQ"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1534,7 +1534,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="lsj-Va-cIh"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1549,14 +1549,19 @@
                                                         <action selector="bookmark:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="PLk-Cj-4va"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uk9-DR-EFg">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uk9-DR-EFg" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                                     <rect key="frame" x="62" y="54" width="273" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="dkG-bL-0NT"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User" translatesAutoresizingMaskIntoConstraints="NO" id="NOk-Vq-5w1">
                                                     <rect key="frame" x="62" y="79" width="20" height="24"/>
@@ -1599,8 +1604,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 per hour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsV-JU-MVM">
-                                                    <rect key="frame" x="52" y="7" width="315" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                    <rect key="frame" x="53" y="7" width="314" height="36"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1614,7 +1619,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="HJZ-4y-XrW" firstAttribute="leading" secondItem="iMh-zw-40H" secondAttribute="leading" constant="19" id="7gc-NY-JcQ"/>
-                                                <constraint firstItem="FsV-JU-MVM" firstAttribute="leading" secondItem="aKa-eA-ClV" secondAttribute="trailing" constant="8" id="9qX-2K-47f"/>
+                                                <constraint firstItem="FsV-JU-MVM" firstAttribute="leading" secondItem="aKa-eA-ClV" secondAttribute="trailing" constant="9" id="9qX-2K-47f"/>
                                                 <constraint firstItem="HJZ-4y-XrW" firstAttribute="top" secondItem="aKa-eA-ClV" secondAttribute="bottom" constant="4" id="J31-4c-pP4"/>
                                                 <constraint firstItem="FsV-JU-MVM" firstAttribute="top" secondItem="iMh-zw-40H" secondAttribute="top" constant="7" id="T1t-Ft-gAG"/>
                                                 <constraint firstItem="HJZ-4y-XrW" firstAttribute="top" secondItem="FsV-JU-MVM" secondAttribute="bottom" constant="1" id="VAM-ah-0NV"/>
@@ -1641,7 +1646,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="California, Garden Grove, 5 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btQ-fu-kST">
                                                     <rect key="frame" x="57" y="7" width="310" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1682,7 +1687,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job posted - 13/11/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaA-ZU-Ktw">
                                                     <rect key="frame" x="57" y="7" width="310" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1723,7 +1728,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day shift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxw-gb-yIF">
                                                     <rect key="frame" x="57" y="7" width="310" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1764,7 +1769,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPN-j2-GM1">
                                                     <rect key="frame" x="57" y="7" width="310" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1791,14 +1796,14 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="JYg-4j-lvY"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzF-jk-QIU">
                                                     <rect key="frame" x="17" y="33" width="341" height="25"/>
                                                     <string key="text">About this job About this jobAbout this jobAbout this jobAbout this jobAbout this jobAbout this job About this jobAbout this jobAbout this jobAbout this jobAbout this jobAbout this job About this jobAbout this jobAbout this jobAbout this jobAbout this jobAbout this job About this jobAbout this jobAbout this jobAbout this jobAbout this jobAbout this job About this jobAbout this jobAbout this jobAbout this jobAbout this jobAbout this job About this jobAbout this jobAbout this jobAbout this jobAbout this jobAbout this job About this jobAbout this jobAbout this jobAbout this jobAbout this job</string>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1838,7 +1843,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="FCs-JX-iXl"/>
                                                         <constraint firstAttribute="width" constant="83" id="HtQ-tW-tX1"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1867,7 +1872,7 @@
                         <outlet property="lblJobDescription" destination="JzF-jk-QIU" id="YkE-yv-FFf"/>
                         <outlet property="lblJobPosted" destination="SaA-ZU-Ktw" id="UBm-d6-6bB"/>
                         <outlet property="lblJobSubtitle" destination="EF2-hM-5LR" id="cvo-LZ-osJ"/>
-                        <outlet property="lblJobTitle" destination="Uk9-DR-EFg" id="dat-mU-bDT"/>
+                        <outlet property="lblJobTitle" destination="Uk9-DR-EFg" id="5Qb-Me-paH"/>
                         <outlet property="lblLocation" destination="btQ-fu-kST" id="2BS-ap-Udv"/>
                     </connections>
                 </tableViewController>
@@ -2773,7 +2778,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="T6P-5J-KyT"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2789,12 +2794,12 @@
                                                         <action selector="bookmark:" destination="p9o-s4-bza" eventType="touchUpInside" id="tmf-M5-MeZ"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quality Assurance Technician" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnW-Ks-f6E">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quality Assurance Technician" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnW-Ks-f6E" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                                     <rect key="frame" x="62" y="79" width="273" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="J5E-eN-hrG"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2810,7 +2815,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="W4P-g0-VFc"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2848,7 +2853,7 @@
                                                     <rect key="frame" x="15" y="7" width="345" height="30"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="insetX">
@@ -2880,7 +2885,7 @@
                                                     <rect key="frame" x="15" y="7" width="345" height="30"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="insetX">
@@ -2916,7 +2921,7 @@
                                                         <constraint firstAttribute="width" constant="160" id="ib1-Wv-TKa"/>
                                                     </constraints>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="insetX">
@@ -2947,7 +2952,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="hy9-28-6Cf"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
                                                     <color key="textColor" red="0.40780633687973022" green="0.40786752104759216" blue="0.40778699517250061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2988,7 +2993,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="OUu-AU-acU"/>
                                                         <constraint firstAttribute="width" constant="83" id="Ovi-Lp-3vv"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -3011,7 +3016,7 @@
                     </tableView>
                     <connections>
                         <outlet property="imgJobIcon" destination="WcC-0L-KnK" id="XdZ-h3-haQ"/>
-                        <outlet property="lblJobTitle" destination="DnW-Ks-f6E" id="Avc-ks-MRp"/>
+                        <outlet property="lblJobTitle" destination="DnW-Ks-f6E" id="tRQ-2x-zg1"/>
                         <outlet property="lblSubJobTitle" destination="Ues-52-i9U" id="BQW-N7-3zj"/>
                         <outlet property="txtEmail" destination="FGZ-ja-riy" id="WHe-SL-mtW"/>
                         <outlet property="txtName" destination="IBv-Du-M0l" id="bgR-va-sRu"/>
