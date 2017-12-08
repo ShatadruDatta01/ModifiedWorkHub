@@ -19,15 +19,16 @@ class ApplyJobController: BaseTableViewController {
     @IBOutlet weak var lblSubJobTitle: UILabel!
     @IBOutlet weak var txtName: CustomTextField!
     @IBOutlet weak var txtEmail: CustomTextField!
-    @IBOutlet weak var txtResume: CustomTextField!
+    @IBOutlet weak var lblResume: UILabel!
+    @IBOutlet weak var viewResume: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.txtName.layer.borderColor = UIColorRGB(r: 188, g: 188, b: 188)?.cgColor
         self.txtName.layer.borderWidth = 1.0
         self.txtEmail.layer.borderColor = UIColorRGB(r: 188, g: 188, b: 188)?.cgColor
         self.txtEmail.layer.borderWidth = 1.0
-        self.txtResume.layer.borderColor = UIColorRGB(r: 188, g: 188, b: 188)?.cgColor
-        self.txtResume.layer.borderWidth = 1.0
+        self.viewResume.layer.borderColor = UIColorRGB(r: 188, g: 188, b: 188)?.cgColor
+        self.viewResume.layer.borderWidth = 1.0
         self.imgJobIcon.setImage(withURL: NSURL(string: strJobIcon)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
         self.lblJobTitle.text = strJobTitle
         self.lblJobTitle.speed = .duration(8.0)
@@ -55,13 +56,3 @@ class ApplyJobController: BaseTableViewController {
 }
 
 
-// MARK: - UITextFieldDelegate
-extension ApplyJobController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == self.txtResume {
-            return false
-        } else {
-            return true
-        }
-    }
-}

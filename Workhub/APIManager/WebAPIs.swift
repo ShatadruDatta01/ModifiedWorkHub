@@ -17,6 +17,7 @@ struct AppWebservices {
     static let MOBILE_LOGIN = "mobile/login?"
     static let USER_UID     = "user/uid?"
     
+    static let REGISTER = "register?"
     static let LOGIN = "login?"
     static let JOB_SEARCH = "job/search?"
     static let TOKEN = "token?"
