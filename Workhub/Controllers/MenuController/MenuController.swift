@@ -10,12 +10,17 @@ import UIKit
 
 class MenuController: BaseViewController {
 
-    var arrMenu = ["REGISTER", "LOGIN"]
+    var arrMenuBeforeLogin = ["REGISTER", "LOGIN"]
+    var arrMenuBeforeLoginImg = ["REGISTER", "LOGIN"]
+    var arrMenuAfterLogin = ["EDIT PROFILE", "UPDATE RESUME", "APPLIED JOBS", "SAVED JOBS"]
+    var arrMenuAfterLoginImg = ["REGISTER", "UPDATE_RESUME", "APPLIED", "SAVED_JOBS"]
     @IBOutlet weak var tblMenu: UITableView!
     var checkController = false
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NavigationHelper.helper.reloadData = {
+            self.tblMenu.reloadData()
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -36,77 +41,176 @@ class MenuController: BaseViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension MenuController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            return 2
+        } else {
+            return 3
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 3
-        default:
-            return self.arrMenu.count
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            switch section {
+            case 0:
+                return 3
+            default:
+                return self.arrMenuBeforeLogin.count
+            }
+        } else {
+            switch section {
+            case 0:
+                return 3
+            case 1:
+                return self.arrMenuAfterLogin.count
+            default:
+                return 1
+            }
+            
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            switch indexPath.row {
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            switch indexPath.section {
             case 0:
-                let cellTitle = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! TitleCell
-                cellTitle.datasource = "" as AnyObject
-                cellTitle.selectionStyle = .none
-                return cellTitle
-            case 1:
-                let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-                cellProf.datasource = "" as AnyObject
-                cellProf.selectionStyle = .none
-                return cellProf
+                switch indexPath.row {
+                case 0:
+                    let cellTitle = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! TitleCell
+                    cellTitle.datasource = "" as AnyObject
+                    cellTitle.selectionStyle = .none
+                    return cellTitle
+                case 1:
+                    let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+                    cellProf.datasource = "" as AnyObject
+                    cellProf.selectionStyle = .none
+                    return cellProf
+                default:
+                    let cellContent = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
+                    cellContent.datasource = "" as AnyObject
+                    cellContent.selectionStyle = .none
+                    return cellContent
+                }
             default:
-                let cellContent = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
-                cellContent.datasource = "" as AnyObject
-                cellContent.selectionStyle = .none
-                return cellContent
+                let cellMenu = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
+                cellMenu.imgMenu.image = UIImage(named: self.arrMenuBeforeLoginImg[indexPath.row])
+                cellMenu.datasource = self.arrMenuBeforeLogin[indexPath.row] as AnyObject
+                cellMenu.selectionStyle = .none
+                return cellMenu
             }
-        default:
-            let cellMenu = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
-            cellMenu.datasource = self.arrMenu[indexPath.row] as AnyObject
-            cellMenu.selectionStyle = .none
-            return cellMenu
+
+        } else {
+            
+            switch indexPath.section {
+            case 0:
+                switch indexPath.row {
+                case 0:
+                    let cellTitle = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! TitleCell
+                    cellTitle.datasource = "" as AnyObject
+                    cellTitle.selectionStyle = .none
+                    return cellTitle
+                case 1:
+                    let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+                    cellProf.datasource = "" as AnyObject
+                    cellProf.selectionStyle = .none
+                    return cellProf
+                default:
+                    let cellContent = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
+                    cellContent.datasource = "" as AnyObject
+                    cellContent.selectionStyle = .none
+                    return cellContent
+                }
+            case 1:
+                let cellMenu = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
+                cellMenu.imgMenu.image = UIImage(named: self.arrMenuAfterLoginImg[indexPath.row])
+                cellMenu.datasource = self.arrMenuAfterLogin[indexPath.row] as AnyObject
+                cellMenu.selectionStyle = .none
+                return cellMenu
+            default:
+                let cellLogout = tableView.dequeueReusableCell(withIdentifier: "LogoutCell", for: indexPath) as! LogoutCell
+                cellLogout.datasource = "" as AnyObject
+                cellLogout.btnLogout.addTarget(self, action: #selector(MenuController.logOut), for: UIControlEvents.touchUpInside)
+                cellLogout.selectionStyle = .none
+                return cellLogout
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            switch indexPath.row {
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            
+            switch indexPath.section {
             case 0:
-                return 60.0
-            case 1:
-                return 112.0
+                switch indexPath.row {
+                case 0:
+                    return 60.0
+                case 1:
+                    return 112.0
+                default:
+                    return 54.0
+                }
             default:
-                return 54.0
+                return 50.0
             }
-        default:
-            return 50.0
+
+        } else {
+            
+            switch indexPath.section {
+            case 0:
+                switch indexPath.row {
+                case 0:
+                    return 60.0
+                case 1:
+                    return 112.0
+                default:
+                    return 54.0
+                }
+            case 1:
+                return 50.0
+            default:
+                return 70.0
+            }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 1:
-            switch indexPath.row {
-            case 0:
-                let registerPageVC = mainStoryboard.instantiateViewController(withIdentifier: "RegisterController") as! RegisterController
-                NavigationHelper.helper.contentNavController!.pushViewController(registerPageVC, animated: true)
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            switch indexPath.section {
+            case 1:
+                switch indexPath.row {
+                case 0:
+                    let registerPageVC = mainStoryboard.instantiateViewController(withIdentifier: "RegisterController") as! RegisterController
+                    NavigationHelper.helper.contentNavController!.pushViewController(registerPageVC, animated: true)
+                default:
+                    let loginPageVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                    NavigationHelper.helper.contentNavController!.pushViewController(loginPageVC, animated: true)
+                }
             default:
-                let loginPageVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
-                NavigationHelper.helper.contentNavController!.pushViewController(loginPageVC, animated: true)
+                print("No Code")
             }
-        default:
-            print("No Code")
+
+        } else {
+            
+            switch indexPath.section {
+            case 1:
+                self.presentAlertWithTitle(title: "Workhub", message: "Work under progress")
+            default:
+                print("No Code")
+            }
+
         }
         NavigationHelper.helper.openSidePanel(open: false)
     }
     
 }
+
+
+// MARK: - LogOut
+extension MenuController {
+    func logOut() {
+        self.presentAlertActionWithTitle(title: "Workhub", message: "Do you want to logout?", text: "")
+    }
+}
+
+
+

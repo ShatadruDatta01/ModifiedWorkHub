@@ -32,8 +32,20 @@ class SearchJobCell: BaseTableViewCell {
                 self.viewHour.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
                 self.viewMiles.layer.borderWidth = 1.0
                 self.viewMiles.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
+                self.btnTick.addTarget(self, action: #selector(SearchJobCell.moveToApplyJob), for: UIControlEvents.touchUpInside)
             }
         }
+    }
+    
+    
+    /// Move To ApplyJob
+    func moveToApplyJob() {
+        let applyJobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
+        let val = datasource as! SearchJob
+        applyJobPageVC.strJobIcon = val.category_image!
+        applyJobPageVC.strJobTitle = val.role!
+        applyJobPageVC.strJobSubTitle = val.company_name!
+        NavigationHelper.helper.contentNavController!.pushViewController(applyJobPageVC, animated: false)
     }
 
 }

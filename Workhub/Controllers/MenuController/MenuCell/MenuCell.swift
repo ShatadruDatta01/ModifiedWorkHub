@@ -15,7 +15,6 @@ class MenuCell: BaseTableViewCell {
     override var datasource: AnyObject?{
         didSet {
             if datasource != nil {
-                self.imgMenu.image = UIImage(named: datasource as! String)
                 self.lblMenu.text = datasource as? String
             }
         }
