@@ -50,9 +50,17 @@ class SearchJobController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NavigationHelper.helper.reloadMenu()
         NavigationHelper.helper.headerViewController?.isBack = false
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "Dash"), for: UIControlState.normal)
+        NavigationHelper.helper.headerViewController?.leftButton.addTarget(self, action: #selector(SearchJobController.actionDash), for: UIControlEvents.touchUpInside)
+    }
+    
+    
+    /// Dashboard Action
+    func actionDash() {
+        NavigationHelper.helper.reloadMenu()
     }
     
     /// Go
@@ -111,7 +119,6 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
         let region = MKCoordinateRegion(center: coordinations, span: span)
         
         mapListJob.setRegion(region, animated: true)
-        
     }
     
     
@@ -145,6 +152,7 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
     }
 }
 
@@ -154,17 +162,21 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
 extension SearchJobController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.txtSearchJob.resignFirstResponder()
+        self.widthGOconstraint.constant = 0
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if (textField.text?.characters.count)! > 0 {
-            self.widthGOconstraint.constant = 34
+        let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        if newString.characters.count > 0 {
+            self.widthGOconstraint.constant = 34.0
         } else {
             self.widthGOconstraint.constant = 0
         }
         return true
     }
+    
+    
 }
 
 

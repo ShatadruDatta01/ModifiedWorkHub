@@ -23,9 +23,9 @@ struct API_MODELS_METHODS{
         let completeUrl = AppWebservices.baseUrl + subpath + appServiceVariables.accessToken + AppConstantValues.companyAccessToken
         var parameters = [String: String]()
         if network == "Manual" {
-            parameters = ["email": email,"password": password, "isCompany": "yes", "network": ""]
+            parameters = ["email": email,"password": password, "isCompany": "no", "network": ""]
         } else {
-            parameters = ["email": email,"password": password, "isCompany": "yes", "network": network]
+            parameters = ["email": email,"password": password, "isCompany": "no", "network": network]
         }
         
         
@@ -55,9 +55,9 @@ struct API_MODELS_METHODS{
         let completeUrl = AppWebservices.baseUrl + subpath + appServiceVariables.accessToken + AppConstantValues.companyAccessToken
         var parameters = [String: String]()
         if network == "Manual" {
-            parameters = ["name": name, "email": email, "mobile": mobile, "password": password, "network": "", "isCompany": "yes"]
+            parameters = ["name": name, "email": email, "mobile": mobile, "password": password, "network": "", "isCompany": "no"]
         } else {
-            parameters = ["name": name, "email": email, "mobile": mobile, "password": password, "network": network, "isCompany": "yes"]
+            parameters = ["name": name, "email": email, "mobile": mobile, "password": password, "network": network, "isCompany": "no"]
         }
         
         

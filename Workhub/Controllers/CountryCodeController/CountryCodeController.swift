@@ -10,7 +10,9 @@ import UIKit
 
 class CountryCodeController: BaseViewController {
 
+    var isSearch = false
     var arrCountryCode = [AnyObject]()
+    var arrSearchCountryCode = [AnyObject]()
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var tblCountry: UITableView!
     @IBOutlet weak var labelAlert: UILabel!
@@ -29,6 +31,10 @@ class CountryCodeController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    @IBAction func cross(_ sender: UIButton) {
+        self.dismissAnimate()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,18 +113,27 @@ class CountryCodeController: BaseViewController {
 extension CountryCodeController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrCountryCode.count
+        if self.isSearch {
+            return self.arrSearchCountryCode.count
+        } else {
+            return self.arrCountryCode.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCodeCell", for: indexPath) as! CountryCodeCell
-        cell.datasource = self.arrCountryCode[indexPath.row] as AnyObject
+        if self.isSearch {
+            cell.datasource = self.arrSearchCountryCode[indexPath.row] as AnyObject
+        } else {
+            cell.datasource = self.arrCountryCode[indexPath.row] as AnyObject
+        }
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let val = self.arrCountryCode[indexPath.row] as AnyObject
+        let val =  self.isSearch ? self.arrSearchCountryCode[indexPath.row] as AnyObject : self.arrCountryCode[indexPath.row] as AnyObject
         self.didSubmitButton!(String(describing: val["name"]!!), String(describing: val["code"]!!),String(describing: val["dial_code"]!!))
         self.dismissAnimate()
         
@@ -130,3 +145,24 @@ extension CountryCodeController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+
+// MARK: - UITextFieldDelegate
+extension CountryCodeController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.txtSearch.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        if newString.characters.count > 0 {
+            self.isSearch = true
+        } else {
+            self.isSearch = false
+        }
+        self.arrSearchCountryCode = self.arrCountryCode.filter { NSPredicate(format: "(name beginswith[c] %@)", newString).evaluate(with: $0) }
+        self.tblCountry.reloadData()
+        return true
+    }
+}

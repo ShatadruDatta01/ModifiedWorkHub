@@ -328,6 +328,7 @@
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */; };
 		C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */; };
+		C3F2BBC81FDA692500C0BC9A /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -682,6 +683,7 @@
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailsController.swift; sourceTree = "<group>"; };
 		C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyJobController.swift; sourceTree = "<group>"; };
+		C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
 		D2AA615F83C0D68610281CFF /* Pods-WorkhubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkhubUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkhubUITests/Pods-WorkhubUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F2DA77DCA43C53210EA7A468 /* Pods-WorkhubUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkhubUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkhubUITests/Pods-WorkhubUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FD6664B522DFBE4CC1539ED2 /* Pods_WorkhubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkhubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -720,6 +722,7 @@
 		5F49CC0F1FC45032004CEB29 /* MenuController */ = {
 			isa = PBXGroup;
 			children = (
+				C3F2BBC61FDA689800C0BC9A /* LogoutCell */,
 				5F49CC121FC45152004CEB29 /* TitleCell */,
 				5F49CC131FC45152004CEB29 /* ProfileCell */,
 				5F49CC141FC45152004CEB29 /* ContentCell */,
@@ -1568,6 +1571,14 @@
 			path = ApplyJobController;
 			sourceTree = "<group>";
 		};
+		C3F2BBC61FDA689800C0BC9A /* LogoutCell */ = {
+			isa = PBXGroup;
+			children = (
+				C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */,
+			);
+			path = LogoutCell;
+			sourceTree = "<group>";
+		};
 		C7083C32D96462BA9007B2AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2184,6 +2195,7 @@
 				5F49CC171FC45169004CEB29 /* TitleCell.swift in Sources */,
 				5FCE5B341FC09AC900F299B9 /* NSData+Base64.m in Sources */,
 				5FCE5B151FC05F7400F299B9 /* BaseTableViewCell.swift in Sources */,
+				C3F2BBC81FDA692500C0BC9A /* LogoutCell.swift in Sources */,
 				C361536F1FC56D2D001273BA /* APIModel.swift in Sources */,
 				5F49CC321FC49D8C004CEB29 /* ButtonCell.swift in Sources */,
 				5F49CC111FC4507C004CEB29 /* MenuController.swift in Sources */,

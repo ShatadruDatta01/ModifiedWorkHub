@@ -454,6 +454,25 @@ extension UIViewController {
         }
     }
     
+    func presentAlertActionWithTitle(title: String, message : String, text: String)
+    {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) {
+            (action: UIAlertAction) in
+            SET_OBJ_FOR_KEY(obj: "0" as AnyObject, key: "isLogin")
+            NavigationHelper.helper.openSidePanel(open: false)
+        }
+        alertController.addAction(OKAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            (action: UIAlertAction) in
+           
+        }
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    
 }
 
 
