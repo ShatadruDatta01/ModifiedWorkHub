@@ -73,7 +73,7 @@
 		C34E1D2E1FBD8F8100CE777C /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E1D281FBD8F8100CE777C /* SlideMenuController.swift */; };
 		C34E1D321FBD92FE00CE777C /* HTTPManagerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E1D311FBD92FE00CE777C /* HTTPManagerAPI.swift */; };
 		C34E1D341FBD939A00CE777C /* WebAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E1D331FBD939A00CE777C /* WebAPIs.swift */; };
-		C35C234C1FCFE3850077B5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C35C234B1FCFE3850077B5AC /* GoogleService-Info.plist */; };
+		C353FD641FDBB1EC002D0117 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C353FD631FDBB1EC002D0117 /* GoogleService-Info.plist */; };
 		C35C234F1FCFFAA90077B5AC /* FacebookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C234E1FCFFAA90077B5AC /* FacebookAPI.swift */; };
 		C35C23511FD009E80077B5AC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35C23501FD009E80077B5AC /* MapKit.framework */; };
 		C35C24471FD01B500077B5AC /* Afghanistan.png in Resources */ = {isa = PBXBuildFile; fileRef = C35C23541FD01B4F0077B5AC /* Afghanistan.png */; };
@@ -428,7 +428,7 @@
 		C34E1D291FBD8F8100CE777C /* SlideMenuControllerSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuControllerSwift.h; sourceTree = "<group>"; };
 		C34E1D311FBD92FE00CE777C /* HTTPManagerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPManagerAPI.swift; sourceTree = "<group>"; };
 		C34E1D331FBD939A00CE777C /* WebAPIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIs.swift; sourceTree = "<group>"; };
-		C35C234B1FCFE3850077B5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C353FD631FDBB1EC002D0117 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C35C234E1FCFFAA90077B5AC /* FacebookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAPI.swift; sourceTree = "<group>"; };
 		C35C23501FD009E80077B5AC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C35C23541FD01B4F0077B5AC /* Afghanistan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Afghanistan.png; sourceTree = "<group>"; };
@@ -1052,7 +1052,7 @@
 				C34E1CE21FBD7D5300CE777C /* Assets.xcassets */,
 				C34E1CE41FBD7D5300CE777C /* LaunchScreen.storyboard */,
 				C34E1CE71FBD7D5300CE777C /* Info.plist */,
-				C35C234B1FCFE3850077B5AC /* GoogleService-Info.plist */,
+				C353FD631FDBB1EC002D0117 /* GoogleService-Info.plist */,
 				5FCE5B301FC099C500F299B9 /* Workhub-Bridging-Header.h */,
 			);
 			path = Workhub;
@@ -1839,6 +1839,7 @@
 				C35C24581FD01B500077B5AC /* Azerbaijan.png in Resources */,
 				C35C251B1FD01B500077B5AC /* Tajikistan.png in Resources */,
 				C35C24DA1FD01B500077B5AC /* Namibia.png in Resources */,
+				C353FD641FDBB1EC002D0117 /* GoogleService-Info.plist in Resources */,
 				C35C24E41FD01B500077B5AC /* Nigeria.png in Resources */,
 				C35C251F1FD01B500077B5AC /* Togo.png in Resources */,
 				C35C24701FD01B500077B5AC /* Cayman Islands.png in Resources */,
@@ -1951,7 +1952,6 @@
 				C35C24B81FD01B500077B5AC /* Kosovo.png in Resources */,
 				C35C24F31FD01B500077B5AC /* Philippines.png in Resources */,
 				C35C24741FD01B500077B5AC /* China.png in Resources */,
-				C35C234C1FCFE3850077B5AC /* GoogleService-Info.plist in Resources */,
 				C35C245C1FD01B500077B5AC /* Barbados.png in Resources */,
 				C35C24EA1FD01B500077B5AC /* Oman.png in Resources */,
 				C35C24D51FD01B500077B5AC /* Montenegro.png in Resources */,

@@ -10,15 +10,19 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
-
 class SearchJobController: BaseViewController {
 
+    var dictJob = [String: String]()
+    var zipCode = ""
+    var locManager = CLLocationManager()
+    var currentLocation: CLLocation!
     var indexselected = -1
     var arrJob = [AnyObject]()
+    var arrSearchJob = [AnyObject]()
     var locationManager = CLLocationManager()
     var annotationView: MKAnnotationView!
     @IBOutlet var widthGOconstraint: NSLayoutConstraint!
+    @IBOutlet weak var lblNoDataFound: UILabel!
     @IBOutlet weak var lblDetailsContent: UILabel!
     @IBOutlet weak var lblListContent: UILabel!
     @IBOutlet weak var imgListContent: UIImageView!
@@ -29,7 +33,12 @@ class SearchJobController: BaseViewController {
     @IBOutlet weak var txtSearchJob: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.txtSearchJob.keyboardType = .numberPad
+        AppConstantValues.latitide = "19.16803810" //"41.850033"
+        AppConstantValues.longitude = "72.84864010"//"-87.6500523"
+        //self.location()
+        self.fetchZipCode()
+        self.lblDetailsContent.text = "No jobs available in 5 sq miles"
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -37,7 +46,6 @@ class SearchJobController: BaseViewController {
         
         mapListJob.showsUserLocation = true
         
-        self.jobSearchAPICall()
         self.widthGOconstraint.constant = 0
         self.viewList.isHidden = true
         self.lblListContent.text = "List View"
@@ -58,6 +66,63 @@ class SearchJobController: BaseViewController {
     }
     
     
+    
+    /// Current Location
+    func location() {
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            currentLocation = locManager.location
+            AppConstantValues.latitide = String(currentLocation.coordinate.latitude)
+            AppConstantValues.longitude = String(currentLocation.coordinate.longitude)
+            print(AppConstantValues.latitide, AppConstantValues.longitude)
+        }
+    }
+    
+
+    
+    /// Fetch ZipCode
+    func fetchZipCode() {
+        // Add below code to get address for touch coordinates.
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            
+            // Place details
+            var placeMark: CLPlacemark!
+            placeMark = placemarks?[0]
+            
+            // Address dictionary
+            print(placeMark.addressDictionary as Any)
+            
+            // Location name
+            if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
+                print(locationName)
+            }
+            // Street address
+            if let street = placeMark.addressDictionary!["Thoroughfare"] as? NSString {
+                print(street)
+            }
+            // City
+            if let city = placeMark.addressDictionary!["City"] as? NSString {
+                print(city)
+            }
+            // Zip code
+            if let zip = placeMark.addressDictionary!["ZIP"] as? NSString {
+                AppConstantValues.zipcode = zip as String
+                print(zip)
+                self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
+            }
+            // Country
+            if let country = placeMark.addressDictionary!["Country"] as? NSString {
+                print(country)
+            }
+        })
+        
+        
+
+    }
+    
+    
     /// Dashboard Action
     func actionDash() {
         NavigationHelper.helper.reloadMenu()
@@ -67,7 +132,8 @@ class SearchJobController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func actionGO(_ sender: UIButton) {
-        
+        self.txtSearchJob.resignFirstResponder()
+        self.userJobListAPICall(zipCode: self.zipCode)
     }
     
     
@@ -78,15 +144,15 @@ class SearchJobController: BaseViewController {
         if sender.isSelected {
             sender.isSelected = false
             self.viewList.isHidden = true
-            self.lblListContent.text = "Map View"
-            self.imgListContent.isHidden = true
-            self.imgMapContent.isHidden = false
-        } else {
-            sender.isSelected = true
-            self.viewList.isHidden = false
             self.lblListContent.text = "List View"
             self.imgListContent.isHidden = false
             self.imgMapContent.isHidden = true
+        } else {
+            sender.isSelected = true
+            self.viewList.isHidden = false
+            self.lblListContent.text = "Map View"
+            self.imgListContent.isHidden = true
+            self.imgMapContent.isHidden = false
         }
     }
     
@@ -97,6 +163,7 @@ class SearchJobController: BaseViewController {
         for location in self.arrJob {
             let annotation = MKPointAnnotation()
             let val = location as! SearchJob
+            annotation.title = val.role!
             annotation.coordinate = CLLocationCoordinate2D(latitude: Double(val.latitude!)!, longitude: Double(val.longitude!)!)
             mapListJob.addAnnotation(annotation)
         }
@@ -110,11 +177,8 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-        
         manager.stopUpdatingLocation()
-        //userLocation.coordinate.latitude
-        //userLocation.coordinate.longitude
-        let coordinations = CLLocationCoordinate2D(latitude: 22.87,longitude: 88.36)
+        let coordinations = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,longitude: userLocation.coordinate.longitude)
         let span = MKCoordinateSpanMake(0.2,0.2)
         let region = MKCoordinateRegion(center: coordinations, span: span)
         
@@ -152,7 +216,9 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
+        let selectedPinCoordinate = (view.annotation?.coordinate)!
+        print(view.annotation!.title!!)
+        print(selectedPinCoordinate.latitude, selectedPinCoordinate.longitude)
     }
 }
 
@@ -168,6 +234,7 @@ extension SearchJobController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        self.zipCode = newString
         if newString.characters.count > 0 {
             self.widthGOconstraint.constant = 34.0
         } else {
@@ -175,8 +242,6 @@ extension SearchJobController: UITextFieldDelegate {
         }
         return true
     }
-    
-    
 }
 
 
@@ -219,25 +284,40 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - SearchJobAPICall
 extension SearchJobController {
     
-    func jobSearchAPICall() {
+    
+    /// UserJOB APICall
+    func userJobListAPICall(zipCode: String) {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
-        API_MODELS_METHODS.searchJOB("19.16803810", "72.84864010", "400001", radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
+        API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
             if isSuccess {
                 print(responseDict!["result"]!["data"])
                 if responseDict!["result"]!["data"].count > 0 {
+                    
+                    if self.arrJob.count > 0 {
+                        self.arrJob.removeAll()
+                    }
+                    
+                    self.tblList.isHidden = false
                     for value in responseDict!["result"]!["data"].arrayObject! {
                         let objJobList = SearchJob(withDictionary: value as! [String : AnyObject])
                         self.arrJob.append(objJobList)
                     }
+                    self.lblDetailsContent.text = "\(self.arrJob.count) jobs available in 5 sq miles"
                     self.tblList.reloadData()
                     self.jobLocation()
                 } else {
+                    self.tblList.isHidden = true
                 }
             } else {
                 
             }
         }
     }
+    
+    
+    /*self.dictJob = ["jobID": objJobList.jobID!, "jobDetail": objJobList.jobDetail!, "category": objJobList.category!, "state": objJobList.state!, "country": objJobList.country!, "salary_per_hour": objJobList.salary_per_hour!, "posted_on": objJobList.posted_on!, "longitude": objJobList.longitude!, "salary_per_month": objJobList.salary_per_month!, "type": objJobList.type!, "company_name": objJobList.company_name!, "salary_range": objJobList.salary_range!, "latitude": objJobList.latitude!, "category_image": objJobList.category_image!, "city": objJobList.city!, "role": objJobList.role!, "currency": objJobList.currency!, "shift": objJobList.shift!, "company_detail": objJobList.company_detail!]*/
+    
+    
 }
 
 

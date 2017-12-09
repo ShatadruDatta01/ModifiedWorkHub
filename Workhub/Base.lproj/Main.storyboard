@@ -309,7 +309,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="actionGO:" destination="cpI-Xy-GLd" eventType="touchUpInside" id="sof-al-D7q"/>
+                                            <action selector="actionGO:" destination="cpI-Xy-GLd" eventType="touchUpInside" id="EnH-UX-NW6"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -333,6 +333,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxE-oG-Vko">
                                 <rect key="frame" x="0.0" y="50" width="375" height="577"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No job available on current location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcQ-72-dSm">
+                                        <rect key="frame" x="0.0" y="273" width="375" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="bHI-3z-bRV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                        <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1xa-4N-dlA">
                                         <rect key="frame" x="0.0" y="8" width="375" height="561"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -518,7 +527,11 @@
                                     <constraint firstItem="1xa-4N-dlA" firstAttribute="top" secondItem="xxE-oG-Vko" secondAttribute="top" constant="8" id="8E5-xe-8oF"/>
                                     <constraint firstItem="1xa-4N-dlA" firstAttribute="leading" secondItem="xxE-oG-Vko" secondAttribute="leading" id="Q2D-OL-nzc"/>
                                     <constraint firstAttribute="trailing" secondItem="1xa-4N-dlA" secondAttribute="trailing" id="enZ-Zj-SVw"/>
+                                    <constraint firstItem="AcQ-72-dSm" firstAttribute="centerY" secondItem="xxE-oG-Vko" secondAttribute="centerY" id="nNy-uo-2tz"/>
+                                    <constraint firstItem="AcQ-72-dSm" firstAttribute="centerX" secondItem="xxE-oG-Vko" secondAttribute="centerX" id="pYq-re-ezt"/>
+                                    <constraint firstAttribute="trailing" secondItem="AcQ-72-dSm" secondAttribute="trailing" id="s61-zq-gxb"/>
                                     <constraint firstAttribute="bottom" secondItem="1xa-4N-dlA" secondAttribute="bottom" constant="8" id="sM3-ao-ggN"/>
+                                    <constraint firstItem="AcQ-72-dSm" firstAttribute="leading" secondItem="xxE-oG-Vko" secondAttribute="leading" id="tei-dv-QFQ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXm-Vd-9UZ">
@@ -613,6 +626,7 @@
                         <outlet property="imgMapContent" destination="RfD-ZW-XP0" id="zNE-YJ-FBS"/>
                         <outlet property="lblDetailsContent" destination="NUz-ei-sLB" id="qF4-qx-n45"/>
                         <outlet property="lblListContent" destination="8Cp-A3-Aui" id="Y2p-LR-Pf1"/>
+                        <outlet property="lblNoDataFound" destination="AcQ-72-dSm" id="OQA-E7-2e9"/>
                         <outlet property="mapListJob" destination="dLt-Ms-KBG" id="3U2-TW-KR3"/>
                         <outlet property="tblList" destination="1xa-4N-dlA" id="uTl-50-VRD"/>
                         <outlet property="txtSearchJob" destination="qh1-tt-eLJ" id="KSN-X8-vPq"/>
@@ -622,7 +636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mQa-Et-zpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2893.125" y="828.16901408450701"/>
+            <point key="canvasLocation" x="2892" y="828.03598200899557"/>
         </scene>
         <!--Forgot Password Controller-->
         <scene sceneID="OjZ-29-mLH">
@@ -3074,15 +3088,15 @@
         <image name="Camera" width="80" height="79"/>
         <image name="Cross" width="20" height="21"/>
         <image name="Dash" width="30" height="23"/>
-        <image name="Dayshift" width="22" height="26"/>
+        <image name="Dayshift" width="30" height="35"/>
         <image name="Dollar" width="7" height="11"/>
         <image name="Facebook" width="20" height="20"/>
-        <image name="Fulltime" width="22" height="23"/>
+        <image name="Fulltime" width="35" height="36"/>
         <image name="Google" width="20" height="20"/>
         <image name="HorDollar" width="9" height="13"/>
         <image name="JobCategoryIcon" width="40" height="39"/>
         <image name="JobCategoryPlaceholder" width="40" height="41"/>
-        <image name="JobPosted" width="22" height="26"/>
+        <image name="JobPosted" width="30" height="35"/>
         <image name="ListIcon" width="21" height="20"/>
         <image name="MilesIcon" width="11" height="12"/>
         <image name="PasswordIcon" width="20" height="21"/>
