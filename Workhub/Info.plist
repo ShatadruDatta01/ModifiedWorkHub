@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.1066926550205-v6at0qvotcfkon7v3igtkvg0csp8rge7</string>
+				<string>com.googleusercontent.apps.928917427157-kqf9kgl56umtj7tqde8oiddmujb0803g</string>
 				<string>fb895660767257071</string>
 			</array>
 		</dict>
@@ -71,13 +71,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>UIAppFonts</key>
-    <array>
-        <string>open-sans.bold.ttf</string>
-        <string>open-sans.light-italic.ttf</string>
-        <string>open-sans.light.ttf</string>
-        <string>open-sans.regular.ttf</string>
-        <string>open-sans.semibold.ttf</string>
-    </array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>open-sans.bold.ttf</string>
+		<string>open-sans.light-italic.ttf</string>
+		<string>open-sans.light.ttf</string>
+		<string>open-sans.regular.ttf</string>
+		<string>open-sans.semibold.ttf</string>
+	</array>
 </dict>
 </plist>

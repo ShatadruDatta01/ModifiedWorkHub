@@ -30,6 +30,7 @@ class SearchJobController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.lblDetailsContent.text = "No jobs available in 5 sq miles"
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -41,8 +42,8 @@ class SearchJobController: BaseViewController {
         self.widthGOconstraint.constant = 0
         self.viewList.isHidden = true
         self.lblListContent.text = "List View"
-        self.imgListContent.isHidden = true
-        self.imgMapContent.isHidden = false
+        self.imgListContent.isHidden = false
+        self.imgMapContent.isHidden = true
         self.txtSearchJob.layer.borderWidth = 1.0
         self.txtSearchJob.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
         // Do any additional setup after loading the view.
@@ -78,15 +79,15 @@ class SearchJobController: BaseViewController {
         if sender.isSelected {
             sender.isSelected = false
             self.viewList.isHidden = true
-            self.lblListContent.text = "Map View"
-            self.imgListContent.isHidden = true
-            self.imgMapContent.isHidden = false
-        } else {
-            sender.isSelected = true
-            self.viewList.isHidden = false
             self.lblListContent.text = "List View"
             self.imgListContent.isHidden = false
             self.imgMapContent.isHidden = true
+        } else {
+            sender.isSelected = true
+            self.viewList.isHidden = false
+            self.lblListContent.text = "Map View"
+            self.imgListContent.isHidden = true
+            self.imgMapContent.isHidden = false
         }
     }
     
@@ -114,7 +115,7 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
         manager.stopUpdatingLocation()
         //userLocation.coordinate.latitude
         //userLocation.coordinate.longitude
-        let coordinations = CLLocationCoordinate2D(latitude: 22.87,longitude: 88.36)
+        let coordinations = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,longitude: userLocation.coordinate.longitude)
         let span = MKCoordinateSpanMake(0.2,0.2)
         let region = MKCoordinateRegion(center: coordinations, span: span)
         
@@ -175,8 +176,6 @@ extension SearchJobController: UITextFieldDelegate {
         }
         return true
     }
-    
-    
 }
 
 
@@ -229,6 +228,7 @@ extension SearchJobController {
                         let objJobList = SearchJob(withDictionary: value as! [String : AnyObject])
                         self.arrJob.append(objJobList)
                     }
+                    self.lblDetailsContent.text = "\(self.arrJob.count) jobs available in 5 sq miles"
                     self.tblList.reloadData()
                     self.jobLocation()
                 } else {

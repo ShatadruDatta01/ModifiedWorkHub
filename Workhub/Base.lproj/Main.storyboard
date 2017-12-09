@@ -113,7 +113,7 @@
                 <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CwH-aM-tDL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIM-qO-ilC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pIM-qO-ilC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -198,7 +198,7 @@
                 <navigationController storyboardIdentifier="ContentNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="YEJ-I8-dPo" customClass="ContentNavigationController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoN-1O-FHa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aoN-1O-FHa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3074,15 +3074,15 @@
         <image name="Camera" width="80" height="79"/>
         <image name="Cross" width="20" height="21"/>
         <image name="Dash" width="30" height="23"/>
-        <image name="Dayshift" width="22" height="26"/>
+        <image name="Dayshift" width="30" height="35"/>
         <image name="Dollar" width="7" height="11"/>
         <image name="Facebook" width="20" height="20"/>
-        <image name="Fulltime" width="22" height="23"/>
+        <image name="Fulltime" width="35" height="36"/>
         <image name="Google" width="20" height="20"/>
         <image name="HorDollar" width="9" height="13"/>
         <image name="JobCategoryIcon" width="40" height="39"/>
         <image name="JobCategoryPlaceholder" width="40" height="41"/>
-        <image name="JobPosted" width="22" height="26"/>
+        <image name="JobPosted" width="30" height="35"/>
         <image name="ListIcon" width="21" height="20"/>
         <image name="MilesIcon" width="11" height="12"/>
         <image name="PasswordIcon" width="20" height="21"/>
