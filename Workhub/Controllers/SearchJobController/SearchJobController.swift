@@ -41,8 +41,8 @@ class SearchJobController: BaseViewController {
         self.widthGOconstraint.constant = 0
         self.viewList.isHidden = true
         self.lblListContent.text = "List View"
-        self.imgListContent.isHidden = true
-        self.imgMapContent.isHidden = false
+        self.imgListContent.isHidden = false
+        self.imgMapContent.isHidden = true
         self.txtSearchJob.layer.borderWidth = 1.0
         self.txtSearchJob.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
         // Do any additional setup after loading the view.
