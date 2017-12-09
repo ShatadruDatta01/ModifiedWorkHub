@@ -12,43 +12,16 @@ import CoreLocation
 
 class LaunchController: BaseViewController {
 
-    var locManager = CLLocationManager()
-    var currentLocation: CLLocation!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var viewWorkhub: UIView!
     @IBOutlet weak var viewWorkhubConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        SET_OBJ_FOR_KEY(obj: "41.850033" as AnyObject, key: "lat")
-//        SET_OBJ_FOR_KEY(obj: "-87.6500523" as AnyObject, key: "lon")
-        self.location()
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
         self.tokenAPICall()
         // Do any additional setup after loading the view.
     }
 }
-
-
-// MARK: - Location Fetch
-extension LaunchController {
-    func location() {
-        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
-            currentLocation = locManager.location
-            print(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
-            REMOVE_OBJ_FOR_KEY(key: "lat")
-            REMOVE_OBJ_FOR_KEY(key: "lon")
-            SET_OBJ_FOR_KEY(obj: currentLocation.coordinate.latitude as AnyObject, key: "lat")
-            SET_OBJ_FOR_KEY(obj: currentLocation.coordinate.longitude as AnyObject, key: "lon")
-            
-            //UserDefaults.standard.set(22.36, forKey: "lat")
-            //UserDefaults.standard.set(88.36, forKey: "lon")
-            
-        }
-    }
-}
-
-
 
 // MARK: - Token API Call
 extension LaunchController {
