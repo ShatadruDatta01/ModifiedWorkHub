@@ -219,6 +219,14 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
         let selectedPinCoordinate = (view.annotation?.coordinate)!
         print(view.annotation!.title!!)
         print(selectedPinCoordinate.latitude, selectedPinCoordinate.longitude)
+        
+        CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Test", didSubmit: { (text) in
+            debugPrint("No Code")
+        }) { 
+            debugPrint("No Code")
+        }
+        
+        
     }
 }
 
