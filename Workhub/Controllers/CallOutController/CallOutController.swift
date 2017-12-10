@@ -56,14 +56,6 @@ class CallOutController: BaseViewController {
             self.viewPopUp.transform = .identity
         }
         
-        if #available(iOS 10.0, *) {
-            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
-                self.dismissAnimate()
-            }
-        } else {
-            // Fallback on earlier versions
-            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ToastController.dismissAnimate), userInfo: nil, repeats: false)
-        }
     }
     
     
