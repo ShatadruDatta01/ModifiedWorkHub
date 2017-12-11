@@ -23,6 +23,7 @@
 		5F985F361FCDDA3500CE8BBA /* ToastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F985F351FCDDA3500CE8BBA /* ToastController.swift */; };
 		5F9FA5321FD301AA001DFB10 /* SearchJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9FA5311FD301AA001DFB10 /* SearchJobCell.swift */; };
 		5F9FA5341FD3429A001DFB10 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9FA5331FD3429A001DFB10 /* back.png */; };
+		5FA04F661FDC62FF0053DA0F /* CallOutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA04F651FDC62FF0053DA0F /* CallOutController.swift */; };
 		5FCE5AFA1FC047BB00F299B9 /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCE5AF61FC047BB00F299B9 /* HeaderViewController.swift */; };
 		5FCE5AFB1FC047BB00F299B9 /* MainContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCE5AF71FC047BB00F299B9 /* MainContainerController.swift */; };
 		5FCE5AFC1FC047BB00F299B9 /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCE5AF81FC047BB00F299B9 /* SlideMenuViewController.swift */; };
@@ -368,6 +369,7 @@
 		5F985F351FCDDA3500CE8BBA /* ToastController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastController.swift; sourceTree = "<group>"; };
 		5F9FA5311FD301AA001DFB10 /* SearchJobCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJobCell.swift; sourceTree = "<group>"; };
 		5F9FA5331FD3429A001DFB10 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		5FA04F651FDC62FF0053DA0F /* CallOutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallOutController.swift; sourceTree = "<group>"; };
 		5FCE5AF61FC047BB00F299B9 /* HeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
 		5FCE5AF71FC047BB00F299B9 /* MainContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerController.swift; sourceTree = "<group>"; };
 		5FCE5AF81FC047BB00F299B9 /* SlideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuViewController.swift; sourceTree = "<group>"; };
@@ -850,6 +852,14 @@
 			path = SearchJobCell;
 			sourceTree = "<group>";
 		};
+		5FA04F641FDC62C30053DA0F /* CallOutController */ = {
+			isa = PBXGroup;
+			children = (
+				5FA04F651FDC62FF0053DA0F /* CallOutController.swift */,
+			);
+			path = CallOutController;
+			sourceTree = "<group>";
+		};
 		5FCE5AF51FC0450D00F299B9 /* MainContainerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1098,6 +1108,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5FA04F641FDC62C30053DA0F /* CallOutController */,
 				C34843061FD7ED6700059016 /* OTP Controller */,
 				C3EE8DE81FD5616200C2B89E /* ApplyJobController */,
 				C3EE8DE51FD5556400C2B89E /* JobDetailsController */,
@@ -2223,6 +2234,7 @@
 				C34E1D2E1FBD8F8100CE777C /* SlideMenuController.swift in Sources */,
 				5FCE5AFC1FC047BB00F299B9 /* SlideMenuViewController.swift in Sources */,
 				5FCE5AFA1FC047BB00F299B9 /* HeaderViewController.swift in Sources */,
+				5FA04F661FDC62FF0053DA0F /* CallOutController.swift in Sources */,
 				5FCE5B1E1FC05F7400F299B9 /* Helpers.swift in Sources */,
 				C34E1D2C1FBD8F8100CE777C /* README.md in Sources */,
 				5FCE5B191FC05F7400F299B9 /* ApplicationTexts.swift in Sources */,

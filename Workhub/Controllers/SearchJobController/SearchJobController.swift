@@ -141,19 +141,26 @@ class SearchJobController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func actionList(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
-            self.viewList.isHidden = true
-            self.lblListContent.text = "List View"
-            self.imgListContent.isHidden = false
-            self.imgMapContent.isHidden = true
-        } else {
-            sender.isSelected = true
-            self.viewList.isHidden = false
-            self.lblListContent.text = "Map View"
-            self.imgListContent.isHidden = true
-            self.imgMapContent.isHidden = false
+//        if sender.isSelected {
+//            sender.isSelected = false
+//            self.viewList.isHidden = true
+//            self.lblListContent.text = "List View"
+//            self.imgListContent.isHidden = false
+//            self.imgMapContent.isHidden = true
+//        } else {
+//            sender.isSelected = true
+//            self.viewList.isHidden = false
+//            self.lblListContent.text = "Map View"
+//            self.imgListContent.isHidden = true
+//            self.imgMapContent.isHidden = false
+//        }
+        
+        CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Test", didSubmit: { (text) in
+            debugPrint("No Code")
+        }) {
+            debugPrint("No Code")
         }
+
     }
     
     
@@ -219,6 +226,14 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
         let selectedPinCoordinate = (view.annotation?.coordinate)!
         print(view.annotation!.title!!)
         print(selectedPinCoordinate.latitude, selectedPinCoordinate.longitude)
+        
+        CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Test", didSubmit: { (text) in
+            debugPrint("No Code")
+        }) { 
+            debugPrint("No Code")
+        }
+        
+        
     }
 }
 
