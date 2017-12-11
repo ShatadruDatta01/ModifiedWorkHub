@@ -36,7 +36,7 @@ class SearchJobController: BaseViewController {
         self.txtSearchJob.keyboardType = .numberPad
         AppConstantValues.latitide = "19.16803810" //"41.850033"
         AppConstantValues.longitude = "72.84864010"//"-87.6500523"
-        //self.location()
+        self.location()
         self.fetchZipCode()
         self.lblDetailsContent.text = "No jobs available in 5 sq miles"
         locationManager.delegate = self
@@ -141,27 +141,22 @@ class SearchJobController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func actionList(_ sender: UIButton) {
-//        if sender.isSelected {
-//            sender.isSelected = false
-//            self.viewList.isHidden = true
-//            self.lblListContent.text = "List View"
-//            self.imgListContent.isHidden = false
-//            self.imgMapContent.isHidden = true
-//        } else {
-//            sender.isSelected = true
-//            self.viewList.isHidden = false
-//            self.lblListContent.text = "Map View"
-//            self.imgListContent.isHidden = true
-//            self.imgMapContent.isHidden = false
-//        }
+        if sender.isSelected {
+            sender.isSelected = false
+            self.viewList.isHidden = true
+            self.lblListContent.text = "List View"
+            self.imgListContent.isHidden = false
+            self.imgMapContent.isHidden = true
+        } else {
+            sender.isSelected = true
+            self.viewList.isHidden = false
+            self.lblListContent.text = "Map View"
+            self.imgListContent.isHidden = true
+            self.imgMapContent.isHidden = false
+        }
         
-//        CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Test", didSubmit: { (text) in
-//            debugPrint("No Code")
-//        }) {
-//            debugPrint("No Code")
-//        }
-        let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
-        NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
+//        let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
+//        NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
 
     }
     
@@ -229,13 +224,19 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
         print(view.annotation!.title!!)
         print(selectedPinCoordinate.latitude, selectedPinCoordinate.longitude)
         
-        CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Test", didSubmit: { (text) in
-            debugPrint("No Code")
-        }) { 
-            debugPrint("No Code")
+        for val in self.arrJob {
+            let details = val as! SearchJob
+            if details.role! == view.annotation!.title!! {
+                print(details.role!)
+                let loc = "\(details.state!), \(details.city!)"
+                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }) {
+                    debugPrint("No Code")
+                }
+                break
+            }
         }
-        
-        
     }
 }
 
