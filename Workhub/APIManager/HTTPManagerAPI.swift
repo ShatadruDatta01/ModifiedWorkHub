@@ -214,6 +214,8 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
             
             header = header.substring(to: header.index(before: header.endIndex)) + "%3D"
             
+            print(header)
+            
             var headersDict: HTTPHeaders = HTTPHeaders()
             headersDict["X-WHOAuth"] = header
             headersDict["Authorization"] = "Bearer"+""

@@ -155,11 +155,13 @@ class SearchJobController: BaseViewController {
 //            self.imgMapContent.isHidden = false
 //        }
         
-        CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Test", didSubmit: { (text) in
-            debugPrint("No Code")
-        }) {
-            debugPrint("No Code")
-        }
+//        CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Test", didSubmit: { (text) in
+//            debugPrint("No Code")
+//        }) {
+//            debugPrint("No Code")
+//        }
+        let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
+        NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
 
     }
     

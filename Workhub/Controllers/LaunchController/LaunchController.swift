@@ -19,7 +19,6 @@ class LaunchController: BaseViewController {
         super.viewDidLoad()
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
         self.tokenAPICall()
-        self.startingView()
         // Do any additional setup after loading the view.
     }
 }
@@ -31,7 +30,7 @@ extension LaunchController {
         API_MODELS_METHODS.token(queue: concurrentQueue) { (responseDict,isSuccess) in
             if isSuccess {
                 AppConstantValues.companyAccessToken = responseDict!["result"]!["data"]["access_token"].stringValue
-                //self.startingView()
+                self.startingView()
             } else {
                 
             }
