@@ -41,8 +41,8 @@ let FACEBOOK = "facebook"
 let GOOGLE = "google"
 let TWITTER = "twitter"
 
-//MARK:- BASEURL
-let BASE_URL = "http://www.gms.redappletech.info/page-api/"
+// MARK: URL for Lat Lon from ZipCode
+let URL_LAT_LON_FROM_ZIPCODE = "https://maps.googleapis.com/maps/api/geocode/json?address="
 
 
 // MARK: Storyboard
