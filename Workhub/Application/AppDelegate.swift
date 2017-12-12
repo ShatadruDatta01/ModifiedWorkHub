@@ -19,7 +19,7 @@ import IQKeyboardManager
 
 @available(iOS 10.0, *)
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     var locManager = CLLocationManager()
@@ -27,8 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        locManager.delegate = self
+        locManager.desiredAccuracy = kCLLocationAccuracyBest
         locManager.requestWhenInUseAuthorization()
         locManager.requestAlwaysAuthorization()
+        locManager.startUpdatingLocation()
         IQKeyboardManager.shared().isEnabled = true
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -79,6 +82,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined, .restricted, .denied:
+                print("No access")
+                locManager.delegate = self
+                locManager.desiredAccuracy = kCLLocationAccuracyBest
+                locManager.requestWhenInUseAuthorization()
+                locManager.requestAlwaysAuthorization()
+                locManager.startUpdatingLocation()
+            case .authorizedAlways, .authorizedWhenInUse:
+                print("Access")
+            }
+        } else {
+            print("Location services are not enabled")
+            locManager.delegate = self
+            locManager.desiredAccuracy = kCLLocationAccuracyBest
+            locManager.requestWhenInUseAuthorization()
+            locManager.requestAlwaysAuthorization()
+            locManager.startUpdatingLocation()
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

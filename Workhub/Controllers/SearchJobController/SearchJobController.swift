@@ -38,7 +38,7 @@ class SearchJobController: BaseViewController {
         self.txtSearchJob.keyboardType = .numberPad
         AppConstantValues.latitide = "19.16803810" //"41.850033"
         AppConstantValues.longitude = "72.84864010"//"-87.6500523"
-        self.location()
+        //self.location()
         self.fetchZipCode()
         self.lblDetailsContent.text = "No jobs available in 5 sq miles"
         locationManager.delegate = self
@@ -69,7 +69,10 @@ class SearchJobController: BaseViewController {
     
     
     @IBAction func recenter(_ sender: UIButton) {
-        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     /// Current Location
@@ -235,13 +238,28 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         manager.stopUpdatingLocation()
+        self.mapListJob.removeAnnotations(self.mapListJob.annotations)
+        print(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
         let coordinations = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,longitude: userLocation.coordinate.longitude)
+        AppConstantValues.latitide = String(userLocation.coordinate.latitude)
+        AppConstantValues.longitude = String(userLocation.coordinate.longitude)
         let span = MKCoordinateSpanMake(0.2,0.2)
         let region = MKCoordinateRegion(center: coordinations, span: span)
-        
         mapListJob.setRegion(region, animated: true)
+        
+        Timer.scheduledTimer(timeInterval: 4,
+                             target: self,
+                             selector: #selector(self.fetchPinCode),
+                             userInfo: nil,
+                             repeats: false)
+        
+        
     }
     
+    
+    func fetchPinCode() {
+        self.fetchZipCode()
+    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -384,6 +402,12 @@ extension SearchJobController {
                     self.jobLocation()
                 } else {
                     self.tblList.isHidden = true
+                    self.lblDetailsContent.text = "No jobs available in 5 sq miles"
+                    AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
+                        debugPrint("No Code")
+                    }, didFinish: {
+                        debugPrint("No Code")
+                    })
                 }
             } else {
                 
