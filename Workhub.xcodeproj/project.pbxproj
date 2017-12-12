@@ -327,6 +327,7 @@
 		C361536F1FC56D2D001273BA /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C361536E1FC56D2D001273BA /* APIModel.swift */; };
 		C365E8C91FD918A800CFE48B /* SearchJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365E8C81FD918A800CFE48B /* SearchJob.swift */; };
 		C38EFA321FDE5D0E0072F898 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */; };
+		C38EFA351FDFB0690072F898 /* UpdateResumeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EFA341FDFB0690072F898 /* UpdateResumeController.swift */; };
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */; };
 		C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */; };
@@ -684,6 +685,7 @@
 		C361536E1FC56D2D001273BA /* APIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		C365E8C81FD918A800CFE48B /* SearchJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJob.swift; sourceTree = "<group>"; };
 		C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		C38EFA341FDFB0690072F898 /* UpdateResumeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateResumeController.swift; sourceTree = "<group>"; };
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailsController.swift; sourceTree = "<group>"; };
 		C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyJobController.swift; sourceTree = "<group>"; };
@@ -1110,6 +1112,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C38EFA331FDFB02B0072F898 /* UpdateResumeController */,
 				C38EFA301FDE5CED0072F898 /* EditProfileController */,
 				5FA04F641FDC62C30053DA0F /* CallOutController */,
 				C34843061FD7ED6700059016 /* OTP Controller */,
@@ -1569,6 +1572,14 @@
 			path = EditProfileController;
 			sourceTree = "<group>";
 		};
+		C38EFA331FDFB02B0072F898 /* UpdateResumeController */ = {
+			isa = PBXGroup;
+			children = (
+				C38EFA341FDFB0690072F898 /* UpdateResumeController.swift */,
+			);
+			path = UpdateResumeController;
+			sourceTree = "<group>";
+		};
 		C396AB791FCECF37000F0BC9 /* AlertController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1690,7 +1701,7 @@
 				TargetAttributes = {
 					C34E1CD41FBD7D5300CE777C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3Q9VMV9DUT;
+						DevelopmentTeam = 9M2U5RK3QT;
 						ProvisioningStyle = Automatic;
 					};
 					C34E1CEB1FBD7D5400CE777C = {
@@ -2029,6 +2040,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Workhub/Pods-Workhub-resources.sh",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -2239,6 +2251,7 @@
 				5FCE5AFB1FC047BB00F299B9 /* MainContainerController.swift in Sources */,
 				C34E1D2A1FBD8F8100CE777C /* UIView+Blur.swift in Sources */,
 				5F49CC231FC46081004CEB29 /* LaunchController.swift in Sources */,
+				C38EFA351FDFB0690072F898 /* UpdateResumeController.swift in Sources */,
 				5FCE5B161FC05F7400F299B9 /* BaseCollectionViewController.swift in Sources */,
 				5F49CC201FC45F4C004CEB29 /* SearchJobController.swift in Sources */,
 				5F49CC2F1FC49D1A004CEB29 /* MobCell.swift in Sources */,
@@ -2412,7 +2425,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
+				DEVELOPMENT_TEAM = 9M2U5RK3QT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Workhub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2431,7 +2444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
+				DEVELOPMENT_TEAM = 9M2U5RK3QT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Workhub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

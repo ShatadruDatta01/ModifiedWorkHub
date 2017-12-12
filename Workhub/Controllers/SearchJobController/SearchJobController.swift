@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 class SearchJobController: BaseViewController {
 
@@ -66,6 +68,9 @@ class SearchJobController: BaseViewController {
     }
     
     
+    @IBAction func recenter(_ sender: UIButton) {
+        
+    }
     
     /// Current Location
     func location() {
@@ -78,6 +83,54 @@ class SearchJobController: BaseViewController {
         }
     }
     
+    
+    
+    /// Fetch Lat & Lon from ZipCode
+    func fetchLatLonFromZip(zipCode: String) {
+        Alamofire.request(URL_LAT_LON_FROM_ZIPCODE + zipCode, method: .get, parameters: ["":""], encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            
+            switch(response.result) {
+            case .success(_):
+                if let data = response.result.value{
+                    let val = JSON(data)
+                    if val["results"].count > 0 {
+                        self.mapListJob.removeAnnotations(self.mapListJob.annotations)
+                        AppConstantValues.latitide = String(describing: val["results"][0]["geometry"]["location"]["lat"])
+                        AppConstantValues.longitude = String(describing: val["results"][0]["geometry"]["location"]["lng"])
+                        print(AppConstantValues.latitide, AppConstantValues.longitude)
+                        
+                        
+                        let coordinations = CLLocationCoordinate2D(latitude: Double(AppConstantValues.latitide)!,longitude: Double(AppConstantValues.longitude)!)
+                        let span = MKCoordinateSpanMake(0.2,0.2)
+                        let region = MKCoordinateRegion(center: coordinations, span: span)
+                        
+                        self.mapListJob.setRegion(region, animated: true)
+                        
+                        let annotation = MKPointAnnotation()
+                        annotation.title = "newLocation"
+                        annotation.coordinate = CLLocationCoordinate2D(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
+                        self.mapListJob.addAnnotation(annotation)
+                        
+                        
+                        self.userJobListAPICall(zipCode: zipCode)
+                    } else {
+                        ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "You have exceeded your daily request quota for this API", didSubmit: { (text) in
+                            debugPrint("No Code")
+                        }, didFinish: {
+                            debugPrint("No Code")
+                        })
+                    }
+                    
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error!)
+                break
+                
+            }
+        }
+    }
 
     
     /// Fetch ZipCode
@@ -119,7 +172,7 @@ class SearchJobController: BaseViewController {
         })
         
         
-
+    
     }
     
     
@@ -133,7 +186,7 @@ class SearchJobController: BaseViewController {
     /// - Parameter sender: Button
     @IBAction func actionGO(_ sender: UIButton) {
         self.txtSearchJob.resignFirstResponder()
-        self.userJobListAPICall(zipCode: self.zipCode)
+        self.fetchLatLonFromZip(zipCode: self.zipCode)
     }
     
     
@@ -211,7 +264,13 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
             }
             
             
-            annotationView!.image = UIImage(named: "JobIcon")
+            if annotation.title!! == "newLocation" {
+                annotationView!.image = UIImage(named: "LocationIcon")
+            } else {
+                annotationView!.image = UIImage(named: "JobIcon")
+            }
+            
+            
             
             return annotationView
             
