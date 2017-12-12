@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2825,7 +2825,7 @@
                                             <constraint firstAttribute="width" constant="30" id="eoE-tP-KnL"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job posted - 13/11/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D77-Lv-sGm">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Container Supply Company Inc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D77-Lv-sGm">
                                         <rect key="frame" x="56" y="149" width="237" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="YxM-bf-Zu0"/>
@@ -2851,6 +2851,9 @@
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="close:" destination="d6X-QY-jCj" eventType="touchUpInside" id="3kw-kd-DXk"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JobCategoryPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="7UL-46-pez">
                                         <rect key="frame" x="8" y="38" width="50" height="50"/>
@@ -2868,6 +2871,7 @@
                                         <state key="normal" image="Star"/>
                                         <connections>
                                             <action selector="bookmark:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="JR1-Jq-eU2"/>
+                                            <action selector="jobSave:" destination="d6X-QY-jCj" eventType="touchUpInside" id="o4r-7s-DTQ"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDi-Qr-Fqo" customClass="MarqueeLabel" customModule="MarqueeLabel">
@@ -2911,7 +2915,7 @@
                                         <rect key="frame" x="307" y="90" width="60" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRI-Zy-l7u">
-                                                <rect key="frame" x="5" y="8" width="12" height="18"/>
+                                                <rect key="frame" x="7" y="8" width="12" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="Slr-Dg-yPe"/>
                                                     <constraint firstAttribute="width" constant="12" id="a4s-yg-A1h"/>
@@ -2921,9 +2925,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cC-iH-qeu">
-                                                <rect key="frame" x="17" y="9" width="26" height="30"/>
+                                                <rect key="frame" x="14" y="9" width="35" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="26" id="Bte-by-ui4"/>
+                                                    <constraint firstAttribute="width" constant="35" id="Bte-by-ui4"/>
                                                     <constraint firstAttribute="height" constant="30" id="nLl-vy-aj1"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="26"/>
@@ -2931,7 +2935,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="per hour" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21q-KP-xRb">
-                                                <rect key="frame" x="10" y="42" width="42" height="14"/>
+                                                <rect key="frame" x="10" y="40" width="42" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="YE4-lK-kT2"/>
                                                 </constraints>
@@ -2942,12 +2946,12 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="3cC-iH-qeu" firstAttribute="centerX" secondItem="Fxs-Nn-Poe" secondAttribute="centerX" id="5WS-qQ-Aeq"/>
+                                            <constraint firstItem="3cC-iH-qeu" firstAttribute="centerX" secondItem="Fxs-Nn-Poe" secondAttribute="centerX" constant="1.5" id="5WS-qQ-Aeq"/>
                                             <constraint firstItem="WRI-Zy-l7u" firstAttribute="top" secondItem="Fxs-Nn-Poe" secondAttribute="top" constant="8" id="HO3-N7-J6e"/>
                                             <constraint firstAttribute="width" constant="60" id="Iq6-vD-vkw"/>
-                                            <constraint firstItem="3cC-iH-qeu" firstAttribute="leading" secondItem="WRI-Zy-l7u" secondAttribute="trailing" id="Zna-d9-F7K"/>
+                                            <constraint firstItem="3cC-iH-qeu" firstAttribute="leading" secondItem="WRI-Zy-l7u" secondAttribute="trailing" constant="-5" id="Zna-d9-F7K"/>
                                             <constraint firstItem="21q-KP-xRb" firstAttribute="leading" secondItem="Fxs-Nn-Poe" secondAttribute="leading" constant="10" id="eJM-xA-BYK"/>
-                                            <constraint firstAttribute="bottom" secondItem="21q-KP-xRb" secondAttribute="bottom" constant="4" id="i8U-V4-vv7"/>
+                                            <constraint firstAttribute="bottom" secondItem="21q-KP-xRb" secondAttribute="bottom" constant="6" id="i8U-V4-vv7"/>
                                             <constraint firstAttribute="height" constant="60" id="iov-H2-LuV"/>
                                             <constraint firstAttribute="trailing" secondItem="21q-KP-xRb" secondAttribute="trailing" constant="8" id="k1F-O4-Tlp"/>
                                             <constraint firstItem="3cC-iH-qeu" firstAttribute="centerY" secondItem="Fxs-Nn-Poe" secondAttribute="centerY" constant="-6" id="yxa-jP-sHo"/>
@@ -2998,7 +3002,7 @@
                                             <constraint firstAttribute="height" constant="36" id="gd3-g4-wXj"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job posted - 13/11/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WU2-Gi-1qH">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day shift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WU2-Gi-1qH">
                                         <rect key="frame" x="56" y="238" width="237" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="FcA-Kl-zwb"/>
@@ -3023,6 +3027,9 @@
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="apply:" destination="d6X-QY-jCj" eventType="touchUpInside" id="yCK-Jw-hhj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3077,7 +3084,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
+                                        <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -3096,6 +3103,14 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="imgJobIcon" destination="7UL-46-pez" id="wbB-Zi-neZ"/>
+                        <outlet property="lblCompName" destination="D77-Lv-sGm" id="9RU-FS-juI"/>
+                        <outlet property="lblFullTime" destination="HFg-i6-MEQ" id="KXC-Xe-L7J"/>
+                        <outlet property="lblHour" destination="3cC-iH-qeu" id="c5I-33-b8E"/>
+                        <outlet property="lblJobPosted" destination="qtS-pL-pQB" id="7pz-Eg-Lk2"/>
+                        <outlet property="lblJobRole" destination="SDi-Qr-Fqo" id="nYd-h7-Ne8"/>
+                        <outlet property="lblLocation" destination="87i-Bs-3u5" id="eNF-4R-u7i"/>
+                        <outlet property="lblShift" destination="WU2-Gi-1qH" id="lpM-Pg-4T8"/>
                         <outlet property="viewBG" destination="Anz-kP-oWm" id="rD4-tZ-XGe"/>
                         <outlet property="viewPopUp" destination="dPB-oP-G96" id="ror-Vz-MMA"/>
                     </connections>
