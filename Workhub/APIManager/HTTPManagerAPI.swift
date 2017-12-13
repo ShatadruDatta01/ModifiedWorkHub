@@ -221,6 +221,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
             headersDict["Authorization"] = "Bearer"+""
             headersDict["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8"
             headersDict["User-Agent"] = "ios"+"-v"+"1.0"
+            print(headersDict)
             
             Alamofire.request(baseUrlString, method: .post, parameters: paramDict, encoding: URLEncoding.default, headers: headersDict)
                 .responseJSON { response in

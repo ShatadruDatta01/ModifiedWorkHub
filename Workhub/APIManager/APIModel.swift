@@ -151,41 +151,6 @@ struct API_MODELS_METHODS{
             })
     }
     
-    
-    /// SearchJOBList
-    ///
-    /// - Parameters:
-    ///   - text: text from string
-    ///   - latitude: currentLAT
-    ///   - longitude: currentLON
-    ///   - pincode: curretPINCODE
-    ///   - radius: 1
-    ///   - queue: getJobSearch
-    ///   - completion: responseDict(JSON)
-    static func searchJOBList(_ latitude: String?,_ longitude: String?, _ pincode: String?, radius: String? ,queue: DispatchQueue? = nil,
-                            completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
-        
-        // https://api.socioadvocacy.com/user/uid?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0&cid=52ad0375&email=sachitanandas@sociosquares.com&role=general
-        let createSubPathurl = "latitude=\(String(describing: latitude!))&longitude=\(String(describing: longitude!))&pincode=\(String(describing: pincode!))&radius=\(String(describing: radius!))"
-        let subpath =  AppWebservices.JOB_SEARCH
-        let completeUrl = AppWebservices.baseUrl + subpath + createSubPathurl
-        let connectivity = NetworkConnectivity.networkConnectionType("needsConnection")
-        print(completeUrl)
-        HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
-            if isSuccess{
-                let swiftyJsonVar   = JSON(response)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    }else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    }
-                })
-            }
-        })
-    }
-    
+
     
 }

@@ -39,11 +39,20 @@ class SearchJobController: BaseViewController {
         super.viewDidLoad()
         self.lblNoDataFound.text = "No jobs available on this location"
         self.viewRecenter.isHidden = true
+        self.viewRecenter.layer.cornerRadius = 5.0
+        self.viewRecenter.layer.masksToBounds = true
         self.txtSearchJob.keyboardType = .numberPad
-        AppConstantValues.latitide = "19.16803810" //"41.850033"
-        AppConstantValues.longitude = "72.84864010"//"-87.6500523"
+        AppConstantValues.latitide = "41.850033"
+        AppConstantValues.longitude = "-87.6500523"
         //self.location()
         self.lblDetailsContent.text = "No jobs available in 5 sq miles"
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        self.fetchZipCode()
+        mapListJob.showsUserLocation = true
         
         self.widthGOconstraint.constant = 0
         self.viewList.isHidden = true
@@ -63,12 +72,6 @@ class SearchJobController: BaseViewController {
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "Dash"), for: UIControlState.normal)
         NavigationHelper.helper.headerViewController?.leftButton.addTarget(self, action: #selector(SearchJobController.actionDash), for: UIControlEvents.touchUpInside)
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        self.fetchZipCode()
-        mapListJob.showsUserLocation = true
     }
     
     
@@ -310,13 +313,17 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                 let loc = "\(details.state!), \(details.city!)"
                 CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, didSubmit: { (text) in
                     debugPrint("No Code")
-                }) {
-                    debugPrint("No Code")
-                }
+                }, didFinish: { (text) in
+                    for annotation in self.mapListJob.selectedAnnotations {
+                        self.mapListJob.deselectAnnotation(annotation, animated: false)
+                    }
+                })
+                
                 break
             }
         }
     }
+    
 }
 
 
@@ -377,10 +384,8 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-
 // MARK: - SearchJobAPICall
 extension SearchJobController {
-    
     
     /// UserJOB APICall
     func userJobListAPICall(zipCode: String) {
@@ -417,8 +422,6 @@ extension SearchJobController {
             }
         }
     }
-    
-    
 }
 
 
