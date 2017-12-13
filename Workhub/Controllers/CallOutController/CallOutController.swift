@@ -34,7 +34,7 @@ class CallOutController: BaseViewController {
     
     
     var didSubmitButton:((_ text: String) -> ())?
-    var didRemove:(() -> ())?
+    var didRemove:((_ text: String) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class CallOutController: BaseViewController {
     @IBAction func jobSave(_ sender: UIButton) {
     }
     
-    internal class func showAddOrClearPopUp(sourceViewController: UIViewController, strIconDetails: String, strJobHour: String, strJobTitle: String, strJobSubTitle: String, strJobLocation: String, strShift: String, strJobPosted: String, strFullTime: String, strJobDesc: String, didSubmit: @escaping ((_ text: String) -> ()), didFinish: @escaping (() -> ())) {
+    internal class func showAddOrClearPopUp(sourceViewController: UIViewController, strIconDetails: String, strJobHour: String, strJobTitle: String, strJobSubTitle: String, strJobLocation: String, strShift: String, strJobPosted: String, strFullTime: String, strJobDesc: String, didSubmit: @escaping ((_ text: String) -> ()), didFinish: @escaping ((_ text: String) -> ())) {
         
         let commentPopVC = mainStoryboard.instantiateViewController(withIdentifier: "CallOutController") as! CallOutController
         commentPopVC.didSubmitButton = didSubmit
@@ -121,7 +121,7 @@ class CallOutController: BaseViewController {
     func dismissAnimate() {
         
         if didRemove != nil {
-            didRemove!()
+            didRemove!("Remove")
         }
         
         UIView.animate(withDuration: 0.25, animations: {

@@ -143,12 +143,6 @@ extension LoginController: GIDSignInUIDelegate, GIDSignInDelegate {
 }
 
 
-
-
-
-
-
-
 // MARK: - Validation
 extension LoginController {
     func validation() {
@@ -217,7 +211,7 @@ extension LoginController {
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["id"].stringValue as AnyObject, key: "UserId")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
-                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["access_token"].stringValue as AnyObject, key: "AccessToken")
+                AppConstantValues.companyAccessToken = responseDict!["result"]!["data"]["access_token"].stringValue
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["network"].stringValue as AnyObject, key: "Network")
                 
@@ -236,7 +230,5 @@ extension LoginController {
         })
     }
 }
-
-
 
 
