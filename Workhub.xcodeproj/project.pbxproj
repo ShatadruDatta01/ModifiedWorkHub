@@ -20,6 +20,7 @@
 		5F49CC2F1FC49D1A004CEB29 /* MobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49CC2E1FC49D1A004CEB29 /* MobCell.swift */; };
 		5F49CC321FC49D8C004CEB29 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49CC311FC49D8C004CEB29 /* ButtonCell.swift */; };
 		5F49CC391FC4B167004CEB29 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F49CC381FC4B167004CEB29 /* leftArrow.png */; };
+		5F66A3481FE04C3C0002D3E9 /* UpdateResumeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F66A3471FE04C3C0002D3E9 /* UpdateResumeController.swift */; };
 		5F985F361FCDDA3500CE8BBA /* ToastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F985F351FCDDA3500CE8BBA /* ToastController.swift */; };
 		5F9FA5321FD301AA001DFB10 /* SearchJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9FA5311FD301AA001DFB10 /* SearchJobCell.swift */; };
 		5F9FA5341FD3429A001DFB10 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9FA5331FD3429A001DFB10 /* back.png */; };
@@ -327,7 +328,6 @@
 		C361536F1FC56D2D001273BA /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C361536E1FC56D2D001273BA /* APIModel.swift */; };
 		C365E8C91FD918A800CFE48B /* SearchJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365E8C81FD918A800CFE48B /* SearchJob.swift */; };
 		C38EFA321FDE5D0E0072F898 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */; };
-		C38EFA351FDFB0690072F898 /* UpdateResumeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EFA341FDFB0690072F898 /* UpdateResumeController.swift */; };
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */; };
 		C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */; };
@@ -368,6 +368,7 @@
 		5F49CC2E1FC49D1A004CEB29 /* MobCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobCell.swift; sourceTree = "<group>"; };
 		5F49CC311FC49D8C004CEB29 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		5F49CC381FC4B167004CEB29 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
+		5F66A3471FE04C3C0002D3E9 /* UpdateResumeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateResumeController.swift; sourceTree = "<group>"; };
 		5F985F351FCDDA3500CE8BBA /* ToastController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastController.swift; sourceTree = "<group>"; };
 		5F9FA5311FD301AA001DFB10 /* SearchJobCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJobCell.swift; sourceTree = "<group>"; };
 		5F9FA5331FD3429A001DFB10 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -685,7 +686,6 @@
 		C361536E1FC56D2D001273BA /* APIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		C365E8C81FD918A800CFE48B /* SearchJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJob.swift; sourceTree = "<group>"; };
 		C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
-		C38EFA341FDFB0690072F898 /* UpdateResumeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateResumeController.swift; sourceTree = "<group>"; };
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailsController.swift; sourceTree = "<group>"; };
 		C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyJobController.swift; sourceTree = "<group>"; };
@@ -1575,7 +1575,7 @@
 		C38EFA331FDFB02B0072F898 /* UpdateResumeController */ = {
 			isa = PBXGroup;
 			children = (
-				C38EFA341FDFB0690072F898 /* UpdateResumeController.swift */,
+				5F66A3471FE04C3C0002D3E9 /* UpdateResumeController.swift */,
 			);
 			path = UpdateResumeController;
 			sourceTree = "<group>";
@@ -1701,7 +1701,7 @@
 				TargetAttributes = {
 					C34E1CD41FBD7D5300CE777C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 9M2U5RK3QT;
+						DevelopmentTeam = 3Q9VMV9DUT;
 						ProvisioningStyle = Automatic;
 					};
 					C34E1CEB1FBD7D5400CE777C = {
@@ -2067,7 +2067,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9390AC8302BB27D6A1F43387 /* [CP] Copy Pods Resources */ = {
@@ -2115,7 +2115,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CFBA3853553DFBC22E89945C /* [CP] Check Pods Manifest.lock */ = {
@@ -2133,7 +2133,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DF87237D3C0371ACA7757E58 /* [CP] Embed Pods Frameworks */ = {
@@ -2251,7 +2251,7 @@
 				5FCE5AFB1FC047BB00F299B9 /* MainContainerController.swift in Sources */,
 				C34E1D2A1FBD8F8100CE777C /* UIView+Blur.swift in Sources */,
 				5F49CC231FC46081004CEB29 /* LaunchController.swift in Sources */,
-				C38EFA351FDFB0690072F898 /* UpdateResumeController.swift in Sources */,
+				5F66A3481FE04C3C0002D3E9 /* UpdateResumeController.swift in Sources */,
 				5FCE5B161FC05F7400F299B9 /* BaseCollectionViewController.swift in Sources */,
 				5F49CC201FC45F4C004CEB29 /* SearchJobController.swift in Sources */,
 				5F49CC2F1FC49D1A004CEB29 /* MobCell.swift in Sources */,
@@ -2424,14 +2424,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 9M2U5RK3QT;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Workhub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sociosquares.workhub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -2443,8 +2444,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 9M2U5RK3QT;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Workhub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
