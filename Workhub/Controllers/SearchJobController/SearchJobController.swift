@@ -14,6 +14,7 @@ import SwiftyJSON
 
 class SearchJobController: BaseViewController {
 
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     var dictJob = [String: String]()
     var zipCode = ""
     var locManager = CLLocationManager()
@@ -124,7 +125,6 @@ class SearchJobController: BaseViewController {
                         annotation.coordinate = CLLocationCoordinate2D(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
                         self.mapListJob.addAnnotation(annotation)
                         
-                        
                         self.userJobListAPICall(zipCode: zipCode)
                     } else {
                         self.btnGO.isEnabled = true
@@ -150,6 +150,8 @@ class SearchJobController: BaseViewController {
     /// Fetch ZipCode
     func fetchZipCode() {
         // Add below code to get address for touch coordinates.
+        circleIndicator.isHidden = false
+        circleIndicator.animate()
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
@@ -390,6 +392,8 @@ extension SearchJobController {
     /// UserJOB APICall
     func userJobListAPICall(zipCode: String) {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
+        circleIndicator.stop()
+        circleIndicator.isHidden = true
         API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
             if isSuccess {
                 self.btnGO.isEnabled = true

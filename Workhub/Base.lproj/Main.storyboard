@@ -116,7 +116,7 @@
                 <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CwH-aM-tDL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIM-qO-ilC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pIM-qO-ilC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -201,7 +201,7 @@
                 <navigationController storyboardIdentifier="ContentNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="YEJ-I8-dPo" customClass="ContentNavigationController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoN-1O-FHa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aoN-1O-FHa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -567,6 +567,14 @@
                                     <constraint firstItem="AcQ-72-dSm" firstAttribute="leading" secondItem="xxE-oG-Vko" secondAttribute="leading" id="tei-dv-QFQ"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSu-M3-KwO" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                <rect key="frame" x="172" y="319" width="30" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="IAD-NT-CDr"/>
+                                    <constraint firstAttribute="height" constant="30" id="PVz-P4-hOd"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXm-Vd-9UZ">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <subviews>
@@ -641,10 +649,12 @@
                             <constraint firstItem="eXm-Vd-9UZ" firstAttribute="top" secondItem="dLt-Ms-KBG" secondAttribute="bottom" id="4IP-oM-Q0L"/>
                             <constraint firstAttribute="trailing" secondItem="eXm-Vd-9UZ" secondAttribute="trailing" id="7eM-p3-uIR"/>
                             <constraint firstItem="xxE-oG-Vko" firstAttribute="leading" secondItem="UCP-8k-nNJ" secondAttribute="leading" id="Cpt-pJ-meg"/>
+                            <constraint firstItem="hSu-M3-KwO" firstAttribute="centerX" secondItem="UCP-8k-nNJ" secondAttribute="centerX" id="GHV-Ac-vy2"/>
                             <constraint firstItem="dLt-Ms-KBG" firstAttribute="leading" secondItem="UCP-8k-nNJ" secondAttribute="leading" id="H0w-Ur-tbs"/>
                             <constraint firstItem="xxE-oG-Vko" firstAttribute="top" secondItem="Y0k-dQ-xe7" secondAttribute="bottom" id="IFg-7P-S4C"/>
                             <constraint firstAttribute="trailing" secondItem="dLt-Ms-KBG" secondAttribute="trailing" id="R8a-5J-9vZ"/>
                             <constraint firstItem="n8C-YO-By8" firstAttribute="top" secondItem="eXm-Vd-9UZ" secondAttribute="bottom" id="Xq9-3Q-fjz"/>
+                            <constraint firstItem="hSu-M3-KwO" firstAttribute="centerY" secondItem="UCP-8k-nNJ" secondAttribute="centerY" id="dN8-8z-VMg"/>
                             <constraint firstAttribute="trailing" secondItem="xxE-oG-Vko" secondAttribute="trailing" id="dzX-Ay-u2r"/>
                             <constraint firstItem="eXm-Vd-9UZ" firstAttribute="leading" secondItem="UCP-8k-nNJ" secondAttribute="leading" id="eTE-i5-03u"/>
                             <constraint firstItem="eXm-Vd-9UZ" firstAttribute="top" secondItem="xxE-oG-Vko" secondAttribute="bottom" id="exN-4B-X4D"/>
@@ -658,6 +668,7 @@
                     </view>
                     <connections>
                         <outlet property="btnGO" destination="99X-sx-zoD" id="OSU-Uj-BOd"/>
+                        <outlet property="circleIndicator" destination="hSu-M3-KwO" id="pfW-l8-MlT"/>
                         <outlet property="imgListContent" destination="UST-ye-CYq" id="ITm-s6-BHe"/>
                         <outlet property="imgMapContent" destination="RfD-ZW-XP0" id="zNE-YJ-FBS"/>
                         <outlet property="lblDetailsContent" destination="NUz-ei-sLB" id="qF4-qx-n45"/>
