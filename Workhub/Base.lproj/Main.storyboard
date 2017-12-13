@@ -116,7 +116,7 @@
                 <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CwH-aM-tDL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pIM-qO-ilC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIM-qO-ilC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -201,7 +201,7 @@
                 <navigationController storyboardIdentifier="ContentNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="YEJ-I8-dPo" customClass="ContentNavigationController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aoN-1O-FHa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoN-1O-FHa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -334,7 +334,7 @@
                                 </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOz-wf-udj">
-                                <rect key="frame" x="8" y="582" width="95" height="30"/>
+                                <rect key="frame" x="8" y="589" width="95" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RE-CENTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsl-Rf-Ps0">
                                         <rect key="frame" x="8" y="4" width="79" height="21"/>
@@ -651,12 +651,13 @@
                             <constraint firstItem="dLt-Ms-KBG" firstAttribute="top" secondItem="Y0k-dQ-xe7" secondAttribute="bottom" id="fwo-47-O6Z"/>
                             <constraint firstItem="Y0k-dQ-xe7" firstAttribute="top" secondItem="UCP-8k-nNJ" secondAttribute="top" id="iRo-Mk-EOK"/>
                             <constraint firstAttribute="trailing" secondItem="Y0k-dQ-xe7" secondAttribute="trailing" id="kTZ-Kc-Njd"/>
-                            <constraint firstItem="eXm-Vd-9UZ" firstAttribute="top" secondItem="BOz-wf-udj" secondAttribute="bottom" constant="15" id="q2l-DN-bxx"/>
+                            <constraint firstItem="eXm-Vd-9UZ" firstAttribute="top" secondItem="BOz-wf-udj" secondAttribute="bottom" constant="8" id="q2l-DN-bxx"/>
                             <constraint firstItem="BOz-wf-udj" firstAttribute="leading" secondItem="UCP-8k-nNJ" secondAttribute="leading" constant="8" id="qlG-Zy-l9p"/>
                             <constraint firstItem="Y0k-dQ-xe7" firstAttribute="leading" secondItem="UCP-8k-nNJ" secondAttribute="leading" id="ypw-Iq-EQv"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnGO" destination="99X-sx-zoD" id="OSU-Uj-BOd"/>
                         <outlet property="imgListContent" destination="UST-ye-CYq" id="ITm-s6-BHe"/>
                         <outlet property="imgMapContent" destination="RfD-ZW-XP0" id="zNE-YJ-FBS"/>
                         <outlet property="lblDetailsContent" destination="NUz-ei-sLB" id="qF4-qx-n45"/>
@@ -666,6 +667,7 @@
                         <outlet property="tblList" destination="1xa-4N-dlA" id="uTl-50-VRD"/>
                         <outlet property="txtSearchJob" destination="qh1-tt-eLJ" id="KSN-X8-vPq"/>
                         <outlet property="viewList" destination="xxE-oG-Vko" id="zSi-kB-F9J"/>
+                        <outlet property="viewRecenter" destination="BOz-wf-udj" id="UAB-BM-2zG"/>
                         <outlet property="widthGOconstraint" destination="XLW-IE-MC7" id="sBE-F8-yTG"/>
                     </connections>
                 </viewController>

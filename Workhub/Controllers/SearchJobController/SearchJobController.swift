@@ -23,6 +23,8 @@ class SearchJobController: BaseViewController {
     var arrSearchJob = [AnyObject]()
     var locationManager = CLLocationManager()
     var annotationView: MKAnnotationView!
+    @IBOutlet weak var btnGO: UIButton!
+    @IBOutlet weak var viewRecenter: UIView!
     @IBOutlet var widthGOconstraint: NSLayoutConstraint!
     @IBOutlet weak var lblNoDataFound: UILabel!
     @IBOutlet weak var lblDetailsContent: UILabel!
@@ -35,18 +37,13 @@ class SearchJobController: BaseViewController {
     @IBOutlet weak var txtSearchJob: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.lblNoDataFound.text = "No jobs available on this location"
+        self.viewRecenter.isHidden = true
         self.txtSearchJob.keyboardType = .numberPad
         AppConstantValues.latitide = "19.16803810" //"41.850033"
         AppConstantValues.longitude = "72.84864010"//"-87.6500523"
         //self.location()
-        self.fetchZipCode()
         self.lblDetailsContent.text = "No jobs available in 5 sq miles"
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        mapListJob.showsUserLocation = true
         
         self.widthGOconstraint.constant = 0
         self.viewList.isHidden = true
@@ -65,14 +62,24 @@ class SearchJobController: BaseViewController {
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "Dash"), for: UIControlState.normal)
         NavigationHelper.helper.headerViewController?.leftButton.addTarget(self, action: #selector(SearchJobController.actionDash), for: UIControlEvents.touchUpInside)
-    }
-    
-    
-    @IBAction func recenter(_ sender: UIButton) {
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        self.fetchZipCode()
+        mapListJob.showsUserLocation = true
+    }
+    
+    
+    @IBAction func recenter(_ sender: UIButton) {
+        self.mapListJob.showsUserLocation = true
+        self.viewRecenter.isHidden = true
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        self.fetchZipCode()
     }
     
     /// Current Location
@@ -110,13 +117,14 @@ class SearchJobController: BaseViewController {
                         self.mapListJob.setRegion(region, animated: true)
                         
                         let annotation = MKPointAnnotation()
-                        annotation.title = "newLocation"
+                        annotation.title = "You're here"
                         annotation.coordinate = CLLocationCoordinate2D(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
                         self.mapListJob.addAnnotation(annotation)
                         
                         
                         self.userJobListAPICall(zipCode: zipCode)
                     } else {
+                        self.btnGO.isEnabled = true
                         ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "You have exceeded your daily request quota for this API", didSubmit: { (text) in
                             debugPrint("No Code")
                         }, didFinish: {
@@ -188,6 +196,9 @@ class SearchJobController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func actionGO(_ sender: UIButton) {
+        self.mapListJob.showsUserLocation = false
+        self.viewRecenter.isHidden = false
+        self.btnGO.isEnabled = false
         self.txtSearchJob.resignFirstResponder()
         self.fetchLatLonFromZip(zipCode: self.zipCode)
     }
@@ -246,26 +257,15 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
         let span = MKCoordinateSpanMake(0.2,0.2)
         let region = MKCoordinateRegion(center: coordinations, span: span)
         mapListJob.setRegion(region, animated: true)
-        
-        Timer.scheduledTimer(timeInterval: 4,
-                             target: self,
-                             selector: #selector(self.fetchPinCode),
-                             userInfo: nil,
-                             repeats: false)
-        
-        
     }
     
-    
-    func fetchPinCode() {
-        self.fetchZipCode()
-    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
             let pin = mapView.view(for: annotation) ?? MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
             pin.image = UIImage(named: "LocationIcon")
+            pin.canShowCallout = true
             annotationView = pin
             return pin
             
@@ -275,16 +275,18 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
                 annotationView.rightCalloutAccessoryView = UIButton.init(type: UIButtonType.detailDisclosure)
-                annotationView!.canShowCallout = false
+                
             }
             else {
                 annotationView!.annotation = annotation
             }
             
             
-            if annotation.title!! == "newLocation" {
+            if annotation.title!! == "You're here" {
+                annotationView!.canShowCallout = true
                 annotationView!.image = UIImage(named: "LocationIcon")
             } else {
+                annotationView!.canShowCallout = false
                 annotationView!.image = UIImage(named: "JobIcon")
             }
             
@@ -385,6 +387,7 @@ extension SearchJobController {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
         API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
             if isSuccess {
+                self.btnGO.isEnabled = true
                 print(responseDict!["result"]!["data"])
                 if responseDict!["result"]!["data"].count > 0 {
                     
@@ -414,9 +417,6 @@ extension SearchJobController {
             }
         }
     }
-    
-    
-    /*self.dictJob = ["jobID": objJobList.jobID!, "jobDetail": objJobList.jobDetail!, "category": objJobList.category!, "state": objJobList.state!, "country": objJobList.country!, "salary_per_hour": objJobList.salary_per_hour!, "posted_on": objJobList.posted_on!, "longitude": objJobList.longitude!, "salary_per_month": objJobList.salary_per_month!, "type": objJobList.type!, "company_name": objJobList.company_name!, "salary_range": objJobList.salary_range!, "latitude": objJobList.latitude!, "category_image": objJobList.category_image!, "city": objJobList.city!, "role": objJobList.role!, "currency": objJobList.currency!, "shift": objJobList.shift!, "company_detail": objJobList.company_detail!]*/
     
     
 }
