@@ -10,6 +10,7 @@ import UIKit
 
 class SearchJobCell: BaseTableViewCell {
 
+    var jobId: String!
     @IBOutlet weak var viewHour: UIView!
     @IBOutlet weak var viewMiles: UIView!
     @IBOutlet weak var imgJobIcon: UIImageView!
@@ -24,6 +25,7 @@ class SearchJobCell: BaseTableViewCell {
         didSet {
             if datasource != nil {
                 let val = datasource as! SearchJob
+                self.jobId = val.jobID!
                 self.lblJobTitle.text = val.role!
                 self.lblSubJobTitle.text = val.company_name!
                 self.lblHour.text = "\(val.salary_per_hour!) per hour"
@@ -33,6 +35,7 @@ class SearchJobCell: BaseTableViewCell {
                 self.viewMiles.layer.borderWidth = 1.0
                 self.viewMiles.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
                 self.btnTick.addTarget(self, action: #selector(SearchJobCell.moveToApplyJob), for: UIControlEvents.touchUpInside)
+                self.btnBookmark.addTarget(self, action: #selector(SearchJobCell.saveJob), for: UIControlEvents.touchUpInside)
             }
         }
     }
@@ -47,5 +50,30 @@ class SearchJobCell: BaseTableViewCell {
         applyJobPageVC.strJobSubTitle = val.company_name!
         NavigationHelper.helper.contentNavController!.pushViewController(applyJobPageVC, animated: false)
     }
+    
+    
+    /// SavedJobs
+    func saveJob() {
+        self.saveJobAPICall()
+    }
 
 }
+
+
+
+// MARK: - SaveJobAPICall
+extension SearchJobCell {
+    func saveJobAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "save", jobId: self.jobId) { (responseDict,isSuccess) in
+            if isSuccess {
+                print(responseDict!)
+            } else {
+                
+            }
+        }
+    }
+}
+
+
+

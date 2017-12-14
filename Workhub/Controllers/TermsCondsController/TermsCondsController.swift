@@ -10,6 +10,7 @@ import UIKit
 
 class TermsCondsController: BaseViewController, UIWebViewDelegate {
 
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     @IBOutlet weak var termsView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +24,17 @@ class TermsCondsController: BaseViewController, UIWebViewDelegate {
         // Do any additional setup after loading the view.
     }
     
+    
+    
     func webViewDidStartLoad(_ webView: UIWebView) {
+        circleIndicator.isHidden = false
+        circleIndicator.animate()
         print("Started")
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        circleIndicator.isHidden = true
+        circleIndicator.stop()
         print("Finished")
     }
     

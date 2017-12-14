@@ -115,6 +115,37 @@ struct API_MODELS_METHODS{
     
     
     
+    static func jobFunction(queue: DispatchQueue? = nil, action: String?, jobId: String?,
+                      completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
+        
+        // "https://api.socioadvocacy.com/mobile/login?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0"
+        let subpath =  AppWebservices.JOB_FUNCTION
+        let completeUrl = AppWebservices.baseUrl + subpath
+        let parameters = ["jobid": jobId, "action": action]
+        
+        HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
+            if isSuccess {
+                let swiftyJsonVar   = JSON(response)
+                print(swiftyJsonVar)
+                DispatchQueue.main.async(execute: {
+                    if swiftyJsonVar["result"]["status"].bool! {
+                        let swiftyJsonVar   = JSON(response)
+                        completion(["result": swiftyJsonVar["result"]],true)
+                    } else {
+                        let swiftyJsonVar   = JSON(response)
+                        completion(["result": swiftyJsonVar["result"]],false)
+                    }
+                })
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     
     /// UserJOBList
     ///

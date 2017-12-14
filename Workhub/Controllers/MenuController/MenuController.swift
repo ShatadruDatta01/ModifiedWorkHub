@@ -33,7 +33,9 @@ class MenuController: BaseViewController {
     
     
     @IBAction func actionAboutWorkhub(_ sender: UIButton) {
-        
+        NavigationHelper.helper.openSidePanel(open: false)
+        let aboutWorkhubPageVC = mainStoryboard.instantiateViewController(withIdentifier: "AboutWorkhubController") as! AboutWorkhubController
+        NavigationHelper.helper.contentNavController!.pushViewController(aboutWorkhubPageVC, animated: true)
     }
 }
 

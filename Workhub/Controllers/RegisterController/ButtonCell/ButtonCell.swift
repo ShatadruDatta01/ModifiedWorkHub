@@ -15,9 +15,13 @@ class ButtonCell: BaseTableViewCell {
     override var datasource: AnyObject?{
         didSet {
             if datasource != nil {
-                
+                self.btnTerms.addTarget(self, action: #selector(ButtonCell.termsPageVC), for: UIControlEvents.touchUpInside)
             }
         }
     }
-
+    
+    func termsPageVC() {
+        let termsPageVC = mainStoryboard.instantiateViewController(withIdentifier: "TermsCondsController") as! TermsCondsController
+        NavigationHelper.helper.contentNavController!.pushViewController(termsPageVC, animated: true)
+    }
 }
