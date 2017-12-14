@@ -9,43 +9,43 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Workhub/Controllers/SearchJobController/SearchJobCell/SearchJobCell.swift"
-            timestampString = "534926775.902906"
+            filePath = "Workhub/Controllers/EditProfileController/EditProfileController.swift"
+            timestampString = "534945965.132219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "saveJobAPICall()"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "editProfileAPI()"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Workhub.SearchJobCell.saveJobAPICall () -&gt; ()"
+                  symbolName = "Workhub.EditProfileController.editProfileAPI () -&gt; ()"
                   moduleName = "Workhub"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/administrator/Desktop/ModifiedWorkHub/Workhub/Controllers/SearchJobController/SearchJobCell/SearchJobCell.swift"
-                  timestampString = "534932914.648384"
+                  urlString = "file:///Users/administrator/Desktop/ModifiedWorkHub/Workhub/Controllers/EditProfileController/EditProfileController.swift"
+                  timestampString = "534950424.682878"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "212">
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "204">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Workhub.SearchJobCell.(saveJobAPICall () -&gt; ()).(closure #1)"
+                  symbolName = "Workhub.EditProfileController.(editProfileAPI () -&gt; ()).(closure #1)"
                   moduleName = "Workhub"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/administrator/Desktop/ModifiedWorkHub/Workhub/Controllers/SearchJobController/SearchJobCell/SearchJobCell.swift"
-                  timestampString = "534932914.650791"
+                  urlString = "file:///Users/administrator/Desktop/ModifiedWorkHub/Workhub/Controllers/EditProfileController/EditProfileController.swift"
+                  timestampString = "534950424.685552"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
                   offsetFromSymbolStart = "32">
                </Location>
             </Locations>
@@ -57,29 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Workhub/Controllers/SearchJobController/SearchJobCell/SearchJobCell.swift"
-            timestampString = "534926779.461414"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "saveJobAPICall()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Workhub/APIManager/APIModel.swift"
-            timestampString = "534927446.880552"
+            timestampString = "534951600.67194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "jobFunction(queue:action:jobId:completion:)"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "getProfile(queue:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Workhub/APIManager/HTTPManagerAPI.swift"
-            timestampString = "534928337.437358"
+            timestampString = "534947119.337807"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "POSTManager(_:queue:parameters:completion:)"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "GETManagerWithHeader(_:queue:parameters:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -195,7 +195,14 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             
             switch indexPath.section {
             case 1:
-                self.presentAlertWithTitle(title: "Workhub", message: "Work under progress")
+                switch indexPath.row {
+                case 0:
+                    let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
+                    NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
+                default:
+                    self.presentAlertWithTitle(title: "Workhub", message: "Work under progress")
+                }
+                
             default:
                 print("No Code")
             }
@@ -203,7 +210,6 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         }
         NavigationHelper.helper.openSidePanel(open: false)
     }
-    
 }
 
 

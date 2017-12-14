@@ -25,8 +25,9 @@ class EditProfileController: BaseTableViewController {
     @IBOutlet weak var txtMob: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        NavigationHelper.helper.headerViewController?.isBack = false
+        NavigationHelper.helper.headerViewController?.isBack = true
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
+        NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
         self.imgProf.layer.borderWidth = 2.0
         self.imgProf.layer.borderColor = UIColorRGB(r: 245.0, g: 170.0, b: 81.0)?.cgColor
         self.txtName.keyboardType = UIKeyboardType.alphabet
@@ -35,6 +36,7 @@ class EditProfileController: BaseTableViewController {
         self.txtEmail.keyboardType = UIKeyboardType.emailAddress
         self.txtMob.keyboardType = UIKeyboardType.phonePad
         self.fetchCountryCode()
+        self.editProfileAPI()
         // Do any additional setup after loading the view.
     }
     
@@ -90,7 +92,7 @@ extension EditProfileController {
                         if !(self.txtEmail.text?.isEmpty)! {
                             if (self.txtEmail.text?.isValidEmail)! {
                                 if !(self.txtMob.text?.isEmpty)! {
-                                    self.profileUpdateAPI()
+                                    //............//
                                 } else {
                                     ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter mobile no", didSubmit: { (text) in
                                         debugPrint("No Code")
@@ -147,7 +149,14 @@ extension EditProfileController {
 
 // MARK: - ProfileUpdateAPICall
 extension EditProfileController {
-    func profileUpdateAPI() {
-        
+    func editProfileAPI() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
+        API_MODELS_METHODS.getProfile(queue: concurrentQueue) { (responseDict, isSuccess) in
+            if isSuccess {
+                print(responseDict!)
+            } else {
+                
+            }
+        }
     }
 }

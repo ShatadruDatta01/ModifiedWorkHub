@@ -38,6 +38,8 @@ class SearchJobController: BaseViewController {
     @IBOutlet weak var txtSearchJob: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppConstantValues.companyAccessToken = String(describing: OBJ_FOR_KEY(key: "AccessToken")!)
+        print("Access Token : \(AppConstantValues.companyAccessToken)")
         self.lblNoDataFound.text = "No jobs available on this location"
         self.viewRecenter.isHidden = true
         self.viewRecenter.layer.cornerRadius = 5.0
@@ -232,10 +234,6 @@ class SearchJobController: BaseViewController {
             self.imgListContent.isHidden = true
             self.imgMapContent.isHidden = false
         }
-        
-//        let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
-//        NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
-
     }
     
     

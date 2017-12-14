@@ -161,7 +161,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
             
             //let baseUrlString = "https://apils.socioadvocacy.com/company/feed/2017-08-22/2017-08-23?access_token=0d63c9f79807211b736651ed943661370f838eb1&cid=365834c2&uid=064bf2c6"
             print(AppConstantValues.companyAccessToken)
-            let baseUrlString = subPath//AppWebservices.baseUrl
+            let baseUrlString = subPath
             var header = CREATE_HEADER.createHeaderForTheUrl(baseUrl: baseUrlString, mType: "GET", parameterDict: [:], companyCid: "", accessToken: AppConstantValues.companyAccessToken)
             
             header = header.replacingOccurrences(of: "%27", with: "'")
@@ -169,6 +169,8 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
             header = header.replacingOccurrences(of: "%3D", with: "")
             
             header = header.substring(to: header.index(before: header.endIndex)) + "%3D"
+        
+            print(header)
             
             if let url = URL(string: baseUrlString) {
                 var urlRequest = URLRequest(url: url)
@@ -313,8 +315,9 @@ struct CREATE_HEADER {
         let compositeSignature = instanceOfCustomObject.computeSignature(baseString, key: compositeKey)!
         
         let currentdate =  instanceOfCustomObject.generateCurrentTime()!
-        
-        let header = "Authorization: OAuth \(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
+        //Authorization: OAuth
+       // let header = "Authorization: \(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
+        let header = "\(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
         return header
     }
     
