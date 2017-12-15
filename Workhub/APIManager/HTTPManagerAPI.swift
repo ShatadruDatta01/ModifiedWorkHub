@@ -317,7 +317,8 @@ struct CREATE_HEADER {
         let currentdate =  instanceOfCustomObject.generateCurrentTime()!
         //Authorization: OAuth
        // let header = "Authorization: \(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
-        let header = "\(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
+       
+        let header = "oauth_consumer_key=78044b02\(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
         return header
     }
     
