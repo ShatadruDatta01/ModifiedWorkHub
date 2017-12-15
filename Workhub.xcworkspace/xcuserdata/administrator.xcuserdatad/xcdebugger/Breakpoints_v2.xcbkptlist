@@ -10,45 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Workhub/Controllers/EditProfileController/EditProfileController.swift"
-            timestampString = "534945965.132219"
+            timestampString = "535031144.689538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "editProfileAPI()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Workhub.EditProfileController.editProfileAPI () -&gt; ()"
-                  moduleName = "Workhub"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/administrator/Desktop/ModifiedWorkHub/Workhub/Controllers/EditProfileController/EditProfileController.swift"
-                  timestampString = "535026930.116566"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "154"
-                  endingLineNumber = "154"
-                  offsetFromSymbolStart = "204">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Workhub.EditProfileController.(editProfileAPI () -&gt; ()).(closure #1)"
-                  moduleName = "Workhub"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/administrator/Desktop/ModifiedWorkHub/Workhub/Controllers/EditProfileController/EditProfileController.swift"
-                  timestampString = "535026930.118894"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
-                  offsetFromSymbolStart = "32">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -64,22 +32,6 @@
             startingLineNumber = "183"
             endingLineNumber = "183"
             landmarkName = "getProfile(queue:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Workhub/APIManager/HTTPManagerAPI.swift"
-            timestampString = "535018106.008372"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "GETManagerWithHeader(_:queue:parameters:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -56,7 +56,6 @@ class SearchJobCell: BaseTableViewCell {
     func saveJob() {
         self.saveJobAPICall()
     }
-
 }
 
 
