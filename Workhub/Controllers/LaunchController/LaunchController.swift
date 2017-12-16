@@ -18,7 +18,12 @@ class LaunchController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
-        self.tokenAPICall()
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            self.tokenAPICall()
+        } else {
+            self.startingView()
+        }
+        
         // Do any additional setup after loading the view.
     }
 }
@@ -29,7 +34,8 @@ extension LaunchController {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getToken"), attributes: .concurrent)
         API_MODELS_METHODS.token(queue: concurrentQueue) { (responseDict,isSuccess) in
             if isSuccess {
-                AppConstantValues.companyAccessToken = responseDict!["result"]!["data"]["access_token"].stringValue
+                REMOVE_OBJ_FOR_KEY(key: "AccessToken")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["access_token"].stringValue as AnyObject, key: "AccessToken")
                 self.startingView()
             } else {
                 

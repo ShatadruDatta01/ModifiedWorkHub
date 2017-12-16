@@ -38,6 +38,8 @@ class SearchJobController: BaseViewController {
     @IBOutlet weak var txtSearchJob: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppConstantValues.companyAccessToken = String(describing: OBJ_FOR_KEY(key: "AccessToken")!)
+        print("Access Token : \(AppConstantValues.companyAccessToken)")
         self.lblNoDataFound.text = "No jobs available on this location"
         self.viewRecenter.isHidden = true
         self.viewRecenter.layer.cornerRadius = 5.0
@@ -52,6 +54,8 @@ class SearchJobController: BaseViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        circleIndicator.isHidden = false
+        circleIndicator.animate()
         self.fetchZipCode()
         mapListJob.showsUserLocation = true
         
@@ -77,6 +81,8 @@ class SearchJobController: BaseViewController {
     
     
     @IBAction func recenter(_ sender: UIButton) {
+        circleIndicator.isHidden = false
+        circleIndicator.animate()
         self.mapListJob.showsUserLocation = true
         self.viewRecenter.isHidden = true
         locationManager.delegate = self
@@ -127,6 +133,8 @@ class SearchJobController: BaseViewController {
                         
                         self.userJobListAPICall(zipCode: zipCode)
                     } else {
+                        self.circleIndicator.isHidden = true
+                        self.circleIndicator.stop()
                         self.btnGO.isEnabled = true
                         ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "You have exceeded your daily request quota for this API", didSubmit: { (text) in
                             debugPrint("No Code")
@@ -150,8 +158,6 @@ class SearchJobController: BaseViewController {
     /// Fetch ZipCode
     func fetchZipCode() {
         // Add below code to get address for touch coordinates.
-        circleIndicator.isHidden = false
-        circleIndicator.animate()
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
@@ -201,6 +207,8 @@ class SearchJobController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func actionGO(_ sender: UIButton) {
+        circleIndicator.isHidden = false
+        circleIndicator.animate()
         self.mapListJob.showsUserLocation = false
         self.viewRecenter.isHidden = false
         self.btnGO.isEnabled = false
@@ -226,10 +234,6 @@ class SearchJobController: BaseViewController {
             self.imgListContent.isHidden = true
             self.imgMapContent.isHidden = false
         }
-        
-//        let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
-//        NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
-
     }
     
     
@@ -392,10 +396,10 @@ extension SearchJobController {
     /// UserJOB APICall
     func userJobListAPICall(zipCode: String) {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
-        circleIndicator.stop()
-        circleIndicator.isHidden = true
         API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
             if isSuccess {
+                self.circleIndicator.stop()
+                self.circleIndicator.isHidden = true
                 self.btnGO.isEnabled = true
                 print(responseDict!["result"]!["data"])
                 if responseDict!["result"]!["data"].count > 0 {
@@ -413,6 +417,8 @@ extension SearchJobController {
                     self.tblList.reloadData()
                     self.jobLocation()
                 } else {
+                    self.circleIndicator.stop()
+                    self.circleIndicator.isHidden = true
                     self.tblList.isHidden = true
                     self.lblDetailsContent.text = "No jobs available in 5 sq miles"
                     AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in

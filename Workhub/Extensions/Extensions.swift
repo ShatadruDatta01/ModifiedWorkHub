@@ -460,6 +460,7 @@ extension UIViewController {
         let OKAction = UIAlertAction(title: "OK", style: .default) {
             (action: UIAlertAction) in
             SET_OBJ_FOR_KEY(obj: "0" as AnyObject, key: "isLogin")
+            REMOVE_OBJ_FOR_KEY(key: "AccessToken")
             NavigationHelper.helper.openSidePanel(open: false)
         }
         alertController.addAction(OKAction)
