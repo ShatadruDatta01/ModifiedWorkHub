@@ -500,7 +500,7 @@
 		C35C23871FD01B4F0077B5AC /* Congo-Kinshasa(Zaire).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Congo-Kinshasa(Zaire).png"; sourceTree = "<group>"; };
 		C35C23881FD01B4F0077B5AC /* Cook Islands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cook Islands.png"; sourceTree = "<group>"; };
 		C35C23891FD01B4F0077B5AC /* Costa Rica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Costa Rica.png"; sourceTree = "<group>"; };
-		C35C238A1FD01B4F0077B5AC /* Cote d'Ivoire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cote d'Ivoire.png"; sourceTree = "<group>"; };
+		C35C238A1FD01B4F0077B5AC /* Cote d'Ivoire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cote d\'Ivoire.png"; sourceTree = "<group>"; };
 		C35C238B1FD01B4F0077B5AC /* Croatia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Croatia.png; sourceTree = "<group>"; };
 		C35C238C1FD01B4F0077B5AC /* Cuba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cuba.png; sourceTree = "<group>"; };
 		C35C238D1FD01B4F0077B5AC /* Cyprus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cyprus.png; sourceTree = "<group>"; };
@@ -1735,7 +1735,7 @@
 				TargetAttributes = {
 					C34E1CD41FBD7D5300CE777C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 9M2U5RK3QT;
+						DevelopmentTeam = 3Q9VMV9DUT;
 						ProvisioningStyle = Automatic;
 					};
 					C34E1CEB1FBD7D5400CE777C = {
@@ -2100,7 +2100,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9390AC8302BB27D6A1F43387 /* [CP] Copy Pods Resources */ = {
@@ -2148,7 +2148,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CFBA3853553DFBC22E89945C /* [CP] Check Pods Manifest.lock */ = {
@@ -2166,7 +2166,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DF87237D3C0371ACA7757E58 /* [CP] Embed Pods Frameworks */ = {
@@ -2466,7 +2466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9M2U5RK3QT;
+				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Workhub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2486,7 +2486,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9M2U5RK3QT;
+				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Workhub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

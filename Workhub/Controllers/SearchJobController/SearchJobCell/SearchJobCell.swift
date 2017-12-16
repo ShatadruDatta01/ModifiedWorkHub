@@ -11,6 +11,7 @@ import UIKit
 class SearchJobCell: BaseTableViewCell {
 
     var jobId: String!
+    var didSendValue:((String, Bool) -> ())!
     @IBOutlet weak var viewHour: UIView!
     @IBOutlet weak var viewMiles: UIView!
     @IBOutlet weak var imgJobIcon: UIImageView!
@@ -25,6 +26,11 @@ class SearchJobCell: BaseTableViewCell {
         didSet {
             if datasource != nil {
                 let val = datasource as! SearchJob
+                if val.save! == 0 {
+                    self.btnBookmark.setImage(UIImage(named: "star_white"), for: .normal)
+                } else {
+                    self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+                }
                 self.jobId = val.jobID!
                 self.lblJobTitle.text = val.role!
                 self.lblSubJobTitle.text = val.company_name!
@@ -66,9 +72,9 @@ extension SearchJobCell {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
         API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "save", jobId: self.jobId) { (responseDict,isSuccess) in
             if isSuccess {
-                print(responseDict!)
+                self.didSendValue!("callAPI", responseDict!["result"]!["status"].bool!)
             } else {
-                
+                self.didSendValue!(responseDict!["result"]!["error"]["msgUser"].stringValue, responseDict!["result"]!["status"].bool!)
             }
         }
     }

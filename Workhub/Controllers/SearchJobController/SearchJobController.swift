@@ -117,6 +117,7 @@ class SearchJobController: BaseViewController {
                         self.mapListJob.removeAnnotations(self.mapListJob.annotations)
                         AppConstantValues.latitide = String(describing: val["results"][0]["geometry"]["location"]["lat"])
                         AppConstantValues.longitude = String(describing: val["results"][0]["geometry"]["location"]["lng"])
+                        AppConstantValues.zipcode = zipCode
                         print(AppConstantValues.latitide, AppConstantValues.longitude)
                         
                         
@@ -365,6 +366,19 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchJobCell", for: indexPath) as! SearchJobCell
         cell.datasource = self.arrJob[indexPath.row] as AnyObject
+        cell.didSendValue = { text, check in
+            if check {
+                self.circleIndicator.isHidden = false
+                self.circleIndicator.animate()
+                self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
+            } else {
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: text, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
         cell.selectionStyle = .none
         return cell
     }

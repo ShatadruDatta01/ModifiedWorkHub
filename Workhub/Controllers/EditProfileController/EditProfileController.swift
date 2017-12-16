@@ -153,7 +153,15 @@ extension EditProfileController {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
         API_MODELS_METHODS.getProfile(queue: concurrentQueue) { (responseDict, isSuccess) in
             if isSuccess {
-                print(responseDict!)
+                self.txtName.text = responseDict!["result"]!["data"]["name"].stringValue
+                self.txtAdd.text = responseDict!["result"]!["data"]["location"].stringValue
+                self.txtJobExp.text = responseDict!["result"]!["data"]["experience"].stringValue
+                self.txtSal.text = responseDict!["result"]!["data"]["salExpected"].stringValue
+                self.txtEmail.text = responseDict!["result"]!["data"]["email"].stringValue
+                let mobNo = responseDict!["result"]!["data"]["mobile"].stringValue.components(separatedBy: "-")
+                self.txtMob.text = String(mobNo[1])
+                self.btnCountryCode.setTitle(String(mobNo[0]), for: .normal)
+                self.imgProf.setImage(withURL: NSURL(string: responseDict!["result"]!["data"]["pic"].stringValue)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
             } else {
                 
             }

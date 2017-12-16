@@ -29,6 +29,10 @@ class SearchJob: NSObject {
     var currency: String?
     var shift: String?
     var company_detail: String?
+    var save: Int?
+    var like: Int?
+    var apply: Int?
+    var view: Int?
     init(withDictionary dict:[String: AnyObject]) {
         self.jobID = (dict["id"]! as! String)
         self.jobDetail = (dict["detail"]! as! String)
@@ -55,6 +59,20 @@ class SearchJob: NSObject {
         self.currency = (dict["currency"]! as! String)
         self.shift = (dict["shift"]! as! String)
         self.company_detail = (dict["company_detail"]! as! String)
+        if let save = dict["save"] {
+            self.save = save as? Int
+        }
+        if let like = dict["like"] {
+            self.like = like as? Int
+        }
+        if let apply = dict["apply"] {
+            self.apply = apply as? Int
+        }
+        if let view = dict["view"] {
+            self.view = view as? Int
+        }
+        
+        
     }
 
 }
