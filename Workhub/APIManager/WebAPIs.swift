@@ -23,6 +23,7 @@ struct AppWebservices {
     static let TOKEN = "token?"
     static let JOB_FUNCTION = "job/operate?"
     static let GET_PROFILE = "user/profile?"
+    static let UPDATE_PROFILE = "user/profile?"
     
 }
 
