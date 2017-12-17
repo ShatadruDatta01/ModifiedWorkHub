@@ -12,6 +12,7 @@ import GoogleSignIn
 
 class RegisterController: BaseViewController {
 
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     var strCountryCode = "+1"
     var strNetwork = ""
     var strName = ""
@@ -309,10 +310,14 @@ extension RegisterController {
 // MARK: - RegistrationAPICall
 extension RegisterController {
     func registerAPICall(name: String, email: String, mob: String, password: String, network: String) {
+        self.circleIndicator.isHidden = false
+        self.circleIndicator.animate()
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getRegister"), attributes: .concurrent)
         API_MODELS_METHODS.register(queue: concurrentQueue, name: name, email: email, mobile: mob, password: password, network: network) { (responseDict, isSuccess) in
             if isSuccess {
                 print(responseDict!)
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
                 SET_OBJ_FOR_KEY(obj: "1" as AnyObject, key: "isLogin")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["id"].stringValue as AnyObject, key: "UserId")
@@ -326,6 +331,8 @@ extension RegisterController {
                 let jobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
                 NavigationHelper.helper.contentNavController!.pushViewController(jobPageVC, animated: true)
             } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
                 AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {

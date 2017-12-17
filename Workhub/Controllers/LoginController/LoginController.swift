@@ -12,6 +12,7 @@ import GoogleSignIn
 
 class LoginController: BaseViewController {
 
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     var network: String!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var viewEmail: UIView!
@@ -203,10 +204,14 @@ extension LoginController: UITextFieldDelegate {
 // MARK: - Login API Call
 extension LoginController {
     func loginAPICall(email: String, password: String, network: String) {
+        self.circleIndicator.isHidden = false
+        self.circleIndicator.animate()
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getLogin"), attributes: .concurrent)
         API_MODELS_METHODS.login(queue: concurrentQueue, email: email, password: password, network: network, completion: {responseDict,isSuccess in
             if isSuccess {
                 print(responseDict!)
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
                 SET_OBJ_FOR_KEY(obj: "1" as AnyObject, key: "isLogin")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["id"].stringValue as AnyObject, key: "UserId")
@@ -221,6 +226,8 @@ extension LoginController {
                 NavigationHelper.helper.contentNavController!.pushViewController(jobPageVC, animated: true)
             } else {
                 print(responseDict!, isSuccess)
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
                 AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {

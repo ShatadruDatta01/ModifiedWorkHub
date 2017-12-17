@@ -26,11 +26,16 @@ class SearchJobCell: BaseTableViewCell {
         didSet {
             if datasource != nil {
                 let val = datasource as! SearchJob
-                if val.save! == 0 {
-                    self.btnBookmark.setImage(UIImage(named: "star_white"), for: .normal)
+                if let save = val.save {
+                    if save == 0 {
+                        self.btnBookmark.setImage(UIImage(named: "star_white"), for: .normal)
+                    } else {
+                        self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+                    }
                 } else {
-                    self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+                    self.btnBookmark.setImage(UIImage(named: "star_white"), for: .normal)
                 }
+                
                 self.jobId = val.jobID!
                 self.lblJobTitle.text = val.role!
                 self.lblSubJobTitle.text = val.company_name!

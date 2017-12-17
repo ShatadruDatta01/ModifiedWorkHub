@@ -8,9 +8,11 @@
 
 import UIKit
 import SwiftyJSON
+import TGCameraViewController
 
 class EditProfileController: BaseTableViewController {
 
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     var strCountryCode = "+1"
     var arrCountryCode = [AnyObject]()
     var dictCountryCode = [String: String]()
@@ -28,6 +30,9 @@ class EditProfileController: BaseTableViewController {
         NavigationHelper.helper.headerViewController?.isBack = true
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(EditProfileController.tappedMe))
+        self.imgProf.addGestureRecognizer(tap)
+        self.imgProf.isUserInteractionEnabled = true
         self.imgProf.layer.borderWidth = 2.0
         self.imgProf.layer.borderColor = UIColorRGB(r: 245.0, g: 170.0, b: 81.0)?.cgColor
         self.txtName.keyboardType = UIKeyboardType.alphabet
@@ -36,7 +41,17 @@ class EditProfileController: BaseTableViewController {
         self.txtEmail.keyboardType = UIKeyboardType.emailAddress
         self.txtMob.keyboardType = UIKeyboardType.phonePad
         self.fetchCountryCode()
+        circleIndicator.isHidden = false
+        circleIndicator.animate()
         self.editProfileAPI()
+        
+        
+        func tappedMe()
+        {
+            let navigationController = TGCameraNavigationController.new(with: self)
+            self.present(navigationController!, animated: true, completion: nil)
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -55,6 +70,28 @@ class EditProfileController: BaseTableViewController {
     }
 }
 
+
+// MARK: - TGCameraDelegate
+extension EditProfileController: TGCameraDelegate {
+    func cameraDidCancel() {
+        print("Cancel")
+    }
+    
+    func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
+        self.imgProf.image = image;
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cameraDidTakePhoto(_ image: UIImage!) {
+        self.imgProf.image = image;
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: TGCameraDelegate optional
+    func cameraWillTakePhoto() {
+        print("Will take photo")
+    }
+}
 
 // MARK: - FetchCountryCode
 extension EditProfileController {
@@ -153,6 +190,8 @@ extension EditProfileController {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
         API_MODELS_METHODS.getProfile(queue: concurrentQueue) { (responseDict, isSuccess) in
             if isSuccess {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
                 self.txtName.text = responseDict!["result"]!["data"]["name"].stringValue
                 self.txtAdd.text = responseDict!["result"]!["data"]["location"].stringValue
                 self.txtJobExp.text = responseDict!["result"]!["data"]["experience"].stringValue
@@ -163,7 +202,8 @@ extension EditProfileController {
                 self.btnCountryCode.setTitle(String(mobNo[0]), for: .normal)
                 self.imgProf.setImage(withURL: NSURL(string: responseDict!["result"]!["data"]["pic"].stringValue)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
             } else {
-                
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
             }
         }
     }
