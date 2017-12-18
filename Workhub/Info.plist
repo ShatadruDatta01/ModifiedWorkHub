@@ -4,6 +4,8 @@
 <dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs your camera for profile</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This app needs your media library</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs your current location</string>
 	<key>CFBundleDevelopmentRegion</key>

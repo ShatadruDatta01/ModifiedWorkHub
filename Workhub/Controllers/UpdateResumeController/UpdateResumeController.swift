@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateResumeController: BaseTableViewController {
+class UpdateResumeController: BaseTableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var strResumeBase64: String!
     @IBOutlet weak var txtName: CustomTextField!
@@ -29,21 +29,35 @@ class UpdateResumeController: BaseTableViewController {
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
         
-        let url1 = Bundle.main.url(forResource: "ShatadruDatta_resume", withExtension: "docx")
-        let one1 = NSData(contentsOf: url1!)
-        self.strResumeBase64 = one1!.base64EncodedString(options: .endLineWithLineFeed)
-        print(self.strResumeBase64)
+//        let url1 = Bundle.main.url(forResource: "ShatadruDatta_resume", withExtension: "docx")
+//        let one1 = NSData(contentsOf: url1!)
+//        self.strResumeBase64 = one1!.base64EncodedString(options: .endLineWithLineFeed)
+//        print(self.strResumeBase64)
         
         self.getFileSize()
         // Do any additional setup after loading the view.
     }
 
     @IBAction func uploadResume(_ sender: UIButton) {
-        self.resumeUploadAPI()
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : Any]){
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //1
+        dismiss(animated:true, completion: nil) //4
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated:true, completion: nil)
     }
     
     @IBAction func submit(_ sender: UIButton) {
-        
+        self.resumeUploadAPI()
     }
     
     
