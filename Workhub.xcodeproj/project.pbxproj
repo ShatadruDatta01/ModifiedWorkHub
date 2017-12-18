@@ -336,6 +336,8 @@
 		C39A874E1FE2784C00F34335 /* AboutWorkhub.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A874D1FE2784B00F34335 /* AboutWorkhub.png */; };
 		C39A87511FE2797F00F34335 /* AboutWorkhubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */; };
 		C3D63B241FE79109004EE053 /* SavedAppliedJobsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */; };
+		C3D63B261FE7EFD1004EE053 /* pdf-sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */; };
+		C3D63B281FE7F6A1004EE053 /* ShatadruDatta_resume.docx in Resources */ = {isa = PBXBuildFile; fileRef = C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */; };
 		C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */; };
 		C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */; };
 		C3F2BBC81FDA692500C0BC9A /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */; };
@@ -701,6 +703,8 @@
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
 		C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWorkhubController.swift; sourceTree = "<group>"; };
 		C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAppliedJobsController.swift; sourceTree = "<group>"; };
+		C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pdf-sample.pdf"; sourceTree = "<group>"; };
+		C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShatadruDatta_resume.docx; sourceTree = "<group>"; };
 		C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailsController.swift; sourceTree = "<group>"; };
 		C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyJobController.swift; sourceTree = "<group>"; };
 		C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
@@ -850,6 +854,8 @@
 			children = (
 				C39A874D1FE2784B00F34335 /* AboutWorkhub.png */,
 				5F49CC381FC4B167004CEB29 /* leftArrow.png */,
+				C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */,
+				C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1799,6 +1805,7 @@
 				C35C25051FD01B500077B5AC /* Seychelles.png in Resources */,
 				C35C24F61FD01B500077B5AC /* Puerto Rico.png in Resources */,
 				C35C24AE1FD01B500077B5AC /* Isle of Man.png in Resources */,
+				C3D63B261FE7EFD1004EE053 /* pdf-sample.pdf in Resources */,
 				C35C250A1FD01B500077B5AC /* Solomon Islands.png in Resources */,
 				C35C24981FD01B500077B5AC /* Gibraltar.png in Resources */,
 				C35C24A01FD01B500077B5AC /* Guinea-Bissau.png in Resources */,
@@ -1889,6 +1896,7 @@
 				C35C24EE1FD01B500077B5AC /* Palestine.png in Resources */,
 				C35C25001FD01B500077B5AC /* Sao Tome & Principe.png in Resources */,
 				C35C24871FD01B500077B5AC /* Egypt.png in Resources */,
+				C3D63B281FE7F6A1004EE053 /* ShatadruDatta_resume.docx in Resources */,
 				C35C244D1FD01B500077B5AC /* Angola.png in Resources */,
 				C35C25191FD01B500077B5AC /* Tahiti(French Polinesia).png in Resources */,
 				C35C246E1FD01B500077B5AC /* Cape Verde.png in Resources */,

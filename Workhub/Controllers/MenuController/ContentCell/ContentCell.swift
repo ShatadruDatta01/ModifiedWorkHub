@@ -15,7 +15,7 @@ class ContentCell: BaseTableViewCell {
     override var datasource: AnyObject?{
         didSet {
             if datasource != nil {
-                self.lblText1.text = "Hello"
+                self.lblText1.text = datasource as? String
                 self.lblText2.text = "What would you like to do?"
             }
         }

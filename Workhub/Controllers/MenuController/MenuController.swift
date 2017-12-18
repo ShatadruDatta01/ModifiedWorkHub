@@ -67,7 +67,6 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             default:
                 return 1
             }
-            
         }
     }
     
@@ -88,7 +87,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     return cellProf
                 default:
                     let cellContent = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
-                    cellContent.datasource = "" as AnyObject
+                    cellContent.datasource = "Hello" as AnyObject
                     cellContent.selectionStyle = .none
                     return cellContent
                 }
@@ -112,12 +111,12 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     return cellTitle
                 case 1:
                     let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-                    cellProf.datasource = "" as AnyObject
+                    cellProf.datasource = String(describing: OBJ_FOR_KEY(key: "UserPic")!) as AnyObject
                     cellProf.selectionStyle = .none
                     return cellProf
                 default:
                     let cellContent = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
-                    cellContent.datasource = "" as AnyObject
+                    cellContent.datasource = String(describing: OBJ_FOR_KEY(key: "Name")!) as AnyObject
                     cellContent.selectionStyle = .none
                     return cellContent
                 }
@@ -200,7 +199,8 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
                     NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
                 case 1:
-                    self.presentAlertWithTitle(title: "Workhub", message: "Work under progress")
+                    let resumeVC = mainStoryboard.instantiateViewController(withIdentifier: "UpdateResumeController") as! UpdateResumeController
+                    NavigationHelper.helper.contentNavController!.pushViewController(resumeVC, animated: true)
                 case 2:
                     let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "SavedAppliedJobsController") as! SavedAppliedJobsController
                     savedApplyVC.strJobs = "apply"
