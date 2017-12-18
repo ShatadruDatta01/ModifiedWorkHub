@@ -24,6 +24,8 @@ struct AppWebservices {
     static let JOB_FUNCTION = "job/operate?"
     static let GET_PROFILE = "user/profile?"
     static let UPDATE_PROFILE = "user/profile?"
+    static let USER_JOB_LIST = "job/listing?filter="
+    static let RESUME_UPLOAD = "resume/upload?"
     
 }
 
