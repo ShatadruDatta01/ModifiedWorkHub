@@ -335,6 +335,7 @@
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C39A874E1FE2784C00F34335 /* AboutWorkhub.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A874D1FE2784B00F34335 /* AboutWorkhub.png */; };
 		C39A87511FE2797F00F34335 /* AboutWorkhubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */; };
+		C3D63B241FE79109004EE053 /* SavedAppliedJobsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */; };
 		C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */; };
 		C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */; };
 		C3F2BBC81FDA692500C0BC9A /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */; };
@@ -500,7 +501,7 @@
 		C35C23871FD01B4F0077B5AC /* Congo-Kinshasa(Zaire).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Congo-Kinshasa(Zaire).png"; sourceTree = "<group>"; };
 		C35C23881FD01B4F0077B5AC /* Cook Islands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cook Islands.png"; sourceTree = "<group>"; };
 		C35C23891FD01B4F0077B5AC /* Costa Rica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Costa Rica.png"; sourceTree = "<group>"; };
-		C35C238A1FD01B4F0077B5AC /* Cote d'Ivoire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cote d\'Ivoire.png"; sourceTree = "<group>"; };
+		C35C238A1FD01B4F0077B5AC /* Cote d'Ivoire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cote d'Ivoire.png"; sourceTree = "<group>"; };
 		C35C238B1FD01B4F0077B5AC /* Croatia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Croatia.png; sourceTree = "<group>"; };
 		C35C238C1FD01B4F0077B5AC /* Cuba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cuba.png; sourceTree = "<group>"; };
 		C35C238D1FD01B4F0077B5AC /* Cyprus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cyprus.png; sourceTree = "<group>"; };
@@ -699,6 +700,7 @@
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
 		C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWorkhubController.swift; sourceTree = "<group>"; };
+		C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAppliedJobsController.swift; sourceTree = "<group>"; };
 		C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailsController.swift; sourceTree = "<group>"; };
 		C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyJobController.swift; sourceTree = "<group>"; };
 		C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
@@ -1136,6 +1138,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */,
 				C39A874F1FE2794600F34335 /* AboutWorkhubController */,
 				C38EFA331FDFB02B0072F898 /* UpdateResumeController */,
 				C38EFA301FDE5CED0072F898 /* EditProfileController */,
@@ -1622,6 +1625,14 @@
 			path = AboutWorkhubController;
 			sourceTree = "<group>";
 		};
+		C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */ = {
+			isa = PBXGroup;
+			children = (
+				C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */,
+			);
+			path = SavedAppliedJobsController;
+			sourceTree = "<group>";
+		};
 		C3EE8DE51FD5556400C2B89E /* JobDetailsController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1735,7 +1746,7 @@
 				TargetAttributes = {
 					C34E1CD41FBD7D5300CE777C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3Q9VMV9DUT;
+						DevelopmentTeam = 9M2U5RK3QT;
 						ProvisioningStyle = Automatic;
 					};
 					C34E1CEB1FBD7D5400CE777C = {
@@ -2100,7 +2111,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9390AC8302BB27D6A1F43387 /* [CP] Copy Pods Resources */ = {
@@ -2148,7 +2159,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CFBA3853553DFBC22E89945C /* [CP] Check Pods Manifest.lock */ = {
@@ -2166,7 +2177,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DF87237D3C0371ACA7757E58 /* [CP] Embed Pods Frameworks */ = {
@@ -2241,6 +2252,7 @@
 			files = (
 				C365E8C91FD918A800CFE48B /* SearchJob.swift in Sources */,
 				C34E1D1E1FBD8F1200CE777C /* Extensions.swift in Sources */,
+				C3D63B241FE79109004EE053 /* SavedAppliedJobsController.swift in Sources */,
 				5FCE5B211FC05FBF00F299B9 /* ForgotPasswordController.swift in Sources */,
 				C33E6BF41FD1560A00E100F3 /* TermsCondsController.swift in Sources */,
 				C3057A2D1FE16E6B00175A44 /* CircleLayer.swift in Sources */,
@@ -2466,7 +2478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
+				DEVELOPMENT_TEAM = 9M2U5RK3QT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Workhub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2486,7 +2498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
+				DEVELOPMENT_TEAM = 9M2U5RK3QT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Workhub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

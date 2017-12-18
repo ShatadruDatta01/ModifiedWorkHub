@@ -10,6 +10,7 @@ import UIKit
 import MarqueeLabel
 class JobDetailsController: BaseTableViewController {
 
+    var strJobFunction: String!
     var strIconDetails: String!
     var strJobTitle: String!
     var strJobSubTitle: String!
@@ -78,7 +79,19 @@ extension JobDetailsController {
         switch indexPath.row {
         case 0:
             return 130.0
-        case 1, 2, 3, 4, 5:
+        case 1:
+            return 50.0
+        case 2:
+            return 50.0
+        case 3:
+            if self.strJobFunction == "view" {
+                return 50.0
+            } else {
+                return 0
+            }
+        case 4:
+            return 50.0
+        case 5:
             return 50.0
         case 6:
             return UITableViewAutomaticDimension

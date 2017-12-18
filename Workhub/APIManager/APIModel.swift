@@ -200,6 +200,7 @@ struct API_MODELS_METHODS{
         })
     }
     
+    
     static func updateProfile(queue: DispatchQueue? = nil, email: String?, name: String?, mobile: String?, pic: String?, experience: String?, salExpected: String?, location: String?,
                             completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
         
@@ -222,6 +223,33 @@ struct API_MODELS_METHODS{
                 })
             }
         }
+    }
+    
+    
+    
+    static func getJobList(queue: DispatchQueue? = nil, action: String?,
+                           completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
+        
+        // https://api.socioadvocacy.com/user/uid?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0&cid=52ad0375&email=sachitanandas@sociosquares.com&role=general
+        let subpath =  AppWebservices.USER_JOB_LIST
+        let completeUrl = AppWebservices.baseUrl + subpath + action!
+        print(completeUrl)
+        let connectivity = NetworkConnectivity.networkConnectionType("needsConnection")
+        print(completeUrl)
+        HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
+            if isSuccess{
+                let swiftyJsonVar   = JSON(response)
+                DispatchQueue.main.async(execute: {
+                    if swiftyJsonVar["result"]["status"].bool! {
+                        let swiftyJsonVar   = JSON(response)
+                        completion(["result": swiftyJsonVar["result"]],true)
+                    }else {
+                        let swiftyJsonVar   = JSON(response)
+                        completion(["result": swiftyJsonVar["result"]],false)
+                    }
+                })
+            }
+        })
     }
     
 

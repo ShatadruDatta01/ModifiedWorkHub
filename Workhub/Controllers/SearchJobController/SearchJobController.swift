@@ -395,6 +395,7 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         jobDetailsPageVC.strJobPosted = val.posted_on!
         jobDetailsPageVC.strFullTime = val.type!
         jobDetailsPageVC.strJobDesc = val.jobDetail!
+        jobDetailsPageVC.strJobFunction = "view"
         NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
     }
     
@@ -431,8 +432,6 @@ extension SearchJobController {
                     self.tblList.reloadData()
                     self.jobLocation()
                 } else {
-                    self.circleIndicator.stop()
-                    self.circleIndicator.isHidden = true
                     self.tblList.isHidden = true
                     self.lblDetailsContent.text = "No jobs available in 5 sq miles"
                     AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
@@ -442,7 +441,8 @@ extension SearchJobController {
                     })
                 }
             } else {
-                
+                self.circleIndicator.stop()
+                self.circleIndicator.isHidden = true
             }
         }
     }

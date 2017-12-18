@@ -35,30 +35,60 @@ class SearchJob: NSObject {
     var view: Int?
     init(withDictionary dict:[String: AnyObject]) {
         self.jobID = (dict["id"]! as! String)
-        self.jobDetail = (dict["detail"]! as! String)
-        self.category = (dict["category"]! as! String)
-        self.state = (dict["state"]! as! String)
-        self.country = (dict["country"]! as! String)
-        self.salary_per_hour = (dict["salary_per_hour"]! as! String)
-        self.posted_on = (dict["posted_on"]! as! String)
+        if let jobDetail = dict["detail"] {
+            self.jobDetail = jobDetail as? String
+        }
+        if let category = dict["category"] {
+            self.category = category as? String
+        }
+        if let state = dict["state"] {
+            self.state = state as? String
+        }
+        if let country = dict["country"] {
+            self.country = country as? String
+        }
+        if let salary_per_hour = dict["salary_per_hour"] {
+            self.salary_per_hour = salary_per_hour as? String
+        }
+        if let posted_on = dict["posted_on"] {
+            self.posted_on = posted_on as? String
+        }
         self.longitude = (dict["longitude"]! as! String)
         if let salary_per_month = dict["salary_per_month"] {
             self.salary_per_month = salary_per_month as? String
         }
-        //self.salary_per_month = (dict["salary_per_month"]! as! String)
-        self.type = (dict["type"]! as! String)
-        self.company_name = (dict["company_name"]! as! String)
+        
+        if let type = dict["type"] {
+            self.type = type as? String
+        }
+        if let company_name = dict["company_name"] {
+            self.company_name = company_name as? String
+        }
         if let salary_range = dict["salary_range"] {
             self.salary_range = salary_range as? String
         }
         
         self.latitude = (dict["latitude"]! as! String)
-        self.category_image = (dict["category_image"]! as! String)
-        self.city = (dict["city"]! as! String)
-        self.role = (dict["role"]! as! String)
-        self.currency = (dict["currency"]! as! String)
-        self.shift = (dict["shift"]! as! String)
-        self.company_detail = (dict["company_detail"]! as! String)
+        
+        if let category_image = dict["category_image"] {
+            self.category_image = category_image as? String
+        }
+        if let city = dict["city"] {
+            self.city = city as? String
+        }
+        if let role = dict["role"] {
+            self.role = role as? String
+        }
+        if let currency = dict["currency"] {
+            self.currency = currency as? String
+        }
+        if let shift = dict["shift"] {
+            self.shift = shift as? String
+        }
+        
+        if let company_detail = dict["company_detail"] {
+            self.company_detail = company_detail as? String
+        }
         if let save = dict["save"] {
             self.save = save as? Int
         }

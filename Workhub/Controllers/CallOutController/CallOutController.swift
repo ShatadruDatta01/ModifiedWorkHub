@@ -65,6 +65,7 @@ class CallOutController: BaseViewController {
         jobDetailsPageVC.strJobPosted = self.strJobPosted
         jobDetailsPageVC.strFullTime = self.strFullTime
         jobDetailsPageVC.strJobDesc = self.strJobDesc
+        jobDetailsPageVC.strJobFunction = "view"
         NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
     }
     

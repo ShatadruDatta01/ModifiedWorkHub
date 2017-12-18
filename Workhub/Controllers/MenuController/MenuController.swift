@@ -199,8 +199,16 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                 case 0:
                     let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
                     NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
-                default:
+                case 1:
                     self.presentAlertWithTitle(title: "Workhub", message: "Work under progress")
+                case 2:
+                    let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "SavedAppliedJobsController") as! SavedAppliedJobsController
+                    savedApplyVC.strJobs = "apply"
+                    NavigationHelper.helper.contentNavController!.pushViewController(savedApplyVC, animated: true)
+                default:
+                    let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "SavedAppliedJobsController") as! SavedAppliedJobsController
+                    savedApplyVC.strJobs = "save"
+                    NavigationHelper.helper.contentNavController!.pushViewController(savedApplyVC, animated: true)
                 }
                 
             default:

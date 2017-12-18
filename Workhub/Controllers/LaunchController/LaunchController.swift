@@ -17,6 +17,7 @@ class LaunchController: BaseViewController {
     @IBOutlet weak var viewWorkhubConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imgLogo.alpha = 0
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
             self.tokenAPICall()
@@ -48,9 +49,8 @@ extension LaunchController {
 // MARK: - Starting View
 extension LaunchController {
     func startingView() {
-        self.imgLogo.alpha = 0.3
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
-        Timer.scheduledTimer(timeInterval: 0.3,
+        Timer.scheduledTimer(timeInterval: 0.1,
                              target: self,
                              selector: #selector(self.updateView),
                              userInfo: nil,
@@ -66,7 +66,7 @@ extension LaunchController {
         self.viewWorkhubConstraint.constant = 0
         self.view.layoutIfNeeded()
 
-        UIView.animate(withDuration: Double(0.5), animations: {
+        UIView.animate(withDuration: Double(1.0), animations: {
             self.imgLogo.alpha = 1.0
             self.viewWorkhubConstraint.constant = self.view.frame.size.height/2
             self.view.layoutIfNeeded()
