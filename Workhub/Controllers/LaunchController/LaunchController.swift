@@ -24,7 +24,6 @@ class LaunchController: BaseViewController {
         } else {
             self.startingView()
         }
-        
         // Do any additional setup after loading the view.
     }
 }

@@ -24,6 +24,7 @@ class SearchJobController: BaseViewController {
     var arrSearchJob = [AnyObject]()
     var locationManager = CLLocationManager()
     var annotationView: MKAnnotationView!
+    var save = 0
     @IBOutlet weak var btnGO: UIButton!
     @IBOutlet weak var viewRecenter: UIView!
     @IBOutlet var widthGOconstraint: NSLayoutConstraint!
@@ -318,7 +319,14 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
             if details.role! == view.annotation!.title!! {
                 print(details.role!)
                 let loc = "\(details.state!), \(details.city!)"
-                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, didSubmit: { (text) in
+                
+                if let save = details.save {
+                    self.save = save
+                } else {
+                    self.save = 0
+                }
+                
+                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strJobId: details.jobID! ,strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, save: self.save, didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: { (text) in
                     for annotation in self.mapListJob.selectedAnnotations {
@@ -395,6 +403,10 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         jobDetailsPageVC.strJobPosted = val.posted_on!
         jobDetailsPageVC.strFullTime = val.type!
         jobDetailsPageVC.strJobDesc = val.jobDetail!
+        jobDetailsPageVC.strJobId = val.jobID!
+        if let save = val.save {
+            jobDetailsPageVC.save = save 
+        }
         jobDetailsPageVC.strJobFunction = "view"
         NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
     }

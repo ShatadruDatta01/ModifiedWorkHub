@@ -10,6 +10,8 @@ import UIKit
 import MarqueeLabel
 class JobDetailsController: BaseTableViewController {
 
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
+    var strJobId: String!
     var strJobFunction: String!
     var strIconDetails: String!
     var strJobTitle: String!
@@ -20,6 +22,8 @@ class JobDetailsController: BaseTableViewController {
     var strShift: String!
     var strFullTime: String!
     var strJobDesc: String!
+    var save = 0
+    var checkController = false
     @IBOutlet weak var jobIcon: UIImageView!
     @IBOutlet weak var lblJobTitle: MarqueeLabel!
     @IBOutlet weak var lblJobSubtitle: UILabel!
@@ -29,6 +33,7 @@ class JobDetailsController: BaseTableViewController {
     @IBOutlet weak var lblDayShift: UILabel!
     @IBOutlet weak var lblFulltime: UILabel!
     @IBOutlet weak var lblJobDescription: UILabel!
+    @IBOutlet weak var btnBookmark: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +49,11 @@ class JobDetailsController: BaseTableViewController {
         self.lblDayShift.text = "\(strShift!) shift"
         self.lblFulltime.text = strFullTime
         self.lblJobDescription.text = strJobDesc
+        if save == 0 {
+            self.btnBookmark.setImage(UIImage(named: "star_white"), for: .normal)
+        } else {
+            self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+        }
         self.tableView.estimatedRowHeight = 66.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         // Do any additional setup after loading the view.
@@ -51,20 +61,65 @@ class JobDetailsController: BaseTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NavigationHelper.helper.headerViewController?.isBack = false
+        NavigationHelper.helper.headerViewController?.isBack = true
+        NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
     }
 
     @IBAction func applyNow(_ sender: UIButton) {
-        let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
-        applyPageVC.strJobIcon = strIconDetails
-        applyPageVC.strJobTitle = strJobTitle
-        applyPageVC.strJobSubTitle = strJobSubTitle
-        NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: false)
+        
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+            for aviewcontroller: UIViewController in allViewController
+            {
+                if aviewcontroller.isKind(of: LoginController.classForCoder())
+                {
+                    NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                    checkController = true
+                    break
+                }
+            }
+            
+            if checkController == false {
+                let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+            }
+            self.checkController = false
+        } else {
+            let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
+            applyPageVC.strJobIcon = strIconDetails
+            applyPageVC.strJobTitle = strJobTitle
+            applyPageVC.strJobSubTitle = strJobSubTitle
+            applyPageVC.strJobId = strJobId
+            applyPageVC.save = self.save
+            applyPageVC.strJobFunction = self.strJobFunction
+            NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: false)
+        }
     }
     
     @IBAction func bookmark(_ sender: UIButton) {
-        
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+            for aviewcontroller: UIViewController in allViewController
+            {
+                if aviewcontroller.isKind(of: LoginController.classForCoder())
+                {
+                    NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                    checkController = true
+                    break
+                }
+            }
+            
+            if checkController == false {
+                let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+            }
+            self.checkController = false
+        } else {
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.saveJobAPICall()
+        }
     }
     
     @IBAction func cross(_ sender: UIButton) {
@@ -100,3 +155,29 @@ extension JobDetailsController {
         }
     }
 }
+
+
+
+// MARK: - SaveJobAPICall
+extension JobDetailsController {
+    func saveJobAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "save", jobId: self.strJobId) { (responseDict,isSuccess) in
+            if isSuccess {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+            } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
+    }
+}
+
+
