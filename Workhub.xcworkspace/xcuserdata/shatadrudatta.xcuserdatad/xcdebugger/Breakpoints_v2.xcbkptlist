@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Workhub/Controllers/SearchJobController/SearchJobController.swift"
-            timestampString = "535215883.692843"
+            timestampString = "535402967.91746"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "373"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Workhub/Controllers/SearchJobController/SearchJobController.swift"
-            timestampString = "535215883.693051"
+            timestampString = "535402967.932066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>

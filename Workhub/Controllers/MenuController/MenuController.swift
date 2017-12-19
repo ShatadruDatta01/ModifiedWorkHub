@@ -141,7 +141,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     return cellTitle
                 case 1:
                     let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-                    if self.cameraImage == true {
+                    if self.cameraImage == false {
                         cellProf.datasource = String(describing: OBJ_FOR_KEY(key: "UserPic")!) as AnyObject
                     } else {
                         if self.imageProf != nil {
