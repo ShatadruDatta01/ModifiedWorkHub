@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import TGCameraViewController
 
 class MenuController: BaseViewController {
 
+    var imageProf: UIImage!
     var arrMenuBeforeLogin = ["REGISTER", "LOGIN"]
     var arrMenuBeforeLoginImg = ["REGISTER", "LOGIN"]
     var arrMenuAfterLogin = ["EDIT PROFILE", "UPDATE RESUME", "APPLIED JOBS", "SAVED JOBS"]
@@ -39,6 +41,27 @@ class MenuController: BaseViewController {
     }
 }
 
+
+// MARK: - TGCameraDelegate
+extension MenuController: TGCameraDelegate {
+    func cameraDidCancel() {
+        print("Cancel")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
+        self.imageProf = image;
+        self.dismiss(animated: true, completion: nil)
+        self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
+    }
+    
+    func cameraDidTakePhoto(_ image: UIImage!) {
+        self.imageProf = image;
+        self.dismiss(animated: true, completion: nil)
+        self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
+    }
+    
+}
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension MenuController: UITableViewDelegate, UITableViewDataSource {
@@ -71,6 +94,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MenuController.tappedMe))
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
             switch indexPath.section {
             case 0:
@@ -83,6 +107,8 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                 case 1:
                     let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
                     cellProf.datasource = "" as AnyObject
+                    cellProf.imgProfile.addGestureRecognizer(tap)
+                    cellProf.imgProfile.isUserInteractionEnabled = true
                     cellProf.selectionStyle = .none
                     return cellProf
                 default:
@@ -112,6 +138,11 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                 case 1:
                     let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
                     cellProf.datasource = String(describing: OBJ_FOR_KEY(key: "UserPic")!) as AnyObject
+                    cellProf.imgProfile.addGestureRecognizer(tap)
+                    cellProf.imgProfile.isUserInteractionEnabled = true
+                    if self.imageProf != nil {
+                      cellProf.imgProfile.image = self.imageProf
+                    }
                     cellProf.selectionStyle = .none
                     return cellProf
                 default:
@@ -135,6 +166,20 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    func tappedMe()
+    {
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            let loginPageVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+            NavigationHelper.helper.contentNavController!.pushViewController(loginPageVC, animated: true)
+            NavigationHelper.helper.openSidePanel(open: false)
+        } else {
+            let navigationController = TGCameraNavigationController.new(with: self)
+            self.present(navigationController!, animated: true, completion: nil)
+        }
+        
+    }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
@@ -180,11 +225,43 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 switch indexPath.row {
                 case 0:
-                    let registerPageVC = mainStoryboard.instantiateViewController(withIdentifier: "RegisterController") as! RegisterController
-                    NavigationHelper.helper.contentNavController!.pushViewController(registerPageVC, animated: true)
+                    
+                    let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                    for aviewcontroller: UIViewController in allViewController
+                    {
+                        if aviewcontroller.isKind(of: RegisterController.classForCoder())
+                        {
+                            NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                            checkController = true
+                            break
+                        }
+                    }
+                    
+                    if checkController == false {
+                        let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "RegisterController") as! RegisterController
+                        NavigationHelper.helper.contentNavController!.pushViewController(registerVC, animated: true)
+                    }
+                    self.checkController = false
+                    
                 default:
-                    let loginPageVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
-                    NavigationHelper.helper.contentNavController!.pushViewController(loginPageVC, animated: true)
+                    
+                    let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                    for aviewcontroller: UIViewController in allViewController
+                    {
+                        if aviewcontroller.isKind(of: LoginController.classForCoder())
+                        {
+                            NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                            checkController = true
+                            break
+                        }
+                    }
+                    
+                    if checkController == false {
+                        let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                        NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+                    }
+                    self.checkController = false
+                    
                 }
             default:
                 print("No Code")
@@ -196,19 +273,82 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 switch indexPath.row {
                 case 0:
-                    let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
-                    NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
+                    
+                    let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                    for aviewcontroller: UIViewController in allViewController
+                    {
+                        if aviewcontroller.isKind(of: EditProfileController.classForCoder())
+                        {
+                            NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                            checkController = true
+                            break
+                        }
+                    }
+                    
+                    if checkController == false {
+                        let editProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
+                        NavigationHelper.helper.contentNavController!.pushViewController(editProfileVC, animated: true)
+                    }
+                    self.checkController = false
+    
                 case 1:
-                    let resumeVC = mainStoryboard.instantiateViewController(withIdentifier: "UpdateResumeController") as! UpdateResumeController
-                    NavigationHelper.helper.contentNavController!.pushViewController(resumeVC, animated: true)
+                    
+                    let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                    for aviewcontroller: UIViewController in allViewController
+                    {
+                        if aviewcontroller.isKind(of: UpdateResumeController.classForCoder())
+                        {
+                            NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                            checkController = true
+                            break
+                        }
+                    }
+                    
+                    if checkController == false {
+                        let updateResumeVC = mainStoryboard.instantiateViewController(withIdentifier: "UpdateResumeController") as! UpdateResumeController
+                        NavigationHelper.helper.contentNavController!.pushViewController(updateResumeVC, animated: true)
+                    }
+                    self.checkController = false
+                    
                 case 2:
-                    let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "SavedAppliedJobsController") as! SavedAppliedJobsController
-                    savedApplyVC.strJobs = "apply"
-                    NavigationHelper.helper.contentNavController!.pushViewController(savedApplyVC, animated: true)
+                    
+                    let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                    for aviewcontroller: UIViewController in allViewController
+                    {
+                        if aviewcontroller.isKind(of: SavedAppliedJobsController.classForCoder())
+                        {
+                            NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                            checkController = true
+                            break
+                        }
+                    }
+                    
+                    if checkController == false {
+                        let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "SavedAppliedJobsController") as! SavedAppliedJobsController
+                        savedApplyVC.strJobs = "apply"
+                        NavigationHelper.helper.contentNavController!.pushViewController(savedApplyVC, animated: true)
+                    }
+                    self.checkController = false
+                    
                 default:
-                    let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "SavedAppliedJobsController") as! SavedAppliedJobsController
-                    savedApplyVC.strJobs = "save"
-                    NavigationHelper.helper.contentNavController!.pushViewController(savedApplyVC, animated: true)
+                    
+                    let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                    for aviewcontroller: UIViewController in allViewController
+                    {
+                        if aviewcontroller.isKind(of: SavedAppliedJobsController.classForCoder())
+                        {
+                            NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                            checkController = true
+                            break
+                        }
+                    }
+                    
+                    if checkController == false {
+                        let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "SavedAppliedJobsController") as! SavedAppliedJobsController
+                        savedApplyVC.strJobs = "save"
+                        NavigationHelper.helper.contentNavController!.pushViewController(savedApplyVC, animated: true)
+                    }
+                    self.checkController = false
                 }
                 
             default:

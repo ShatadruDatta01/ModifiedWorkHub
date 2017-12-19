@@ -117,6 +117,7 @@
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIM-qO-ilC">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -201,6 +202,7 @@
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoN-1O-FHa">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1584,7 +1586,7 @@
                                                     </constraints>
                                                     <state key="normal" image="Cross"/>
                                                     <connections>
-                                                        <action selector="cross:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="8eO-xm-egB"/>
+                                                        <action selector="cross:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="QiP-bQ-vuD"/>
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JobCategoryPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="J40-ZP-4wy">
@@ -1611,7 +1613,7 @@
                                                     </constraints>
                                                     <state key="normal" image="Star"/>
                                                     <connections>
-                                                        <action selector="bookmark:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="PLk-Cj-4va"/>
+                                                        <action selector="bookmark:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="tRu-ra-bF8"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uk9-DR-EFg" customClass="MarqueeLabel" customModule="MarqueeLabel">
@@ -1797,6 +1799,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8s-r2-n6g" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                                    <rect key="frame" x="172" y="10" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="JPA-X7-SSr"/>
+                                                        <constraint firstAttribute="width" constant="30" id="Y4Z-Jy-Rk1"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnj-Vp-mXN">
                                                     <rect key="frame" x="19" y="44" width="337" height="1"/>
                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1808,8 +1818,10 @@
                                             <constraints>
                                                 <constraint firstItem="Sxw-gb-yIF" firstAttribute="leading" secondItem="kKL-h7-sht" secondAttribute="trailing" constant="8" id="DtK-GY-CER"/>
                                                 <constraint firstAttribute="trailing" secondItem="vnj-Vp-mXN" secondAttribute="trailing" constant="19" id="Khd-tU-D34"/>
+                                                <constraint firstItem="q8s-r2-n6g" firstAttribute="centerY" secondItem="uQL-6t-zZb" secondAttribute="centerY" id="RSn-VJ-IbK"/>
                                                 <constraint firstItem="vnj-Vp-mXN" firstAttribute="top" secondItem="Sxw-gb-yIF" secondAttribute="bottom" constant="1" id="bvU-1g-qEb"/>
                                                 <constraint firstItem="vnj-Vp-mXN" firstAttribute="leading" secondItem="uQL-6t-zZb" secondAttribute="leading" constant="19" id="csE-5N-KJx"/>
+                                                <constraint firstItem="q8s-r2-n6g" firstAttribute="centerX" secondItem="uQL-6t-zZb" secondAttribute="centerX" id="gbM-Mn-CaK"/>
                                                 <constraint firstItem="kKL-h7-sht" firstAttribute="leading" secondItem="uQL-6t-zZb" secondAttribute="leading" constant="19" id="jF8-Tr-iYm"/>
                                                 <constraint firstAttribute="bottom" secondItem="vnj-Vp-mXN" secondAttribute="bottom" constant="4.5" id="lUU-Qg-fG3"/>
                                                 <constraint firstItem="Sxw-gb-yIF" firstAttribute="top" secondItem="uQL-6t-zZb" secondAttribute="top" constant="7" id="rH0-CX-W6U"/>
@@ -1929,6 +1941,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="btnBookmark" destination="DMu-Pb-EnG" id="eqy-gC-Xl5"/>
+                        <outlet property="circleIndicator" destination="q8s-r2-n6g" id="dUv-zw-RF9"/>
                         <outlet property="jobIcon" destination="J40-ZP-4wy" id="kXt-lP-cWa"/>
                         <outlet property="lblDayShift" destination="Sxw-gb-yIF" id="WrJ-4b-0ax"/>
                         <outlet property="lblFulltime" destination="IPN-j2-GM1" id="3MO-4b-X3Y"/>
@@ -2974,7 +2988,6 @@
                                         </constraints>
                                         <state key="normal" image="Star"/>
                                         <connections>
-                                            <action selector="bookmark:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="JR1-Jq-eU2"/>
                                             <action selector="jobSave:" destination="d6X-QY-jCj" eventType="touchUpInside" id="o4r-7s-DTQ"/>
                                         </connections>
                                     </button>
@@ -3132,9 +3145,17 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="apply:" destination="d6X-QY-jCj" eventType="touchUpInside" id="yCK-Jw-hhj"/>
+                                            <action selector="apply:" destination="d6X-QY-jCj" eventType="touchUpInside" id="VTR-uR-wco"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZG-g6-Rdj" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                        <rect key="frame" x="172" y="148" width="30" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="AJP-MF-xHe"/>
+                                            <constraint firstAttribute="width" constant="30" id="Ldp-nU-MsC"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -3178,7 +3199,9 @@
                                     <constraint firstItem="HFg-i6-MEQ" firstAttribute="top" secondItem="J7r-6h-n3a" secondAttribute="bottom" constant="1" id="ptV-Lt-Dtw"/>
                                     <constraint firstItem="87i-Bs-3u5" firstAttribute="top" secondItem="SDi-Qr-Fqo" secondAttribute="bottom" constant="18" id="qLD-o9-FuB"/>
                                     <constraint firstItem="0Bm-Wu-tM3" firstAttribute="leading" secondItem="dPB-oP-G96" secondAttribute="leading" constant="19" id="qLU-LE-RvO"/>
+                                    <constraint firstItem="rZG-g6-Rdj" firstAttribute="centerY" secondItem="dPB-oP-G96" secondAttribute="centerY" id="qZd-VZ-dj9"/>
                                     <constraint firstItem="HFg-i6-MEQ" firstAttribute="leading" secondItem="qtS-pL-pQB" secondAttribute="trailing" constant="25" id="qkm-w9-YA4"/>
+                                    <constraint firstItem="rZG-g6-Rdj" firstAttribute="centerX" secondItem="dPB-oP-G96" secondAttribute="centerX" id="uFL-Uh-wdM"/>
                                     <constraint firstItem="FVc-qd-751" firstAttribute="top" secondItem="D77-Lv-sGm" secondAttribute="bottom" constant="4" id="uK2-Ox-dPd"/>
                                     <constraint firstItem="FVc-qd-751" firstAttribute="leading" secondItem="dPB-oP-G96" secondAttribute="leading" constant="19" id="uXN-X7-O9F"/>
                                     <constraint firstItem="7W9-Rd-ywB" firstAttribute="leading" secondItem="dPB-oP-G96" secondAttribute="leading" constant="18" id="vOR-Ca-2xp"/>
@@ -3207,6 +3230,8 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="btnBookmark" destination="S4a-nV-t8n" id="DfD-92-9If"/>
+                        <outlet property="circleIndicator" destination="rZG-g6-Rdj" id="ifw-mu-6tL"/>
                         <outlet property="imgJobIcon" destination="7UL-46-pez" id="wbB-Zi-neZ"/>
                         <outlet property="lblCompName" destination="D77-Lv-sGm" id="9RU-FS-juI"/>
                         <outlet property="lblFullTime" destination="HFg-i6-MEQ" id="KXC-Xe-L7J"/>
@@ -3696,7 +3721,6 @@
                                                     </constraints>
                                                     <state key="normal" image="blackCross"/>
                                                     <connections>
-                                                        <action selector="cross:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="1if-Eg-X3y"/>
                                                         <action selector="cross:" destination="p9o-s4-bza" eventType="touchUpInside" id="8Rp-k7-Svw"/>
                                                     </connections>
                                                 </button>
@@ -3724,7 +3748,6 @@
                                                     </constraints>
                                                     <state key="normal" image="star_white"/>
                                                     <connections>
-                                                        <action selector="bookmark:" destination="YjZ-Fe-FDr" eventType="touchUpInside" id="tRB-Np-Wzh"/>
                                                         <action selector="bookmark:" destination="p9o-s4-bza" eventType="touchUpInside" id="tmf-M5-MeZ"/>
                                                     </connections>
                                                 </button>
@@ -3888,10 +3911,20 @@
                                                     <color key="textColor" red="0.40780633687973022" green="0.40786752104759216" blue="0.40778699517250061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hvt-Qn-1v3" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                                    <rect key="frame" x="172" y="17" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="5AW-fi-cUP"/>
+                                                        <constraint firstAttribute="height" constant="30" id="jsv-oA-fJC"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Hvt-Qn-1v3" firstAttribute="centerX" secondItem="Dme-O8-EBr" secondAttribute="centerX" id="1W8-wM-6hj"/>
                                                 <constraint firstItem="q12-ma-ELn" firstAttribute="leading" secondItem="Dme-O8-EBr" secondAttribute="leading" constant="15" id="5p9-LX-xhw"/>
                                                 <constraint firstItem="Oig-EJ-OLq" firstAttribute="leading" secondItem="Dme-O8-EBr" secondAttribute="leading" constant="160" id="BEN-sC-PAg"/>
+                                                <constraint firstItem="Hvt-Qn-1v3" firstAttribute="centerY" secondItem="Dme-O8-EBr" secondAttribute="centerY" id="FtJ-ob-P8o"/>
                                                 <constraint firstItem="hla-dm-Ohg" firstAttribute="leading" secondItem="Dme-O8-EBr" secondAttribute="leading" constant="15" id="Iic-JR-vEW"/>
                                                 <constraint firstItem="q12-ma-ELn" firstAttribute="top" secondItem="Dme-O8-EBr" secondAttribute="top" constant="7" id="Qb1-37-C4S"/>
                                                 <constraint firstItem="hla-dm-Ohg" firstAttribute="top" secondItem="Oig-EJ-OLq" secondAttribute="bottom" constant="2" id="VNY-gS-beS"/>
@@ -3947,6 +3980,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="btnBookmark" destination="dXo-Bp-Pcw" id="WiQ-2f-1F3"/>
+                        <outlet property="circleIndicator" destination="Hvt-Qn-1v3" id="byf-IF-aZw"/>
                         <outlet property="imgJobIcon" destination="WcC-0L-KnK" id="XdZ-h3-haQ"/>
                         <outlet property="lblJobTitle" destination="DnW-Ks-f6E" id="tRQ-2x-zg1"/>
                         <outlet property="lblResume" destination="H2n-54-KM2" id="xUI-x8-wAt"/>
@@ -4143,7 +4178,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="apply:" destination="d6X-QY-jCj" eventType="touchUpInside" id="nk4-0c-ye2"/>
                                                         <action selector="submit:" destination="UwW-kg-llo" eventType="touchUpInside" id="WoC-1x-yrA"/>
                                                     </connections>
                                                 </button>
