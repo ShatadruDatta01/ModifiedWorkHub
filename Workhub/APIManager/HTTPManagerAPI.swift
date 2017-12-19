@@ -31,6 +31,7 @@ struct AppConstantValues {
     static var companyAccessToken = "" //"6d2003577e300fccfd0e4c4be7d7a59366f94bb0";
     static let iTunesAppUrl = "https://itunes.apple.com/us/app/brand-champs/id1037140094?ls=1&mt=8"
     static var userId = ""
+    static var callJobAPI = false
 }
 
 

@@ -378,6 +378,13 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
             if check {
                 self.circleIndicator.isHidden = false
                 self.circleIndicator.animate()
+                
+                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+                
                 self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
             } else {
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: text, didSubmit: { (text) in

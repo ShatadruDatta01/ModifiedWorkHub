@@ -11,6 +11,7 @@ import TGCameraViewController
 
 class MenuController: BaseViewController {
 
+    var cameraImage = false
     var imageProf: UIImage!
     var arrMenuBeforeLogin = ["REGISTER", "LOGIN"]
     var arrMenuBeforeLoginImg = ["REGISTER", "LOGIN"]
@@ -46,18 +47,21 @@ class MenuController: BaseViewController {
 extension MenuController: TGCameraDelegate {
     func cameraDidCancel() {
         print("Cancel")
+        cameraImage = false
         self.dismiss(animated: true, completion: nil)
     }
     
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
         self.imageProf = image;
         self.dismiss(animated: true, completion: nil)
+        cameraImage = true
         self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
     }
     
     func cameraDidTakePhoto(_ image: UIImage!) {
         self.imageProf = image;
         self.dismiss(animated: true, completion: nil)
+        cameraImage = true
         self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
     }
     
@@ -137,12 +141,16 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     return cellTitle
                 case 1:
                     let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-                    cellProf.datasource = String(describing: OBJ_FOR_KEY(key: "UserPic")!) as AnyObject
+                    if self.cameraImage == true {
+                        cellProf.datasource = String(describing: OBJ_FOR_KEY(key: "UserPic")!) as AnyObject
+                    } else {
+                        if self.imageProf != nil {
+                            cellProf.imgProfile.image = self.imageProf
+                        }
+                    }
                     cellProf.imgProfile.addGestureRecognizer(tap)
                     cellProf.imgProfile.isUserInteractionEnabled = true
-                    if self.imageProf != nil {
-                      cellProf.imgProfile.image = self.imageProf
-                    }
+                    
                     cellProf.selectionStyle = .none
                     return cellProf
                 default:

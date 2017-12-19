@@ -64,7 +64,10 @@ extension SavedAppliedJobsController: UITableViewDelegate, UITableViewDataSource
         if let posted_on  = val.posted_on {
             jobDetailsPageVC.strJobPosted = posted_on
         }
-        
+        if let save = val.save {
+            jobDetailsPageVC.save = save
+        }
+        jobDetailsPageVC.strJobId = val.jobID!
         jobDetailsPageVC.strFullTime = val.type!
         jobDetailsPageVC.strJobDesc = val.jobDetail!
         jobDetailsPageVC.strJobFunction = self.strJobs

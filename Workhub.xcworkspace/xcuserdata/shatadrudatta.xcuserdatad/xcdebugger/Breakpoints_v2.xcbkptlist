@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "373"
             endingLineNumber = "373"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            landmarkName = "SearchJobController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -31,40 +31,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "413"
             endingLineNumber = "413"
-            landmarkName = "userJobListAPICall(zipCode:)"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Workhub.SearchJobController.userJobListAPICall(zipCode: Swift.String) -&gt; ()"
-                  moduleName = "Workhub"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shatadrudatta/Desktop/Workhub/ModifiedWorkHub_iOS9/Workhub/Controllers/SearchJobController/SearchJobController.swift"
-                  timestampString = "535135311.884887"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "413"
-                  endingLineNumber = "413"
-                  offsetFromSymbolStart = "200">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, SwiftyJSON.JSON&gt;&gt;, Swift.Bool) -&gt; () in Workhub.SearchJobController.userJobListAPICall(zipCode: Swift.String) -&gt; ()"
-                  moduleName = "Workhub"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shatadrudatta/Desktop/Workhub/ModifiedWorkHub_iOS9/Workhub/Controllers/SearchJobController/SearchJobController.swift"
-                  timestampString = "535135311.886865"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "414"
-                  endingLineNumber = "414"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
