@@ -59,7 +59,7 @@ extension OTPController {
                     if self.txtPassword.text! == self.txtConfPassword.text! {
                         self.circleIndicator.isHidden = false
                         self.circleIndicator.animate()
-                        self.verifyOTP()
+                        self.changePassword()
                     } else {
                         ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Password & Confirm Password doesn't match", didSubmit: { (text) in
                             debugPrint("No Code")
@@ -144,6 +144,32 @@ extension OTPController {
         }
     }
     
+    
+    
+    /// ChangePasswordAPICall
+    func changePassword() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("changePassword"), attributes: .concurrent)
+        API_MODELS_METHODS.changePassword(queue: concurrentQueue, entity: "email", val: self.strEmail!, otp: self.txtOTP.text!, password: self.txtConfPassword.text!) { (responseDict, isSuccess) in
+            print(responseDict!)
+            if isSuccess {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully changed", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
+    }
 }
 
 
