@@ -26,6 +26,8 @@ struct AppWebservices {
     static let UPDATE_PROFILE = "user/profile?"
     static let USER_JOB_LIST = "job/listing?filter="
     static let RESUME_UPLOAD = "resume/upload?"
+    static let SEND_OTP = "sendotp?"
+    static let VERIFY_OTP = "verifyotp?"
     
 }
 

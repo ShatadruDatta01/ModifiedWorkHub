@@ -698,6 +698,7 @@
 		C361536C1FC2E2DD001273BA /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C361536E1FC56D2D001273BA /* APIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		C365E8C81FD918A800CFE48B /* SearchJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJob.swift; sourceTree = "<group>"; };
+		C36738751FEA73D10036CE99 /* Workhub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Workhub.entitlements; sourceTree = "<group>"; };
 		C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
@@ -1084,6 +1085,7 @@
 		C34E1CD71FBD7D5300CE777C /* Workhub */ = {
 			isa = PBXGroup;
 			children = (
+				C36738751FEA73D10036CE99 /* Workhub.entitlements */,
 				C34E1D0A1FBD7E3200CE777C /* Application */,
 				C34E1D0E1FBD7E3200CE777C /* Entities */,
 				C34E1D091FBD7E3200CE777C /* APIManager */,
@@ -1754,6 +1756,17 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 3Q9VMV9DUT;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					C34E1CEB1FBD7D5400CE777C = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -2484,6 +2497,7 @@
 			baseConfigurationReference = 7882F8519B53277FD29469EE /* Pods-Workhub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Workhub/Workhub.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
@@ -2504,6 +2518,7 @@
 			baseConfigurationReference = 233D5B73EDE728106A1560EC /* Pods-Workhub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Workhub/Workhub.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
