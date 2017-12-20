@@ -211,6 +211,7 @@ extension EditProfileController {
     func editProfileAPI() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getProfile"), attributes: .concurrent)
         API_MODELS_METHODS.getProfile(queue: concurrentQueue) { (responseDict, isSuccess) in
+            print(responseDict!)
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
@@ -254,7 +255,6 @@ extension EditProfileController {
                 })
             }
         }
-        
     }
 }
 

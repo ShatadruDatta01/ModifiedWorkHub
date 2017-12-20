@@ -252,12 +252,12 @@ struct API_MODELS_METHODS{
     
     
     
-    static func resumeUpload(queue: DispatchQueue? = nil, resume: String?,
+    static func resumeUpload(queue: DispatchQueue? = nil, resume: String?, ext: String?,
                               completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
         
         // "https://api.socioadvocacy.com/mobile/login?access_token=6d2003577e300fccfd0e4c4be7d7a59366f94bb0"
         let subpath =  AppWebservices.RESUME_UPLOAD
-        let parameters = ["resume": "docx,\(resume!)"]
+        let parameters = ["resume": "\(ext!),\(resume!)"]
         let completeUrl = AppWebservices.baseUrl + subpath
         HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
             if isSuccess {

@@ -8,14 +8,18 @@
 
 import UIKit
 import MobileCoreServices
+import MarqueeLabel
 
 class UpdateResumeController: BaseTableViewController, UINavigationControllerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate  {
 
+    var ext: String!
+    var strResume: String!
     var strResumeBase64: String!
     var docController: UIDocumentInteractionController!
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     @IBOutlet weak var txtName: CustomTextField!
     @IBOutlet weak var txtEmail: CustomTextField!
-    @IBOutlet weak var lblResume: UILabel!
+    @IBOutlet weak var lblResume: MarqueeLabel!
     @IBOutlet weak var viewResume: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +34,6 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
         NavigationHelper.helper.headerViewController?.isBack = true
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
-        
-//        let url1 = Bundle.main.url(forResource: "ShatadruDatta_resume", withExtension: "docx")
-//        let one1 = NSData(contentsOf: url1!)
-//        self.strResumeBase64 = one1!.base64EncodedString(options: .endLineWithLineFeed)
-//        print(self.strResumeBase64)
-        
-        //self.getFileSize()
         // Do any additional setup after loading the view.
     }
     
@@ -51,7 +48,10 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
     // MARK:- UIDocumentPickerDelegate
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         // Do something
-        print(url)
+        let val = url.lastPathComponent.components(separatedBy: ".")
+        self.strResume = val[0]
+        self.ext = val[1]
+        self.getFileSize(url: url)
     }
     
     @IBAction func uploadResume(_ sender: UIButton) {
@@ -64,18 +64,38 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
     
     
     @IBAction func submit(_ sender: UIButton) {
+        self.circleIndicator.isHidden = false
+        self.circleIndicator.animate()
         self.resumeUploadAPI()
     }
     
     
-    func getFileSize() {
-        let MyUrl = Bundle.main.url(forResource: "ShatadruDatta_resume", withExtension: "docx")
-        let fileAttributes = try! FileManager.default.attributesOfItem(atPath: MyUrl!.path)
+    func getFileSize(url: URL) {
+        let fileAttributes = try! FileManager.default.attributesOfItem(atPath: url.path)
         let fileSizeNumber = fileAttributes[FileAttributeKey.size] as! NSNumber
         let fileSize = fileSizeNumber.int64Value
         var sizeMB = Double(fileSize / 1024)
         sizeMB = Double(sizeMB / 1024)
-        print(String(format: "%.2f", sizeMB) + " MB")
+        let resumeSize = Double(round(1000 * sizeMB)/1000)
+        if  resumeSize > 5.000 {
+            ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "File size must be within 5mb", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        } else {
+            self.lblResume.text = self.strResume
+            self.lblResume.textColor = .black
+            self.lblResume.speed = .duration(8.0)
+            self.lblResume.fadeLength = 15.0
+            self.lblResume.type = .continuous
+            self.getBase64String(url: url)
+        }
+    }
+    
+    func getBase64String(url: URL) {
+        let data = NSData(contentsOf: url)
+        self.strResumeBase64 = data!.base64EncodedString(options: .endLineWithLineFeed)
     }
 }
 
@@ -85,12 +105,24 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
 extension UpdateResumeController {
     func resumeUploadAPI() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("resumeUpload"), attributes: .concurrent)
-        API_MODELS_METHODS.resumeUpload(queue: concurrentQueue, resume: self.strResumeBase64) { (responseDict, isSuccess) in
+        API_MODELS_METHODS.resumeUpload(queue: concurrentQueue, resume: self.strResumeBase64!, ext: self.ext!) { (responseDict, isSuccess) in
             print(responseDict!)
             if isSuccess {
-                
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
             } else {
-                
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Selected file is not supported. Please select another file", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
             }
         }
     }

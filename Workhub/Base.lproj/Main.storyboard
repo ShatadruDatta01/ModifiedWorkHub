@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -117,7 +117,6 @@
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pIM-qO-ilC">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -202,7 +201,6 @@
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aoN-1O-FHa">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1982,7 +1980,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mGa-Jw-1VQ">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="611"/>
+                                <rect key="frame" x="0.0" y="20" width="240" height="591"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.25265526160000001" green="0.293447283" blue="0.29781117309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -4125,9 +4123,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61G-iN-BNS">
                                                     <rect key="frame" x="15" y="7" width="160" height="30"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Upload your resume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEL-ra-u47">
-                                                            <rect key="frame" x="10" y="4" width="150" height="23"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload your resume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEL-ra-u47" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                                            <rect key="frame" x="10" y="4" width="136" height="23"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                             <color key="textColor" red="0.7920807004" green="0.7922118306" blue="0.7920528054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -4135,6 +4132,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="iEL-ra-u47" secondAttribute="trailing" constant="14" id="RiA-ep-CVn"/>
+                                                        <constraint firstItem="iEL-ra-u47" firstAttribute="leading" secondItem="61G-iN-BNS" secondAttribute="leading" constant="10" id="WCi-Gu-CON"/>
+                                                        <constraint firstAttribute="bottom" secondItem="iEL-ra-u47" secondAttribute="bottom" constant="3" id="kqD-2u-d0Z"/>
+                                                        <constraint firstItem="iEL-ra-u47" firstAttribute="top" secondItem="61G-iN-BNS" secondAttribute="top" constant="4" id="y3n-nf-K50"/>
                                                         <constraint firstAttribute="height" constant="30" id="zSU-5b-oXL"/>
                                                         <constraint firstAttribute="width" constant="160" id="zTv-JQ-iud"/>
                                                     </constraints>
@@ -4203,9 +4204,19 @@
                                                         <action selector="submit:" destination="UwW-kg-llo" eventType="touchUpInside" id="WoC-1x-yrA"/>
                                                     </connections>
                                                 </button>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgu-pe-PMx" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                                    <rect key="frame" x="173" y="10" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Q9u-PS-uvQ"/>
+                                                        <constraint firstAttribute="width" constant="30" id="gDO-Tb-LTB"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="xgu-pe-PMx" firstAttribute="centerY" secondItem="7Sc-Zs-YGM" secondAttribute="centerY" id="KTd-Lm-vuB"/>
                                                 <constraint firstItem="603-4F-rgg" firstAttribute="top" secondItem="7Sc-Zs-YGM" secondAttribute="top" constant="12" id="Tj4-V1-bMG"/>
+                                                <constraint firstItem="xgu-pe-PMx" firstAttribute="centerX" secondItem="7Sc-Zs-YGM" secondAttribute="centerX" id="cg4-qT-t2W"/>
                                                 <constraint firstItem="603-4F-rgg" firstAttribute="leading" secondItem="7Sc-Zs-YGM" secondAttribute="leading" constant="15" id="qDD-tR-phg"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -4216,7 +4227,8 @@
                         </sections>
                     </tableView>
                     <connections>
-                        <outlet property="lblResume" destination="iEL-ra-u47" id="yJJ-zB-xx8"/>
+                        <outlet property="circleIndicator" destination="xgu-pe-PMx" id="dU1-f5-WWY"/>
+                        <outlet property="lblResume" destination="iEL-ra-u47" id="AsR-jX-nCs"/>
                         <outlet property="txtEmail" destination="r3R-4o-CPk" id="8Da-dc-Fj2"/>
                         <outlet property="txtName" destination="dGt-kw-5er" id="31A-Ax-yXP"/>
                         <outlet property="viewResume" destination="61G-iN-BNS" id="igQ-Dr-3ab"/>
