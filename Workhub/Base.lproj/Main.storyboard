@@ -116,7 +116,7 @@
                 <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CwH-aM-tDL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIM-qO-ilC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pIM-qO-ilC">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -201,7 +201,7 @@
                 <navigationController storyboardIdentifier="ContentNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="YEJ-I8-dPo" customClass="ContentNavigationController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoN-1O-FHa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aoN-1O-FHa">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -772,11 +772,20 @@
                                     <action selector="actionBack:" destination="pA9-77-wYo" eventType="touchUpInside" id="Mph-bv-UHd"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NI7-aq-b0s" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                <rect key="frame" x="172" y="318" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ceV-mX-TKA"/>
+                                    <constraint firstAttribute="width" constant="30" id="hDU-I4-bvv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JaB-ZZ-OEy" firstAttribute="leading" secondItem="Uqz-RG-4Qj" secondAttribute="leading" constant="16" id="7Br-vX-fFT"/>
                             <constraint firstItem="bKm-mT-zSZ" firstAttribute="top" secondItem="VoY-Q5-YK2" secondAttribute="bottom" id="9Xs-R6-WAN"/>
+                            <constraint firstItem="NI7-aq-b0s" firstAttribute="centerY" secondItem="Uqz-RG-4Qj" secondAttribute="centerY" id="AyR-Vy-Lu5"/>
                             <constraint firstItem="Hvv-Fa-bk3" firstAttribute="top" secondItem="JaB-ZZ-OEy" secondAttribute="bottom" constant="15" id="KAL-Tq-Qmh"/>
                             <constraint firstItem="pd5-3m-X2g" firstAttribute="top" secondItem="VoY-Q5-YK2" secondAttribute="bottom" constant="130" id="Ket-FG-Wy4"/>
                             <constraint firstAttribute="trailing" secondItem="Hvv-Fa-bk3" secondAttribute="trailing" constant="37" id="UBU-rP-zxD"/>
@@ -788,11 +797,13 @@
                             <constraint firstItem="JaB-ZZ-OEy" firstAttribute="top" secondItem="pd5-3m-X2g" secondAttribute="bottom" constant="14" id="elV-jb-lkS"/>
                             <constraint firstItem="Hvv-Fa-bk3" firstAttribute="centerX" secondItem="Uqz-RG-4Qj" secondAttribute="centerX" id="hVu-SE-Leu"/>
                             <constraint firstItem="7gB-pe-Am8" firstAttribute="top" secondItem="Hvv-Fa-bk3" secondAttribute="bottom" constant="19" id="mOe-hz-1mr"/>
+                            <constraint firstItem="NI7-aq-b0s" firstAttribute="centerX" secondItem="Uqz-RG-4Qj" secondAttribute="centerX" id="y4b-yr-NBG"/>
                             <constraint firstAttribute="trailing" secondItem="JaB-ZZ-OEy" secondAttribute="trailing" constant="16" id="yER-Es-agD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnSubmit" destination="7gB-pe-Am8" id="0j3-hk-Dxs"/>
+                        <outlet property="circleIndicator" destination="NI7-aq-b0s" id="BwY-Tm-dPP"/>
                         <outlet property="txtEmail" destination="Lqe-cL-CAH" id="nFL-EW-cNF"/>
                         <outlet property="viewEmail" destination="Hvv-Fa-bk3" id="boT-PS-ssw"/>
                     </connections>
@@ -2379,10 +2390,20 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yW-dr-F0X" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                                    <rect key="frame" x="172" y="15" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="8kh-9c-d0g"/>
+                                                        <constraint firstAttribute="height" constant="30" id="GJH-ca-Gea"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="P3I-Zv-3BK" secondAttribute="trailing" constant="32" id="Bxs-0s-29L"/>
+                                                <constraint firstItem="3yW-dr-F0X" firstAttribute="centerX" secondItem="yIA-1O-ncA" secondAttribute="centerX" id="SJ9-zP-wIT"/>
                                                 <constraint firstAttribute="bottom" secondItem="P3I-Zv-3BK" secondAttribute="bottom" constant="9" id="UMX-Og-rVR"/>
+                                                <constraint firstItem="3yW-dr-F0X" firstAttribute="centerY" secondItem="yIA-1O-ncA" secondAttribute="centerY" id="YlW-90-Tzo"/>
                                                 <constraint firstItem="P3I-Zv-3BK" firstAttribute="leading" secondItem="yIA-1O-ncA" secondAttribute="leading" constant="33" id="dqI-Ba-xn7"/>
                                                 <constraint firstItem="P3I-Zv-3BK" firstAttribute="top" secondItem="yIA-1O-ncA" secondAttribute="top" constant="10" id="ehi-29-Xp9"/>
                                             </constraints>
@@ -2494,6 +2515,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="circleIndicator" destination="3yW-dr-F0X" id="euU-rs-msn"/>
                         <outlet property="txtConfPassword" destination="Upx-I3-9ez" id="Ajs-NE-KrU"/>
                         <outlet property="txtOTP" destination="BEq-ZX-hyM" id="67X-RW-Mar"/>
                         <outlet property="txtPassword" destination="0ZW-th-tie" id="J1t-d6-I4d"/>

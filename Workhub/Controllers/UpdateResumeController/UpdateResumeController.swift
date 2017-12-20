@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import MobileCoreServices
 
-class UpdateResumeController: BaseTableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UpdateResumeController: BaseTableViewController, UINavigationControllerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate  {
 
     var strResumeBase64: String!
+    var docController: UIDocumentInteractionController!
     @IBOutlet weak var txtName: CustomTextField!
     @IBOutlet weak var txtEmail: CustomTextField!
     @IBOutlet weak var lblResume: UILabel!
@@ -34,27 +36,32 @@ class UpdateResumeController: BaseTableViewController, UIImagePickerControllerDe
 //        self.strResumeBase64 = one1!.base64EncodedString(options: .endLineWithLineFeed)
 //        print(self.strResumeBase64)
         
-        self.getFileSize()
+        //self.getFileSize()
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    // MARK:- UIDocumentMenuDelegate
+    func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        documentPicker.delegate = self
+        present(documentPicker, animated: true, completion: nil)
+    }
+    
+    
+    // MARK:- UIDocumentPickerDelegate
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        // Do something
+        print(url)
+    }
+    
     @IBAction func uploadResume(_ sender: UIButton) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-        self.present(picker, animated: true, completion: nil)
+        let importMenu = UIDocumentMenuViewController(documentTypes: [String(kUTTypePDF)], in: .import)
+        importMenu.delegate = self
+        importMenu.modalPresentationStyle = .formSheet
+        self.present(importMenu, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : Any]){
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //1
-        dismiss(animated:true, completion: nil) //4
-    }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated:true, completion: nil)
-    }
     
     @IBAction func submit(_ sender: UIButton) {
         self.resumeUploadAPI()
