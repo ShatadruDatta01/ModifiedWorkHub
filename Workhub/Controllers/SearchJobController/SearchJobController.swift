@@ -275,7 +275,7 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
         
         if annotation is MKUserLocation {
             let pin = mapView.view(for: annotation) ?? MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
-            pin.image = UIImage(named: "LocationIcon")
+            pin.image = UIImage(named: "currentLocation")
             pin.canShowCallout = true
             annotationView = pin
             return pin
@@ -430,40 +430,42 @@ extension SearchJobController {
     /// UserJOB APICall
     func userJobListAPICall(zipCode: String) {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
-        API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
-            if isSuccess {
-                self.circleIndicator.stop()
-                self.circleIndicator.isHidden = true
-                self.btnGO.isEnabled = true
-                print(responseDict!["result"]!["data"])
-                if responseDict!["result"]!["data"].count > 0 {
-                    
-                    if self.arrJob.count > 0 {
-                        self.arrJob.removeAll()
+            API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
+                if isSuccess {
+                    self.circleIndicator.stop()
+                    self.circleIndicator.isHidden = true
+                    self.btnGO.isEnabled = true
+                    print(responseDict!["result"]!["data"])
+                    if responseDict!["result"]!["data"].count > 0 {
+                        
+                        if self.arrJob.count > 0 {
+                            self.arrJob.removeAll()
+                        }
+                        
+                        self.tblList.isHidden = false
+                        for value in responseDict!["result"]!["data"].arrayObject! {
+                            let objJobList = SearchJob(withDictionary: value as! [String : AnyObject])
+                            self.arrJob.append(objJobList)
+                        }
+                        self.lblDetailsContent.text = "\(self.arrJob.count) jobs available in 5 sq miles"
+                        self.tblList.reloadData()
+                        self.jobLocation()
+                    } else {
+                        self.tblList.isHidden = true
+                        self.lblDetailsContent.text = "No jobs available in 5 sq miles"
+                        AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
+                            debugPrint("No Code")
+                        }, didFinish: {
+                            debugPrint("No Code")
+                        })
                     }
-                    
-                    self.tblList.isHidden = false
-                    for value in responseDict!["result"]!["data"].arrayObject! {
-                        let objJobList = SearchJob(withDictionary: value as! [String : AnyObject])
-                        self.arrJob.append(objJobList)
-                    }
-                    self.lblDetailsContent.text = "\(self.arrJob.count) jobs available in 5 sq miles"
-                    self.tblList.reloadData()
-                    self.jobLocation()
                 } else {
-                    self.tblList.isHidden = true
-                    self.lblDetailsContent.text = "No jobs available in 5 sq miles"
-                    AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
-                        debugPrint("No Code")
-                    }, didFinish: {
-                        debugPrint("No Code")
-                    })
+                    self.circleIndicator.stop()
+                    self.circleIndicator.isHidden = true
                 }
-            } else {
-                self.circleIndicator.stop()
-                self.circleIndicator.isHidden = true
             }
-        }
+        
+        
     }
 }
 

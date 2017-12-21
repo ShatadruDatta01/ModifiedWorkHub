@@ -335,6 +335,7 @@
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C39A874E1FE2784C00F34335 /* AboutWorkhub.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A874D1FE2784B00F34335 /* AboutWorkhub.png */; };
 		C39A87511FE2797F00F34335 /* AboutWorkhubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */; };
+		C3C92D271FEBCCD700B9EE93 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92D261FEBCCD600B9EE93 /* Reachability.swift */; };
 		C3D63B241FE79109004EE053 /* SavedAppliedJobsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */; };
 		C3D63B261FE7EFD1004EE053 /* pdf-sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */; };
 		C3D63B281FE7F6A1004EE053 /* ShatadruDatta_resume.docx in Resources */ = {isa = PBXBuildFile; fileRef = C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */; };
@@ -703,6 +704,8 @@
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
 		C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWorkhubController.swift; sourceTree = "<group>"; };
+		C3C92D241FEBB09800B9EE93 /* NoInternetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetController.swift; sourceTree = "<group>"; };
+		C3C92D261FEBCCD600B9EE93 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAppliedJobsController.swift; sourceTree = "<group>"; };
 		C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pdf-sample.pdf"; sourceTree = "<group>"; };
 		C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShatadruDatta_resume.docx; sourceTree = "<group>"; };
@@ -1146,6 +1149,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3C92D231FEBB09800B9EE93 /* NoInternetController */,
 				C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */,
 				C39A874F1FE2794600F34335 /* AboutWorkhubController */,
 				C38EFA331FDFB02B0072F898 /* UpdateResumeController */,
@@ -1212,6 +1216,7 @@
 		C34E1D131FBD7E3200CE777C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C3C92D251FEBCC0600B9EE93 /* Reachability */,
 				C348430B1FD809F000059016 /* CustomFonts */,
 				C33729521FD58022000EC579 /* TextClass */,
 				C35C253A1FD021710077B5AC /* JsonList */,
@@ -1631,6 +1636,22 @@
 				C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */,
 			);
 			path = AboutWorkhubController;
+			sourceTree = "<group>";
+		};
+		C3C92D231FEBB09800B9EE93 /* NoInternetController */ = {
+			isa = PBXGroup;
+			children = (
+				C3C92D241FEBB09800B9EE93 /* NoInternetController.swift */,
+			);
+			path = NoInternetController;
+			sourceTree = "<group>";
+		};
+		C3C92D251FEBCC0600B9EE93 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				C3C92D261FEBCCD600B9EE93 /* Reachability.swift */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */ = {
@@ -2309,6 +2330,7 @@
 				C34E1D1F1FBD8F1200CE777C /* UIDevice+Extra.swift in Sources */,
 				5FCE5B1B1FC05F7400F299B9 /* ContentNavigationController.swift in Sources */,
 				C34E1D321FBD92FE00CE777C /* HTTPManagerAPI.swift in Sources */,
+				C3C92D271FEBCCD700B9EE93 /* Reachability.swift in Sources */,
 				C34E1CDB1FBD7D5300CE777C /* ViewController.swift in Sources */,
 				5FCE5B141FC05F7400F299B9 /* BaseCollectionViewCell.swift in Sources */,
 				C33729541FD58022000EC579 /* CustomTextField.swift in Sources */,

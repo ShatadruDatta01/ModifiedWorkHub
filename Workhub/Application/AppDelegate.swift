@@ -16,6 +16,7 @@ import GLKit
 import Google
 import GoogleSignIn
 import IQKeyboardManager
+import SystemConfiguration
 
 @available(iOS 10.0, *)
 @UIApplicationMain
@@ -163,4 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
 }
+
+
+
 

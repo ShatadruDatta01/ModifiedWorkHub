@@ -109,14 +109,12 @@ extension SavedAppliedJobsController {
                     } else {
                         self.lblNoData.text = "You've not applied to any job!"
                     }
-                    
                 }
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
             }
         }
-        
     }
 }
 

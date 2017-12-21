@@ -19,6 +19,8 @@ class OTPController: BaseTableViewController {
     @IBOutlet weak var viewOTP: UIView!
     @IBOutlet weak var viewPassword: UIView!
     @IBOutlet weak var viewConfPassword: UIView!
+    @IBOutlet weak var btnPassword: UIButton!
+    @IBOutlet weak var btnConfPassword: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
@@ -32,6 +34,30 @@ class OTPController: BaseTableViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func visibilityPassword(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            self.txtPassword.isSecureTextEntry = false
+            self.btnPassword.setImage(UIImage(named: "Visibility_off"), for: .normal)
+        } else {
+            sender.isSelected = true
+            self.txtPassword.isSecureTextEntry = true
+            self.btnPassword.setImage(UIImage(named: "Visibility_on"), for: .selected)
+        }
+    }
+    
+    @IBAction func visibilityConfirmPassword(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            self.txtConfPassword.isSecureTextEntry = false
+            self.btnConfPassword.setImage(UIImage(named: "Visibility_off"), for: .normal)
+        } else {
+            sender.isSelected = true
+            self.txtConfPassword.isSecureTextEntry = true
+            self.btnConfPassword.setImage(UIImage(named: "Visibility_on"), for: .selected)
+        }
+    }
+    
     
     @IBAction func resetPAssword(_ sender: UIButton) {
         self.validation()

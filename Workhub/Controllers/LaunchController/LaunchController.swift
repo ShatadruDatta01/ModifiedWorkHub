@@ -12,12 +12,14 @@ import CoreLocation
 
 class LaunchController: BaseViewController {
 
+    @IBOutlet weak var imgTitle: UIImageView!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var viewWorkhub: UIView!
     @IBOutlet weak var viewWorkhubConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imgLogo.alpha = 0
+        self.imgTitle.alpha = 0
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
             self.tokenAPICall()
@@ -67,6 +69,7 @@ extension LaunchController {
 
         UIView.animate(withDuration: Double(1.0), animations: {
             self.imgLogo.alpha = 1.0
+            self.imgTitle.alpha = 1.0
             self.viewWorkhubConstraint.constant = self.view.frame.size.height/2
             self.view.layoutIfNeeded()
             
