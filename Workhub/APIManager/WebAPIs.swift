@@ -28,6 +28,7 @@ struct AppWebservices {
     static let RESUME_UPLOAD = "resume/upload?"
     static let SEND_OTP = "sendotp?"
     static let VERIFY_OTP = "verifyotp?"
+    static let CHANGE_PASSWORD = "user/changepassword?"
     
 }
 
