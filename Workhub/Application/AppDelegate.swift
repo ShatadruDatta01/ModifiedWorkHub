@@ -83,6 +83,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        if Reachability.isConnectedToNetwork() {
+            //.....OK.....//
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
+        
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:

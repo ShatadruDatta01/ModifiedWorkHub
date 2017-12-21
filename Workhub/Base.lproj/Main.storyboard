@@ -2847,10 +2847,10 @@
             </objects>
             <point key="canvasLocation" x="4393" y="1440"/>
         </scene>
-        <!--No Internet Controller-->
+        <!--Internet Checking Controller-->
         <scene sceneID="Ba5-Uw-VFu">
             <objects>
-                <viewController storyboardIdentifier="NoInternetController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dw9-od-JNf" customClass="NoInternetController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InternetCheckingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dw9-od-JNf" customClass="InternetCheckingController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0wa-I3-lYF"/>
                         <viewControllerLayoutGuide type="bottom" id="cHt-jk-DzR"/>
@@ -2916,9 +2916,9 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="labelAlert" destination="9vW-pV-fdY" id="LvE-gx-RB2"/>
-                        <outlet property="viewBG" destination="Zwj-vh-vGr" id="LIp-i6-QS7"/>
-                        <outlet property="viewPopUp" destination="xqx-F1-IRm" id="ZNc-dB-8SK"/>
+                        <outlet property="labelAlert" destination="9vW-pV-fdY" id="hhW-nA-fWs"/>
+                        <outlet property="viewBG" destination="Zwj-vh-vGr" id="ryS-az-sRl"/>
+                        <outlet property="viewPopUp" destination="xqx-F1-IRm" id="lW8-oF-k9z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MBA-FH-FEu" userLabel="First Responder" sceneMemberID="firstResponder"/>

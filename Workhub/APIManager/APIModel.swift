@@ -13,7 +13,7 @@ class APIModel: NSObject {
     
 }
 
-struct API_MODELS_METHODS{
+struct API_MODELS_METHODS {
     
     static func login(queue: DispatchQueue? = nil, email: String, password: String, network: String,
                             completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
@@ -43,8 +43,12 @@ struct API_MODELS_METHODS{
                     })
                 }
             }
-        }else{
-            print("No Internet Connection")
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
         }
         
     }
@@ -63,21 +67,30 @@ struct API_MODELS_METHODS{
             parameters = ["name": name, "email": email, "mobile": mobile, "password": password, "network": network, "isCompany": "no"]
         }
         
-        HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
-            if isSuccess {
-                let swiftyJsonVar   = JSON(response)
-                print(swiftyJsonVar)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    } else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
+        if Reachability.isConnectedToNetwork(){
+            HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
+                if isSuccess {
+                    let swiftyJsonVar   = JSON(response)
+                    print(swiftyJsonVar)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        } else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
             }
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
         }
+        
     }
 
     
@@ -96,20 +109,28 @@ struct API_MODELS_METHODS{
         print(completeUrl)
         let parameters = [String: String]()
         
-        HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
-            if isSuccess {
-                let swiftyJsonVar   = JSON(response)
-                print(swiftyJsonVar)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    } else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
+        if Reachability.isConnectedToNetwork(){
+            HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
+                if isSuccess {
+                    let swiftyJsonVar   = JSON(response)
+                    print(swiftyJsonVar)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        } else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
             }
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
         }
     }
 
@@ -120,21 +141,31 @@ struct API_MODELS_METHODS{
         let subpath =  AppWebservices.JOB_FUNCTION
         let parameters = ["jobid": jobId, "action": action]
         let completeUrl = AppWebservices.baseUrl + subpath
-        HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
-            if isSuccess {
-                let swiftyJsonVar   = JSON(response)
-                print(swiftyJsonVar)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    } else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
+        
+        if Reachability.isConnectedToNetwork(){
+            HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
+                if isSuccess {
+                    let swiftyJsonVar   = JSON(response)
+                    print(swiftyJsonVar)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        } else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
             }
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
         }
+        
     }
     
     
@@ -155,6 +186,7 @@ struct API_MODELS_METHODS{
         let completeUrl = AppWebservices.baseUrl + subpath + createSubPathurl
         _ = NetworkConnectivity.networkConnectionType("needsConnection")
         print(completeUrl)
+        if Reachability.isConnectedToNetwork() {
             HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
                 if isSuccess{
                     let swiftyJsonVar   = JSON(response)
@@ -169,6 +201,14 @@ struct API_MODELS_METHODS{
                     })
                 }
             })
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
+        
     }
     
     
@@ -179,20 +219,29 @@ struct API_MODELS_METHODS{
         let completeUrl = AppWebservices.baseUrl + subpath 
         _ = NetworkConnectivity.networkConnectionType("needsConnection")
         print(completeUrl)
-        HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
-            if isSuccess{
-                let swiftyJsonVar   = JSON(response)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    }else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    }
-                })
-            }
-        })
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
+                if isSuccess{
+                    let swiftyJsonVar   = JSON(response)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        }else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        }
+                    })
+                }
+            })
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
+        
     }
     
     
@@ -202,21 +251,31 @@ struct API_MODELS_METHODS{
         let subpath =  AppWebservices.UPDATE_PROFILE
         let parameters = ["name": name, "email": email, "mobile": mobile, "pic": pic, "experience": experience, "salExpected": salExpected, "location": location]
         let completeUrl = AppWebservices.baseUrl + subpath
-        HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
-            if isSuccess {
-                let swiftyJsonVar   = JSON(response)
-                print(swiftyJsonVar)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    } else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
+        
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
+                if isSuccess {
+                    let swiftyJsonVar   = JSON(response)
+                    print(swiftyJsonVar)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        } else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
             }
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
         }
+        
     }
     
     
@@ -229,20 +288,30 @@ struct API_MODELS_METHODS{
         print(completeUrl)
         _ = NetworkConnectivity.networkConnectionType("needsConnection")
         print(completeUrl)
-        HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
-            if isSuccess{
-                let swiftyJsonVar   = JSON(response)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    }else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
-            }
-        })
+        
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
+                if isSuccess{
+                    let swiftyJsonVar   = JSON(response)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        }else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
+            })
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
+        
     }
     
     
@@ -253,21 +322,31 @@ struct API_MODELS_METHODS{
         let subpath =  AppWebservices.RESUME_UPLOAD
         let parameters = ["resume": "\(ext!),\(resume!)"]
         let completeUrl = AppWebservices.baseUrl + subpath
-        HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
-            if isSuccess {
-                let swiftyJsonVar   = JSON(response)
-                print(swiftyJsonVar)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    } else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
+        
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
+                if isSuccess {
+                    let swiftyJsonVar   = JSON(response)
+                    print(swiftyJsonVar)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        } else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
             }
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
         }
+        
     }
     
     
@@ -280,20 +359,30 @@ struct API_MODELS_METHODS{
         print(completeUrl)
         _ = NetworkConnectivity.networkConnectionType("needsConnection")
         print(completeUrl)
-        HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
-            if isSuccess{
-                let swiftyJsonVar   = JSON(response)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    }else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
-            }
-        })
+        
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
+                if isSuccess{
+                    let swiftyJsonVar   = JSON(response)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        }else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
+            })
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
+        
     }
     
     
@@ -306,20 +395,30 @@ struct API_MODELS_METHODS{
         print(completeUrl)
         _ = NetworkConnectivity.networkConnectionType("needsConnection")
         print(completeUrl)
-        HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
-            if isSuccess{
-                let swiftyJsonVar   = JSON(response)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    }else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
-            }
-        })
+        
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
+                if isSuccess{
+                    let swiftyJsonVar   = JSON(response)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        }else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
+            })
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
+        
     }
     
     
@@ -331,24 +430,29 @@ struct API_MODELS_METHODS{
         
         
         
-        
-        HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
-            if isSuccess {
-                let swiftyJsonVar   = JSON(response)
-                print(swiftyJsonVar)
-                DispatchQueue.main.async(execute: {
-                    if swiftyJsonVar["result"]["status"].bool! {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],true)
-                    } else {
-                        let swiftyJsonVar   = JSON(response)
-                        completion(["result": swiftyJsonVar["result"]],false)
-                    }
-                })
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
+                if isSuccess {
+                    let swiftyJsonVar   = JSON(response)
+                    print(swiftyJsonVar)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        } else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
             }
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
         }
+        
     }
-    
-    
-    
 }

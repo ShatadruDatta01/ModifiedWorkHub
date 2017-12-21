@@ -336,6 +336,7 @@
 		C39A874E1FE2784C00F34335 /* AboutWorkhub.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A874D1FE2784B00F34335 /* AboutWorkhub.png */; };
 		C39A87511FE2797F00F34335 /* AboutWorkhubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */; };
 		C3C92D271FEBCCD700B9EE93 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92D261FEBCCD600B9EE93 /* Reachability.swift */; };
+		C3C92D291FEBDDAB00B9EE93 /* InternetCheckingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92D281FEBDDAA00B9EE93 /* InternetCheckingController.swift */; };
 		C3D63B241FE79109004EE053 /* SavedAppliedJobsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */; };
 		C3D63B261FE7EFD1004EE053 /* pdf-sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */; };
 		C3D63B281FE7F6A1004EE053 /* ShatadruDatta_resume.docx in Resources */ = {isa = PBXBuildFile; fileRef = C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */; };
@@ -704,8 +705,8 @@
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
 		C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWorkhubController.swift; sourceTree = "<group>"; };
-		C3C92D241FEBB09800B9EE93 /* NoInternetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetController.swift; sourceTree = "<group>"; };
 		C3C92D261FEBCCD600B9EE93 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		C3C92D281FEBDDAA00B9EE93 /* InternetCheckingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetCheckingController.swift; sourceTree = "<group>"; };
 		C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAppliedJobsController.swift; sourceTree = "<group>"; };
 		C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pdf-sample.pdf"; sourceTree = "<group>"; };
 		C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShatadruDatta_resume.docx; sourceTree = "<group>"; };
@@ -1641,7 +1642,7 @@
 		C3C92D231FEBB09800B9EE93 /* NoInternetController */ = {
 			isa = PBXGroup;
 			children = (
-				C3C92D241FEBB09800B9EE93 /* NoInternetController.swift */,
+				C3C92D281FEBDDAA00B9EE93 /* InternetCheckingController.swift */,
 			);
 			path = NoInternetController;
 			sourceTree = "<group>";
@@ -2350,6 +2351,7 @@
 				5FCE5B161FC05F7400F299B9 /* BaseCollectionViewController.swift in Sources */,
 				5F49CC201FC45F4C004CEB29 /* SearchJobController.swift in Sources */,
 				C3057A2C1FE16E6B00175A44 /* BPCircleActivityIndicator.swift in Sources */,
+				C3C92D291FEBDDAB00B9EE93 /* InternetCheckingController.swift in Sources */,
 				5F49CC2F1FC49D1A004CEB29 /* MobCell.swift in Sources */,
 				C34E1D341FBD939A00CE777C /* WebAPIs.swift in Sources */,
 				C34E1D2E1FBD8F8100CE777C /* SlideMenuController.swift in Sources */,
