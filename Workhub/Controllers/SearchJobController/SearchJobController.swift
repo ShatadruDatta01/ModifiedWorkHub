@@ -72,14 +72,31 @@ class SearchJobController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.networkAccess), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         NavigationHelper.helper.reloadMenu()
         NavigationHelper.helper.headerViewController?.isBack = false
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "Dash"), for: UIControlState.normal)
         NavigationHelper.helper.headerViewController?.leftButton.addTarget(self, action: #selector(SearchJobController.actionDash), for: UIControlEvents.touchUpInside)
-        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    /// NetworkAccess
+    func networkAccess() {
+        if AppConstantValues.isNetwork == "true" {
+            if AppConstantValues.isCallSearchJob == "yes" {
+                AppConstantValues.isCallSearchJob = "no"
+                self.fetchZipCode()
+            }
+        } else {
+            AppConstantValues.isCallSearchJob = "yes"
+        }
+    }
     
     @IBAction func recenter(_ sender: UIButton) {
         circleIndicator.isHidden = false
@@ -103,7 +120,6 @@ class SearchJobController: BaseViewController {
             print(AppConstantValues.latitide, AppConstantValues.longitude)
         }
     }
-    
     
     
     /// Fetch Lat & Lon from ZipCode

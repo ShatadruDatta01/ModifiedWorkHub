@@ -18,6 +18,7 @@ class LaunchController: BaseViewController {
     @IBOutlet weak var viewWorkhubConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.networkAccess), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         self.imgLogo.alpha = 0
         self.imgTitle.alpha = 0
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
@@ -27,6 +28,23 @@ class LaunchController: BaseViewController {
             self.startingView()
         }
         // Do any additional setup after loading the view.
+    }
+    
+    
+    /// NetworkAccess
+    func networkAccess() {
+        if AppConstantValues.isNetwork == "true" {
+            if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+                self.tokenAPICall()
+            } else {
+                self.startingView()
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
