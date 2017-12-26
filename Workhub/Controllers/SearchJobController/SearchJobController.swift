@@ -480,8 +480,6 @@ extension SearchJobController {
                     self.circleIndicator.isHidden = true
                 }
             }
-        
-        
     }
 }
 

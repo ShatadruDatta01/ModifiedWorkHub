@@ -234,7 +234,7 @@ extension EditProfileController {
     
     func updateProfileAPI() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("updateProfile"), attributes: .concurrent)
-        let mob = self.strCountryCode + self.txtMob.text!
+        let mob = self.strCountryCode + "-" + self.txtMob.text!
         API_MODELS_METHODS.updateProfile(queue: concurrentQueue, email: self.txtEmail.text!, name: self.txtName.text!, mobile: mob, pic: self.strBase64, experience: self.txtJobExp.text!, salExpected: self.txtSal.text!, location: self.txtAdd.text!) { (responseDict, isSuccess) in
             print(responseDict!)
             if isSuccess {
