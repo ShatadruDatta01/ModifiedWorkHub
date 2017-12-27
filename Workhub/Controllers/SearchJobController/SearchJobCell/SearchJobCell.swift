@@ -10,6 +10,7 @@ import UIKit
 
 class SearchJobCell: BaseTableViewCell {
 
+    var checkController = false
     var jobId: String!
     var didSendValue:((String, Bool) -> ())!
     @IBOutlet weak var viewHour: UIView!
@@ -65,7 +66,26 @@ class SearchJobCell: BaseTableViewCell {
     
     /// SavedJobs
     func saveJob() {
-        self.saveJobAPICall()
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+            for aviewcontroller: UIViewController in allViewController
+            {
+                if aviewcontroller.isKind(of: LoginController.classForCoder())
+                {
+                    NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                    self.checkController = true
+                    break
+                }
+            }
+            
+            if self.checkController == false {
+                let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+            }
+            self.checkController = false
+        } else {
+            self.saveJobAPICall()
+        }
     }
 }
 

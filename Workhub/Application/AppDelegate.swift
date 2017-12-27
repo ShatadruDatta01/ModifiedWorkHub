@@ -16,6 +16,7 @@ import GLKit
 import Google
 import GoogleSignIn
 import IQKeyboardManager
+import SystemConfiguration
 
 @available(iOS 10.0, *)
 @UIApplicationMain
@@ -78,10 +79,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        if Reachability.isConnectedToNetwork() {
+            //.....OK.....//
+            AppConstantValues.isNetwork = "true"
+        } else {
+            AppConstantValues.isNetwork = "false"
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:
@@ -163,4 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
 }
+
+
+
 

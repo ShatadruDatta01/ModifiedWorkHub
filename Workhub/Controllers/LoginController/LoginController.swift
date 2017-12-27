@@ -19,6 +19,7 @@ class LoginController: BaseViewController {
     @IBOutlet weak var viewPassword: UIView!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var btnPassword: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,18 @@ class LoginController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
+    }
+    
+    @IBAction func visibilityPassword(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            self.txtPassword.isSecureTextEntry = false
+            self.btnPassword.setImage(UIImage(named: "Visibility_off"), for: .normal)
+        } else {
+            sender.isSelected = true
+            self.txtPassword.isSecureTextEntry = true
+            self.btnPassword.setImage(UIImage(named: "Visibility_on"), for: .selected)
+        }
     }
     
     @IBAction func actionBack(_ sender: UIButton) {

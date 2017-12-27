@@ -12,19 +12,39 @@ import CoreLocation
 
 class LaunchController: BaseViewController {
 
+    @IBOutlet weak var imgTitle: UIImageView!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var viewWorkhub: UIView!
     @IBOutlet weak var viewWorkhubConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.networkAccess), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        self.imgLogo.alpha = 0
+        self.imgTitle.alpha = 0
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
             self.tokenAPICall()
         } else {
             self.startingView()
         }
-        
         // Do any additional setup after loading the view.
+    }
+    
+    
+    /// NetworkAccess
+    func networkAccess() {
+        if AppConstantValues.isNetwork == "true" {
+            if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+                self.tokenAPICall()
+            } else {
+                self.startingView()
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -48,9 +68,8 @@ extension LaunchController {
 // MARK: - Starting View
 extension LaunchController {
     func startingView() {
-        self.imgLogo.alpha = 0.3
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
-        Timer.scheduledTimer(timeInterval: 0.3,
+        Timer.scheduledTimer(timeInterval: 0.1,
                              target: self,
                              selector: #selector(self.updateView),
                              userInfo: nil,
@@ -66,8 +85,9 @@ extension LaunchController {
         self.viewWorkhubConstraint.constant = 0
         self.view.layoutIfNeeded()
 
-        UIView.animate(withDuration: Double(0.5), animations: {
+        UIView.animate(withDuration: Double(1.0), animations: {
             self.imgLogo.alpha = 1.0
+            self.imgTitle.alpha = 1.0
             self.viewWorkhubConstraint.constant = self.view.frame.size.height/2
             self.view.layoutIfNeeded()
             

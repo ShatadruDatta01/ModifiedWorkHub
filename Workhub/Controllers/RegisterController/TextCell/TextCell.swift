@@ -12,6 +12,7 @@ class TextCell: BaseTableViewCell {
 
     var index: Int!
     var didSendValue:((String, Int)->())!
+    @IBOutlet weak var btnVisibility: UIButton!
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
@@ -29,7 +30,30 @@ class TextCell: BaseTableViewCell {
                     self.widthConstraint.constant = 20.0
                     self.heightConstraint.constant = 20.0
                 }
+                
+                if index == 3 {
+                    self.btnVisibility.isHidden = false
+                } else {
+                    self.btnVisibility.isHidden = true
+                    
+                }
+                
+                self.btnVisibility.addTarget(self, action: #selector(TextCell.visibilityPassword), for: .touchUpInside)
             }
+        }
+    }
+    
+    
+    /// VisibilityPassword
+    func visibilityPassword(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            self.txtField.isSecureTextEntry = false
+            self.btnVisibility.setImage(UIImage(named: "Visibility_off"), for: .normal)
+        } else {
+            sender.isSelected = true
+            self.txtField.isSecureTextEntry = true
+            self.btnVisibility.setImage(UIImage(named: "Visibility_on"), for: .selected)
         }
     }
 }

@@ -24,6 +24,7 @@ class SearchJobController: BaseViewController {
     var arrSearchJob = [AnyObject]()
     var locationManager = CLLocationManager()
     var annotationView: MKAnnotationView!
+    var save = 0
     @IBOutlet weak var btnGO: UIButton!
     @IBOutlet weak var viewRecenter: UIView!
     @IBOutlet var widthGOconstraint: NSLayoutConstraint!
@@ -71,14 +72,31 @@ class SearchJobController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.networkAccess), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         NavigationHelper.helper.reloadMenu()
         NavigationHelper.helper.headerViewController?.isBack = false
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "Dash"), for: UIControlState.normal)
         NavigationHelper.helper.headerViewController?.leftButton.addTarget(self, action: #selector(SearchJobController.actionDash), for: UIControlEvents.touchUpInside)
-        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    /// NetworkAccess
+    func networkAccess() {
+        if AppConstantValues.isNetwork == "true" {
+            if AppConstantValues.isCallSearchJob == "yes" {
+                AppConstantValues.isCallSearchJob = "no"
+                self.fetchZipCode()
+            }
+        } else {
+            AppConstantValues.isCallSearchJob = "yes"
+        }
+    }
     
     @IBAction func recenter(_ sender: UIButton) {
         circleIndicator.isHidden = false
@@ -102,7 +120,6 @@ class SearchJobController: BaseViewController {
             print(AppConstantValues.latitide, AppConstantValues.longitude)
         }
     }
-    
     
     
     /// Fetch Lat & Lon from ZipCode
@@ -274,7 +291,7 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
         
         if annotation is MKUserLocation {
             let pin = mapView.view(for: annotation) ?? MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
-            pin.image = UIImage(named: "LocationIcon")
+            pin.image = UIImage(named: "currentLocation")
             pin.canShowCallout = true
             annotationView = pin
             return pin
@@ -318,7 +335,14 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
             if details.role! == view.annotation!.title!! {
                 print(details.role!)
                 let loc = "\(details.state!), \(details.city!)"
-                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, didSubmit: { (text) in
+                
+                if let save = details.save {
+                    self.save = save
+                } else {
+                    self.save = 0
+                }
+                
+                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strJobId: details.jobID! ,strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, save: self.save, didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: { (text) in
                     for annotation in self.mapListJob.selectedAnnotations {
@@ -370,6 +394,13 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
             if check {
                 self.circleIndicator.isHidden = false
                 self.circleIndicator.animate()
+                
+                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+                
                 self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
             } else {
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: text, didSubmit: { (text) in
@@ -395,6 +426,11 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         jobDetailsPageVC.strJobPosted = val.posted_on!
         jobDetailsPageVC.strFullTime = val.type!
         jobDetailsPageVC.strJobDesc = val.jobDetail!
+        jobDetailsPageVC.strJobId = val.jobID!
+        if let save = val.save {
+            jobDetailsPageVC.save = save 
+        }
+        jobDetailsPageVC.strJobFunction = "view"
         NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
     }
     
@@ -410,41 +446,40 @@ extension SearchJobController {
     /// UserJOB APICall
     func userJobListAPICall(zipCode: String) {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
-        API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
-            if isSuccess {
-                self.circleIndicator.stop()
-                self.circleIndicator.isHidden = true
-                self.btnGO.isEnabled = true
-                print(responseDict!["result"]!["data"])
-                if responseDict!["result"]!["data"].count > 0 {
-                    
-                    if self.arrJob.count > 0 {
-                        self.arrJob.removeAll()
+            API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
+                if isSuccess {
+                    self.circleIndicator.stop()
+                    self.circleIndicator.isHidden = true
+                    self.btnGO.isEnabled = true
+                    print(responseDict!["result"]!["data"])
+                    if responseDict!["result"]!["data"].count > 0 {
+                        
+                        if self.arrJob.count > 0 {
+                            self.arrJob.removeAll()
+                        }
+                        
+                        self.tblList.isHidden = false
+                        for value in responseDict!["result"]!["data"].arrayObject! {
+                            let objJobList = SearchJob(withDictionary: value as! [String : AnyObject])
+                            self.arrJob.append(objJobList)
+                        }
+                        self.lblDetailsContent.text = "\(self.arrJob.count) jobs available in 5 sq miles"
+                        self.tblList.reloadData()
+                        self.jobLocation()
+                    } else {
+                        self.tblList.isHidden = true
+                        self.lblDetailsContent.text = "No jobs available in 5 sq miles"
+                        AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
+                            debugPrint("No Code")
+                        }, didFinish: {
+                            debugPrint("No Code")
+                        })
                     }
-                    
-                    self.tblList.isHidden = false
-                    for value in responseDict!["result"]!["data"].arrayObject! {
-                        let objJobList = SearchJob(withDictionary: value as! [String : AnyObject])
-                        self.arrJob.append(objJobList)
-                    }
-                    self.lblDetailsContent.text = "\(self.arrJob.count) jobs available in 5 sq miles"
-                    self.tblList.reloadData()
-                    self.jobLocation()
                 } else {
                     self.circleIndicator.stop()
                     self.circleIndicator.isHidden = true
-                    self.tblList.isHidden = true
-                    self.lblDetailsContent.text = "No jobs available in 5 sq miles"
-                    AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
-                        debugPrint("No Code")
-                    }, didFinish: {
-                        debugPrint("No Code")
-                    })
                 }
-            } else {
-                
             }
-        }
     }
 }
 

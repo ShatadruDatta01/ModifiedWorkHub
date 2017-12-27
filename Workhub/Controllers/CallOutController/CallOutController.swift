@@ -10,6 +10,7 @@ import UIKit
 
 class CallOutController: BaseViewController {
 
+     var strJobId = ""
      var strIconDetails = ""
      var strJobHour = ""
      var strJobTitle = ""
@@ -19,7 +20,9 @@ class CallOutController: BaseViewController {
      var strJobPosted = ""
      var strFullTime = ""
      var strJobDesc = ""
-    
+     var save = 0
+    var checkController = false
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     @IBOutlet weak var viewPopUp: UIView!
     @IBOutlet weak var viewBG: UIView!
     
@@ -31,7 +34,7 @@ class CallOutController: BaseViewController {
     @IBOutlet var lblShift: UILabel!
     @IBOutlet var lblHour: UILabel!
     @IBOutlet var lblFullTime: UILabel!
-    
+    @IBOutlet weak var btnBookmark: UIButton!
     
     var didSubmitButton:((_ text: String) -> ())?
     var didRemove:((_ text: String) -> ())?
@@ -43,6 +46,27 @@ class CallOutController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(CallOutController.tappedMe))
+        self.viewPopUp.addGestureRecognizer(tap)
+        self.viewPopUp.isUserInteractionEnabled = true
+    }
+    
+    func tappedMe() {
+        self.dismissAnimate()
+        let jobDetailsPageVC = mainStoryboard.instantiateViewController(withIdentifier: "JobDetailsController") as! JobDetailsController
+        jobDetailsPageVC.strIconDetails = self.strIconDetails
+        jobDetailsPageVC.strJobHour = self.strJobHour
+        jobDetailsPageVC.strJobTitle = self.strJobTitle
+        jobDetailsPageVC.strJobSubTitle = self.strJobSubTitle
+        jobDetailsPageVC.strJobLocation = self.strJobLocation
+        jobDetailsPageVC.strShift = self.strShift
+        jobDetailsPageVC.strJobPosted = self.strJobPosted
+        jobDetailsPageVC.strFullTime = self.strFullTime
+        jobDetailsPageVC.strJobDesc = self.strJobDesc
+        jobDetailsPageVC.save = self.save
+        jobDetailsPageVC.strJobId = self.strJobId
+        jobDetailsPageVC.strJobFunction = "view"
+        NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,31 +79,72 @@ class CallOutController: BaseViewController {
     
     @IBAction func apply(_ sender: UIButton) {
         self.dismissAnimate()
-        let jobDetailsPageVC = mainStoryboard.instantiateViewController(withIdentifier: "JobDetailsController") as! JobDetailsController
-        jobDetailsPageVC.strIconDetails = self.strIconDetails
-        jobDetailsPageVC.strJobHour = self.strJobHour
-        jobDetailsPageVC.strJobTitle = self.strJobTitle
-        jobDetailsPageVC.strJobSubTitle = self.strJobSubTitle
-        jobDetailsPageVC.strJobLocation = self.strJobLocation
-        jobDetailsPageVC.strShift = self.strShift
-        jobDetailsPageVC.strJobPosted = self.strJobPosted
-        jobDetailsPageVC.strFullTime = self.strFullTime
-        jobDetailsPageVC.strJobDesc = self.strJobDesc
-        NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+            for aviewcontroller: UIViewController in allViewController
+            {
+                if aviewcontroller.isKind(of: LoginController.classForCoder())
+                {
+                    NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                    checkController = true
+                    break
+                }
+            }
+            
+            if checkController == false {
+                let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+            }
+            self.checkController = false
+        } else {
+            
+            let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
+            applyPageVC.strJobIcon = strIconDetails
+            applyPageVC.strJobTitle = strJobTitle
+            applyPageVC.strJobSubTitle = strJobSubTitle
+            applyPageVC.strJobId = strJobId
+            applyPageVC.save = self.save
+            NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: false)
+        }
+        
     }
+    
     
     @IBAction func jobSave(_ sender: UIButton) {
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+            for aviewcontroller: UIViewController in allViewController
+            {
+                if aviewcontroller.isKind(of: LoginController.classForCoder())
+                {
+                    NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                    checkController = true
+                    break
+                }
+            }
+            
+            if checkController == false {
+                let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+            }
+            self.checkController = false
+            self.dismissAnimate()
+        } else {
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.saveJobAPICall()
+        }
     }
     
-    internal class func showAddOrClearPopUp(sourceViewController: UIViewController, strIconDetails: String, strJobHour: String, strJobTitle: String, strJobSubTitle: String, strJobLocation: String, strShift: String, strJobPosted: String, strFullTime: String, strJobDesc: String, didSubmit: @escaping ((_ text: String) -> ()), didFinish: @escaping ((_ text: String) -> ())) {
+    internal class func showAddOrClearPopUp(sourceViewController: UIViewController, strJobId: String, strIconDetails: String, strJobHour: String, strJobTitle: String, strJobSubTitle: String, strJobLocation: String, strShift: String, strJobPosted: String, strFullTime: String, strJobDesc: String, save: Int, didSubmit: @escaping ((_ text: String) -> ()), didFinish: @escaping ((_ text: String) -> ())) {
         
         let commentPopVC = mainStoryboard.instantiateViewController(withIdentifier: "CallOutController") as! CallOutController
         commentPopVC.didSubmitButton = didSubmit
         commentPopVC.didRemove = didFinish
-        commentPopVC.presentAddOrClearPopUpWith(sourceController: sourceViewController, strIconDetails: strIconDetails, strJobHour: strJobHour, strJobTitle: strJobTitle, strJobSubTitle: strJobSubTitle, strJobLocation: strJobLocation, strShift: strShift, strJobPosted: strJobPosted, strFullTime: strFullTime, strJobDesc: strJobDesc)
+        commentPopVC.presentAddOrClearPopUpWith(sourceController: sourceViewController, strJobId: strJobId,strIconDetails: strIconDetails, strJobHour: strJobHour, strJobTitle: strJobTitle, strJobSubTitle: strJobSubTitle, strJobLocation: strJobLocation, strShift: strShift, strJobPosted: strJobPosted, strFullTime: strFullTime, strJobDesc: strJobDesc, save: save)
     }
     
-    func presentAddOrClearPopUpWith(sourceController: UIViewController, strIconDetails: String, strJobHour: String, strJobTitle: String, strJobSubTitle: String, strJobLocation: String, strShift: String, strJobPosted: String, strFullTime: String, strJobDesc: String) {
+    func presentAddOrClearPopUpWith(sourceController: UIViewController, strJobId: String, strIconDetails: String, strJobHour: String, strJobTitle: String, strJobSubTitle: String, strJobLocation: String, strShift: String, strJobPosted: String, strFullTime: String, strJobDesc: String, save: Int) {
         self.view.frame = sourceController.view.bounds
         sourceController.view.addSubview(self.view)
         sourceController.addChildViewController(self)
@@ -93,11 +158,13 @@ class CallOutController: BaseViewController {
         self.strJobPosted = strJobPosted
         self.strFullTime = strFullTime
         self.strJobDesc = strJobDesc
-        presentAnimationToView(strIconDetails: self.strIconDetails, strJobHour: self.strJobHour, strJobTitle: self.strJobTitle, strJobSubTitle: self.strJobSubTitle, strJobLocation: self.strJobLocation, strShift: self.strShift, strJobPosted: self.strJobPosted, strFullTime: self.strFullTime, strJobDesc: self.strJobDesc)
+        self.save = save
+        self.strJobId = strJobId
+        presentAnimationToView(strJobId: self.strJobId, strIconDetails: self.strIconDetails, strJobHour: self.strJobHour, strJobTitle: self.strJobTitle, strJobSubTitle: self.strJobSubTitle, strJobLocation: self.strJobLocation, strShift: self.strShift, strJobPosted: self.strJobPosted, strFullTime: self.strFullTime, strJobDesc: self.strJobDesc, save: self.save)
     }
     
     // MARK: - Animation
-    func presentAnimationToView(strIconDetails: String, strJobHour: String, strJobTitle: String, strJobSubTitle: String, strJobLocation: String, strShift: String, strJobPosted: String, strFullTime: String, strJobDesc: String) {
+    func presentAnimationToView(strJobId: String, strIconDetails: String, strJobHour: String, strJobTitle: String, strJobSubTitle: String, strJobLocation: String, strShift: String, strJobPosted: String, strFullTime: String, strJobDesc: String, save: Int) {
         viewBG.alpha = 0.0
         self.imgJobIcon.setImage(withURL: NSURL(string: strIconDetails)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
         self.lblHour.text = strJobHour
@@ -107,6 +174,11 @@ class CallOutController: BaseViewController {
         self.lblFullTime.text = strFullTime
         self.lblLocation.text = strJobLocation
         self.lblJobPosted.text = strJobPosted
+        if save == 0 {
+            self.btnBookmark.setImage(UIImage(named: "star_white"), for: .normal)
+        } else {
+            self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+        }
         self.viewPopUp.transform = CGAffineTransform(translationX: 0, y: SCREEN_HEIGHT)
         UIView.animate(withDuration: 0.25) {
             self.viewBG.alpha = 0.3
@@ -153,5 +225,28 @@ class CallOutController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
+
+// MARK: - SaveJobAPICall
+extension CallOutController {
+    func saveJobAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "save", jobId: self.strJobId) { (responseDict,isSuccess) in
+            if isSuccess {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+            } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
+    }
+}
+
+

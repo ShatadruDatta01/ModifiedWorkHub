@@ -335,6 +335,11 @@
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C39A874E1FE2784C00F34335 /* AboutWorkhub.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A874D1FE2784B00F34335 /* AboutWorkhub.png */; };
 		C39A87511FE2797F00F34335 /* AboutWorkhubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */; };
+		C3C92D271FEBCCD700B9EE93 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92D261FEBCCD600B9EE93 /* Reachability.swift */; };
+		C3C92D291FEBDDAB00B9EE93 /* InternetCheckingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92D281FEBDDAA00B9EE93 /* InternetCheckingController.swift */; };
+		C3D63B241FE79109004EE053 /* SavedAppliedJobsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */; };
+		C3D63B261FE7EFD1004EE053 /* pdf-sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */; };
+		C3D63B281FE7F6A1004EE053 /* ShatadruDatta_resume.docx in Resources */ = {isa = PBXBuildFile; fileRef = C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */; };
 		C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */; };
 		C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */; };
 		C3F2BBC81FDA692500C0BC9A /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */; };
@@ -500,7 +505,7 @@
 		C35C23871FD01B4F0077B5AC /* Congo-Kinshasa(Zaire).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Congo-Kinshasa(Zaire).png"; sourceTree = "<group>"; };
 		C35C23881FD01B4F0077B5AC /* Cook Islands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cook Islands.png"; sourceTree = "<group>"; };
 		C35C23891FD01B4F0077B5AC /* Costa Rica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Costa Rica.png"; sourceTree = "<group>"; };
-		C35C238A1FD01B4F0077B5AC /* Cote d'Ivoire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cote d\'Ivoire.png"; sourceTree = "<group>"; };
+		C35C238A1FD01B4F0077B5AC /* Cote d'Ivoire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cote d'Ivoire.png"; sourceTree = "<group>"; };
 		C35C238B1FD01B4F0077B5AC /* Croatia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Croatia.png; sourceTree = "<group>"; };
 		C35C238C1FD01B4F0077B5AC /* Cuba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cuba.png; sourceTree = "<group>"; };
 		C35C238D1FD01B4F0077B5AC /* Cyprus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cyprus.png; sourceTree = "<group>"; };
@@ -695,10 +700,16 @@
 		C361536C1FC2E2DD001273BA /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C361536E1FC56D2D001273BA /* APIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		C365E8C81FD918A800CFE48B /* SearchJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJob.swift; sourceTree = "<group>"; };
+		C36738751FEA73D10036CE99 /* Workhub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Workhub.entitlements; sourceTree = "<group>"; };
 		C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
 		C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWorkhubController.swift; sourceTree = "<group>"; };
+		C3C92D261FEBCCD600B9EE93 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		C3C92D281FEBDDAA00B9EE93 /* InternetCheckingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetCheckingController.swift; sourceTree = "<group>"; };
+		C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAppliedJobsController.swift; sourceTree = "<group>"; };
+		C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pdf-sample.pdf"; sourceTree = "<group>"; };
+		C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShatadruDatta_resume.docx; sourceTree = "<group>"; };
 		C3EE8DE61FD5558000C2B89E /* JobDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailsController.swift; sourceTree = "<group>"; };
 		C3EE8DE91FD5617400C2B89E /* ApplyJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyJobController.swift; sourceTree = "<group>"; };
 		C3F2BBC71FDA692400C0BC9A /* LogoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
@@ -848,6 +859,8 @@
 			children = (
 				C39A874D1FE2784B00F34335 /* AboutWorkhub.png */,
 				5F49CC381FC4B167004CEB29 /* leftArrow.png */,
+				C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */,
+				C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1076,6 +1089,7 @@
 		C34E1CD71FBD7D5300CE777C /* Workhub */ = {
 			isa = PBXGroup;
 			children = (
+				C36738751FEA73D10036CE99 /* Workhub.entitlements */,
 				C34E1D0A1FBD7E3200CE777C /* Application */,
 				C34E1D0E1FBD7E3200CE777C /* Entities */,
 				C34E1D091FBD7E3200CE777C /* APIManager */,
@@ -1136,6 +1150,8 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3C92D231FEBB09800B9EE93 /* NoInternetController */,
+				C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */,
 				C39A874F1FE2794600F34335 /* AboutWorkhubController */,
 				C38EFA331FDFB02B0072F898 /* UpdateResumeController */,
 				C38EFA301FDE5CED0072F898 /* EditProfileController */,
@@ -1201,6 +1217,7 @@
 		C34E1D131FBD7E3200CE777C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C3C92D251FEBCC0600B9EE93 /* Reachability */,
 				C348430B1FD809F000059016 /* CustomFonts */,
 				C33729521FD58022000EC579 /* TextClass */,
 				C35C253A1FD021710077B5AC /* JsonList */,
@@ -1622,6 +1639,30 @@
 			path = AboutWorkhubController;
 			sourceTree = "<group>";
 		};
+		C3C92D231FEBB09800B9EE93 /* NoInternetController */ = {
+			isa = PBXGroup;
+			children = (
+				C3C92D281FEBDDAA00B9EE93 /* InternetCheckingController.swift */,
+			);
+			path = NoInternetController;
+			sourceTree = "<group>";
+		};
+		C3C92D251FEBCC0600B9EE93 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				C3C92D261FEBCCD600B9EE93 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */ = {
+			isa = PBXGroup;
+			children = (
+				C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */,
+			);
+			path = SavedAppliedJobsController;
+			sourceTree = "<group>";
+		};
 		C3EE8DE51FD5556400C2B89E /* JobDetailsController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1737,6 +1778,17 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 3Q9VMV9DUT;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					C34E1CEB1FBD7D5400CE777C = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -1788,6 +1840,7 @@
 				C35C25051FD01B500077B5AC /* Seychelles.png in Resources */,
 				C35C24F61FD01B500077B5AC /* Puerto Rico.png in Resources */,
 				C35C24AE1FD01B500077B5AC /* Isle of Man.png in Resources */,
+				C3D63B261FE7EFD1004EE053 /* pdf-sample.pdf in Resources */,
 				C35C250A1FD01B500077B5AC /* Solomon Islands.png in Resources */,
 				C35C24981FD01B500077B5AC /* Gibraltar.png in Resources */,
 				C35C24A01FD01B500077B5AC /* Guinea-Bissau.png in Resources */,
@@ -1878,6 +1931,7 @@
 				C35C24EE1FD01B500077B5AC /* Palestine.png in Resources */,
 				C35C25001FD01B500077B5AC /* Sao Tome & Principe.png in Resources */,
 				C35C24871FD01B500077B5AC /* Egypt.png in Resources */,
+				C3D63B281FE7F6A1004EE053 /* ShatadruDatta_resume.docx in Resources */,
 				C35C244D1FD01B500077B5AC /* Angola.png in Resources */,
 				C35C25191FD01B500077B5AC /* Tahiti(French Polinesia).png in Resources */,
 				C35C246E1FD01B500077B5AC /* Cape Verde.png in Resources */,
@@ -2100,7 +2154,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9390AC8302BB27D6A1F43387 /* [CP] Copy Pods Resources */ = {
@@ -2148,7 +2202,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CFBA3853553DFBC22E89945C /* [CP] Check Pods Manifest.lock */ = {
@@ -2166,7 +2220,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DF87237D3C0371ACA7757E58 /* [CP] Embed Pods Frameworks */ = {
@@ -2241,6 +2295,7 @@
 			files = (
 				C365E8C91FD918A800CFE48B /* SearchJob.swift in Sources */,
 				C34E1D1E1FBD8F1200CE777C /* Extensions.swift in Sources */,
+				C3D63B241FE79109004EE053 /* SavedAppliedJobsController.swift in Sources */,
 				5FCE5B211FC05FBF00F299B9 /* ForgotPasswordController.swift in Sources */,
 				C33E6BF41FD1560A00E100F3 /* TermsCondsController.swift in Sources */,
 				C3057A2D1FE16E6B00175A44 /* CircleLayer.swift in Sources */,
@@ -2276,6 +2331,7 @@
 				C34E1D1F1FBD8F1200CE777C /* UIDevice+Extra.swift in Sources */,
 				5FCE5B1B1FC05F7400F299B9 /* ContentNavigationController.swift in Sources */,
 				C34E1D321FBD92FE00CE777C /* HTTPManagerAPI.swift in Sources */,
+				C3C92D271FEBCCD700B9EE93 /* Reachability.swift in Sources */,
 				C34E1CDB1FBD7D5300CE777C /* ViewController.swift in Sources */,
 				5FCE5B141FC05F7400F299B9 /* BaseCollectionViewCell.swift in Sources */,
 				C33729541FD58022000EC579 /* CustomTextField.swift in Sources */,
@@ -2295,6 +2351,7 @@
 				5FCE5B161FC05F7400F299B9 /* BaseCollectionViewController.swift in Sources */,
 				5F49CC201FC45F4C004CEB29 /* SearchJobController.swift in Sources */,
 				C3057A2C1FE16E6B00175A44 /* BPCircleActivityIndicator.swift in Sources */,
+				C3C92D291FEBDDAB00B9EE93 /* InternetCheckingController.swift in Sources */,
 				5F49CC2F1FC49D1A004CEB29 /* MobCell.swift in Sources */,
 				C34E1D341FBD939A00CE777C /* WebAPIs.swift in Sources */,
 				C34E1D2E1FBD8F8100CE777C /* SlideMenuController.swift in Sources */,
@@ -2464,6 +2521,7 @@
 			baseConfigurationReference = 7882F8519B53277FD29469EE /* Pods-Workhub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Workhub/Workhub.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q9VMV9DUT;
@@ -2484,6 +2542,7 @@
 			baseConfigurationReference = 233D5B73EDE728106A1560EC /* Pods-Workhub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Workhub/Workhub.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q9VMV9DUT;

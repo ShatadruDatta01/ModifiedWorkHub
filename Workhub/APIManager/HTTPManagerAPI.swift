@@ -30,7 +30,10 @@ struct AppConstantValues {
     static var zipcode = ""
     static var companyAccessToken = "" //"6d2003577e300fccfd0e4c4be7d7a59366f94bb0";
     static let iTunesAppUrl = "https://itunes.apple.com/us/app/brand-champs/id1037140094?ls=1&mt=8"
-
+    static var userId = ""
+    static var callJobAPI = false
+    static var isNetwork = "nothing"
+    static var isCallSearchJob = "dontKnow"
 }
 
 
@@ -317,8 +320,13 @@ struct CREATE_HEADER {
         
         let currentdate =  instanceOfCustomObject.generateCurrentTime()!
        // let header = "Authorization: OAuth \(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
-       
-        let header = "\(AppConstantValues.CONSUMER_KEY_NONCE)=78044b02,\(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
+        if let userID = OBJ_FOR_KEY(key: "UserId") {
+            AppConstantValues.userId = userID as! String
+        } else {
+            AppConstantValues.userId = ""
+        }
+        print(AppConstantValues.userId)
+        let header = "\(AppConstantValues.CONSUMER_KEY_NONCE)=\(AppConstantValues.userId),\(AppConstantValues.KEY_OAUTH_NONCE_TEMP)=\(instanceOfCustomObject.stringConverBase64(currentdate)!),\(AppConstantValues.KEY_OAUTH_SIGNATURE_METHOD_TEMP)=\(AppConstantValues.VALUE_OAUTH_SIGNATURE_METHOD_TEMP),\(AppConstantValues.KEY_OAUTH_TOKEN_TEMP)=\(AppConstantValues.companyAccessToken), \(AppConstantValues.KEY_OAUTH_TIMESTAMP_TEMP)=\(currentdate), \(AppConstantValues.KEY_OAUTH_VERSION_TEMP)=\(AppConstantValues.VALUE_OAUTH_VERSION_TEMP),\(AppConstantValues.KEY_OAUTH_SIGNATURE_TEMP)=\(instanceOfCustomObject.stringEncode(compositeSignature)!)"
 
         return header
     }
