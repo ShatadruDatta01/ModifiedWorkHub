@@ -44,15 +44,15 @@ class EditProfileController: BaseTableViewController {
         circleIndicator.isHidden = false
         circleIndicator.animate()
         self.editProfileAPI()
-        
-        
-        func tappedMe()
-        {
-            let navigationController = TGCameraNavigationController.new(with: self)
-            self.present(navigationController!, animated: true, completion: nil)
-        }
+
         
         // Do any additional setup after loading the view.
+    }
+    
+    func tappedMe()
+    {
+        let navigationController = TGCameraNavigationController.new(with: self)
+        self.present(navigationController!, animated: true, completion: nil)
     }
     
     @IBAction func countryCode(_ sender: UIButton) {
