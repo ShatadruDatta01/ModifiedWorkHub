@@ -45,6 +45,7 @@ class EditProfileController: BaseTableViewController {
         circleIndicator.isHidden = false
         circleIndicator.animate()
         self.editProfileAPI()
+
         
         // Do any additional setup after loading the view.
     }
