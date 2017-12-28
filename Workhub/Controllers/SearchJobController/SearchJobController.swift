@@ -231,6 +231,7 @@ class SearchJobController: BaseViewController {
         self.viewRecenter.isHidden = false
         self.btnGO.isEnabled = false
         self.txtSearchJob.resignFirstResponder()
+        print(self.zipCode)
         self.fetchLatLonFromZip(zipCode: self.zipCode)
     }
     
@@ -446,7 +447,8 @@ extension SearchJobController {
     /// UserJOB APICall
     func userJobListAPICall(zipCode: String) {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
-            API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
+            print(AppConstantValues.latitide, AppConstantValues.longitude, zipCode)
+            API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"5", queue: concurrentQueue) { (responseDict, isSuccess) in
                 if isSuccess {
                     self.circleIndicator.stop()
                     self.circleIndicator.isHidden = true

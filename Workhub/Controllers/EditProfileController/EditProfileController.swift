@@ -152,7 +152,11 @@ extension EditProfileController {
                                 if !(self.txtMob.text?.isEmpty)! {
                                     self.circleIndicator.isHidden = false
                                     self.circleIndicator.animate()
-                                    self.imageToBase64(image: self.imgProf.image!)
+                                    DispatchQueue.global(qos: .background).async {
+                                        print("This is run on the background queue")
+                                        self.imageToBase64(image: self.imgProf.image!)
+                                    }
+                                    
                                 } else {
                                     ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter mobile no", didSubmit: { (text) in
                                         debugPrint("No Code")
@@ -234,8 +238,9 @@ extension EditProfileController {
     }
     
     func updateProfileAPI() {
-        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("updateProfile"), attributes: .concurrent)
         let mob = self.strCountryCode + "-" + self.txtMob.text!
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("updateProfile"), attributes: .concurrent)
+        
         API_MODELS_METHODS.updateProfile(queue: concurrentQueue, email: self.txtEmail.text!, name: self.txtName.text!, mobile: mob, pic: self.strBase64, experience: self.txtJobExp.text!, salExpected: self.txtSal.text!, location: self.txtAdd.text!) { (responseDict, isSuccess) in
             print(responseDict!)
             if isSuccess {
@@ -258,6 +263,3 @@ extension EditProfileController {
         }
     }
 }
-
-
-

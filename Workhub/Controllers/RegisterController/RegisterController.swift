@@ -247,7 +247,7 @@ extension RegisterController {
                     if self.strMob.characters.count > 0 {
                         if self.strMob.characters.count > 6 {
                             if self.strPassword.characters.count > 0 {
-                                if self.strPassword.characters.count > 6 {
+                                if self.strPassword.characters.count > 5 {
                                     self.strNetwork = "Manual"
                                     let mob = "\(self.strCountryCode)-\(self.strMob)"
                                     self.registerAPICall(name: self.strName, email: self.strEmail, mob: mob, password: self.strPassword, network: "Manual")

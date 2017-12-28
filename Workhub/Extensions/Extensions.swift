@@ -461,6 +461,13 @@ extension UIViewController {
             (action: UIAlertAction) in
             SET_OBJ_FOR_KEY(obj: "0" as AnyObject, key: "isLogin")
             REMOVE_OBJ_FOR_KEY(key: "AccessToken")
+            REMOVE_OBJ_FOR_KEY(key: "Resume")
+            REMOVE_OBJ_FOR_KEY(key: "UserId")
+            REMOVE_OBJ_FOR_KEY(key: "UserPic")
+            REMOVE_OBJ_FOR_KEY(key: "Email")
+            REMOVE_OBJ_FOR_KEY(key: "Name")
+            REMOVE_OBJ_FOR_KEY(key: "Network")
+            NSUbiquitousKeyValueStore.default().removeObject(forKey: "key")
             NavigationHelper.helper.openSidePanel(open: false)
         }
         alertController.addAction(OKAction)
