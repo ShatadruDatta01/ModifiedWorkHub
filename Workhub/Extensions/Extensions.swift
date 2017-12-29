@@ -400,7 +400,6 @@ extension UIImage {
             return nil
         }
     }
-    
 }
 
 
@@ -423,10 +422,7 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
-    
-    
 }
-
 
 
 // MARK: - Alert Controller
@@ -473,16 +469,9 @@ extension UIViewController {
         alertController.addAction(OKAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             (action: UIAlertAction) in
-           
         }
         alertController.addAction(cancelAction)
 
         self.present(alertController, animated: true, completion: nil)
     }
-
-    
 }
-
-
-
-
