@@ -463,7 +463,6 @@ extension UIViewController {
             REMOVE_OBJ_FOR_KEY(key: "Email")
             REMOVE_OBJ_FOR_KEY(key: "Name")
             REMOVE_OBJ_FOR_KEY(key: "Network")
-            NSUbiquitousKeyValueStore.default().removeObject(forKey: "key")
             NavigationHelper.helper.openSidePanel(open: false)
         }
         alertController.addAction(OKAction)
