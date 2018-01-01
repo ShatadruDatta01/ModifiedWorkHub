@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 extension String
 {
@@ -463,6 +464,8 @@ extension UIViewController {
             REMOVE_OBJ_FOR_KEY(key: "Email")
             REMOVE_OBJ_FOR_KEY(key: "Name")
             REMOVE_OBJ_FOR_KEY(key: "Network")
+            GIDSignIn.sharedInstance().signOut()
+            FacebookLoginAPI.logOutFromFacebook()
             NavigationHelper.helper.openSidePanel(open: false)
         }
         alertController.addAction(OKAction)

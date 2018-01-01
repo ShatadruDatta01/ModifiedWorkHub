@@ -9,7 +9,6 @@
 import UIKit
 import GoogleSignIn
 
-
 class LoginController: BaseViewController {
 
     @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
