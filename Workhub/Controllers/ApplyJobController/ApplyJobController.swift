@@ -164,7 +164,7 @@ extension ApplyJobController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")
@@ -193,7 +193,7 @@ extension ApplyJobController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")
@@ -224,7 +224,7 @@ extension ApplyJobController {
                 }, didFinish: {
                     debugPrint("No Code")
                 })
-                
+                self.backToJobListScreen()
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
@@ -235,6 +235,28 @@ extension ApplyJobController {
                 })
             }
         }
+    }
+    
+    
+    
+    /// SearchJobListScreen
+    func backToJobListScreen() {
+        let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+        for aviewcontroller: UIViewController in allViewController
+        {
+            if aviewcontroller.isKind(of: SearchJobController.classForCoder())
+            {
+                NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                checkController = true
+                break
+            }
+        }
+        
+        if checkController == false {
+            let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
+            NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+        }
+        self.checkController = false
     }
 }
 

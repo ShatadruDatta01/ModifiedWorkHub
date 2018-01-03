@@ -110,7 +110,7 @@ extension UpdateResumeController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")

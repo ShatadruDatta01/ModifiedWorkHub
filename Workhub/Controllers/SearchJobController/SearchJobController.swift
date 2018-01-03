@@ -67,6 +67,10 @@ class SearchJobController: BaseViewController {
         self.imgMapContent.isHidden = true
         self.txtSearchJob.layer.borderWidth = 1.0
         self.txtSearchJob.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
+        
+        NavigationHelper.helper.recallJobAPI = {
+            self.fetchZipCode()
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -396,12 +400,11 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
                 self.circleIndicator.isHidden = false
                 self.circleIndicator.animate()
                 
-                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")
                 })
-                
                 self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
             } else {
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: text, didSubmit: { (text) in
