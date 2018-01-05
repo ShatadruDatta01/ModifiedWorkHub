@@ -22,7 +22,7 @@ class ApplyJobController: BaseTableViewController, UINavigationControllerDelegat
     var save = 0
     var ext: String!
     var strResume: String!
-    var strResumeBase64: String!
+    var strResumeBase64 = ""
     @IBOutlet weak var imgJobIcon: UIImageView!
     @IBOutlet weak var lblJobTitle: MarqueeLabel!
     @IBOutlet weak var lblSubJobTitle: UILabel!
@@ -149,9 +149,21 @@ class ApplyJobController: BaseTableViewController, UINavigationControllerDelegat
     }
     
     @IBAction func submit(_ sender: UIButton) {
-        self.circleIndicator.isHidden = false
-        self.circleIndicator.animate()
-        self.applyJobAPICall()
+        self.validation()
+    }
+    
+    func validation() {
+        if self.strResumeBase64.isEmpty {
+            ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please submit your resume", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        } else {
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.applyJobAPICall()
+        }
     }
 }
 
@@ -164,7 +176,7 @@ extension ApplyJobController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")
@@ -188,12 +200,12 @@ extension ApplyJobController {
     /// ResumeUpload
     func resumeUploadAPI() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("resumeUpload"), attributes: .concurrent)
-        API_MODELS_METHODS.resumeUpload(queue: concurrentQueue, resume: self.strResumeBase64!, ext: self.ext!) { (responseDict, isSuccess) in
+        API_MODELS_METHODS.resumeUpload(queue: concurrentQueue, resume: self.strResumeBase64, ext: self.ext!) { (responseDict, isSuccess) in
             print(responseDict!)
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")
@@ -224,7 +236,7 @@ extension ApplyJobController {
                 }, didFinish: {
                     debugPrint("No Code")
                 })
-                
+                self.backToJobListScreen()
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
@@ -235,6 +247,28 @@ extension ApplyJobController {
                 })
             }
         }
+    }
+    
+    
+    
+    /// SearchJobListScreen
+    func backToJobListScreen() {
+        let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+        for aviewcontroller: UIViewController in allViewController
+        {
+            if aviewcontroller.isKind(of: SearchJobController.classForCoder())
+            {
+                NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                checkController = true
+                break
+            }
+        }
+        
+        if checkController == false {
+            let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
+            NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+        }
+        self.checkController = false
     }
 }
 

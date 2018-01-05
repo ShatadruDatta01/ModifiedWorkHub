@@ -27,6 +27,7 @@ class NavigationHelper: NSObject {
     var enableSideMenuSwipe = true// Make it false in view will appear to disable swipr to open menu feature
     var didOpen: ((_ open: Bool) -> ())?
     var reloadData: (() -> ())?
+    var recallJobAPI: (() -> ())?
     
     var currentViewController: UIViewController? {
         return contentNavController?.viewControllers.last!
@@ -56,6 +57,12 @@ extension NavigationHelper {
     func reloadMenu() {
         if (reloadData != nil) {
             reloadData!()
+        }
+    }
+    
+    func reloadJobSearch() {
+        if (recallJobAPI != nil) {
+            recallJobAPI!()
         }
     }
     

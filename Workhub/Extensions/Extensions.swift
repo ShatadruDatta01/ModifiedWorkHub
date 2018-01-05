@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 extension String
 {
@@ -400,7 +401,6 @@ extension UIImage {
             return nil
         }
     }
-    
 }
 
 
@@ -423,10 +423,7 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
-    
-    
 }
-
 
 
 // MARK: - Alert Controller
@@ -461,21 +458,23 @@ extension UIViewController {
             (action: UIAlertAction) in
             SET_OBJ_FOR_KEY(obj: "0" as AnyObject, key: "isLogin")
             REMOVE_OBJ_FOR_KEY(key: "AccessToken")
+            REMOVE_OBJ_FOR_KEY(key: "Resume")
+            REMOVE_OBJ_FOR_KEY(key: "UserId")
+            REMOVE_OBJ_FOR_KEY(key: "UserPic")
+            REMOVE_OBJ_FOR_KEY(key: "Email")
+            REMOVE_OBJ_FOR_KEY(key: "Name")
+            REMOVE_OBJ_FOR_KEY(key: "Network")
+            GIDSignIn.sharedInstance().signOut()
+            FacebookLoginAPI.logOutFromFacebook()
+            NavigationHelper.helper.reloadJobSearch()
             NavigationHelper.helper.openSidePanel(open: false)
         }
         alertController.addAction(OKAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             (action: UIAlertAction) in
-           
         }
         alertController.addAction(cancelAction)
 
         self.present(alertController, animated: true, completion: nil)
     }
-
-    
 }
-
-
-
-

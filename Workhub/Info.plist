@@ -32,14 +32,14 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.928917427157-kqf9kgl56umtj7tqde8oiddmujb0803g</string>
-				<string>fb895660767257071</string>
+				<string>fb202766883592273</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>895660767257071</string>
+	<string>202766883592273</string>
 	<key>FacebookDisplayName</key>
 	<string>Workhub</string>
 	<key>LSApplicationQueriesSchemes</key>

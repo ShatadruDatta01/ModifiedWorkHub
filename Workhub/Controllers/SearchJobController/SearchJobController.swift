@@ -67,6 +67,10 @@ class SearchJobController: BaseViewController {
         self.imgMapContent.isHidden = true
         self.txtSearchJob.layer.borderWidth = 1.0
         self.txtSearchJob.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
+        
+        NavigationHelper.helper.recallJobAPI = {
+            self.fetchZipCode()
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -99,6 +103,7 @@ class SearchJobController: BaseViewController {
     }
     
     @IBAction func recenter(_ sender: UIButton) {
+        self.txtSearchJob.text = ""
         circleIndicator.isHidden = false
         circleIndicator.animate()
         self.mapListJob.showsUserLocation = true
@@ -107,17 +112,18 @@ class SearchJobController: BaseViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        self.fetchZipCode()
+        self.location()
     }
     
     /// Current Location
     func location() {
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
             currentLocation = locManager.location
             AppConstantValues.latitide = String(currentLocation.coordinate.latitude)
             AppConstantValues.longitude = String(currentLocation.coordinate.longitude)
             print(AppConstantValues.latitide, AppConstantValues.longitude)
+            self.fetchZipCode()
         }
     }
     
@@ -231,6 +237,7 @@ class SearchJobController: BaseViewController {
         self.viewRecenter.isHidden = false
         self.btnGO.isEnabled = false
         self.txtSearchJob.resignFirstResponder()
+        print(self.zipCode)
         self.fetchLatLonFromZip(zipCode: self.zipCode)
     }
     
@@ -395,12 +402,11 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
                 self.circleIndicator.isHidden = false
                 self.circleIndicator.animate()
                 
-                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")
                 })
-                
                 self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
             } else {
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: text, didSubmit: { (text) in
@@ -446,7 +452,8 @@ extension SearchJobController {
     /// UserJOB APICall
     func userJobListAPICall(zipCode: String) {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobSearch"), attributes: .concurrent)
-            API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"1", queue: concurrentQueue) { (responseDict, isSuccess) in
+            print(AppConstantValues.latitide, AppConstantValues.longitude, zipCode)
+            API_MODELS_METHODS.userJOBList(AppConstantValues.latitide, AppConstantValues.longitude, zipCode, radius:"5", queue: concurrentQueue) { (responseDict, isSuccess) in
                 if isSuccess {
                     self.circleIndicator.stop()
                     self.circleIndicator.isHidden = true
@@ -469,7 +476,7 @@ extension SearchJobController {
                     } else {
                         self.tblList.isHidden = true
                         self.lblDetailsContent.text = "No jobs available in 5 sq miles"
-                        AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
+                        ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
                             debugPrint("No Code")
                         }, didFinish: {
                             debugPrint("No Code")
