@@ -233,7 +233,7 @@ extension LoginController {
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["access_token"].stringValue as AnyObject, key: "AccessToken")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["network"].stringValue as AnyObject, key: "Network")
-                
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["isVerified"].stringValue as AnyObject, key: "IsVerified")
                 let jobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
                 NavigationHelper.helper.contentNavController!.pushViewController(jobPageVC, animated: true)
             } else {

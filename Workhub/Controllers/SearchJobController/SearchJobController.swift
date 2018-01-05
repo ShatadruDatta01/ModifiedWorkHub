@@ -103,6 +103,7 @@ class SearchJobController: BaseViewController {
     }
     
     @IBAction func recenter(_ sender: UIButton) {
+        self.txtSearchJob.text = ""
         circleIndicator.isHidden = false
         circleIndicator.animate()
         self.mapListJob.showsUserLocation = true
@@ -111,17 +112,18 @@ class SearchJobController: BaseViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        self.fetchZipCode()
+        self.location()
     }
     
     /// Current Location
     func location() {
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
             currentLocation = locManager.location
             AppConstantValues.latitide = String(currentLocation.coordinate.latitude)
             AppConstantValues.longitude = String(currentLocation.coordinate.longitude)
             print(AppConstantValues.latitide, AppConstantValues.longitude)
+            self.fetchZipCode()
         }
     }
     
@@ -474,7 +476,7 @@ extension SearchJobController {
                     } else {
                         self.tblList.isHidden = true
                         self.lblDetailsContent.text = "No jobs available in 5 sq miles"
-                        AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
+                        ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "No job found", didSubmit: { (text) in
                             debugPrint("No Code")
                         }, didFinish: {
                             debugPrint("No Code")

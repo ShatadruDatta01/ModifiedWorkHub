@@ -98,17 +98,52 @@ class CallOutController: BaseViewController {
             self.checkController = false
         } else {
             
-            let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
-            applyPageVC.strJobIcon = strIconDetails
-            applyPageVC.strJobTitle = strJobTitle
-            applyPageVC.strJobSubTitle = strJobSubTitle
-            applyPageVC.strJobId = strJobId
-            applyPageVC.save = self.save
-            NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: false)
+            if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" {
+                let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
+                applyPageVC.strJobIcon = strIconDetails
+                applyPageVC.strJobTitle = strJobTitle
+                applyPageVC.strJobSubTitle = strJobSubTitle
+                applyPageVC.strJobId = strJobId
+                applyPageVC.save = self.save
+                NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: false)
+            } else {
+                self.applyJobAPICall()
+            }
+            
         }
         
     }
     
+    
+    /// ApplyJobAPICall
+    func applyJobAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "apply", jobId: self.strJobId) { (responseDict,isSuccess) in
+            print(responseDict!)
+            if isSuccess {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+                self.backToJobListScreen()
+            } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
+    }
+    
+    func backToJobListScreen() {
+        self.dismissAnimate()
+    }
     
     @IBAction func jobSave(_ sender: UIButton) {
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
