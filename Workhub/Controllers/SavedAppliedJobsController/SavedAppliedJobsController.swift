@@ -48,6 +48,27 @@ extension SavedAppliedJobsController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchJobCell", for: indexPath) as! SearchJobCell
         cell.datasource = self.arrJob[indexPath.row] as AnyObject
+        cell.didCallLoader = {
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+        }
+        cell.didSendValue = { text, check in
+            self.circleIndicator.isHidden = true
+            self.circleIndicator.stop()
+            if check {
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            } else {
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: text, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
         cell.selectionStyle = .none
         return cell
     }
