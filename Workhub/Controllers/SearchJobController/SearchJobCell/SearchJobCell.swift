@@ -97,6 +97,7 @@ class SearchJobCell: BaseTableViewCell {
 extension SearchJobCell {
     func saveJobAPICall() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        print(self.jobId)
         API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "save", jobId: self.jobId) { (responseDict,isSuccess) in
             print(responseDict!)
             if isSuccess {

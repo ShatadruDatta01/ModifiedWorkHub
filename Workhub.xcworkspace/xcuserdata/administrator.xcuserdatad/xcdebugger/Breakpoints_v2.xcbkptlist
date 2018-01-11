@@ -26,7 +26,7 @@
                   moduleName = "Workhub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/administrator/Documents/ModifiedWorkHub/Workhub/Controllers/RegisterController/RegisterController.swift"
-                  timestampString = "537191376.314391"
+                  timestampString = "537364557.807587"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -41,7 +41,7 @@
                   moduleName = "Workhub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/administrator/Documents/ModifiedWorkHub/Workhub/Controllers/RegisterController/RegisterController.swift"
-                  timestampString = "537191376.340186"
+                  timestampString = "537364557.810789"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -57,13 +57,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Workhub/Controllers/RegisterController/RegisterController.swift"
-            timestampString = "537192341.458578"
+            filePath = "Workhub/Controllers/SearchJobController/SearchJobCell/SearchJobCell.swift"
+            timestampString = "537364555.712893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "sign(_:didSignInFor:withError:)"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "saveJobAPICall()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Workhub/Controllers/RegisterController/RegisterController.swift"
+            timestampString = "537364088.965668"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "registerAPICall(name:email:mob:password:network:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,13 +90,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Workhub/Controllers/SearchJobController/SearchJobCell/SearchJobCell.swift"
-            timestampString = "537192341.458685"
+            timestampString = "537364555.7339849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
             landmarkName = "saveJobAPICall()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Workhub.SearchJobCell.saveJobAPICall() -&gt; ()"
+                  moduleName = "Workhub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/administrator/Documents/ModifiedWorkHub/Workhub/Controllers/SearchJobController/SearchJobCell/SearchJobCell.swift"
+                  timestampString = "537364557.845953"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "424">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, SwiftyJSON.JSON&gt;&gt;, Swift.Bool) -&gt; () in Workhub.SearchJobCell.saveJobAPICall() -&gt; ()"
+                  moduleName = "Workhub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/administrator/Documents/ModifiedWorkHub/Workhub/Controllers/SearchJobController/SearchJobCell/SearchJobCell.swift"
+                  timestampString = "537364557.848323"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
