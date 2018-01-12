@@ -97,6 +97,7 @@ extension EditProfileController {
     func imageToBase64(image: UIImage) {
         let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
         self.strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+        print(self.strBase64)
         self.updateProfileAPI()
     }
     
