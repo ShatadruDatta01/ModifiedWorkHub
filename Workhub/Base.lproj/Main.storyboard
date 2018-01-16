@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2313,6 +2313,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPq-6s-kBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1376" y="79.610194902548727"/>
+        </scene>
+        <!--After Registration Controller-->
+        <scene sceneID="VDG-VL-RP3">
+            <objects>
+                <viewController storyboardIdentifier="AfterRegistrationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LHL-eB-I3H" customClass="AfterRegistrationController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zHA-l5-pLv"/>
+                        <viewControllerLayoutGuide type="bottom" id="4iI-cs-nlP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Tt-vY-DEp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegistrationDone.png" translatesAutoresizingMaskIntoConstraints="NO" id="YRa-W0-hTe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bg7-Yf-D9z">
+                                <rect key="frame" x="9" y="567" width="357" height="68"/>
+                                <color key="backgroundColor" red="0.98194009069999999" green="0.86115545029999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="8OU-jK-Pxa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
+                                <state key="normal" title="L E T ' S  G O !">
+                                    <color key="titleColor" red="0.00410870323" green="0.0037116995079999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="actionSubmit:" destination="pA9-77-wYo" eventType="touchUpInside" id="y62-ar-4uv"/>
+                                    <action selector="letsGo:" destination="LHL-eB-I3H" eventType="touchUpInside" id="u93-X8-aiL"/>
+                                    <action selector="resetPAssword:" destination="yqH-lS-iKy" eventType="touchUpInside" id="OTO-D4-E1Z"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YRa-W0-hTe" firstAttribute="top" secondItem="9Tt-vY-DEp" secondAttribute="top" id="F1g-r4-8Cw"/>
+                            <constraint firstItem="4iI-cs-nlP" firstAttribute="top" secondItem="YRa-W0-hTe" secondAttribute="bottom" id="FTi-du-vj0"/>
+                            <constraint firstAttribute="trailing" secondItem="YRa-W0-hTe" secondAttribute="trailing" id="KPE-P6-TxC"/>
+                            <constraint firstItem="YRa-W0-hTe" firstAttribute="top" secondItem="9Tt-vY-DEp" secondAttribute="top" id="VIZ-l3-04v"/>
+                            <constraint firstItem="Bg7-Yf-D9z" firstAttribute="leading" secondItem="9Tt-vY-DEp" secondAttribute="leading" constant="9" id="chN-lc-baq"/>
+                            <constraint firstItem="4iI-cs-nlP" firstAttribute="top" secondItem="Bg7-Yf-D9z" secondAttribute="bottom" constant="32" id="dK8-mt-XBm"/>
+                            <constraint firstItem="YRa-W0-hTe" firstAttribute="leading" secondItem="9Tt-vY-DEp" secondAttribute="leading" id="eAW-sg-Zd6"/>
+                            <constraint firstAttribute="trailing" secondItem="Bg7-Yf-D9z" secondAttribute="trailing" constant="9" id="g4j-yO-es1"/>
+                            <constraint firstItem="YRa-W0-hTe" firstAttribute="leading" secondItem="9Tt-vY-DEp" secondAttribute="leading" id="jAq-Q7-xl6"/>
+                            <constraint firstItem="4iI-cs-nlP" firstAttribute="top" secondItem="YRa-W0-hTe" secondAttribute="bottom" id="reb-j5-n79"/>
+                            <constraint firstAttribute="trailing" secondItem="YRa-W0-hTe" secondAttribute="trailing" id="zxu-zS-CoM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Td-FQ-Sdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1484" y="1439.7301349325339"/>
         </scene>
         <!--Controller-->
         <scene sceneID="Q3B-VK-Xm7">
@@ -4712,6 +4769,7 @@
         <image name="PasswordIcon" width="20" height="21"/>
         <image name="Plus" width="22" height="23"/>
         <image name="REGISTER" width="20" height="19"/>
+        <image name="RegistrationDone.png" width="1440" height="2560"/>
         <image name="Star" width="20" height="19"/>
         <image name="Tick" width="22" height="23"/>
         <image name="TitleIcon" width="100" height="20"/>
