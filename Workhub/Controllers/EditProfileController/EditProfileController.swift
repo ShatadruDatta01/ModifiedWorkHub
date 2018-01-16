@@ -97,6 +97,7 @@ extension EditProfileController {
     func imageToBase64(image: UIImage) {
         let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
         self.strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+        print(self.strBase64)
         self.updateProfileAPI()
     }
     
@@ -154,6 +155,7 @@ extension EditProfileController {
                                     self.circleIndicator.animate()
                                     DispatchQueue.global(qos: .background).async {
                                         print("This is run on the background queue")
+                                        AppConstantValues.isSocial = false
                                         self.imageToBase64(image: self.imgProf.image!)
                                     }
                                     
@@ -226,9 +228,18 @@ extension EditProfileController {
                 self.txtSal.text = responseDict!["result"]!["data"]["salExpected"].stringValue
                 self.txtEmail.text = responseDict!["result"]!["data"]["email"].stringValue
                 let mobNo = responseDict!["result"]!["data"]["mobile"].stringValue.components(separatedBy: "-")
-                self.txtMob.text = String(mobNo[1])
-                self.strCountryCode = String(mobNo[0])
-                self.imgProf.setImage(withURL: NSURL(string: responseDict!["result"]!["data"]["pic"].stringValue)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+                if mobNo.count > 1 {
+                    self.txtMob.text = String(mobNo[1])
+                    self.strCountryCode = String(mobNo[0])
+                } else {
+                    self.txtMob.text = ""
+                    self.strCountryCode = ""
+                }
+                if AppConstantValues.isSocial == true {
+                    self.imgProf.setImage(withURL: NSURL(string: OBJ_FOR_KEY(key: "UserPic")! as! String)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+                } else {
+                    self.imgProf.setImage(withURL: NSURL(string: responseDict!["result"]!["data"]["pic"].stringValue)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+                }
                 self.fetchFlag()
             } else {
                 self.circleIndicator.isHidden = true

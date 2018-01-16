@@ -397,6 +397,8 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchJobCell", for: indexPath) as! SearchJobCell
         cell.datasource = self.arrJob[indexPath.row] as AnyObject
+        cell.didCallLoader = {
+        }
         cell.didSendValue = { text, check in
             if check {
                 self.circleIndicator.isHidden = false

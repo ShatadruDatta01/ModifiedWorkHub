@@ -19,6 +19,7 @@ class RegisterController: BaseViewController {
     var strEmail = ""
     var strMob = ""
     var strPassword = ""
+    var profPic = ""
     var arrCountryCode = [AnyObject]()
     var dictCountryCode = [String: String]()
     @IBOutlet weak var tblRegister: UITableView!
@@ -86,7 +87,10 @@ extension RegisterController: GIDSignInUIDelegate, GIDSignInDelegate {
             //          let familyName = user.profile.familyName
             
             print(user.userID, user.profile.name, user.profile.email)
-            
+            AppConstantValues.isSocial = true
+            if user.profile.hasImage {
+                self.profPic = String(describing: signIn.currentUser.profile.imageURL(withDimension: 120)!)
+            }
             self.registerAPICall(name: user.profile.name, email: user.profile.email, mob: "", password: "", network: "google")
             
             // ...
@@ -117,8 +121,9 @@ extension RegisterController {
             DispatchQueue.main.async {
                 if isSuccess {
                     let value = response as! [String:AnyObject]
-                    debugPrint("the profile fbUser: \(value)")
-                    //let emailId = (value["email"] as? String)!
+                    AppConstantValues.isSocial = true
+                    self.profPic = "http://graph.facebook.com/\((value["id"] as? String)!)/picture?type=large"
+                    debugPrint("the profile fbUser: \(value)", self.profPic)
                     self.registerAPICall(name: (value["name"] as? String)!, email: (value["email"] as? String)!, mob: "", password: "", network: "facebook")
                     
                 }else{
@@ -249,6 +254,7 @@ extension RegisterController {
                             if self.strPassword.characters.count > 0 {
                                 if self.strPassword.characters.count > 5 {
                                     self.strNetwork = "Manual"
+                                    AppConstantValues.isSocial = false
                                     let mob = "\(self.strCountryCode)-\(self.strMob)"
                                     self.registerAPICall(name: self.strName, email: self.strEmail, mob: mob, password: self.strPassword, network: "Manual")
                                 } else {
@@ -321,7 +327,15 @@ extension RegisterController {
                 SET_OBJ_FOR_KEY(obj: "1" as AnyObject, key: "isLogin")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["id"].stringValue as AnyObject, key: "UserId")
-                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                if AppConstantValues.isSocial == true {
+                    if self.profPic.isEmpty {
+                        SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                    } else {
+                        SET_OBJ_FOR_KEY(obj: self.profPic as AnyObject, key: "UserPic")
+                    }
+                } else {
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                }
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
                 REMOVE_OBJ_FOR_KEY(key: "AccessToken")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["access_token"].stringValue as AnyObject, key: "AccessToken")

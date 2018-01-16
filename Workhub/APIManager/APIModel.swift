@@ -248,7 +248,8 @@ struct API_MODELS_METHODS {
                             completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
         
         let subpath =  AppWebservices.UPDATE_PROFILE
-        let parameters = ["name": name, "email": email, "mobile": mobile, "png, \(String(describing: pic))": pic, "experience": experience, "salExpected": salExpected, "location": location]
+        let parameters = ["name": name!, "email": email!, "mobile": mobile!, "pic": "\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+        print(parameters)
         let completeUrl = AppWebservices.baseUrl + subpath
         
         if Reachability.isConnectedToNetwork() {

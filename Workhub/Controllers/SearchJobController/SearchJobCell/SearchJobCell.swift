@@ -13,6 +13,7 @@ class SearchJobCell: BaseTableViewCell {
     var checkController = false
     var jobId: String!
     var didSendValue:((String, Bool) -> ())!
+    var didCallLoader: (()->())!
     @IBOutlet weak var viewHour: UIView!
     @IBOutlet weak var viewMiles: UIView!
     @IBOutlet weak var imgJobIcon: UIImageView!
@@ -84,6 +85,7 @@ class SearchJobCell: BaseTableViewCell {
             }
             self.checkController = false
         } else {
+            self.didCallLoader!()
             self.saveJobAPICall()
         }
     }
@@ -95,7 +97,9 @@ class SearchJobCell: BaseTableViewCell {
 extension SearchJobCell {
     func saveJobAPICall() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        print(self.jobId)
         API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "save", jobId: self.jobId) { (responseDict,isSuccess) in
+            print(responseDict!)
             if isSuccess {
                 self.didSendValue!("callAPI", responseDict!["result"]!["status"].bool!)
             } else {
