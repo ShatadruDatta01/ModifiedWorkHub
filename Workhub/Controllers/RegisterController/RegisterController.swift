@@ -342,8 +342,10 @@ extension RegisterController {
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["network"].stringValue as AnyObject, key: "Network")
                 
-                let jobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
-                NavigationHelper.helper.contentNavController!.pushViewController(jobPageVC, animated: true)
+                let regsDoneVC = mainStoryboard.instantiateViewController(withIdentifier: "AfterRegistrationController") as! AfterRegistrationController
+                NavigationHelper.helper.contentNavController!.pushViewController(regsDoneVC, animated: true)
+                
+                
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()

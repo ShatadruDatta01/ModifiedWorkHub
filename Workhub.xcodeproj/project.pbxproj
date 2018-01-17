@@ -21,6 +21,8 @@
 		5F49CC321FC49D8C004CEB29 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49CC311FC49D8C004CEB29 /* ButtonCell.swift */; };
 		5F49CC391FC4B167004CEB29 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F49CC381FC4B167004CEB29 /* leftArrow.png */; };
 		5F66A3481FE04C3C0002D3E9 /* UpdateResumeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F66A3471FE04C3C0002D3E9 /* UpdateResumeController.swift */; };
+		5F8A7771200E9C5400D084E5 /* RegistrationDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A7770200E9C5300D084E5 /* RegistrationDone.png */; };
+		5F8A7774200E9DDC00D084E5 /* AfterRegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8A7773200E9DDC00D084E5 /* AfterRegistrationController.swift */; };
 		5F985F361FCDDA3500CE8BBA /* ToastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F985F351FCDDA3500CE8BBA /* ToastController.swift */; };
 		5F9FA5321FD301AA001DFB10 /* SearchJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9FA5311FD301AA001DFB10 /* SearchJobCell.swift */; };
 		5FA04F661FDC62FF0053DA0F /* CallOutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA04F651FDC62FF0053DA0F /* CallOutController.swift */; };
@@ -380,6 +382,8 @@
 		5F49CC311FC49D8C004CEB29 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		5F49CC381FC4B167004CEB29 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
 		5F66A3471FE04C3C0002D3E9 /* UpdateResumeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateResumeController.swift; sourceTree = "<group>"; };
+		5F8A7770200E9C5300D084E5 /* RegistrationDone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RegistrationDone.png; sourceTree = "<group>"; };
+		5F8A7773200E9DDC00D084E5 /* AfterRegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterRegistrationController.swift; sourceTree = "<group>"; };
 		5F985F351FCDDA3500CE8BBA /* ToastController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastController.swift; sourceTree = "<group>"; };
 		5F9FA5311FD301AA001DFB10 /* SearchJobCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJobCell.swift; sourceTree = "<group>"; };
 		5FA04F651FDC62FF0053DA0F /* CallOutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallOutController.swift; sourceTree = "<group>"; };
@@ -857,12 +861,21 @@
 		5F49CC371FC4B160004CEB29 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5F8A7770200E9C5300D084E5 /* RegistrationDone.png */,
 				C39A874D1FE2784B00F34335 /* AboutWorkhub.png */,
 				5F49CC381FC4B167004CEB29 /* leftArrow.png */,
 				C3D63B251FE7EFD1004EE053 /* pdf-sample.pdf */,
 				C3D63B271FE7F6A1004EE053 /* ShatadruDatta_resume.docx */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		5F8A7772200E9D9C00D084E5 /* AfterRegistrationController */ = {
+			isa = PBXGroup;
+			children = (
+				5F8A7773200E9DDC00D084E5 /* AfterRegistrationController.swift */,
+			);
+			path = AfterRegistrationController;
 			sourceTree = "<group>";
 		};
 		5F985F341FCDDA3500CE8BBA /* ToastController */ = {
@@ -1150,6 +1163,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5F8A7772200E9D9C00D084E5 /* AfterRegistrationController */,
 				C3C92D231FEBB09800B9EE93 /* NoInternetController */,
 				C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */,
 				C39A874F1FE2794600F34335 /* AboutWorkhubController */,
@@ -2035,6 +2049,7 @@
 				C35C249E1FD01B500077B5AC /* Guatemala.png in Resources */,
 				C34843121FD809F000059016 /* open-sans.light-italic.ttf in Resources */,
 				C35C24FB1FD01B500077B5AC /* Russian Federation.png in Resources */,
+				5F8A7771200E9C5400D084E5 /* RegistrationDone.png in Resources */,
 				C35C244B1FD01B500077B5AC /* American Samoa.png in Resources */,
 				C35C247F1FD01B500077B5AC /* Cuba.png in Resources */,
 				C35C24F81FD01B500077B5AC /* Red Cross.png in Resources */,
@@ -2316,6 +2331,7 @@
 				C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */,
 				5FCE5B2A1FC098BA00F299B9 /* ResponseHandler.swift in Sources */,
 				5FCE5B281FC0638100F299B9 /* Workhub.xcdatamodeld in Sources */,
+				5F8A7774200E9DDC00D084E5 /* AfterRegistrationController.swift in Sources */,
 				5FCE5B1F1FC05F7400F299B9 /* NavigationHelper.swift in Sources */,
 				C35C25421FD042380077B5AC /* CountryCodeCell.swift in Sources */,
 				C361536D1FC2E2DD001273BA /* LoginController.swift in Sources */,
