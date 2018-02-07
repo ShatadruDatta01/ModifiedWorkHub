@@ -275,10 +275,7 @@ struct API_MODELS_METHODS {
                 debugPrint("No Code")
             })
         }
-        
     }
-    
-    
     
     static func getJobList(queue: DispatchQueue? = nil, action: String?,
                            completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
