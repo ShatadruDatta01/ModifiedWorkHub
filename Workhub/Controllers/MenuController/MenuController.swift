@@ -110,6 +110,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     return cellTitle
                 case 1:
                     let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+                    cellProf.isLogin = false
                     cellProf.datasource = "" as AnyObject
                     cellProf.imgProfile.addGestureRecognizer(tap)
                     cellProf.imgProfile.isUserInteractionEnabled = true
@@ -141,6 +142,8 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     return cellTitle
                 case 1:
                     let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+                    cellProf.isLogin = true
+                    cellProf.isLogin = false
                     if self.cameraImage == false {
                         cellProf.datasource = String(describing: OBJ_FOR_KEY(key: "UserPic")!) as AnyObject
                     } else {
@@ -175,6 +178,8 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    /// Tapped On Profile
     func tappedMe()
     {
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {

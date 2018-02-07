@@ -32,6 +32,7 @@ class TextCell: BaseTableViewCell {
                 }
                 
                 if index == 3 {
+                    self.txtField.isSecureTextEntry = true
                     self.btnVisibility.isHidden = false
                 } else {
                     self.btnVisibility.isHidden = true
@@ -48,11 +49,11 @@ class TextCell: BaseTableViewCell {
     func visibilityPassword(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            self.txtField.isSecureTextEntry = false
+            self.txtField.isSecureTextEntry = true
             self.btnVisibility.setImage(UIImage(named: "Visibility_off"), for: .normal)
         } else {
             sender.isSelected = true
-            self.txtField.isSecureTextEntry = true
+            self.txtField.isSecureTextEntry = false
             self.btnVisibility.setImage(UIImage(named: "Visibility_on"), for: .selected)
         }
     }

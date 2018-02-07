@@ -37,11 +37,11 @@ class OTPController: BaseTableViewController {
     @IBAction func visibilityPassword(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            self.txtPassword.isSecureTextEntry = false
+            self.txtPassword.isSecureTextEntry = true
             self.btnPassword.setImage(UIImage(named: "Visibility_off"), for: .normal)
         } else {
             sender.isSelected = true
-            self.txtPassword.isSecureTextEntry = true
+            self.txtPassword.isSecureTextEntry = false
             self.btnPassword.setImage(UIImage(named: "Visibility_on"), for: .selected)
         }
     }
@@ -49,11 +49,11 @@ class OTPController: BaseTableViewController {
     @IBAction func visibilityConfirmPassword(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            self.txtConfPassword.isSecureTextEntry = false
+            self.txtConfPassword.isSecureTextEntry = true
             self.btnConfPassword.setImage(UIImage(named: "Visibility_off"), for: .normal)
         } else {
             sender.isSelected = true
-            self.txtConfPassword.isSecureTextEntry = true
+            self.txtConfPassword.isSecureTextEntry = false
             self.btnConfPassword.setImage(UIImage(named: "Visibility_on"), for: .selected)
         }
     }

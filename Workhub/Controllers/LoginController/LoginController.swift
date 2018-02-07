@@ -22,6 +22,7 @@ class LoginController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.txtPassword.isSecureTextEntry = true
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         self.viewEmail.layer.borderWidth = 1.0
@@ -52,11 +53,11 @@ class LoginController: BaseViewController {
     @IBAction func visibilityPassword(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            self.txtPassword.isSecureTextEntry = false
+            self.txtPassword.isSecureTextEntry = true
             self.btnPassword.setImage(UIImage(named: "Visibility_off"), for: .normal)
         } else {
             sender.isSelected = true
-            self.txtPassword.isSecureTextEntry = true
+            self.txtPassword.isSecureTextEntry = false
             self.btnPassword.setImage(UIImage(named: "Visibility_on"), for: .selected)
         }
     }
