@@ -2003,9 +2003,11 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="btnApplyJobs" destination="Dub-Vh-3Ld" id="Y5b-t4-rmS"/>
                         <outlet property="btnBookmark" destination="DMu-Pb-EnG" id="eqy-gC-Xl5"/>
                         <outlet property="circleIndicator" destination="q8s-r2-n6g" id="dUv-zw-RF9"/>
                         <outlet property="jobIcon" destination="J40-ZP-4wy" id="kXt-lP-cWa"/>
+                        <outlet property="lblApply" destination="Ofo-pj-r5W" id="wsY-UW-cRG"/>
                         <outlet property="lblDayShift" destination="Sxw-gb-yIF" id="WrJ-4b-0ax"/>
                         <outlet property="lblFulltime" destination="IPN-j2-GM1" id="3MO-4b-X3Y"/>
                         <outlet property="lblHour" destination="FsV-JU-MVM" id="WOa-3J-d2a"/>
