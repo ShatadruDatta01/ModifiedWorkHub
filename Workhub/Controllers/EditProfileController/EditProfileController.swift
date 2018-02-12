@@ -15,6 +15,7 @@ class EditProfileController: BaseTableViewController {
     @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     var strCountryCode = "+1"
     var strBase64 = ""
+    var imgExt = ""
     var arrCountryCode = [AnyObject]()
     var dictCountryCode = [String: String]()
     @IBOutlet weak var imgFlag: UIImageView!
@@ -31,11 +32,13 @@ class EditProfileController: BaseTableViewController {
         NavigationHelper.helper.headerViewController?.isBack = true
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(EditProfileController.tappedMe))
         self.imgProf.addGestureRecognizer(tap)
         self.imgProf.isUserInteractionEnabled = true
         self.imgProf.layer.borderWidth = 2.0
         self.imgProf.layer.borderColor = UIColorRGB(r: 245.0, g: 170.0, b: 81.0)?.cgColor
+        
         self.txtName.keyboardType = UIKeyboardType.alphabet
         self.txtSal.keyboardType = UIKeyboardType.decimalPad
         self.txtJobExp.keyboardType = UIKeyboardType.decimalPad
@@ -88,7 +91,6 @@ extension EditProfileController: TGCameraDelegate {
         self.imgProf.image = image;
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 
@@ -96,6 +98,8 @@ extension EditProfileController: TGCameraDelegate {
 extension EditProfileController {
     func imageToBase64(image: UIImage) {
         let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
+        self.imgExt = String(describing: imageData.imageFormat)
+        print(self.imgExt)
         self.strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
         print(self.strBase64)
         self.updateProfileAPI()
@@ -235,10 +239,13 @@ extension EditProfileController {
                     self.txtMob.text = ""
                     self.strCountryCode = ""
                 }
+                
                 if AppConstantValues.isSocial == true {
                     self.imgProf.setImage(withURL: NSURL(string: OBJ_FOR_KEY(key: "UserPic")! as! String)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
                 } else {
                     self.imgProf.setImage(withURL: NSURL(string: responseDict!["result"]!["data"]["pic"].stringValue)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+                    REMOVE_OBJ_FOR_KEY(key: "UserPic")
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
                 }
                 self.fetchFlag()
             } else {
@@ -248,15 +255,19 @@ extension EditProfileController {
         }
     }
     
+    
+    /// UpdateProfileAPI
     func updateProfileAPI() {
         let mob = self.strCountryCode + "-" + self.txtMob.text!
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("updateProfile"), attributes: .concurrent)
         
-        API_MODELS_METHODS.updateProfile(queue: concurrentQueue, email: self.txtEmail.text!, name: self.txtName.text!, mobile: mob, pic: self.strBase64, experience: self.txtJobExp.text!, salExpected: self.txtSal.text!, location: self.txtAdd.text!) { (responseDict, isSuccess) in
+        API_MODELS_METHODS.updateProfile(queue: concurrentQueue, email: self.txtEmail.text!, name: self.txtName.text!, mobile: mob, pic: self.strBase64, ext: self.imgExt, experience: self.txtJobExp.text!, salExpected: self.txtSal.text!, location: self.txtAdd.text!) { (responseDict, isSuccess) in
             print(responseDict!)
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
+                REMOVE_OBJ_FOR_KEY(key: "UserPic")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully updated your profile", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
@@ -274,3 +285,4 @@ extension EditProfileController {
         }
     }
 }
+//http:\/\/apils.workhubapp.com\/v1.0\/media\/images\/profile\/78044b02.png

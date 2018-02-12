@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Workhub/Controllers/ForgotPasswordController/ForgotPasswordController.swift"
-            timestampString = "539698093.828953"
+            filePath = "Workhub/APIManager/APIModel.swift"
+            timestampString = "540120359.564757"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "sendOTP()"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "updateProfile(queue:email:name:mobile:pic:ext:experience:salExpected:location:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Workhub/Controllers/LoginController/LoginController.swift"
+            timestampString = "540120359.565122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "loginAPICall(email:password:network:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

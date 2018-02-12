@@ -334,6 +334,7 @@
 		C361536F1FC56D2D001273BA /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C361536E1FC56D2D001273BA /* APIModel.swift */; };
 		C365E8C91FD918A800CFE48B /* SearchJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365E8C81FD918A800CFE48B /* SearchJob.swift */; };
 		C38EFA321FDE5D0E0072F898 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */; };
+		C395DB0B20316DDC00B1954B /* ImageFileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C395DB0A20316DDC00B1954B /* ImageFileExtension.swift */; };
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C39A874E1FE2784C00F34335 /* AboutWorkhub.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A874D1FE2784B00F34335 /* AboutWorkhub.png */; };
 		C39A87511FE2797F00F34335 /* AboutWorkhubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */; };
@@ -706,6 +707,7 @@
 		C365E8C81FD918A800CFE48B /* SearchJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJob.swift; sourceTree = "<group>"; };
 		C36738751FEA73D10036CE99 /* Workhub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Workhub.entitlements; sourceTree = "<group>"; };
 		C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		C395DB0A20316DDC00B1954B /* ImageFileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileExtension.swift; sourceTree = "<group>"; };
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
 		C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWorkhubController.swift; sourceTree = "<group>"; };
@@ -1209,6 +1211,7 @@
 		C34E1D101FBD7E3200CE777C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				C395DB0920316DC000B1954B /* FileExtension */,
 				C3057A261FE16E6B00175A44 /* BPCircleActivityIndicator */,
 				C35C23521FD01B4F0077B5AC /* Flags */,
 				5FCE5B311FC09ABA00F299B9 /* Base64 */,
@@ -1635,6 +1638,14 @@
 				5F66A3471FE04C3C0002D3E9 /* UpdateResumeController.swift */,
 			);
 			path = UpdateResumeController;
+			sourceTree = "<group>";
+		};
+		C395DB0920316DC000B1954B /* FileExtension */ = {
+			isa = PBXGroup;
+			children = (
+				C395DB0A20316DDC00B1954B /* ImageFileExtension.swift */,
+			);
+			path = FileExtension;
 			sourceTree = "<group>";
 		};
 		C396AB791FCECF37000F0BC9 /* AlertController */ = {
@@ -2319,6 +2330,7 @@
 				C3057A2F1FE16E6B00175A44 /* CircleLotationSet.swift in Sources */,
 				5FCE5AFD1FC047BB00F299B9 /* TabBarController.swift in Sources */,
 				5FCE5B171FC05F7400F299B9 /* BaseTableViewController.swift in Sources */,
+				C395DB0B20316DDC00B1954B /* ImageFileExtension.swift in Sources */,
 				C34E1D141FBD7E3200CE777C /* AppDelegate.swift in Sources */,
 				C3EE8DEA1FD5617400C2B89E /* ApplyJobController.swift in Sources */,
 				5F985F361FCDDA3500CE8BBA /* ToastController.swift in Sources */,

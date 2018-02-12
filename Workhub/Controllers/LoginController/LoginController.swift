@@ -19,6 +19,7 @@ class LoginController: BaseViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var btnPassword: UIButton!
+    var profPic = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,9 @@ class LoginController: BaseViewController {
                 if isSuccess {
                     let value = response as! [String:AnyObject]
                     debugPrint("the profile fbUser: \(value)")
+                    AppConstantValues.isSocial = true
+                    self.profPic = "http://graph.facebook.com/\((value["id"] as? String)!)/picture?type=large"
+                    debugPrint("the profile fbUser: \(value)", self.profPic)
                     let emailId = (value["email"] as? String)!
                     self.loginAPICall(email: emailId, password: "", network: "facebook")
                 }else{
@@ -140,7 +144,10 @@ extension LoginController: GIDSignInUIDelegate, GIDSignInDelegate {
             //          let familyName = user.profile.familyName
             
             print(user.userID, user.profile.name, user.profile.email)
-            
+            AppConstantValues.isSocial = true
+            if user.profile.hasImage {
+                self.profPic = String(describing: signIn.currentUser.profile.imageURL(withDimension: 120)!)
+            }
             self.loginAPICall(email: user.profile.email!, password: "", network: "google")
             
             // ...
@@ -164,6 +171,7 @@ extension LoginController {
         if !(self.txtEmail.text?.isEmpty)! {
             if (self.txtEmail.text?.isValidEmail)! {
                 if !(self.txtPassword.text?.isEmpty)! {
+                    AppConstantValues.isSocial = false
                     self.loginAPICall(email: self.txtEmail.text!, password: self.txtPassword.text!, network: "Manual")
                 } else {
                     ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter password", didSubmit: { (text) in
@@ -228,7 +236,17 @@ extension LoginController {
                 SET_OBJ_FOR_KEY(obj: "1" as AnyObject, key: "isLogin")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["id"].stringValue as AnyObject, key: "UserId")
-                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                
+                if AppConstantValues.isSocial == true {
+                    if self.profPic.isEmpty {
+                        SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                    } else {
+                        SET_OBJ_FOR_KEY(obj: self.profPic as AnyObject, key: "UserPic")
+                    }
+                } else {
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                }
+                
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
                 REMOVE_OBJ_FOR_KEY(key: "AccessToken")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["access_token"].stringValue as AnyObject, key: "AccessToken")
