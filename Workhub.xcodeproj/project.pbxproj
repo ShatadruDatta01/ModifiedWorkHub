@@ -334,6 +334,8 @@
 		C361536F1FC56D2D001273BA /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C361536E1FC56D2D001273BA /* APIModel.swift */; };
 		C365E8C91FD918A800CFE48B /* SearchJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365E8C81FD918A800CFE48B /* SearchJob.swift */; };
 		C38EFA321FDE5D0E0072F898 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */; };
+		C38F49DD2036B6B5003627B4 /* AppliedListJobsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F49DC2036B6B5003627B4 /* AppliedListJobsController.swift */; };
+		C38F49E02036BEDF003627B4 /* AppliedListJobsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F49DF2036BEDF003627B4 /* AppliedListJobsCell.swift */; };
 		C395DB0B20316DDC00B1954B /* ImageFileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C395DB0A20316DDC00B1954B /* ImageFileExtension.swift */; };
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C39A874E1FE2784C00F34335 /* AboutWorkhub.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A874D1FE2784B00F34335 /* AboutWorkhub.png */; };
@@ -707,6 +709,8 @@
 		C365E8C81FD918A800CFE48B /* SearchJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJob.swift; sourceTree = "<group>"; };
 		C36738751FEA73D10036CE99 /* Workhub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Workhub.entitlements; sourceTree = "<group>"; };
 		C38EFA311FDE5D0E0072F898 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		C38F49DC2036B6B5003627B4 /* AppliedListJobsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedListJobsController.swift; sourceTree = "<group>"; };
+		C38F49DF2036BEDF003627B4 /* AppliedListJobsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedListJobsCell.swift; sourceTree = "<group>"; };
 		C395DB0A20316DDC00B1954B /* ImageFileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileExtension.swift; sourceTree = "<group>"; };
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
@@ -1168,6 +1172,7 @@
 				5F8A7772200E9D9C00D084E5 /* AfterRegistrationController */,
 				C3C92D231FEBB09800B9EE93 /* NoInternetController */,
 				C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */,
+				C38F49DB2036B679003627B4 /* AppliedListJobsController */,
 				C39A874F1FE2794600F34335 /* AboutWorkhubController */,
 				C38EFA331FDFB02B0072F898 /* UpdateResumeController */,
 				C38EFA301FDE5CED0072F898 /* EditProfileController */,
@@ -1638,6 +1643,23 @@
 				5F66A3471FE04C3C0002D3E9 /* UpdateResumeController.swift */,
 			);
 			path = UpdateResumeController;
+			sourceTree = "<group>";
+		};
+		C38F49DB2036B679003627B4 /* AppliedListJobsController */ = {
+			isa = PBXGroup;
+			children = (
+				C38F49DE2036BE46003627B4 /* AppliedListJobsCell */,
+				C38F49DC2036B6B5003627B4 /* AppliedListJobsController.swift */,
+			);
+			path = AppliedListJobsController;
+			sourceTree = "<group>";
+		};
+		C38F49DE2036BE46003627B4 /* AppliedListJobsCell */ = {
+			isa = PBXGroup;
+			children = (
+				C38F49DF2036BEDF003627B4 /* AppliedListJobsCell.swift */,
+			);
+			path = AppliedListJobsCell;
 			sourceTree = "<group>";
 		};
 		C395DB0920316DC000B1954B /* FileExtension */ = {
@@ -2350,6 +2372,7 @@
 				5F49CC171FC45169004CEB29 /* TitleCell.swift in Sources */,
 				5FCE5B341FC09AC900F299B9 /* NSData+Base64.m in Sources */,
 				5FCE5B151FC05F7400F299B9 /* BaseTableViewCell.swift in Sources */,
+				C38F49E02036BEDF003627B4 /* AppliedListJobsCell.swift in Sources */,
 				C3F2BBC81FDA692500C0BC9A /* LogoutCell.swift in Sources */,
 				C361536F1FC56D2D001273BA /* APIModel.swift in Sources */,
 				5F49CC321FC49D8C004CEB29 /* ButtonCell.swift in Sources */,
@@ -2369,6 +2392,7 @@
 				C3EE8DE71FD5558000C2B89E /* JobDetailsController.swift in Sources */,
 				C3057A2E1FE16E6B00175A44 /* CircleLotateLayer.swift in Sources */,
 				C38EFA321FDE5D0E0072F898 /* EditProfileController.swift in Sources */,
+				C38F49DD2036B6B5003627B4 /* AppliedListJobsController.swift in Sources */,
 				5F9FA5321FD301AA001DFB10 /* SearchJobCell.swift in Sources */,
 				C35C234F1FCFFAA90077B5AC /* FacebookAPI.swift in Sources */,
 				5FCE5AFB1FC047BB00F299B9 /* MainContainerController.swift in Sources */,

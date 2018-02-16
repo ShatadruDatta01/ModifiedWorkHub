@@ -243,9 +243,10 @@ extension EditProfileController {
                 if AppConstantValues.isSocial == true {
                     self.imgProf.setImage(withURL: NSURL(string: OBJ_FOR_KEY(key: "UserPic")! as! String)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
                 } else {
-                    self.imgProf.setImage(withURL: NSURL(string: responseDict!["result"]!["data"]["pic"].stringValue)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+                    
                     REMOVE_OBJ_FOR_KEY(key: "UserPic")
                     SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                    self.imgProf.imageFromURL(urlString: OBJ_FOR_KEY(key: "UserPic")! as! String)
                 }
                 self.fetchFlag()
             } else {

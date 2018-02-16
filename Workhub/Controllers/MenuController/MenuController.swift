@@ -327,7 +327,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
                     for aviewcontroller: UIViewController in allViewController
                     {
-                        if aviewcontroller.isKind(of: SavedAppliedJobsController.classForCoder())
+                        if aviewcontroller.isKind(of: AppliedListJobsController.classForCoder())
                         {
                             NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
                             checkController = true
@@ -336,7 +336,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     }
                     
                     if checkController == false {
-                        let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "SavedAppliedJobsController") as! SavedAppliedJobsController
+                        let savedApplyVC = mainStoryboard.instantiateViewController(withIdentifier: "AppliedListJobsController") as! AppliedListJobsController
                         savedApplyVC.strJobs = "apply"
                         NavigationHelper.helper.contentNavController!.pushViewController(savedApplyVC, animated: true)
                     }

@@ -402,6 +402,7 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchJobCell", for: indexPath) as! SearchJobCell
+        cell.jobType = "search"
         cell.datasource = self.arrJob[indexPath.row] as AnyObject
         cell.didCallLoader = {
         }

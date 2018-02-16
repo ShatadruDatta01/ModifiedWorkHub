@@ -20,7 +20,8 @@ class ProfileCell: BaseTableViewCell {
                 self.imgProfile.layer.borderColor = UIColorRGB(r: 226.0, g: 155.0, b: 48.0)?.cgColor
                 if self.isLogin == true {
                     if datasource as! String != "" {
-                        self.imgProfile.setImage(withURL: NSURL(string: datasource as! String)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+//                        self.imgProfile.setImage(withURL: NSURL(string: datasource as! String)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
+                        self.imgProfile.imageFromURL(urlString: datasource as! String)
                     }
                 } else {
                     self.imgProfile.image = UIImage(named: "Camera")

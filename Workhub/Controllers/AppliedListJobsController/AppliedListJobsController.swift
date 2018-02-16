@@ -1,14 +1,14 @@
 //
-//  SavedAppliedJobsController.swift
+//  AppliedListJobsController.swift
 //  Workhub
 //
-//  Created by Administrator on 18/12/17.
-//  Copyright © 2017 Sociosquares. All rights reserved.
+//  Created by Administrator on 16/02/18.
+//  Copyright © 2018 Sociosquares. All rights reserved.
 //
 
 import UIKit
 
-class SavedAppliedJobsController: BaseViewController {
+class AppliedListJobsController: BaseViewController {
 
     var strJobs: String!
     @IBOutlet weak var lblHeaderContent: UILabel!
@@ -23,14 +23,10 @@ class SavedAppliedJobsController: BaseViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if self.strJobs == "save" {
-            self.lblHeaderContent.text = "JOBS YOU'VE SAVED FOR LATER"
-        } else {
-            self.lblHeaderContent.text = "JOBS YOU'VE APPLIED FOR"
-        }
+        self.lblHeaderContent.text = "JOBS YOU'VE APPLIED FOR"
         NavigationHelper.helper.headerViewController?.isBack = true
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
@@ -40,36 +36,14 @@ class SavedAppliedJobsController: BaseViewController {
 
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension SavedAppliedJobsController: UITableViewDelegate, UITableViewDataSource {
+extension AppliedListJobsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrJob.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchJobCell", for: indexPath) as! SearchJobCell
-        cell.jobType = "save"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AppliedListJobsCell", for: indexPath) as! AppliedListJobsCell
         cell.datasource = self.arrJob[indexPath.row] as AnyObject
-        cell.didCallLoader = {
-            self.circleIndicator.isHidden = false
-            self.circleIndicator.animate()
-        }
-        cell.didSendValue = { text, check in
-            self.circleIndicator.isHidden = true
-            self.circleIndicator.stop()
-            if check {
-                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
-                    debugPrint("No Code")
-                }, didFinish: {
-                    debugPrint("No Code")
-                })
-            } else {
-                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: text, didSubmit: { (text) in
-                    debugPrint("No Code")
-                }, didFinish: {
-                    debugPrint("No Code")
-                })
-            }
-        }
         cell.selectionStyle = .none
         return cell
     }
@@ -97,14 +71,14 @@ extension SavedAppliedJobsController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 90.0
     }
 }
 
 
 
 // MARK: - UserListAPICall
-extension SavedAppliedJobsController {
+extension AppliedListJobsController {
     func jobListAPICall() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getJobFunction"), attributes: .concurrent)
         API_MODELS_METHODS.getJobList(queue: concurrentQueue, action: self.strJobs) { (responseDict, isSuccess) in
@@ -126,11 +100,8 @@ extension SavedAppliedJobsController {
                     self.tblList.reloadData()
                 } else {
                     self.tblList.isHidden = true
-                    if self.strJobs == "save" {
-                        self.lblNoData.text = "You've not saved any job!"
-                    } else {
-                        self.lblNoData.text = "You've not applied to any job!"
-                    }
+                    self.lblNoData.text = "You've not applied to any job!"
+                    
                 }
             } else {
                 self.circleIndicator.isHidden = true
@@ -139,5 +110,3 @@ extension SavedAppliedJobsController {
         }
     }
 }
-
-
