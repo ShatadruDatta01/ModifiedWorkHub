@@ -119,6 +119,7 @@ extension UpdateResumeController {
         API_MODELS_METHODS.resumeUpload(queue: concurrentQueue, resume: self.strResumeBase64!, ext: self.ext!) { (responseDict, isSuccess) in
             print(responseDict!)
             if isSuccess {
+                AppConstantValues.isResumeUploaded = true 
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in

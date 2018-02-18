@@ -153,9 +153,17 @@ class ApplyJobController: BaseTableViewController, UINavigationControllerDelegat
     }
     
     func validation() {
+        if AppConstantValues.isResumeUploaded == true {
             self.circleIndicator.isHidden = false
             self.circleIndicator.animate()
             self.applyJobAPICall()
+        } else {
+            ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please upload resume", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
     }
 }
 
@@ -204,6 +212,7 @@ extension ApplyJobController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
+                AppConstantValues.isResumeUploaded = true
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
