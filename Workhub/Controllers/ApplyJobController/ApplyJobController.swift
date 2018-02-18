@@ -153,20 +153,19 @@ class ApplyJobController: BaseTableViewController, UINavigationControllerDelegat
     }
     
     func validation() {
-        if self.strResumeBase64.isEmpty {
-            ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please submit your resume", didSubmit: { (text) in
-                debugPrint("No Code")
-            }, didFinish: {
-                debugPrint("No Code")
-            })
-        } else {
             self.circleIndicator.isHidden = false
             self.circleIndicator.animate()
             self.applyJobAPICall()
-        }
     }
 }
 
+/*if self.strResumeBase64.isEmpty {
+ ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please submit your resume", didSubmit: { (text) in
+ debugPrint("No Code")
+ }, didFinish: {
+ debugPrint("No Code")
+ })
+ } else {*/
 
 // MARK: - SaveJobAPICall
 extension ApplyJobController {

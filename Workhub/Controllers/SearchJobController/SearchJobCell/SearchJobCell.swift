@@ -14,6 +14,7 @@ class SearchJobCell: BaseTableViewCell {
     var jobId: String!
     var didSendValue:((String, Bool) -> ())!
     var didCallLoader: (()->())!
+    var jobType: String!
     @IBOutlet weak var viewHour: UIView!
     @IBOutlet weak var viewMiles: UIView!
     @IBOutlet weak var imgJobIcon: UIImageView!
@@ -47,6 +48,12 @@ class SearchJobCell: BaseTableViewCell {
                 self.viewHour.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
                 self.viewMiles.layer.borderWidth = 1.0
                 self.viewMiles.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
+                if self.jobType == "save" {
+                    self.btnTick.setImage(UIImage(named: "GreenTick"), for: .normal)
+                } else {
+                    self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
+                }
+                
                 self.btnTick.addTarget(self, action: #selector(SearchJobCell.moveToApplyJob), for: UIControlEvents.touchUpInside)
                 self.btnBookmark.addTarget(self, action: #selector(SearchJobCell.saveJob), for: UIControlEvents.touchUpInside)
             }

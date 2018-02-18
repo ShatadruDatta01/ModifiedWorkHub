@@ -104,6 +104,7 @@ class SearchJobController: BaseViewController {
     
     @IBAction func recenter(_ sender: UIButton) {
         self.txtSearchJob.text = ""
+        self.zipCode = ""
         circleIndicator.isHidden = false
         circleIndicator.animate()
         self.mapListJob.showsUserLocation = true
@@ -216,9 +217,6 @@ class SearchJobController: BaseViewController {
                 print(country)
             }
         })
-        
-        
-    
     }
     
     
@@ -231,14 +229,22 @@ class SearchJobController: BaseViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func actionGO(_ sender: UIButton) {
-        circleIndicator.isHidden = false
-        circleIndicator.animate()
-        self.mapListJob.showsUserLocation = false
-        self.viewRecenter.isHidden = false
-        self.btnGO.isEnabled = false
-        self.txtSearchJob.resignFirstResponder()
-        print(self.zipCode)
-        self.fetchLatLonFromZip(zipCode: self.zipCode)
+        if (self.txtSearchJob.text?.isEmpty)! {
+            ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter zipcode", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        } else {
+            circleIndicator.isHidden = false
+            circleIndicator.animate()
+            self.mapListJob.showsUserLocation = false
+            self.viewRecenter.isHidden = false
+            self.btnGO.isEnabled = false
+            self.txtSearchJob.resignFirstResponder()
+            print(self.zipCode)
+            self.fetchLatLonFromZip(zipCode: self.zipCode)
+        }
     }
     
     
@@ -396,6 +402,7 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchJobCell", for: indexPath) as! SearchJobCell
+        cell.jobType = "search"
         cell.datasource = self.arrJob[indexPath.row] as AnyObject
         cell.didCallLoader = {
         }

@@ -24,6 +24,8 @@ class JobDetailsController: BaseTableViewController {
     var strJobDesc: String!
     var save = 0
     var checkController = false
+    @IBOutlet weak var lblApply: UILabel!
+    @IBOutlet weak var btnApplyJobs: UIButton!
     @IBOutlet weak var jobIcon: UIImageView!
     @IBOutlet weak var lblJobTitle: MarqueeLabel!
     @IBOutlet weak var lblJobSubtitle: UILabel!
@@ -37,6 +39,15 @@ class JobDetailsController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.strJobFunction == "apply" {
+            self.btnApplyJobs.isHidden = true
+            self.lblApply.isHidden = true
+        } else {
+            self.btnApplyJobs.isHidden = false
+            self.lblApply.isHidden = false
+        }
+        
         self.jobIcon.setImage(withURL: NSURL(string: strIconDetails)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
         self.lblJobTitle.text = strJobTitle
         self.lblJobTitle.speed = .duration(8.0)

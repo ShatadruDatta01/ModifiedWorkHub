@@ -12,6 +12,7 @@ import MarqueeLabel
 
 class UpdateResumeController: BaseTableViewController, UINavigationControllerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate  {
 
+    var resumeUpload = false
     var ext: String!
     var strResume: String!
     var strResumeBase64: String!
@@ -64,9 +65,17 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
     
     
     @IBAction func submit(_ sender: UIButton) {
-        self.circleIndicator.isHidden = false
-        self.circleIndicator.animate()
-        self.resumeUploadAPI()
+        if self.resumeUpload == true {
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.resumeUploadAPI()
+        } else {
+            ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please upload resume first", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
     }
     
     
@@ -78,12 +87,14 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
         sizeMB = Double(sizeMB / 1024)
         let resumeSize = Double(round(1000 * sizeMB)/1000)
         if  resumeSize > 5.000 {
+            self.resumeUpload = false
             ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "File size must be within 5mb", didSubmit: { (text) in
                 debugPrint("No Code")
             }, didFinish: {
                 debugPrint("No Code")
             })
         } else {
+            self.resumeUpload = true
             self.lblResume.text = self.strResume
             self.lblResume.textColor = .black
             self.lblResume.speed = .duration(8.0)
