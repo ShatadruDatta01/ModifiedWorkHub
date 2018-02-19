@@ -35,6 +35,7 @@ struct AppConstantValues {
     static var isNetwork = "nothing"
     static var isCallSearchJob = "dontKnow"
     static var isSocial = false
+    static var isResumeUploaded = false
 }
 
 
