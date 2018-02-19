@@ -240,6 +240,14 @@ extension EditProfileController {
                     self.strCountryCode = ""
                 }
                 
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
+                print(OBJ_FOR_KEY(key: "Resume")!)
+                if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "" || String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" {
+                    AppConstantValues.isResumeUploaded = false
+                } else {
+                    AppConstantValues.isResumeUploaded = true
+                }
+                
                 if AppConstantValues.isSocial == true {
                     self.imgProf.setImage(withURL: NSURL(string: OBJ_FOR_KEY(key: "UserPic")! as! String)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
                 } else {

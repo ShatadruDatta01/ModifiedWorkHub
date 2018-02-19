@@ -97,13 +97,20 @@ extension LaunchController {
                                  userInfo: nil,
                                  repeats: false)
         })
-
     }
     
     
     /// MoveToJobController
     func moveToController() {
-        let jobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
-        NavigationHelper.helper.contentNavController!.pushViewController(jobPageVC, animated: true)
+        if Reachability.isConnectedToNetwork(){
+            let jobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
+            NavigationHelper.helper.contentNavController!.pushViewController(jobPageVC, animated: true)
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
     }
 }
