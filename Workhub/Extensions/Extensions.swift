@@ -464,6 +464,7 @@ extension UIViewController {
             REMOVE_OBJ_FOR_KEY(key: "Email")
             REMOVE_OBJ_FOR_KEY(key: "Name")
             REMOVE_OBJ_FOR_KEY(key: "Network")
+            AppConstantValues.isResumeUploaded = false
             GIDSignIn.sharedInstance().signOut()
             FacebookLoginAPI.logOutFromFacebook()
             NavigationHelper.helper.reloadJobSearch()

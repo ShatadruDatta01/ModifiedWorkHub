@@ -183,6 +183,7 @@ class SearchJobController: BaseViewController {
     /// Fetch ZipCode
     func fetchZipCode() {
         // Add below code to get address for touch coordinates.
+        print(AppConstantValues.latitide, AppConstantValues.longitude)
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
@@ -192,7 +193,7 @@ class SearchJobController: BaseViewController {
             placeMark = placemarks?[0]
             
             // Address dictionary
-            print(placeMark.addressDictionary as Any)
+            //print(placeMark.addressDictionary as Any)
             
             // Location name
             if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
