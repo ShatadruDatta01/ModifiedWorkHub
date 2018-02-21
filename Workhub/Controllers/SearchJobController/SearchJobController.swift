@@ -45,7 +45,7 @@ class SearchJobController: BaseViewController {
         self.viewRecenter.isHidden = true
         self.viewRecenter.layer.cornerRadius = 5.0
         self.viewRecenter.layer.masksToBounds = true
-        self.txtSearchJob.keyboardType = .numberPad
+        //self.txtSearchJob.keyboardType = .numberPad
         AppConstantValues.latitide = "41.850033"
         AppConstantValues.longitude = "-87.6500523"
         //self.location()
