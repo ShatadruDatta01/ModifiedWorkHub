@@ -70,7 +70,8 @@ class EditProfileController: BaseTableViewController {
     }
     
     @IBAction func submit(_ sender: UIButton) {
-        self.validation()
+        //self.validation()
+        self.callEdit()
     }
 }
 
@@ -147,6 +148,19 @@ extension EditProfileController: UITextFieldDelegate {
 
 // MARK: - Validation
 extension EditProfileController {
+    
+    func callEdit() {
+        self.circleIndicator.isHidden = false
+        self.circleIndicator.animate()
+        DispatchQueue.global(qos: .background).async {
+            print("This is run on the background queue")
+            AppConstantValues.isSocial = false
+            self.imageToBase64(image: self.imgProf.image!)
+        }
+    }
+    
+    
+    
     func validation() {
         if !(self.txtName.text?.isEmpty)! {
             if !(self.txtAdd.text?.isEmpty)! {
@@ -159,7 +173,7 @@ extension EditProfileController {
                                     self.circleIndicator.animate()
                                     DispatchQueue.global(qos: .background).async {
                                         print("This is run on the background queue")
-                                        AppConstantValues.isSocial = false
+                                         AppConstantValues.isSocial = false
                                         self.imageToBase64(image: self.imgProf.image!)
                                     }
                                     
@@ -237,7 +251,7 @@ extension EditProfileController {
                     self.strCountryCode = String(mobNo[0])
                 } else {
                     self.txtMob.text = ""
-                    self.strCountryCode = ""
+                    self.strCountryCode = "+1"
                 }
                 
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
@@ -265,7 +279,6 @@ extension EditProfileController {
     }
     
     
-    /// UpdateProfileAPI
     func updateProfileAPI() {
         let mob = self.strCountryCode + "-" + self.txtMob.text!
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("updateProfile"), attributes: .concurrent)
