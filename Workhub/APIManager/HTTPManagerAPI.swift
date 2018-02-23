@@ -36,6 +36,13 @@ struct AppConstantValues {
     static var isCallSearchJob = "dontKnow"
     static var isSocial = false
     static var isResumeUploaded = false
+    
+    static var name = ""
+    static var location = ""
+    static var experience = ""
+    static var salExpected = ""
+    static var email = ""
+    static var mob = ""
 }
 
 

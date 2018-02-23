@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Workhub/Controllers/EditProfileController/EditProfileController.swift"
-            timestampString = "540993157.477759"
+            filePath = "Workhub/Controllers/MenuController/MenuController.swift"
+            timestampString = "541077837.960755"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
-            landmarkName = "editProfileAPI()"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "imageToBase64(image:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Workhub/Controllers/MenuController/MenuController.swift"
+            timestampString = "541077837.961115"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
+            landmarkName = "updateProfileAPI()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

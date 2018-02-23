@@ -60,7 +60,16 @@ class SearchJobCell: BaseTableViewCell {
                         }
                     }
                 } else {
-                    self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
+//                    self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
+                    if let apply = val.apply {
+                        if apply == 1 {
+                            self.btnTick.setImage(UIImage(named: "GreenTick"), for: .normal)
+                            self.btnTick.isUserInteractionEnabled = false
+                        } else {
+                            self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
+                            self.btnTick.isUserInteractionEnabled = true
+                        }
+                    }
                 }
                 
                 self.btnTick.addTarget(self, action: #selector(SearchJobCell.moveToApplyJob), for: UIControlEvents.touchUpInside)

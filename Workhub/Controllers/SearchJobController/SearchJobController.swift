@@ -25,6 +25,7 @@ class SearchJobController: BaseViewController {
     var locationManager = CLLocationManager()
     var annotationView: MKAnnotationView!
     var save = 0
+    var strJobId: String!
     @IBOutlet weak var btnGO: UIButton!
     @IBOutlet weak var viewRecenter: UIView!
     @IBOutlet var widthGOconstraint: NSLayoutConstraint!
@@ -39,6 +40,11 @@ class SearchJobController: BaseViewController {
     @IBOutlet weak var txtSearchJob: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.tblList.addGestureRecognizer(swipeLeft)
+
         AppConstantValues.companyAccessToken = String(describing: OBJ_FOR_KEY(key: "AccessToken")!)
         print("Access Token : \(AppConstantValues.companyAccessToken)")
         self.lblNoDataFound.text = "No jobs available on this location"
@@ -72,6 +78,25 @@ class SearchJobController: BaseViewController {
             self.fetchZipCode()
         }
         // Do any additional setup after loading the view.
+    }
+    
+    
+    //Swipe Gestures
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                print("Swiped right")
+            case UISwipeGestureRecognizerDirection.down:
+                print("Swiped down")
+            case UISwipeGestureRecognizerDirection.left:
+                print("Swiped left")
+            case UISwipeGestureRecognizerDirection.up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -426,6 +451,14 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
                 })
             }
         }
+        
+        cell.didCallApplyAPIJobs = { jobId in
+            self.strJobId = jobId
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.applyJobAPICall()
+        }
+        
         cell.selectionStyle = .none
         return cell
     }
@@ -445,6 +478,9 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         jobDetailsPageVC.strJobId = val.jobID!
         if let save = val.save {
             jobDetailsPageVC.save = save 
+        }
+        if let apply = val.apply {
+            jobDetailsPageVC.apply = apply
         }
         jobDetailsPageVC.strJobFunction = "view"
         NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
@@ -498,6 +534,37 @@ extension SearchJobController {
                 }
             }
     }
+    
+    
+    /// ApplyJobAPICall
+    func applyJobAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "apply", jobId: self.strJobId) { (responseDict,isSuccess) in
+            print(responseDict!)
+            if isSuccess {
+                //                self.circleIndicator.isHidden = true
+                //                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+                
+                self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
+                
+            } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
+    }
+    
+    
 }
 
 

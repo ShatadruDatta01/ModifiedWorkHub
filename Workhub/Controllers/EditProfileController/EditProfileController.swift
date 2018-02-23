@@ -245,6 +245,28 @@ extension EditProfileController {
                 self.txtJobExp.text = responseDict!["result"]!["data"]["experience"].stringValue
                 self.txtSal.text = responseDict!["result"]!["data"]["salExpected"].stringValue
                 self.txtEmail.text = responseDict!["result"]!["data"]["email"].stringValue
+                
+                REMOVE_OBJ_FOR_KEY(key: "Email")
+                REMOVE_OBJ_FOR_KEY(key: "Name")
+                REMOVE_OBJ_FOR_KEY(key: "Location")
+                REMOVE_OBJ_FOR_KEY(key: "Experience")
+                REMOVE_OBJ_FOR_KEY(key: "SalExpected")
+                REMOVE_OBJ_FOR_KEY(key: "Mobile")
+                
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["location"].stringValue as AnyObject, key: "Location")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["experience"].stringValue as AnyObject, key: "Experience")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["salExpected"].stringValue as AnyObject, key: "SalExpected")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["mobile"].stringValue as AnyObject, key: "Mobile")
+                
+                AppConstantValues.name = responseDict!["result"]!["data"]["name"].stringValue
+                AppConstantValues.location = responseDict!["result"]!["data"]["location"].stringValue
+                AppConstantValues.experience = responseDict!["result"]!["data"]["experience"].stringValue
+                AppConstantValues.salExpected = responseDict!["result"]!["data"]["salExpected"].stringValue
+                AppConstantValues.email = responseDict!["result"]!["data"]["email"].stringValue
+                AppConstantValues.mob = responseDict!["result"]!["data"]["mobile"].stringValue
+                
                 let mobNo = responseDict!["result"]!["data"]["mobile"].stringValue.components(separatedBy: "-")
                 if mobNo.count > 1 {
                     self.txtMob.text = String(mobNo[1])
@@ -278,7 +300,6 @@ extension EditProfileController {
         }
     }
     
-    
     func updateProfileAPI() {
         let mob = self.strCountryCode + "-" + self.txtMob.text!
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("updateProfile"), attributes: .concurrent)
@@ -288,6 +309,29 @@ extension EditProfileController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
+                
+                AppConstantValues.name = responseDict!["result"]!["data"]["name"].stringValue
+                AppConstantValues.location = responseDict!["result"]!["data"]["location"].stringValue
+                AppConstantValues.experience = responseDict!["result"]!["data"]["experience"].stringValue
+                AppConstantValues.salExpected = responseDict!["result"]!["data"]["salExpected"].stringValue
+                AppConstantValues.email = responseDict!["result"]!["data"]["email"].stringValue
+                AppConstantValues.mob = responseDict!["result"]!["data"]["mobile"].stringValue
+                
+                
+                REMOVE_OBJ_FOR_KEY(key: "Email")
+                REMOVE_OBJ_FOR_KEY(key: "Name")
+                REMOVE_OBJ_FOR_KEY(key: "Location")
+                REMOVE_OBJ_FOR_KEY(key: "Experience")
+                REMOVE_OBJ_FOR_KEY(key: "SalExpected")
+                REMOVE_OBJ_FOR_KEY(key: "Mobile")
+                
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["location"].stringValue as AnyObject, key: "Location")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["experience"].stringValue as AnyObject, key: "Experience")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["salExpected"].stringValue as AnyObject, key: "SalExpected")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["mobile"].stringValue as AnyObject, key: "Mobile")
+                
                 REMOVE_OBJ_FOR_KEY(key: "UserPic")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully updated your profile", didSubmit: { (text) in
