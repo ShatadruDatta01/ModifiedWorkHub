@@ -201,9 +201,6 @@ extension ApplyJobController {
         }
     }
     
-    
-    
-    
     /// ResumeUpload
     func resumeUploadAPI() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("resumeUpload"), attributes: .concurrent)
@@ -256,7 +253,6 @@ extension ApplyJobController {
             }
         }
     }
-    
     
     
     /// SearchJobListScreen
