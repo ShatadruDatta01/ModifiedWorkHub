@@ -382,8 +382,9 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                 }
                 
                 CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strJobId: details.jobID! ,strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, save: self.save, didSubmit: { (text) in
-                    debugPrint("No Code")
+                    debugPrint(text)
                 }, didFinish: { (text) in
+                    print(text)
                     for annotation in self.mapListJob.selectedAnnotations {
                         self.mapListJob.deselectAnnotation(annotation, animated: false)
                     }
