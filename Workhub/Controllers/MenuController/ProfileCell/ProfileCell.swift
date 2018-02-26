@@ -12,6 +12,7 @@ class ProfileCell: BaseTableViewCell {
 
     var isLogin: Bool!
     @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     
     override var datasource: AnyObject?{
         didSet {

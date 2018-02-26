@@ -98,7 +98,7 @@ class CallOutController: BaseViewController {
             self.checkController = false
         } else {
             
-            if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" {
+            if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" || AppConstantValues.isResumeUploaded == false {
                 let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
                 applyPageVC.strJobIcon = strIconDetails
                 applyPageVC.strJobTitle = strJobTitle

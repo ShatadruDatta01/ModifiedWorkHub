@@ -2085,6 +2085,14 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
+                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMw-Yt-ZFA" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                                            <rect key="frame" x="35" y="35" width="30" height="30"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="30" id="CMG-Oa-J8J"/>
+                                                                <constraint firstAttribute="height" constant="30" id="NeL-in-R0g"/>
+                                                            </constraints>
+                                                        </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editProfilePen" translatesAutoresizingMaskIntoConstraints="NO" id="rDe-pr-4Jg">
                                                             <rect key="frame" x="75" y="5" width="28" height="24"/>
                                                             <constraints>
@@ -2099,9 +2107,11 @@
                                                         <constraint firstAttribute="trailing" secondItem="xso-Kg-F13" secondAttribute="trailing" id="3UD-fL-Q5F"/>
                                                         <constraint firstItem="xso-Kg-F13" firstAttribute="leading" secondItem="azi-aA-f1U" secondAttribute="leading" id="8UE-Cb-Xrj"/>
                                                         <constraint firstItem="rDe-pr-4Jg" firstAttribute="top" secondItem="azi-aA-f1U" secondAttribute="top" constant="5" id="919-oC-59G"/>
+                                                        <constraint firstItem="HMw-Yt-ZFA" firstAttribute="centerY" secondItem="azi-aA-f1U" secondAttribute="centerY" id="9Rg-HE-GCK"/>
                                                         <constraint firstItem="xso-Kg-F13" firstAttribute="top" secondItem="azi-aA-f1U" secondAttribute="top" id="bqN-Sj-Aaw"/>
                                                         <constraint firstAttribute="bottom" secondItem="xso-Kg-F13" secondAttribute="bottom" id="fNJ-yZ-sY9"/>
                                                         <constraint firstAttribute="width" constant="100" id="s9B-fl-aYT"/>
+                                                        <constraint firstItem="HMw-Yt-ZFA" firstAttribute="centerX" secondItem="azi-aA-f1U" secondAttribute="centerX" id="uHF-sJ-or5"/>
                                                         <constraint firstAttribute="height" constant="100" id="ye0-jc-vEE"/>
                                                     </constraints>
                                                 </view>
@@ -2118,6 +2128,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="circleIndicator" destination="HMw-Yt-ZFA" id="qGo-Gg-Gky"/>
                                             <outlet property="imgProfile" destination="xso-Kg-F13" id="fSq-wC-PxC"/>
                                         </connections>
                                     </tableViewCell>
@@ -2923,10 +2934,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqx-F1-IRm">
-                                <rect key="frame" x="36.5" y="308.5" width="302" height="50"/>
+                                <rect key="frame" x="39.5" y="308.5" width="296" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Check Internet Connection !" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vW-pV-fdY">
-                                        <rect key="frame" x="51" y="9" width="243" height="32"/>
+                                        <rect key="frame" x="51" y="9" width="237" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="FhG-Cl-ile"/>
                                         </constraints>
