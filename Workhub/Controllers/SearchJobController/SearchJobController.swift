@@ -167,7 +167,7 @@ class SearchJobController: BaseViewController {
                         AppConstantValues.latitide = String(describing: val["results"][0]["geometry"]["location"]["lat"])
                         AppConstantValues.longitude = String(describing: val["results"][0]["geometry"]["location"]["lng"])
                         AppConstantValues.zipcode = zipCode
-                        print(AppConstantValues.latitide, AppConstantValues.longitude)
+                            print(AppConstantValues.latitide, AppConstantValues.longitude)
                         
                         
                         let coordinations = CLLocationCoordinate2D(latitude: Double(AppConstantValues.latitide)!,longitude: Double(AppConstantValues.longitude)!)
@@ -176,7 +176,7 @@ class SearchJobController: BaseViewController {
                         
                         self.mapListJob.setRegion(region, animated: true)
                         
-                        let annotation = MKPointAnnotation()
+                          let annotation = MKPointAnnotation()
                         annotation.title = "You're here"
                         annotation.coordinate = CLLocationCoordinate2D(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
                         self.mapListJob.addAnnotation(annotation)
@@ -388,6 +388,9 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                     for annotation in self.mapListJob.selectedAnnotations {
                         self.mapListJob.deselectAnnotation(annotation, animated: false)
                     }
+                    self.circleIndicator.isHidden = false
+                    self.circleIndicator.animate()
+                    self.fetchLatLonFromZip(zipCode: self.zipCode)
                 })
                 
                 break
@@ -536,7 +539,6 @@ extension SearchJobController {
             }
     }
     
-    
     /// ApplyJobAPICall
     func applyJobAPICall() {
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
@@ -564,8 +566,6 @@ extension SearchJobController {
             }
         }
     }
-    
-    
 }
 
 
