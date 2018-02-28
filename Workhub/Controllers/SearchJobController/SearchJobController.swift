@@ -397,7 +397,6 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
             }
         }
     }
-    
 }
 
 
