@@ -12,12 +12,11 @@ class ProfileCell: BaseTableViewCell {
 
     var isLogin: Bool!
     @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     
     override var datasource: AnyObject?{
         didSet {
             if datasource != nil {
-                self.imgProfile.layer.borderWidth = 2.0
-                self.imgProfile.layer.borderColor = UIColorRGB(r: 226.0, g: 155.0, b: 48.0)?.cgColor
                 if self.isLogin == true {
                     if datasource as! String != "" {
                         self.imgProfile.imageFromURL(urlString: datasource as! String)

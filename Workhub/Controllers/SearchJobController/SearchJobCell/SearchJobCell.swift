@@ -14,6 +14,7 @@ class SearchJobCell: BaseTableViewCell {
     var jobId: String!
     var didSendValue:((String, Bool) -> ())!
     var didCallLoader: (()->())!
+    var didCallApplyAPIJobs: ((String)->())!
     var jobType: String!
     @IBOutlet weak var viewHour: UIView!
     @IBOutlet weak var viewMiles: UIView!
@@ -49,9 +50,26 @@ class SearchJobCell: BaseTableViewCell {
                 self.viewMiles.layer.borderWidth = 1.0
                 self.viewMiles.layer.borderColor = UIColorRGB(r: 202, g: 202, b: 202)?.cgColor
                 if self.jobType == "save" {
-                    self.btnTick.setImage(UIImage(named: "GreenTick"), for: .normal)
+                    if let apply = val.apply {
+                        if apply == 1 {
+                            self.btnTick.setImage(UIImage(named: "GreenTick"), for: .normal)
+                            self.btnTick.isUserInteractionEnabled = false
+                        } else {
+                            self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
+                            self.btnTick.isUserInteractionEnabled = true
+                        }
+                    }
                 } else {
-                    self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
+//                    self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
+                    if let apply = val.apply {
+                        if apply == 1 {
+                            self.btnTick.setImage(UIImage(named: "GreenTick"), for: .normal)
+                            self.btnTick.isUserInteractionEnabled = false
+                        } else {
+                            self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
+                            self.btnTick.isUserInteractionEnabled = true
+                        }
+                    }
                 }
                 
                 self.btnTick.addTarget(self, action: #selector(SearchJobCell.moveToApplyJob), for: UIControlEvents.touchUpInside)
@@ -63,12 +81,7 @@ class SearchJobCell: BaseTableViewCell {
     
     /// Move To ApplyJob
     func moveToApplyJob() {
-        let applyJobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
-        let val = datasource as! SearchJob
-        applyJobPageVC.strJobIcon = val.category_image!
-        applyJobPageVC.strJobTitle = val.role!
-        applyJobPageVC.strJobSubTitle = val.company_name!
-        NavigationHelper.helper.contentNavController!.pushViewController(applyJobPageVC, animated: false)
+        self.didCallApplyAPIJobs!(self.jobId)
     }
     
     

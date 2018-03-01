@@ -23,6 +23,7 @@ class JobDetailsController: BaseTableViewController {
     var strFullTime: String!
     var strJobDesc: String!
     var save = 0
+    var apply = 0
     var checkController = false
     @IBOutlet weak var lblApply: UILabel!
     @IBOutlet weak var btnApplyJobs: UIButton!
@@ -44,8 +45,13 @@ class JobDetailsController: BaseTableViewController {
             self.btnApplyJobs.isHidden = true
             self.lblApply.isHidden = true
         } else {
-            self.btnApplyJobs.isHidden = false
-            self.lblApply.isHidden = false
+            if apply == 1 {
+                self.btnApplyJobs.isHidden = true
+                self.lblApply.isHidden = true
+            } else {
+                self.btnApplyJobs.isHidden = false
+                self.lblApply.isHidden = false
+            }
         }
         
         self.jobIcon.setImage(withURL: NSURL(string: strIconDetails)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
@@ -99,7 +105,7 @@ class JobDetailsController: BaseTableViewController {
             self.checkController = false
         } else {
             
-            if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" {
+            if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" || AppConstantValues.isResumeUploaded == false {
                 let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
                 applyPageVC.strJobIcon = strIconDetails
                 applyPageVC.strJobTitle = strJobTitle

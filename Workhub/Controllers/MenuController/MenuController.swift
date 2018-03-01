@@ -12,7 +12,15 @@ import TGCameraViewController
 class MenuController: BaseViewController {
 
     var cameraImage = false
+    var startLoading = false
     var imageProf: UIImage!
+    var strBase64 = ""
+    var imgExt = ""
+    var name = ""
+    var mob = ""
+    var loc = ""
+    var salExp = ""
+    var exp = ""
     var arrMenuBeforeLogin = ["REGISTER", "LOGIN"]
     var arrMenuBeforeLoginImg = ["REGISTER", "LOGIN"]
     var arrMenuAfterLogin = ["EDIT PROFILE", "UPDATE RESUME", "APPLIED JOBS", "SAVED JOBS"]
@@ -55,16 +63,28 @@ extension MenuController: TGCameraDelegate {
         self.imageProf = image;
         self.dismiss(animated: true, completion: nil)
         cameraImage = true
+        self.startLoading = true
         self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
+        DispatchQueue.global(qos: .background).async {
+            print("This is run on the background queue")
+            AppConstantValues.isSocial = false
+            self.imageToBase64(image: self.imageProf)
+        }
+        
     }
     
     func cameraDidTakePhoto(_ image: UIImage!) {
         self.imageProf = image;
         self.dismiss(animated: true, completion: nil)
         cameraImage = true
+        self.startLoading = true
         self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
+        DispatchQueue.global(qos: .background).async {
+            print("This is run on the background queue")
+            AppConstantValues.isSocial = false
+            self.imageToBase64(image: self.imageProf)
+        }
     }
-    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -142,10 +162,20 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
                     return cellTitle
                 case 1:
                     let cellProf = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+                    cellProf.imgProfile.layer.borderWidth = 2.0
+                    cellProf.imgProfile.layer.borderColor = UIColorRGB(r: 226.0, g: 155.0, b: 48.0)?.cgColor
                     cellProf.isLogin = true
+//                    if self.startLoading == true {
+//                        cellProf.circleIndicator.isHidden = false
+//                        cellProf.circleIndicator.animate()
+//                    } else {
+//                        cellProf.circleIndicator.isHidden = true
+//                        cellProf.circleIndicator.stop()
+//                    }
                     if self.cameraImage == false {
                         cellProf.datasource = String(describing: OBJ_FOR_KEY(key: "UserPic")!) as AnyObject
                     } else {
+                        
                         if self.imageProf != nil {
                             cellProf.imgProfile.image = self.imageProf
                         }
@@ -380,5 +410,98 @@ extension MenuController {
     }
 }
 
-
+// MARK: - BurgerMenuAPICall
+extension MenuController {
+    
+        func imageToBase64(image: UIImage) {
+            let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
+            self.imgExt = String(describing: imageData.imageFormat)
+            print(self.imgExt)
+            self.strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+            print(self.strBase64)
+            self.updateProfileAPI()
+        }
+    
+    
+    
+        func updateProfileAPI() {
+            let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("updateProfile"), attributes: .concurrent)
+            
+            if let val = OBJ_FOR_KEY(key: "Name") {
+                self.name = val as! String
+            } else {
+                self.name = ""
+            }
+            
+            if let val = OBJ_FOR_KEY(key: "Mobile") {
+                self.mob = val as! String
+            } else {
+                self.mob = ""
+            }
+            
+            if let val = OBJ_FOR_KEY(key: "Experience") {
+                self.exp = val as! String
+            } else {
+                self.exp = ""
+            }
+            
+            if let val = OBJ_FOR_KEY(key: "SalExpected") {
+                self.salExp = val as! String
+            } else {
+                self.salExp = ""
+            }
+            
+            if let val = OBJ_FOR_KEY(key: "Location") {
+                self.loc = val as! String
+            } else {
+                self.loc = ""
+            }
+            
+            
+            API_MODELS_METHODS.updateProfile(queue: concurrentQueue, email: String(describing: OBJ_FOR_KEY(key: "Email")!), name: self.name, mobile: self.mob, pic: self.strBase64, ext: self.imgExt, experience: self.exp, salExpected: self.salExp, location: self.loc) { (responseDict, isSuccess) in
+                print(responseDict!)
+                if isSuccess {
+                    
+                    self.startLoading = false
+                    //self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
+                    AppConstantValues.name = responseDict!["result"]!["data"]["name"].stringValue
+                    AppConstantValues.location = responseDict!["result"]!["data"]["location"].stringValue
+                    AppConstantValues.experience = responseDict!["result"]!["data"]["experience"].stringValue
+                    AppConstantValues.salExpected = responseDict!["result"]!["data"]["salExpected"].stringValue
+                    AppConstantValues.email = responseDict!["result"]!["data"]["email"].stringValue
+                    AppConstantValues.mob = responseDict!["result"]!["data"]["mobile"].stringValue
+                    
+                    REMOVE_OBJ_FOR_KEY(key: "Email")
+                    REMOVE_OBJ_FOR_KEY(key: "Name")
+                    REMOVE_OBJ_FOR_KEY(key: "Location")
+                    REMOVE_OBJ_FOR_KEY(key: "Experience")
+                    REMOVE_OBJ_FOR_KEY(key: "SalExpected")
+                    REMOVE_OBJ_FOR_KEY(key: "Mobile")
+                    
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["location"].stringValue as AnyObject, key: "Location")
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["experience"].stringValue as AnyObject, key: "Experience")
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["salExpected"].stringValue as AnyObject, key: "SalExpected")
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["mobile"].stringValue as AnyObject, key: "Mobile")
+                    
+                    
+                    REMOVE_OBJ_FOR_KEY(key: "UserPic")
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                    ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully updated your profile", didSubmit: { (text) in
+                        debugPrint("No Code")
+                    }, didFinish: {
+                        debugPrint("No Code")
+                    })
+                } else {
+                    
+                    ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
+                        debugPrint("No Code")
+                    }, didFinish: {
+                        debugPrint("No Code")
+                    })
+                }
+            }
+    }
+}
 

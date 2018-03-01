@@ -11,6 +11,7 @@ import UIKit
 class SavedAppliedJobsController: BaseViewController {
 
     var strJobs: String!
+    var strJobId: String!
     @IBOutlet weak var lblHeaderContent: UILabel!
     @IBOutlet weak var lblNoData: UILabel!
     @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
@@ -70,6 +71,14 @@ extension SavedAppliedJobsController: UITableViewDelegate, UITableViewDataSource
                 })
             }
         }
+        
+        cell.didCallApplyAPIJobs = { jobId in
+            self.strJobId = jobId
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.applyJobAPICall()
+        }
+        
         cell.selectionStyle = .none
         return cell
     }
@@ -88,6 +97,9 @@ extension SavedAppliedJobsController: UITableViewDelegate, UITableViewDataSource
         }
         if let save = val.save {
             jobDetailsPageVC.save = save
+        }
+        if let apply = val.apply {
+            jobDetailsPageVC.apply = apply
         }
         jobDetailsPageVC.strJobId = val.jobID!
         jobDetailsPageVC.strFullTime = val.type!
@@ -135,6 +147,35 @@ extension SavedAppliedJobsController {
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
+            }
+        }
+    }
+    
+    
+    /// ApplyJobAPICall
+    func applyJobAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "apply", jobId: self.strJobId) { (responseDict,isSuccess) in
+            print(responseDict!)
+            if isSuccess {
+//                self.circleIndicator.isHidden = true
+//                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+                
+                self.jobListAPICall()
+                
+            } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
             }
         }
     }

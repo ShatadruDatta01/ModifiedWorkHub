@@ -25,6 +25,7 @@ class SearchJobController: BaseViewController {
     var locationManager = CLLocationManager()
     var annotationView: MKAnnotationView!
     var save = 0
+    var strJobId: String!
     @IBOutlet weak var btnGO: UIButton!
     @IBOutlet weak var viewRecenter: UIView!
     @IBOutlet var widthGOconstraint: NSLayoutConstraint!
@@ -39,13 +40,18 @@ class SearchJobController: BaseViewController {
     @IBOutlet weak var txtSearchJob: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.tblList.addGestureRecognizer(swipeLeft)
+
         AppConstantValues.companyAccessToken = String(describing: OBJ_FOR_KEY(key: "AccessToken")!)
         print("Access Token : \(AppConstantValues.companyAccessToken)")
         self.lblNoDataFound.text = "No jobs available on this location"
         self.viewRecenter.isHidden = true
         self.viewRecenter.layer.cornerRadius = 5.0
         self.viewRecenter.layer.masksToBounds = true
-        self.txtSearchJob.keyboardType = .numberPad
+        //self.txtSearchJob.keyboardType = .numberPad
         AppConstantValues.latitide = "41.850033"
         AppConstantValues.longitude = "-87.6500523"
         //self.location()
@@ -72,6 +78,25 @@ class SearchJobController: BaseViewController {
             self.fetchZipCode()
         }
         // Do any additional setup after loading the view.
+    }
+    
+    
+    //Swipe Gestures
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                print("Swiped right")
+            case UISwipeGestureRecognizerDirection.down:
+                print("Swiped down")
+            case UISwipeGestureRecognizerDirection.left:
+                print("Swiped left")
+            case UISwipeGestureRecognizerDirection.up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,7 +167,7 @@ class SearchJobController: BaseViewController {
                         AppConstantValues.latitide = String(describing: val["results"][0]["geometry"]["location"]["lat"])
                         AppConstantValues.longitude = String(describing: val["results"][0]["geometry"]["location"]["lng"])
                         AppConstantValues.zipcode = zipCode
-                        print(AppConstantValues.latitide, AppConstantValues.longitude)
+                            print(AppConstantValues.latitide, AppConstantValues.longitude)
                         
                         
                         let coordinations = CLLocationCoordinate2D(latitude: Double(AppConstantValues.latitide)!,longitude: Double(AppConstantValues.longitude)!)
@@ -151,7 +176,7 @@ class SearchJobController: BaseViewController {
                         
                         self.mapListJob.setRegion(region, animated: true)
                         
-                        let annotation = MKPointAnnotation()
+                          let annotation = MKPointAnnotation()
                         annotation.title = "You're here"
                         annotation.coordinate = CLLocationCoordinate2D(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
                         self.mapListJob.addAnnotation(annotation)
@@ -357,18 +382,21 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                 }
                 
                 CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strJobId: details.jobID! ,strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, save: self.save, didSubmit: { (text) in
-                    debugPrint("No Code")
+                    debugPrint(text)
                 }, didFinish: { (text) in
+                    print(text)
                     for annotation in self.mapListJob.selectedAnnotations {
                         self.mapListJob.deselectAnnotation(annotation, animated: false)
                     }
+                    self.circleIndicator.isHidden = false
+                    self.circleIndicator.animate()
+                    self.fetchLatLonFromZip(zipCode: self.zipCode)
                 })
                 
                 break
             }
         }
     }
-    
 }
 
 
@@ -426,6 +454,14 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
                 })
             }
         }
+        
+        cell.didCallApplyAPIJobs = { jobId in
+            self.strJobId = jobId
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.applyJobAPICall()
+        }
+        
         cell.selectionStyle = .none
         return cell
     }
@@ -445,6 +481,9 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         jobDetailsPageVC.strJobId = val.jobID!
         if let save = val.save {
             jobDetailsPageVC.save = save 
+        }
+        if let apply = val.apply {
+            jobDetailsPageVC.apply = apply
         }
         jobDetailsPageVC.strJobFunction = "view"
         NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
@@ -497,6 +536,34 @@ extension SearchJobController {
                     self.circleIndicator.isHidden = true
                 }
             }
+    }
+    
+    /// ApplyJobAPICall
+    func applyJobAPICall() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("saveJob"), attributes: .concurrent)
+        API_MODELS_METHODS.jobFunction(queue: concurrentQueue, action: "apply", jobId: self.strJobId) { (responseDict,isSuccess) in
+            print(responseDict!)
+            if isSuccess {
+                //                self.circleIndicator.isHidden = true
+                //                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+                
+                self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
+                
+            } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
     }
 }
 

@@ -253,10 +253,12 @@ extension LoginController {
                 }
                 
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
+                AppConstantValues.email = responseDict!["result"]!["data"]["email"].stringValue
                 REMOVE_OBJ_FOR_KEY(key: "AccessToken")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["access_token"].stringValue as AnyObject, key: "AccessToken")
                 AppConstantValues.companyAccessToken = String(describing: OBJ_FOR_KEY(key: "AccessToken")!)
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
+                AppConstantValues.name = responseDict!["result"]!["data"]["name"].stringValue
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["network"].stringValue as AnyObject, key: "Network")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["isVerified"].stringValue as AnyObject, key: "IsVerified")
                 let jobPageVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchJobController") as! SearchJobController
