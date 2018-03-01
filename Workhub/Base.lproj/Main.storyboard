@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2856,12 +2856,12 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2g-aE-fzw">
-                                <rect key="frame" x="70.5" y="308.5" width="234" height="50"/>
+                                <rect key="frame" x="53" y="309" width="270" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User is not registered" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo8-YW-REA">
-                                        <rect key="frame" x="56" y="9" width="170" height="32"/>
+                                        <rect key="frame" x="56" y="9" width="206" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="5dA-Uh-leS"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="a91-CH-khh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2873,21 +2873,21 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="pDb-zT-BNY">
                                         <rect key="frame" x="8" y="6" width="40" height="38"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="VgI-wr-RhH"/>
-                                            <constraint firstAttribute="height" constant="38" id="fV5-is-ch4"/>
+                                            <constraint firstAttribute="height" constant="38" id="mCc-5S-yw1"/>
+                                            <constraint firstAttribute="width" constant="40" id="tDV-w9-ENh"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="jo8-YW-REA" secondAttribute="bottom" constant="9" id="637-M6-M7e"/>
-                                    <constraint firstAttribute="height" constant="50" id="8f6-kj-XCA"/>
-                                    <constraint firstItem="pDb-zT-BNY" firstAttribute="leading" secondItem="I2g-aE-fzw" secondAttribute="leading" constant="8" id="IuN-9K-g8A"/>
-                                    <constraint firstItem="pDb-zT-BNY" firstAttribute="centerY" secondItem="I2g-aE-fzw" secondAttribute="centerY" id="SEs-nR-yfN"/>
-                                    <constraint firstItem="jo8-YW-REA" firstAttribute="leading" secondItem="pDb-zT-BNY" secondAttribute="trailing" constant="8" id="Ubh-t8-kVa"/>
-                                    <constraint firstAttribute="trailing" secondItem="jo8-YW-REA" secondAttribute="trailing" constant="8" id="WiT-RX-W9M"/>
-                                    <constraint firstItem="jo8-YW-REA" firstAttribute="top" secondItem="I2g-aE-fzw" secondAttribute="top" constant="9" id="cuQ-Ae-MPg"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="234" id="ojx-SL-0g9"/>
+                                    <constraint firstItem="jo8-YW-REA" firstAttribute="leading" secondItem="pDb-zT-BNY" secondAttribute="trailing" constant="8" id="7jt-SW-hm6"/>
+                                    <constraint firstAttribute="trailing" secondItem="jo8-YW-REA" secondAttribute="trailing" constant="8" id="DGa-8b-fcY"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="FsI-Hk-Xre"/>
+                                    <constraint firstAttribute="bottom" secondItem="jo8-YW-REA" secondAttribute="bottom" constant="9" id="WPS-5E-VHa"/>
+                                    <constraint firstAttribute="width" constant="270" id="aqw-SR-HXd"/>
+                                    <constraint firstItem="pDb-zT-BNY" firstAttribute="leading" secondItem="I2g-aE-fzw" secondAttribute="leading" constant="8" id="cBC-Np-m7d"/>
+                                    <constraint firstItem="pDb-zT-BNY" firstAttribute="centerY" secondItem="I2g-aE-fzw" secondAttribute="centerY" id="pal-cC-Lc6"/>
+                                    <constraint firstItem="jo8-YW-REA" firstAttribute="top" secondItem="I2g-aE-fzw" secondAttribute="top" constant="9" id="qAS-2E-std"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -2898,10 +2898,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="I2g-aE-fzw" firstAttribute="centerY" secondItem="i2z-MQ-F8G" secondAttribute="centerY" id="DKz-Io-xwT"/>
+                            <constraint firstItem="I2g-aE-fzw" firstAttribute="centerY" secondItem="i2z-MQ-F8G" secondAttribute="centerY" id="E8w-qY-nji"/>
                             <constraint firstAttribute="trailing" secondItem="iYs-R4-LFK" secondAttribute="trailing" id="IiT-mh-w8Q"/>
-                            <constraint firstItem="I2g-aE-fzw" firstAttribute="centerX" secondItem="i2z-MQ-F8G" secondAttribute="centerX" id="KYY-bv-vkA"/>
                             <constraint firstItem="iYs-R4-LFK" firstAttribute="leading" secondItem="i2z-MQ-F8G" secondAttribute="leading" id="Qjp-wI-3dk"/>
+                            <constraint firstItem="I2g-aE-fzw" firstAttribute="centerX" secondItem="i2z-MQ-F8G" secondAttribute="centerX" id="VCP-zB-cZn"/>
                             <constraint firstItem="Sh9-GZ-GMW" firstAttribute="top" secondItem="iYs-R4-LFK" secondAttribute="bottom" id="WX0-cr-ZAu"/>
                             <constraint firstItem="iYs-R4-LFK" firstAttribute="top" secondItem="i2z-MQ-F8G" secondAttribute="top" id="se9-YE-1q6"/>
                         </constraints>
@@ -2915,7 +2915,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTZ-s0-Mzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4393" y="1440"/>
+            <point key="canvasLocation" x="4392.8000000000002" y="1439.7301349325339"/>
         </scene>
         <!--Internet Checking Controller-->
         <scene sceneID="Ba5-Uw-VFu">

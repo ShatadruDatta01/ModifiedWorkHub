@@ -15,6 +15,7 @@ import SwiftyJSON
 class SearchJobController: BaseViewController {
 
     @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
+    var checkController = false
     var dictJob = [String: String]()
     var zipCode = ""
     var locManager = CLLocationManager()
@@ -456,10 +457,39 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.didCallApplyAPIJobs = { jobId in
-            self.strJobId = jobId
-            self.circleIndicator.isHidden = false
-            self.circleIndicator.animate()
-            self.applyJobAPICall()
+            if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+                let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                for aviewcontroller: UIViewController in allViewController
+                {
+                    if aviewcontroller.isKind(of: LoginController.classForCoder())
+                    {
+                        NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                        self.checkController = true
+                        break
+                    }
+                }
+                
+                if self.checkController == false {
+                    let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                    NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+                }
+                self.checkController = false
+            } else {
+                
+                if AppConstantValues.isResumeUploaded == true {
+                    self.strJobId = jobId
+                    self.circleIndicator.isHidden = false
+                    self.circleIndicator.animate()
+                    self.applyJobAPICall()
+                } else {
+                    ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please upload resume", didSubmit: { (text) in
+                        debugPrint("No Code")
+                    }, didFinish: {
+                        debugPrint("No Code")
+                    })
+                }
+                
+            }
         }
         
         cell.selectionStyle = .none

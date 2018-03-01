@@ -98,7 +98,7 @@ class CallOutController: BaseViewController {
             self.checkController = false
         } else {
             
-            if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" || AppConstantValues.isResumeUploaded == false {
+            if AppConstantValues.isResumeUploaded == false {
                 let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
                 applyPageVC.strJobIcon = strIconDetails
                 applyPageVC.strJobTitle = strJobTitle
@@ -271,6 +271,11 @@ extension CallOutController {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
                 self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
