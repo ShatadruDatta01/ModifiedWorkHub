@@ -355,9 +355,6 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                 annotationView!.canShowCallout = false
                 annotationView!.image = UIImage(named: "JobIcon")
             }
-            
-            
-            
             return annotationView
             
         }
