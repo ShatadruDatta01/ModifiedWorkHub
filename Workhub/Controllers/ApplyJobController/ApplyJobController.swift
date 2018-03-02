@@ -55,6 +55,7 @@ class ApplyJobController: BaseTableViewController, UINavigationControllerDelegat
         } else {
             self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
         }
+        
         // Do any additional setup after loading the view.
     }
     

@@ -19,7 +19,6 @@ class ProfileCell: BaseTableViewCell {
             if datasource != nil {
                 if self.isLogin == true {
                     if datasource as! String != "" {
-//                        self.imgProfile.setImage(withURL: NSURL(string: datasource as! String)!, placeHolderImageNamed: "JobCategoryPlaceholder", andImageTransition: .crossDissolve(0.4))
                         self.imgProfile.imageFromURL(urlString: datasource as! String)
                     }
                 } else {

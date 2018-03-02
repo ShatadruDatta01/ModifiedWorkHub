@@ -236,7 +236,7 @@ extension LoginController {
                 SET_OBJ_FOR_KEY(obj: "1" as AnyObject, key: "isLogin")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["id"].stringValue as AnyObject, key: "UserId")
-                if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" {
+                if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "" || String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" {
                     AppConstantValues.isResumeUploaded = false
                 } else {
                     AppConstantValues.isResumeUploaded = true

@@ -82,11 +82,20 @@ extension ForgotPasswordController {
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
-                    debugPrint("No Code")
-                }, didFinish: {
-                    debugPrint("No Code")
-                })
+                if responseDict!["result"]!["error"]["code"].stringValue == "126" {
+                    AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: ("You have registered your account via social network"), didSubmit: { (text) in
+                        debugPrint("No Code")
+                    }, didFinish: {
+                        debugPrint("No Code")
+                    })
+                } else {
+                    AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
+                        debugPrint("No Code")
+                    }, didFinish: {
+                        debugPrint("No Code")
+                    })
+                }
+                
             }
         }
     }
