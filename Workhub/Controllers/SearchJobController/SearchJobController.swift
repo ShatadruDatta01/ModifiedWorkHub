@@ -397,13 +397,23 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
     }
 }
 
-
-
 // MARK: - UITextFieldDelegate
 extension SearchJobController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.txtSearchJob.resignFirstResponder()
         self.widthGOconstraint.constant = 0
+        
+        if !(self.txtSearchJob.text?.isEmpty)! {
+            circleIndicator.isHidden = false
+            circleIndicator.animate()
+            self.mapListJob.showsUserLocation = false
+            self.viewRecenter.isHidden = false
+            self.btnGO.isEnabled = false
+            self.txtSearchJob.resignFirstResponder()
+            print(self.zipCode)
+            self.fetchLatLonFromZip(zipCode: self.zipCode)
+        }
+        
         return true
     }
     
