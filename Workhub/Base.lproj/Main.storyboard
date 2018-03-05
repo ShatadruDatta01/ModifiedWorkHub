@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CwH-aM-tDL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2697,18 +2697,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutWorkhub.png" translatesAutoresizingMaskIntoConstraints="NO" id="mdF-Rg-FwQ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vT-Y8-YeP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutWorkhub.png" translatesAutoresizingMaskIntoConstraints="NO" id="Maq-KV-xbG">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Maq-KV-xbG" firstAttribute="top" secondItem="1vT-Y8-YeP" secondAttribute="top" id="2MW-jo-cCh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Maq-KV-xbG" secondAttribute="trailing" id="2MX-Or-bEM"/>
+                                    <constraint firstAttribute="bottom" secondItem="Maq-KV-xbG" secondAttribute="bottom" id="CAE-pX-78P"/>
+                                    <constraint firstItem="Maq-KV-xbG" firstAttribute="leading" secondItem="1vT-Y8-YeP" secondAttribute="leading" id="Xwa-H5-kYi"/>
+                                    <constraint firstItem="Maq-KV-xbG" firstAttribute="centerX" secondItem="1vT-Y8-YeP" secondAttribute="centerX" id="a66-lV-1OT"/>
+                                    <constraint firstItem="Maq-KV-xbG" firstAttribute="centerY" secondItem="1vT-Y8-YeP" secondAttribute="centerY" id="mqn-oY-n8P"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="3MG-RE-qEh" id="Xnp-aM-29a"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mdF-Rg-FwQ" firstAttribute="leading" secondItem="vdL-Ig-NeR" secondAttribute="leading" id="5sv-2V-6t9"/>
-                            <constraint firstItem="mdF-Rg-FwQ" firstAttribute="top" secondItem="vdL-Ig-NeR" secondAttribute="top" id="GUn-Yi-h2N"/>
-                            <constraint firstAttribute="trailing" secondItem="mdF-Rg-FwQ" secondAttribute="trailing" id="NRW-91-we2"/>
-                            <constraint firstItem="ls3-XF-sig" firstAttribute="top" secondItem="mdF-Rg-FwQ" secondAttribute="bottom" id="gJs-Xv-nJ2"/>
+                            <constraint firstItem="1vT-Y8-YeP" firstAttribute="top" secondItem="vdL-Ig-NeR" secondAttribute="top" id="Dcb-uK-rrX"/>
+                            <constraint firstAttribute="trailing" secondItem="1vT-Y8-YeP" secondAttribute="trailing" id="Ed8-CU-mUO"/>
+                            <constraint firstItem="ls3-XF-sig" firstAttribute="top" secondItem="1vT-Y8-YeP" secondAttribute="bottom" id="LUm-k3-AuN"/>
+                            <constraint firstItem="1vT-Y8-YeP" firstAttribute="leading" secondItem="vdL-Ig-NeR" secondAttribute="leading" id="PeH-wa-pLu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageVIew" destination="Maq-KV-xbG" id="1p7-3z-IGP"/>
+                        <outlet property="scrollView" destination="1vT-Y8-YeP" id="ffT-CF-GBd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P0Z-aU-Ugp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4923,10 +4943,13 @@
                                     <constraint firstItem="Dp2-Gv-t0f" firstAttribute="leading" secondItem="M0K-Me-kRZ" secondAttribute="leading" id="wxh-gN-XyX"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c70-HG-kz2" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
-                                <rect key="frame" x="172" y="319" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c70-HG-kz2" customClass="BPCircleActivityIndicator" customModule="Workhub" customModuleProvider="target">
+                                <rect key="frame" x="172" y="318.5" width="30" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Gr2-Dq-B54"/>
+                                    <constraint firstAttribute="width" constant="30" id="YWR-eB-VZf"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4934,7 +4957,9 @@
                             <constraint firstItem="dcp-Xt-lbo" firstAttribute="top" secondItem="j0J-gq-bxs" secondAttribute="top" id="ElA-3k-MKg"/>
                             <constraint firstItem="M0K-Me-kRZ" firstAttribute="leading" secondItem="j0J-gq-bxs" secondAttribute="leading" id="NPw-9E-Jo3"/>
                             <constraint firstItem="M0K-Me-kRZ" firstAttribute="top" secondItem="dcp-Xt-lbo" secondAttribute="bottom" id="Zcw-qY-LQt"/>
+                            <constraint firstItem="c70-HG-kz2" firstAttribute="centerY" secondItem="j0J-gq-bxs" secondAttribute="centerY" id="eAH-dU-KHd"/>
                             <constraint firstItem="dcp-Xt-lbo" firstAttribute="leading" secondItem="j0J-gq-bxs" secondAttribute="leading" id="fEd-EK-AgM"/>
+                            <constraint firstItem="c70-HG-kz2" firstAttribute="centerX" secondItem="j0J-gq-bxs" secondAttribute="centerX" id="fc8-1x-KBj"/>
                             <constraint firstAttribute="trailing" secondItem="dcp-Xt-lbo" secondAttribute="trailing" id="u8L-VL-YfJ"/>
                             <constraint firstAttribute="trailing" secondItem="M0K-Me-kRZ" secondAttribute="trailing" id="utv-xz-89u"/>
                             <constraint firstItem="spQ-fy-uHT" firstAttribute="top" secondItem="M0K-Me-kRZ" secondAttribute="bottom" id="z1e-tD-naX"/>
