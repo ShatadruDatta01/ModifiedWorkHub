@@ -248,7 +248,19 @@ struct API_MODELS_METHODS {
                             completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
         
         let subpath =  AppWebservices.UPDATE_PROFILE
-        let parameters = ["name": name!, "email": email!, "mobile": mobile!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+        var parameters = ["": ""]
+        let val = mobile?.components(separatedBy: "-")
+        if val!.count > 1 {
+            if val![1] == "" {
+                parameters = ["name": name!, "email": email!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+            } else {
+                parameters = ["name": name!, "email": email!, "mobile": mobile!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+            }
+        } else {
+            parameters = ["name": name!, "email": email!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+        }
+        
+     
         print(parameters)
         let completeUrl = AppWebservices.baseUrl + subpath
         

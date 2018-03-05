@@ -3507,6 +3507,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="btnApply" destination="pLF-CX-bX0" id="Irx-2v-7ZE"/>
                         <outlet property="btnBookmark" destination="S4a-nV-t8n" id="DfD-92-9If"/>
                         <outlet property="circleIndicator" destination="rZG-g6-Rdj" id="ifw-mu-6tL"/>
                         <outlet property="imgJobIcon" destination="7UL-46-pez" id="wbB-Zi-neZ"/>

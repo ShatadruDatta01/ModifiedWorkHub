@@ -379,7 +379,7 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                     self.save = 0
                 }
                 
-                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strJobId: details.jobID! ,strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, save: self.save, didSubmit: { (text) in
+                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strJobId: details.jobID! ,strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, save: self.save, apply: details.apply!, didSubmit: { (text) in
                     debugPrint(text)
                 }, didFinish: { (text) in
                     print(text)
@@ -464,39 +464,10 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.didCallApplyAPIJobs = { jobId in
-            if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
-                let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
-                for aviewcontroller: UIViewController in allViewController
-                {
-                    if aviewcontroller.isKind(of: LoginController.classForCoder())
-                    {
-                        NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
-                        self.checkController = true
-                        break
-                    }
-                }
-                
-                if self.checkController == false {
-                    let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
-                    NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
-                }
-                self.checkController = false
-            } else {
-                
-                if AppConstantValues.isResumeUploaded == true {
-                    self.strJobId = jobId
-                    self.circleIndicator.isHidden = false
-                    self.circleIndicator.animate()
-                    self.applyJobAPICall()
-                } else {
-                    ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please upload resume", didSubmit: { (text) in
-                        debugPrint("No Code")
-                    }, didFinish: {
-                        debugPrint("No Code")
-                    })
-                }
-                
-            }
+            self.strJobId = jobId
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.applyJobAPICall()
         }
         
         cell.selectionStyle = .none

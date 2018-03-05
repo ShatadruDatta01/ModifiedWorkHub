@@ -60,7 +60,6 @@ class SearchJobCell: BaseTableViewCell {
                         }
                     }
                 } else {
-//                    self.btnTick.setImage(UIImage(named: "Tick"), for: .normal)
                     if let apply = val.apply {
                         if apply == 1 {
                             self.btnTick.setImage(UIImage(named: "GreenTick"), for: .normal)
@@ -81,7 +80,38 @@ class SearchJobCell: BaseTableViewCell {
     
     /// Move To ApplyJob
     func moveToApplyJob() {
-        self.didCallApplyAPIJobs!(self.jobId)
+        
+        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+            for aviewcontroller: UIViewController in allViewController
+            {
+                if aviewcontroller.isKind(of: LoginController.classForCoder())
+                {
+                    NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                    self.checkController = true
+                    break
+                }
+            }
+            
+            if self.checkController == false {
+                let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
+            }
+            self.checkController = false
+        } else {
+            if AppConstantValues.isResumeUploaded == true {
+                self.didCallApplyAPIJobs!(self.jobId)
+            } else {
+                let val = datasource as! SearchJob
+                let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
+                applyPageVC.strJobIcon = val.category_image!
+                applyPageVC.strJobTitle = val.role!
+                applyPageVC.strJobSubTitle = val.company_name!
+                applyPageVC.strJobId = val.jobID!
+                applyPageVC.save = val.save!
+                NavigationHelper.helper.contentNavController!.pushViewController(applyPageVC, animated: true)
+            }
+        }
     }
     
     
