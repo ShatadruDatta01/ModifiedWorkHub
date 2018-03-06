@@ -70,7 +70,7 @@ struct API_MODELS_METHODS {
         if Reachability.isConnectedToNetwork(){
             HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
                 if isSuccess {
-                    let swiftyJsonVar   = JSON(response)
+                    let swiftyJsonVar = JSON(response)
                     print(swiftyJsonVar)
                     DispatchQueue.main.async(execute: {
                         if swiftyJsonVar["result"]["status"].bool! {

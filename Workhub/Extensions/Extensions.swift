@@ -439,6 +439,19 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func presentAlertForOTP(title: String, message: String, email: String)
+    {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) {
+            (action: UIAlertAction) in
+            let OTPPageVC = mainStoryboard.instantiateViewController(withIdentifier: "OTPController") as! OTPController
+            OTPPageVC.strEmail = email
+            NavigationHelper.helper.contentNavController!.pushViewController(OTPPageVC, animated: true)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     func presentAlertActionWithTimer(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)

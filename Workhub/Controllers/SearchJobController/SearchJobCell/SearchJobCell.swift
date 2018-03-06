@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class SearchJobCell: BaseTableViewCell {
 
@@ -30,6 +31,15 @@ class SearchJobCell: BaseTableViewCell {
         didSet {
             if datasource != nil {
                 let val = datasource as! SearchJob
+                
+                let currentCoordinate = CLLocation(latitude: Double(AppConstantValues.latitide)!, longitude: Double(AppConstantValues.longitude)!)
+                let jobCoordinate = CLLocation(latitude: Double(val.latitude!)!, longitude: Double(val.longitude!)!)
+                let distanceInMeters = currentCoordinate.distance(from: jobCoordinate)
+                print(distanceInMeters)
+                let double = distanceInMeters/1609
+                let doubleStr = String(format: "%.1f", double)
+                self.lblMiles.text = "\(doubleStr) miles"
+                
                 if let save = val.save {
                     if save == 0 {
                         self.btnBookmark.setImage(UIImage(named: "star_white"), for: .normal)
@@ -99,6 +109,13 @@ class SearchJobCell: BaseTableViewCell {
             }
             self.checkController = false
         } else {
+            
+            if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "" || String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" {
+                AppConstantValues.isResumeUploaded = false
+            } else {
+                AppConstantValues.isResumeUploaded = true
+            }
+            
             if AppConstantValues.isResumeUploaded == true {
                 self.didCallApplyAPIJobs!(self.jobId)
             } else {

@@ -24,7 +24,7 @@ class OTPController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
-        self.txtOTP.text = self.strOTP
+        //self.txtOTP.text = self.strOTP
         self.viewOTP.layer.borderWidth = 1.0
         self.viewOTP.layer.borderColor = UIColorRGB(r: 200.0, g: 200.0, b: 200.0)?.cgColor
         self.viewPassword.layer.borderWidth = 1.0

@@ -235,7 +235,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
             headersDict["X-WHOAuth"] = header
             headersDict["Authorization"] = "Bearer"+" \(AppConstantValues.companyAccessToken)"
             headersDict["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8"
-            headersDict["User-Agent"] = "ios"+"-v"+"1.0"
+            headersDict["User-Agent"] = "ios-v1.0"           //"ios"+"-v"+"1.0"
             print(headersDict)
             
             Alamofire.request(baseUrlString, method: .post, parameters: paramDict, encoding: URLEncoding.default, headers: headersDict)

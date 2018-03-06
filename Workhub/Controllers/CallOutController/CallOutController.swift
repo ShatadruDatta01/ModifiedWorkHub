@@ -99,6 +99,11 @@ class CallOutController: BaseViewController {
             self.checkController = false
         } else {
             
+            if String(describing: OBJ_FOR_KEY(key: "Resume")!) == "" || String(describing: OBJ_FOR_KEY(key: "Resume")!) == "0" {
+                AppConstantValues.isResumeUploaded = false
+            } else {
+                AppConstantValues.isResumeUploaded = true
+            }
             if AppConstantValues.isResumeUploaded == false {
                 let applyPageVC = mainStoryboard.instantiateViewController(withIdentifier: "ApplyJobController") as! ApplyJobController
                 applyPageVC.strJobIcon = strIconDetails
@@ -124,7 +129,7 @@ class CallOutController: BaseViewController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
+                WellDoneController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")

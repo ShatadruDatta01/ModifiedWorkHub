@@ -211,6 +211,7 @@ extension ApplyJobController {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
                 AppConstantValues.isResumeUploaded = true
+                SET_OBJ_FOR_KEY(obj: "1" as AnyObject, key: "Resume")
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Resume successfully updated", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
@@ -237,7 +238,7 @@ extension ApplyJobController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
+                WellDoneController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")

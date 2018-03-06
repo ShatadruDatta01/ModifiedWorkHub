@@ -119,6 +119,7 @@ extension UpdateResumeController {
         API_MODELS_METHODS.resumeUpload(queue: concurrentQueue, resume: self.strResumeBase64!, ext: self.ext!) { (responseDict, isSuccess) in
             print(responseDict!)
             if isSuccess {
+                SET_OBJ_FOR_KEY(obj: "1" as AnyObject, key: "Resume")
                 AppConstantValues.isResumeUploaded = true 
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()

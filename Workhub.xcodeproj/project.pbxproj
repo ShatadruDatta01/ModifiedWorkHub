@@ -340,6 +340,7 @@
 		C396AB7B1FCECF37000F0BC9 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396AB7A1FCECF37000F0BC9 /* AlertController.swift */; };
 		C39A874E1FE2784C00F34335 /* AboutWorkhub.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A874D1FE2784B00F34335 /* AboutWorkhub.png */; };
 		C39A87511FE2797F00F34335 /* AboutWorkhubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */; };
+		C3B2E552204E6FC600411FEA /* WellDoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2E551204E6FC600411FEA /* WellDoneController.swift */; };
 		C3C92D271FEBCCD700B9EE93 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92D261FEBCCD600B9EE93 /* Reachability.swift */; };
 		C3C92D291FEBDDAB00B9EE93 /* InternetCheckingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92D281FEBDDAA00B9EE93 /* InternetCheckingController.swift */; };
 		C3D63B241FE79109004EE053 /* SavedAppliedJobsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */; };
@@ -715,6 +716,7 @@
 		C396AB7A1FCECF37000F0BC9 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C39A874D1FE2784B00F34335 /* AboutWorkhub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutWorkhub.png; sourceTree = "<group>"; };
 		C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWorkhubController.swift; sourceTree = "<group>"; };
+		C3B2E551204E6FC600411FEA /* WellDoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellDoneController.swift; sourceTree = "<group>"; };
 		C3C92D261FEBCCD600B9EE93 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C3C92D281FEBDDAA00B9EE93 /* InternetCheckingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetCheckingController.swift; sourceTree = "<group>"; };
 		C3D63B231FE79108004EE053 /* SavedAppliedJobsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAppliedJobsController.swift; sourceTree = "<group>"; };
@@ -1169,6 +1171,7 @@
 		C34E1D0C1FBD7E3200CE777C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3B2E54F204E6CB600411FEA /* WellDoneController */,
 				5F8A7772200E9D9C00D084E5 /* AfterRegistrationController */,
 				C3C92D231FEBB09800B9EE93 /* NoInternetController */,
 				C3D63B221FE790C7004EE053 /* SavedAppliedJobsController */,
@@ -1684,6 +1687,14 @@
 				C39A87501FE2797F00F34335 /* AboutWorkhubController.swift */,
 			);
 			path = AboutWorkhubController;
+			sourceTree = "<group>";
+		};
+		C3B2E54F204E6CB600411FEA /* WellDoneController */ = {
+			isa = PBXGroup;
+			children = (
+				C3B2E551204E6FC600411FEA /* WellDoneController.swift */,
+			);
+			path = WellDoneController;
 			sourceTree = "<group>";
 		};
 		C3C92D231FEBB09800B9EE93 /* NoInternetController */ = {
@@ -2385,6 +2396,7 @@
 				C3C92D271FEBCCD700B9EE93 /* Reachability.swift in Sources */,
 				C34E1CDB1FBD7D5300CE777C /* ViewController.swift in Sources */,
 				5FCE5B141FC05F7400F299B9 /* BaseCollectionViewCell.swift in Sources */,
+				C3B2E552204E6FC600411FEA /* WellDoneController.swift in Sources */,
 				C33729541FD58022000EC579 /* CustomTextField.swift in Sources */,
 				5FCE5B2F1FC0991000F299B9 /* Helper.m in Sources */,
 				C35C253F1FD0296B0077B5AC /* CountryCodeController.swift in Sources */,
