@@ -77,7 +77,9 @@ extension ForgotPasswordController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                self.presentAlertForOTP(title: "Workhub", message: "Your OTP is \(responseDict!["result"]!["data"]["otp"].stringValue)", email: self.txtEmail.text!)
+                let OTPPageVC = mainStoryboard.instantiateViewController(withIdentifier: "OTPController") as! OTPController
+                OTPPageVC.strEmail = self.txtEmail.text!
+                NavigationHelper.helper.contentNavController!.pushViewController(OTPPageVC, animated: true)
                 
             } else {
                 self.circleIndicator.isHidden = true

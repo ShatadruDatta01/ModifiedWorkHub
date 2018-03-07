@@ -21,6 +21,7 @@ class CallOutController: BaseViewController {
      var strFullTime = ""
      var strJobDesc = ""
      var save = 0
+     var apply = 0
     var checkController = false
     @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     @IBOutlet weak var viewPopUp: UIView!
@@ -65,6 +66,7 @@ class CallOutController: BaseViewController {
         jobDetailsPageVC.strFullTime = self.strFullTime
         jobDetailsPageVC.strJobDesc = self.strJobDesc
         jobDetailsPageVC.save = self.save
+        jobDetailsPageVC.apply = self.apply
         jobDetailsPageVC.strJobId = self.strJobId
         jobDetailsPageVC.strJobFunction = "view"
         NavigationHelper.helper.contentNavController!.pushViewController(jobDetailsPageVC, animated: false)
@@ -200,6 +202,7 @@ class CallOutController: BaseViewController {
         self.strFullTime = strFullTime
         self.strJobDesc = strJobDesc
         self.save = save
+        self.apply = apply
         self.strJobId = strJobId
         presentAnimationToView(strJobId: self.strJobId, strIconDetails: self.strIconDetails, strJobHour: self.strJobHour, strJobTitle: self.strJobTitle, strJobSubTitle: self.strJobSubTitle, strJobLocation: self.strJobLocation, strShift: self.strShift, strJobPosted: self.strJobPosted, strFullTime: self.strFullTime, strJobDesc: self.strJobDesc, save: self.save, apply: apply)
     }
