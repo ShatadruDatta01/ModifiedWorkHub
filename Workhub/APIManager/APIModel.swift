@@ -135,6 +135,49 @@ struct API_MODELS_METHODS {
     }
 
     
+    
+    /// Token API Call
+    ///
+    /// - Parameters:
+    ///   - queue: queue description
+    ///   - completion: completion description
+    static func appConfig(queue: DispatchQueue? = nil,
+                      completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
+        
+        let subpath =  AppWebservices.GET_APPCONFIG_FILES
+        let completeUrl = AppWebservices.baseUrl + subpath
+        print(completeUrl)
+        let parameters = [String: String]()
+        
+        if Reachability.isConnectedToNetwork(){
+            HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
+                if isSuccess {
+                    let swiftyJsonVar   = JSON(response)
+                    print(swiftyJsonVar)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["result"]["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],true)
+                        } else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar["result"]],false)
+                        }
+                    })
+                }
+            }
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
+    }
+    
+    
+    
+    
+    
     static func jobFunction(queue: DispatchQueue? = nil, action: String?, jobId: String?,
                       completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
         

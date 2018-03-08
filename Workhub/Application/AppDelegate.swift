@@ -171,12 +171,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
         } else {
             // Fallback on earlier versions
-            
         }
     }
-
 }
-
-
-
-

@@ -4842,6 +4842,69 @@
             </objects>
             <point key="canvasLocation" x="2892" y="1487.4062968515743"/>
         </scene>
+        <!--Under Maintenance Controller-->
+        <scene sceneID="huu-7x-ylV">
+            <objects>
+                <viewController storyboardIdentifier="UnderMaintenanceController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HH2-9A-55n" customClass="UnderMaintenanceController" customModule="Workhub" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MHK-fb-BXP"/>
+                        <viewControllerLayoutGuide type="bottom" id="FRg-Hb-q3u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="edC-6P-6EN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yd1-7Y-1Ve">
+                                <rect key="frame" x="95" y="241" width="186" height="186"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="wpI-zO-FeG">
+                                        <rect key="frame" x="11" y="22" width="165" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="yF7-9X-4MP"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Maintenance_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="boV-mk-UP1">
+                                        <rect key="frame" x="9" y="60" width="80" height="106"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="106" id="Fzw-D8-DDa"/>
+                                            <constraint firstAttribute="width" constant="80" id="h0Q-yC-jrX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Under_Maintenance" translatesAutoresizingMaskIntoConstraints="NO" id="Jyn-pD-eOO">
+                                        <rect key="frame" x="98" y="73" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="CT1-Al-oSY"/>
+                                            <constraint firstAttribute="height" constant="80" id="Sap-Xk-n98"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Jyn-pD-eOO" secondAttribute="bottom" constant="33" id="23g-uD-El0"/>
+                                    <constraint firstItem="wpI-zO-FeG" firstAttribute="top" secondItem="Yd1-7Y-1Ve" secondAttribute="top" constant="22" id="6yO-gF-Zwi"/>
+                                    <constraint firstItem="Jyn-pD-eOO" firstAttribute="top" secondItem="wpI-zO-FeG" secondAttribute="bottom" constant="21" id="8Eq-U1-yZS"/>
+                                    <constraint firstAttribute="trailing" secondItem="wpI-zO-FeG" secondAttribute="trailing" constant="10" id="Fdh-mM-3JG"/>
+                                    <constraint firstAttribute="bottom" secondItem="boV-mk-UP1" secondAttribute="bottom" constant="20" id="GoO-FE-feN"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jyn-pD-eOO" secondAttribute="trailing" constant="8" id="Qay-bw-qIF"/>
+                                    <constraint firstAttribute="height" constant="186" id="b0M-Yd-MQI"/>
+                                    <constraint firstAttribute="width" constant="186" id="k8k-JJ-45H"/>
+                                    <constraint firstItem="boV-mk-UP1" firstAttribute="top" secondItem="wpI-zO-FeG" secondAttribute="bottom" constant="8" id="k9x-IX-nbz"/>
+                                    <constraint firstItem="boV-mk-UP1" firstAttribute="leading" secondItem="Yd1-7Y-1Ve" secondAttribute="leading" constant="9" id="oqU-1D-nvl"/>
+                                    <constraint firstItem="wpI-zO-FeG" firstAttribute="leading" secondItem="Yd1-7Y-1Ve" secondAttribute="leading" constant="11" id="uA5-dO-AoN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9792138934135437" green="0.86079668998718262" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Yd1-7Y-1Ve" firstAttribute="centerY" secondItem="edC-6P-6EN" secondAttribute="centerY" id="8Zz-h0-9ob"/>
+                            <constraint firstItem="Yd1-7Y-1Ve" firstAttribute="centerX" secondItem="edC-6P-6EN" secondAttribute="centerX" id="9SK-Ch-bI7"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YHD-zT-C7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2189.5999999999999" y="2167.4662668665669"/>
+        </scene>
         <!--Applied List Jobs Controller-->
         <scene sceneID="j7i-Ff-8gd">
             <objects>
@@ -5068,6 +5131,7 @@
         <image name="JobPosted" width="30" height="35"/>
         <image name="ListIcon" width="21" height="20"/>
         <image name="Mail" width="20" height="13"/>
+        <image name="Maintenance_Icon" width="191" height="271"/>
         <image name="MilesIcon" width="11" height="12"/>
         <image name="PasswordIcon" width="20" height="21"/>
         <image name="Plus" width="22" height="23"/>
@@ -5076,6 +5140,7 @@
         <image name="Star" width="20" height="19"/>
         <image name="Tick" width="22" height="23"/>
         <image name="TitleIcon" width="100" height="20"/>
+        <image name="Under_Maintenance" width="200" height="201"/>
         <image name="United States.png" width="32" height="32"/>
         <image name="User" width="20" height="23"/>
         <image name="UserIcon" width="20" height="23"/>

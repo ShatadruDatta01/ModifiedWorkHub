@@ -22,6 +22,9 @@ class LaunchController: BaseViewController {
         self.imgLogo.alpha = 0
         self.imgTitle.alpha = 0
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
+        
+        self.getConfigFiles()
+        
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
             self.tokenAPICall()
         } else {
@@ -47,6 +50,25 @@ class LaunchController: BaseViewController {
         NotificationCenter.default.removeObserver(self)
     }
 }
+
+
+// MARK: - GetAppConfigFiles
+extension LaunchController {
+    
+    /// The Method calls the Terms and Condition WebService to fetch the Terms.
+    func getConfigFiles() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getAppConfig"), attributes: .concurrent)
+        API_MODELS_METHODS.appConfig(queue: concurrentQueue) { (responseDict,isSuccess) in
+            if isSuccess {
+                print(responseDict!)
+            } else {
+                
+            }
+        }
+    }
+}
+
+
 
 // MARK: - Token API Call
 extension LaunchController {

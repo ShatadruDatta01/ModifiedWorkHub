@@ -272,6 +272,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                     dataTask?.cancel()
                 }
                 let urlToRequest = AppWebservices.baseUrl + subPath
+                print(urlToRequest)
                 let url = URL(string: urlToRequest)
                 dataTask = defaultSession.dataTask(with: url!, completionHandler: {
                     data, response, error in
@@ -279,6 +280,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                     if let error = error {
                         print(error.localizedDescription)
                     } else if let httpResponse = response as? HTTPURLResponse {
+                        print(httpResponse.statusCode)
                         if httpResponse.statusCode == 200 {
                             
                             if let json = try? JSONSerialization.jsonObject(with: data!, options: []) {
