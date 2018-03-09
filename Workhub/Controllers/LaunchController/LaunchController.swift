@@ -25,11 +25,6 @@ class LaunchController: BaseViewController {
         
         self.getConfigFiles()
         
-        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
-            self.tokenAPICall()
-        } else {
-            self.startingView()
-        }
         // Do any additional setup after loading the view.
     }
     
@@ -37,11 +32,12 @@ class LaunchController: BaseViewController {
     /// NetworkAccess
     func networkAccess() {
         if AppConstantValues.isNetwork == "true" {
-            if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            /*if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
                 self.tokenAPICall()
             } else {
                 self.startingView()
-            }
+            }*/
+            self.getConfigFiles()
         }
     }
     
@@ -61,8 +57,20 @@ extension LaunchController {
         API_MODELS_METHODS.appConfig(queue: concurrentQueue) { (responseDict,isSuccess) in
             if isSuccess {
                 print(responseDict!)
+                if responseDict!["result"]!["data"]["api_health"].stringValue == "bad" {
+                    let maintenancePageVC = mainStoryboard.instantiateViewController(withIdentifier: "UnderMaintenanceController") as! UnderMaintenanceController
+                    NavigationHelper.helper.contentNavController!.pushViewController(maintenancePageVC, animated: true)
+                    
+                } else {
+                    if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+                        self.tokenAPICall()
+                    } else {
+                        self.startingView()
+                    }
+                }
             } else {
-                
+                let maintenancePageVC = mainStoryboard.instantiateViewController(withIdentifier: "UnderMaintenanceController") as! UnderMaintenanceController
+                NavigationHelper.helper.contentNavController!.pushViewController(maintenancePageVC, animated: true)
             }
         }
     }

@@ -147,24 +147,22 @@ struct API_MODELS_METHODS {
         let subpath =  AppWebservices.GET_APPCONFIG_FILES
         let completeUrl = AppWebservices.baseUrl + subpath
         print(completeUrl)
-        let parameters = [String: String]()
         
-        if Reachability.isConnectedToNetwork(){
-            HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
-                if isSuccess {
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
+                if isSuccess{
                     let swiftyJsonVar   = JSON(response)
-                    print(swiftyJsonVar)
                     DispatchQueue.main.async(execute: {
-                        if swiftyJsonVar["result"]["status"].bool! {
+                        if swiftyJsonVar["status"].bool! {
                             let swiftyJsonVar   = JSON(response)
-                            completion(["result": swiftyJsonVar["result"]],true)
-                        } else {
+                            completion(["result": swiftyJsonVar],true)
+                        }else {
                             let swiftyJsonVar   = JSON(response)
-                            completion(["result": swiftyJsonVar["result"]],false)
+                            completion(["result": swiftyJsonVar],false)
                         }
                     })
                 }
-            }
+            })
         } else {
             InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
                 debugPrint("No Code")
@@ -295,12 +293,12 @@ struct API_MODELS_METHODS {
         let val = mobile?.components(separatedBy: "-")
         if val!.count > 1 {
             if val![1] == "" {
-                parameters = ["name": name!, "email": email!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+                parameters = ["name": name!, "email": email!, "mobile": "", "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
             } else {
                 parameters = ["name": name!, "email": email!, "mobile": mobile!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
             }
         } else {
-            parameters = ["name": name!, "email": email!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+            parameters = ["name": name!, "email": email!, "mobile": "", "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
         }
         
      
