@@ -131,7 +131,7 @@ extension OTPController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                self.txtOTP.text = responseDict!["result"]!["data"]["otp"].stringValue
+                //self.txtOTP.text = responseDict!["result"]!["data"]["otp"].stringValue
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
@@ -153,11 +153,6 @@ extension OTPController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-//                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter password", didSubmit: { (text) in
-//                    debugPrint("No Code")
-//                }, didFinish: {
-//                    debugPrint("No Code")
-//                })
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
