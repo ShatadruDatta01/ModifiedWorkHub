@@ -196,7 +196,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                 
                 urlRequest.addValue("Bearer"+" \(AppConstantValues.companyAccessToken)", forHTTPHeaderField: "Authorization")
 //                urlRequest.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-//                urlRequest.addValue("ios"+"-v"+"1.0", forHTTPHeaderField: "User-Agent")
+                urlRequest.addValue("ios-v1.0", forHTTPHeaderField: "User-Agent")
                 
                 
                 Alamofire.request(urlRequest)
@@ -287,20 +287,18 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                                 completion(json as AnyObject,convertJsonToString.jsonToString(json as AnyObject),true)
                             }
                         }
-                        else{
+                        else {
                             completion("" as AnyObject,"Parsing Error",false)
                         }
-                    }else {
+                    } else {
                     }
                 })
                 dataTask?.resume()
             }
-        }else {
+        } else {
             completion("" as AnyObject,ResponseMessageHandler.NOCONNECTIVITY,false)
         }
-        
     }
-
 }
 
 
