@@ -463,6 +463,7 @@ extension MenuController {
                 if isSuccess {
                     
                     self.startLoading = false
+                    self.cameraImage = false
                     //self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
                     AppConstantValues.name = responseDict!["result"]!["data"]["name"].stringValue
                     AppConstantValues.location = responseDict!["result"]!["data"]["location"].stringValue

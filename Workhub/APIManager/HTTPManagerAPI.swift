@@ -196,7 +196,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                 
                 urlRequest.addValue("Bearer"+" \(AppConstantValues.companyAccessToken)", forHTTPHeaderField: "Authorization")
 //                urlRequest.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-//                urlRequest.addValue("ios"+"-v"+"1.0", forHTTPHeaderField: "User-Agent")
+                urlRequest.addValue("ios-v1.0", forHTTPHeaderField: "User-Agent")
                 
                 
                 Alamofire.request(urlRequest)
@@ -235,7 +235,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
             headersDict["X-WHOAuth"] = header
             headersDict["Authorization"] = "Bearer"+" \(AppConstantValues.companyAccessToken)"
             headersDict["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8"
-            headersDict["User-Agent"] = "ios"+"-v"+"1.0"
+            headersDict["User-Agent"] = "ios-v1.0"           //"ios"+"-v"+"1.0"
             print(headersDict)
             
             Alamofire.request(baseUrlString, method: .post, parameters: paramDict, encoding: URLEncoding.default, headers: headersDict)
@@ -272,6 +272,7 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                     dataTask?.cancel()
                 }
                 let urlToRequest = AppWebservices.baseUrl + subPath
+                print(urlToRequest)
                 let url = URL(string: urlToRequest)
                 dataTask = defaultSession.dataTask(with: url!, completionHandler: {
                     data, response, error in
@@ -279,26 +280,25 @@ struct HTTPMANAGERAPI_ALAMOFIRE {
                     if let error = error {
                         print(error.localizedDescription)
                     } else if let httpResponse = response as? HTTPURLResponse {
+                        print(httpResponse.statusCode)
                         if httpResponse.statusCode == 200 {
                             
                             if let json = try? JSONSerialization.jsonObject(with: data!, options: []) {
                                 completion(json as AnyObject,convertJsonToString.jsonToString(json as AnyObject),true)
                             }
                         }
-                        else{
+                        else {
                             completion("" as AnyObject,"Parsing Error",false)
                         }
-                    }else {
+                    } else {
                     }
                 })
                 dataTask?.resume()
             }
-        }else {
+        } else {
             completion("" as AnyObject,ResponseMessageHandler.NOCONNECTIVITY,false)
         }
-        
     }
-
 }
 
 

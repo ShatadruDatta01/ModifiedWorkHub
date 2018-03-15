@@ -70,7 +70,7 @@ struct API_MODELS_METHODS {
         if Reachability.isConnectedToNetwork(){
             HTTPMANAGERAPI_ALAMOFIRE.POSTManager(completeUrl, queue: queue, parameters: parameters as [String : AnyObject]) { (response, responseJson, isSuccess) in
                 if isSuccess {
-                    let swiftyJsonVar   = JSON(response)
+                    let swiftyJsonVar = JSON(response)
                     print(swiftyJsonVar)
                     DispatchQueue.main.async(execute: {
                         if swiftyJsonVar["result"]["status"].bool! {
@@ -134,6 +134,47 @@ struct API_MODELS_METHODS {
         }
     }
 
+    
+    
+    /// Token API Call
+    ///
+    /// - Parameters:
+    ///   - queue: queue description
+    ///   - completion: completion description
+    static func appConfig(queue: DispatchQueue? = nil,
+                      completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
+        
+        let subpath =  AppWebservices.GET_APPCONFIG_FILES
+        let completeUrl = AppWebservices.baseUrl + subpath
+        print(completeUrl)
+        
+        if Reachability.isConnectedToNetwork() {
+            HTTPMANAGERAPI_ALAMOFIRE.GETManagerWithHeader(completeUrl, completion: { (response, responseString,isSuccess) in
+                if isSuccess{
+                    let swiftyJsonVar   = JSON(response)
+                    DispatchQueue.main.async(execute: {
+                        if swiftyJsonVar["status"].bool! {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar],true)
+                        }else {
+                            let swiftyJsonVar   = JSON(response)
+                            completion(["result": swiftyJsonVar],false)
+                        }
+                    })
+                }
+            })
+        } else {
+            InternetCheckingController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please Check Internet Connection !", didSubmit: { (text) in
+                debugPrint("No Code")
+            }, didFinish: {
+                debugPrint("No Code")
+            })
+        }
+    }
+    
+    
+    
+    
     
     static func jobFunction(queue: DispatchQueue? = nil, action: String?, jobId: String?,
                       completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
@@ -248,7 +289,19 @@ struct API_MODELS_METHODS {
                             completion: @escaping (_ responseDict:[String: JSON]?,_ isSuccess:Bool) -> Void){
         
         let subpath =  AppWebservices.UPDATE_PROFILE
-        let parameters = ["name": name!, "email": email!, "mobile": mobile!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+        var parameters = ["": ""]
+        let val = mobile?.components(separatedBy: "-")
+        if val!.count > 1 {
+            if val![1] == "" {
+                parameters = ["name": name!, "email": email!, "mobile": "", "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+            } else {
+                parameters = ["name": name!, "email": email!, "mobile": mobile!, "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+            }
+        } else {
+            parameters = ["name": name!, "email": email!, "mobile": "", "pic": "\(ext!),\(String(describing: pic!))", "experience": experience!, "salExpected": salExpected!, "location": location!]
+        }
+        
+     
         print(parameters)
         let completeUrl = AppWebservices.baseUrl + subpath
         

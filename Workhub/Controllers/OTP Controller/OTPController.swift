@@ -13,6 +13,7 @@ class OTPController: BaseTableViewController {
     @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     var strEmail: String!
     var strOTP: String!
+    var checkController = false
     @IBOutlet weak var txtOTP: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfPassword: UITextField!
@@ -24,7 +25,7 @@ class OTPController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
-        self.txtOTP.text = self.strOTP
+        //self.txtOTP.text = self.strOTP
         self.viewOTP.layer.borderWidth = 1.0
         self.viewOTP.layer.borderColor = UIColorRGB(r: 200.0, g: 200.0, b: 200.0)?.cgColor
         self.viewPassword.layer.borderWidth = 1.0
@@ -119,7 +120,6 @@ extension OTPController {
 
 
 
-
 // MARK: - OTPController
 extension OTPController {
     
@@ -131,7 +131,7 @@ extension OTPController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                self.txtOTP.text = responseDict!["result"]!["data"]["otp"].stringValue
+                //self.txtOTP.text = responseDict!["result"]!["data"]["otp"].stringValue
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
@@ -153,11 +153,6 @@ extension OTPController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-//                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter password", didSubmit: { (text) in
-//                    debugPrint("No Code")
-//                }, didFinish: {
-//                    debugPrint("No Code")
-//                })
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
@@ -185,6 +180,24 @@ extension OTPController {
                 }, didFinish: {
                     debugPrint("No Code")
                 })
+                
+                let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                for aviewcontroller: UIViewController in allViewController
+                {
+                    if aviewcontroller.isKind(of: LoginController.classForCoder())
+                    {
+                        NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                        self.checkController = true
+                        break
+                    }
+                }
+                
+                if self.checkController == false {
+                    let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                    NavigationHelper.helper.contentNavController!.pushViewController(registerVC, animated: true)
+                }
+                self.checkController = false
+                
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
@@ -197,8 +210,5 @@ extension OTPController {
         }
     }
 }
-
-
-
 
 

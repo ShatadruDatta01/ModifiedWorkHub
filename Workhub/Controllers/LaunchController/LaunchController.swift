@@ -22,11 +22,9 @@ class LaunchController: BaseViewController {
         self.imgLogo.alpha = 0
         self.imgTitle.alpha = 0
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: false)
-        if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
-            self.tokenAPICall()
-        } else {
-            self.startingView()
-        }
+        
+        self.getConfigFiles()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -34,11 +32,12 @@ class LaunchController: BaseViewController {
     /// NetworkAccess
     func networkAccess() {
         if AppConstantValues.isNetwork == "true" {
-            if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+            /*if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
                 self.tokenAPICall()
             } else {
                 self.startingView()
-            }
+            }*/
+            self.getConfigFiles()
         }
     }
     
@@ -47,6 +46,37 @@ class LaunchController: BaseViewController {
         NotificationCenter.default.removeObserver(self)
     }
 }
+
+
+// MARK: - GetAppConfigFiles
+extension LaunchController {
+    
+    /// The Method calls the Terms and Condition WebService to fetch the Terms.
+    func getConfigFiles() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getAppConfig"), attributes: .concurrent)
+        API_MODELS_METHODS.appConfig(queue: concurrentQueue) { (responseDict,isSuccess) in
+            if isSuccess {
+                print(responseDict!)
+                if responseDict!["result"]!["data"]["api_health"].stringValue == "bad" {
+                    let maintenancePageVC = mainStoryboard.instantiateViewController(withIdentifier: "UnderMaintenanceController") as! UnderMaintenanceController
+                    NavigationHelper.helper.contentNavController!.pushViewController(maintenancePageVC, animated: true)
+                    
+                } else {
+                    if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
+                        self.tokenAPICall()
+                    } else {
+                        self.startingView()
+                    }
+                }
+            } else {
+                let maintenancePageVC = mainStoryboard.instantiateViewController(withIdentifier: "UnderMaintenanceController") as! UnderMaintenanceController
+                NavigationHelper.helper.contentNavController!.pushViewController(maintenancePageVC, animated: true)
+            }
+        }
+    }
+}
+
+
 
 // MARK: - Token API Call
 extension LaunchController {

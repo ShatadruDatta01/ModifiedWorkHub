@@ -26,6 +26,7 @@ class SearchJobController: BaseViewController {
     var locationManager = CLLocationManager()
     var annotationView: MKAnnotationView!
     var save = 0
+    var apply = 0
     var strJobId: String!
     @IBOutlet weak var btnGO: UIButton!
     @IBOutlet weak var viewRecenter: UIView!
@@ -62,9 +63,9 @@ class SearchJobController: BaseViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        circleIndicator.isHidden = false
-        circleIndicator.animate()
-        self.fetchZipCode()
+//        circleIndicator.isHidden = false
+//        circleIndicator.animate()
+        //self.fetchZipCode()
         mapListJob.showsUserLocation = true
         
         self.widthGOconstraint.constant = 0
@@ -102,6 +103,9 @@ class SearchJobController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        circleIndicator.isHidden = false
+        circleIndicator.animate()
+        self.fetchZipCode()
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkAccess), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         NavigationHelper.helper.reloadMenu()
         NavigationHelper.helper.headerViewController?.isBack = false
@@ -356,9 +360,6 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                 annotationView!.canShowCallout = false
                 annotationView!.image = UIImage(named: "JobIcon")
             }
-            
-            
-            
             return annotationView
             
         }
@@ -379,10 +380,16 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                 if let save = details.save {
                     self.save = save
                 } else {
-                    self.save = 0
+                    self.save = 0 
                 }
                 
-                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strJobId: details.jobID! ,strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, save: self.save, didSubmit: { (text) in
+                if let apply = details.apply {
+                    self.apply = apply
+                } else {
+                    self.apply = 0
+                }
+                
+                CallOutController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, strJobId: details.jobID! ,strIconDetails: details.category_image!, strJobHour: details.salary_per_hour!, strJobTitle: details.role!, strJobSubTitle: details.company_name!, strJobLocation: loc, strShift: details.shift!, strJobPosted: details.posted_on!, strFullTime: details.type!, strJobDesc: details.jobDetail!, save: self.save, apply: self.apply, didSubmit: { (text) in
                     debugPrint(text)
                 }, didFinish: { (text) in
                     print(text)
@@ -400,13 +407,23 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
     }
 }
 
-
-
 // MARK: - UITextFieldDelegate
 extension SearchJobController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.txtSearchJob.resignFirstResponder()
         self.widthGOconstraint.constant = 0
+        
+        if !(self.txtSearchJob.text?.isEmpty)! {
+            circleIndicator.isHidden = false
+            circleIndicator.animate()
+            self.mapListJob.showsUserLocation = false
+            self.viewRecenter.isHidden = false
+            self.btnGO.isEnabled = false
+            self.txtSearchJob.resignFirstResponder()
+            print(self.zipCode)
+            self.fetchLatLonFromZip(zipCode: self.zipCode)
+        }
+        
         return true
     }
     
@@ -457,39 +474,10 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.didCallApplyAPIJobs = { jobId in
-            if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
-                let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
-                for aviewcontroller: UIViewController in allViewController
-                {
-                    if aviewcontroller.isKind(of: LoginController.classForCoder())
-                    {
-                        NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
-                        self.checkController = true
-                        break
-                    }
-                }
-                
-                if self.checkController == false {
-                    let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
-                    NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
-                }
-                self.checkController = false
-            } else {
-                
-                if AppConstantValues.isResumeUploaded == true {
-                    self.strJobId = jobId
-                    self.circleIndicator.isHidden = false
-                    self.circleIndicator.animate()
-                    self.applyJobAPICall()
-                } else {
-                    ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please upload resume", didSubmit: { (text) in
-                        debugPrint("No Code")
-                    }, didFinish: {
-                        debugPrint("No Code")
-                    })
-                }
-                
-            }
+            self.strJobId = jobId
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
+            self.applyJobAPICall()
         }
         
         cell.selectionStyle = .none
@@ -576,11 +564,14 @@ extension SearchJobController {
             if isSuccess {
                 //                self.circleIndicator.isHidden = true
                 //                self.circleIndicator.stop()
-                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
+
+                
+                WellDoneController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully applied for this job", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")
                 })
+            
                 
                 self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
                 

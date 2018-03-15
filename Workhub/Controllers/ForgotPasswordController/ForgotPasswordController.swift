@@ -77,13 +77,15 @@ extension ForgotPasswordController {
             if isSuccess {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
-                self.moveToPageOTP(otp: responseDict!["result"]!["data"]["otp"].stringValue)
+                let OTPPageVC = mainStoryboard.instantiateViewController(withIdentifier: "OTPController") as! OTPController
+                OTPPageVC.strEmail = self.txtEmail.text!
+                NavigationHelper.helper.contentNavController!.pushViewController(OTPPageVC, animated: true)
                 
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
                 if responseDict!["result"]!["error"]["code"].stringValue == "126" {
-                    AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: ("You have registered your account via social network"), didSubmit: { (text) in
+                    AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: ("You have registered your account via facebook/google"), didSubmit: { (text) in
                         debugPrint("No Code")
                     }, didFinish: {
                         debugPrint("No Code")

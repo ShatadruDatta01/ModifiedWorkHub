@@ -80,7 +80,7 @@ class LoginController: BaseViewController {
                     self.profPic = "http://graph.facebook.com/\((value["id"] as? String)!)/picture?type=large"
                     debugPrint("the profile fbUser: \(value)", self.profPic)
                     let emailId = (value["email"] as? String)!
-                    self.loginAPICall(email: emailId, password: "", network: "facebook")
+                    self.loginAPICall(name: (value["name"] as? String)!, email: emailId, password: "", network: "facebook")
                 }else{
                     debugPrint("error\(error)")
                     //NVActivityIndicatorHelper.hideIndicatorInView()
@@ -148,7 +148,7 @@ extension LoginController: GIDSignInUIDelegate, GIDSignInDelegate {
             if user.profile.hasImage {
                 self.profPic = String(describing: signIn.currentUser.profile.imageURL(withDimension: 120)!)
             }
-            self.loginAPICall(email: user.profile.email!, password: "", network: "google")
+            self.loginAPICall(name: user.profile.name, email: user.profile.email!, password: "", network: "google")
             
             // ...
         } else {
@@ -172,7 +172,7 @@ extension LoginController {
             if (self.txtEmail.text?.isValidEmail)! {
                 if !(self.txtPassword.text?.isEmpty)! {
                     AppConstantValues.isSocial = false
-                    self.loginAPICall(email: self.txtEmail.text!, password: self.txtPassword.text!, network: "Manual")
+                    self.loginAPICall(name: "", email: self.txtEmail.text!, password: self.txtPassword.text!, network: "Manual")
                 } else {
                     ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please enter password", didSubmit: { (text) in
                         debugPrint("No Code")
@@ -224,7 +224,7 @@ extension LoginController: UITextFieldDelegate {
 
 // MARK: - Login API Call
 extension LoginController {
-    func loginAPICall(email: String, password: String, network: String) {
+    func loginAPICall(name: String, email: String, password: String, network: String) {
         self.circleIndicator.isHidden = false
         self.circleIndicator.animate()
         let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getLogin"), attributes: .concurrent)
@@ -267,15 +267,82 @@ extension LoginController {
                 print(responseDict!, isSuccess)
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
+                
+                if responseDict!["result"]!["error"]["code"].stringValue == "106" {
+                    if network == "facebook" || network == "google" {
+                        self.registerAPICall(name: name, email: email, mob: "", password: "", network: network)
+                    } else {
+                        AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
+                            debugPrint("No Code")
+                        }, didFinish: {
+                            debugPrint("No Code")
+                        })
+                    }
+                } else {
+                    AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
+                        debugPrint("No Code")
+                    }, didFinish: {
+                        debugPrint("No Code")
+                    })
+                }
+                
+                //self.loginAPICall(email: user.profile.email!, password: "", network: "google")
+                //self.loginAPICall(email: emailId, password: "", network: "facebook")
+                
+                print(responseDict!["result"]!)
+            }
+        })
+    }
+}
+
+
+
+// MARK: - RegistrationAPICall
+extension LoginController {
+    func registerAPICall(name: String, email: String, mob: String, password: String, network: String) {
+        self.circleIndicator.isHidden = false
+        self.circleIndicator.animate()
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("getRegister"), attributes: .concurrent)
+        API_MODELS_METHODS.register(queue: concurrentQueue, name: name, email: email, mobile: mob, password: password, network: network) { (responseDict, isSuccess) in
+            if isSuccess {
+                print(responseDict!)
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
+                SET_OBJ_FOR_KEY(obj: "1" as AnyObject, key: "isLogin")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["id"].stringValue as AnyObject, key: "UserId")
+                if AppConstantValues.isSocial == true {
+                    if self.profPic.isEmpty {
+                        SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                    } else {
+                        SET_OBJ_FOR_KEY(obj: self.profPic as AnyObject, key: "UserPic")
+                    }
+                } else {
+                    SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+                }
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
+                REMOVE_OBJ_FOR_KEY(key: "AccessToken")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["access_token"].stringValue as AnyObject, key: "AccessToken")
+                
+                AppConstantValues.companyAccessToken = String(describing: OBJ_FOR_KEY(key: "AccessToken")!)
+                print(AppConstantValues.companyAccessToken)
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["network"].stringValue as AnyObject, key: "Network")
+                
+                let regsDoneVC = mainStoryboard.instantiateViewController(withIdentifier: "AfterRegistrationController") as! AfterRegistrationController
+                NavigationHelper.helper.contentNavController!.pushViewController(regsDoneVC, animated: true)
+                
+                
+            } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
                 AlertController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: (responseDict!["result"]!["error"]["msgUser"].stringValue), didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
                     debugPrint("No Code")
                 })
-                
-                print(responseDict!["result"]!)
             }
-        })
+        }
     }
 }
 
