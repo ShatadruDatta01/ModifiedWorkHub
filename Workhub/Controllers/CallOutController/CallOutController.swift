@@ -285,6 +285,7 @@ extension CallOutController {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
                 self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+                self.save = 1
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
