@@ -13,6 +13,7 @@ class OTPController: BaseTableViewController {
     @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
     var strEmail: String!
     var strOTP: String!
+    var checkController = false
     @IBOutlet weak var txtOTP: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfPassword: UITextField!
@@ -119,7 +120,6 @@ extension OTPController {
 
 
 
-
 // MARK: - OTPController
 extension OTPController {
     
@@ -180,6 +180,24 @@ extension OTPController {
                 }, didFinish: {
                     debugPrint("No Code")
                 })
+                
+                let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
+                for aviewcontroller: UIViewController in allViewController
+                {
+                    if aviewcontroller.isKind(of: LoginController.classForCoder())
+                    {
+                        NavigationHelper.helper.contentNavController!.popToViewController(aviewcontroller, animated: true)
+                        self.checkController = true
+                        break
+                    }
+                }
+                
+                if self.checkController == false {
+                    let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                    NavigationHelper.helper.contentNavController!.pushViewController(registerVC, animated: true)
+                }
+                self.checkController = false
+                
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
