@@ -15,6 +15,13 @@ import SwiftyJSON
 class SearchJobController: BaseViewController {
 
     @IBOutlet weak var circleIndicator: BPCircleActivityIndicator!
+    var strBase64 = ""
+    var imgExt = ""
+    var name = ""
+    var mob = ""
+    var loc = ""
+    var salExp = ""
+    var exp = ""
     var checkController = false
     var dictJob = [String: String]()
     var zipCode = ""
@@ -42,6 +49,10 @@ class SearchJobController: BaseViewController {
     @IBOutlet weak var txtSearchJob: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if AppConstantValues.isFirstTimeRegisterviaSocial == true {
+            self.imageUrlToBase64()
+        }
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
@@ -393,12 +404,26 @@ extension SearchJobController: MKMapViewDelegate, CLLocationManagerDelegate {
                     debugPrint(text)
                 }, didFinish: { (text) in
                     print(text)
-                    for annotation in self.mapListJob.selectedAnnotations {
-                        self.mapListJob.deselectAnnotation(annotation, animated: false)
+                    if text == "Close" {
+                        //.....Do nothing.....//
+                        for annotation in self.mapListJob.selectedAnnotations {
+                            self.mapListJob.deselectAnnotation(annotation, animated: false)
+                        }
+                        if AppConstantValues.isSave == true {
+                            AppConstantValues.isSave = false
+                            self.circleIndicator.isHidden = false
+                            self.circleIndicator.animate()
+                            self.fetchLatLonFromZip(zipCode: self.zipCode)
+                        }
+                    } else {
+                        for annotation in self.mapListJob.selectedAnnotations {
+                            self.mapListJob.deselectAnnotation(annotation, animated: false)
+                        }
+                        self.circleIndicator.isHidden = false
+                        self.circleIndicator.animate()
+                        self.fetchLatLonFromZip(zipCode: self.zipCode)
                     }
-                    self.circleIndicator.isHidden = false
-                    self.circleIndicator.animate()
-                    self.fetchLatLonFromZip(zipCode: self.zipCode)
+                    
                 })
                 
                 break
@@ -549,6 +574,7 @@ extension SearchJobController {
                             debugPrint("No Code")
                         })
                     }
+                    
                 } else {
                     self.circleIndicator.stop()
                     self.circleIndicator.isHidden = true
@@ -586,6 +612,101 @@ extension SearchJobController {
             }
         }
     }
+    
+    /// Image URL to Base64
+    func imageUrlToBase64() {
+        //Use image's path to create NSData
+        let url: NSURL = NSURL(string : OBJ_FOR_KEY(key: "UserPic")! as! String)!
+        //Now use image to create into NSData format
+        let imageData = NSData(contentsOf: url as URL)
+        self.imgExt = String(describing: imageData!.imageFormat)
+        print(self.imgExt)
+        self.strBase64 = (imageData!.base64EncodedString(options: .lineLength64Characters))
+        print(strBase64)
+        AppConstantValues.isFirstTimeRegisterviaSocial = false
+        self.updateProfileAPI()
+    }
+    
+    
+    /// Update Profile
+    func updateProfileAPI() {
+        let concurrentQueue = DispatchQueue(label:DeviceSettings.dispatchQueueName("updateProfile"), attributes: .concurrent)
+        
+        if let val = OBJ_FOR_KEY(key: "Name") {
+            self.name = val as! String
+        } else {
+            self.name = ""
+        }
+        
+        if let val = OBJ_FOR_KEY(key: "Mobile") {
+            self.mob = val as! String
+        } else {
+            self.mob = ""
+        }
+        
+        if let val = OBJ_FOR_KEY(key: "Experience") {
+            self.exp = val as! String
+        } else {
+            self.exp = ""
+        }
+        
+        if let val = OBJ_FOR_KEY(key: "SalExpected") {
+            self.salExp = val as! String
+        } else {
+            self.salExp = ""
+        }
+        
+        if let val = OBJ_FOR_KEY(key: "Location") {
+            self.loc = val as! String
+        } else {
+            self.loc = ""
+        }
+        
+        
+        API_MODELS_METHODS.updateProfile(queue: concurrentQueue, email: String(describing: OBJ_FOR_KEY(key: "Email")!), name: self.name, mobile: self.mob, pic: self.strBase64, ext: self.imgExt, experience: self.exp, salExpected: self.salExp, location: self.loc) { (responseDict, isSuccess) in
+            print(responseDict!)
+            if isSuccess {
+                
+//                self.startLoading = false
+//                self.cameraImage = false
+                //self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
+                AppConstantValues.name = responseDict!["result"]!["data"]["name"].stringValue
+                AppConstantValues.location = responseDict!["result"]!["data"]["location"].stringValue
+                AppConstantValues.experience = responseDict!["result"]!["data"]["experience"].stringValue
+                AppConstantValues.salExpected = responseDict!["result"]!["data"]["salExpected"].stringValue
+                AppConstantValues.email = responseDict!["result"]!["data"]["email"].stringValue
+                AppConstantValues.mob = responseDict!["result"]!["data"]["mobile"].stringValue
+                
+                REMOVE_OBJ_FOR_KEY(key: "Email")
+                REMOVE_OBJ_FOR_KEY(key: "Name")
+                REMOVE_OBJ_FOR_KEY(key: "Location")
+                REMOVE_OBJ_FOR_KEY(key: "Experience")
+                REMOVE_OBJ_FOR_KEY(key: "SalExpected")
+                REMOVE_OBJ_FOR_KEY(key: "Mobile")
+                
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["name"].stringValue as AnyObject, key: "Name")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["location"].stringValue as AnyObject, key: "Location")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["experience"].stringValue as AnyObject, key: "Experience")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["salExpected"].stringValue as AnyObject, key: "SalExpected")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["mobile"].stringValue as AnyObject, key: "Mobile")
+                
+                
+                REMOVE_OBJ_FOR_KEY(key: "UserPic")
+                SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
+//                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully updated your profile", didSubmit: { (text) in
+//                    debugPrint("No Code")
+//                }, didFinish: {
+//                    debugPrint("No Code")
+//                })
+            } else {
+                
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+        }
+    }
 }
-
-
