@@ -244,6 +244,11 @@ extension JobDetailsController {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
                 self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
             } else {
                 self.circleIndicator.isHidden = true
                 self.circleIndicator.stop()
