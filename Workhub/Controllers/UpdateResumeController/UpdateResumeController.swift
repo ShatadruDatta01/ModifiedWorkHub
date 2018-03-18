@@ -12,6 +12,7 @@ import MarqueeLabel
 
 class UpdateResumeController: BaseTableViewController, UINavigationControllerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate  {
 
+    var resumeSize = 0.0
     var resumeUpload = false
     var ext: String!
     var strResume: String!
@@ -70,11 +71,20 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
             self.circleIndicator.animate()
             self.resumeUploadAPI()
         } else {
-            ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please upload resume first", didSubmit: { (text) in
-                debugPrint("No Code")
-            }, didFinish: {
-                debugPrint("No Code")
-            })
+            if self.resumeSize > 5.000 {
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "File size must be within 5mb", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            } else {
+                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Please upload resume first", didSubmit: { (text) in
+                    debugPrint("No Code")
+                }, didFinish: {
+                    debugPrint("No Code")
+                })
+            }
+            
         }
     }
     
@@ -85,8 +95,13 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
         let fileSize = fileSizeNumber.int64Value
         var sizeMB = Double(fileSize / 1024)
         sizeMB = Double(sizeMB / 1024)
-        let resumeSize = Double(round(1000 * sizeMB)/1000)
-        if  resumeSize > 5.000 {
+        self.resumeSize = Double(round(1000 * sizeMB)/1000)
+        self.lblResume.text = self.strResume
+        self.lblResume.textColor = .black
+        self.lblResume.speed = .duration(8.0)
+        self.lblResume.fadeLength = 15.0
+        self.lblResume.type = .continuous
+        if self.resumeSize > 5.000 {
             self.resumeUpload = false
             ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "File size must be within 5mb", didSubmit: { (text) in
                 debugPrint("No Code")
@@ -95,11 +110,6 @@ class UpdateResumeController: BaseTableViewController, UINavigationControllerDel
             })
         } else {
             self.resumeUpload = true
-            self.lblResume.text = self.strResume
-            self.lblResume.textColor = .black
-            self.lblResume.speed = .duration(8.0)
-            self.lblResume.fadeLength = 15.0
-            self.lblResume.type = .continuous
             self.getBase64String(url: url)
         }
     }

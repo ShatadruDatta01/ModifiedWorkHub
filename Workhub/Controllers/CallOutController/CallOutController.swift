@@ -54,7 +54,7 @@ class CallOutController: BaseViewController {
     }
     
     func tappedMe() {
-        self.dismissAnimate()
+        self.dismissAnimate(val: "Remove")
         let jobDetailsPageVC = mainStoryboard.instantiateViewController(withIdentifier: "JobDetailsController") as! JobDetailsController
         jobDetailsPageVC.strIconDetails = self.strIconDetails
         jobDetailsPageVC.strJobHour = self.strJobHour
@@ -77,11 +77,11 @@ class CallOutController: BaseViewController {
     }
     
     @IBAction func close(_ sender: UIButton) {
-        self.dismissAnimate()
+        self.dismissAnimate(val: "Close")
     }
     
     @IBAction func apply(_ sender: UIButton) {
-        self.dismissAnimate()
+        self.dismissAnimate(val: "Apply")
         if OBJ_FOR_KEY(key: "isLogin") == nil || String(describing: OBJ_FOR_KEY(key: "isLogin")!) == "0" {
             let allViewController: [UIViewController] = NavigationHelper.helper.contentNavController!.viewControllers as [UIViewController]
             for aviewcontroller: UIViewController in allViewController
@@ -150,7 +150,7 @@ class CallOutController: BaseViewController {
     }
     
     func backToJobListScreen() {
-        self.dismissAnimate()
+        self.dismissAnimate(val: "Remove")
     }
     
     @IBAction func jobSave(_ sender: UIButton) {
@@ -171,7 +171,7 @@ class CallOutController: BaseViewController {
                 NavigationHelper.helper.contentNavController!.pushViewController(loginVC, animated: true)
             }
             self.checkController = false
-            self.dismissAnimate()
+            self.dismissAnimate(val: "Save")
         } else {
             self.circleIndicator.isHidden = false
             self.circleIndicator.animate()
@@ -239,10 +239,10 @@ class CallOutController: BaseViewController {
     
     
     /// DismissAnimate
-    func dismissAnimate() {
+    func dismissAnimate(val: String) {
         
         if didRemove != nil {
-            didRemove!("Remove")
+            didRemove!(val)
         }
         
         UIView.animate(withDuration: 0.25, animations: {
@@ -286,6 +286,7 @@ extension CallOutController {
                 self.circleIndicator.stop()
                 self.btnBookmark.setImage(UIImage(named: "star_bookmark"), for: .normal)
                 self.save = 1
+                AppConstantValues.isSave = true
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {

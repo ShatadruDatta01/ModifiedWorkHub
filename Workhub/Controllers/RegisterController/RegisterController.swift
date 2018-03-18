@@ -328,12 +328,14 @@ extension RegisterController {
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["resume"].stringValue as AnyObject, key: "Resume")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["id"].stringValue as AnyObject, key: "UserId")
                 if AppConstantValues.isSocial == true {
+                    AppConstantValues.isFirstTimeRegisterviaSocial = true
                     if self.profPic.isEmpty {
                         SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
                     } else {
                         SET_OBJ_FOR_KEY(obj: self.profPic as AnyObject, key: "UserPic")
                     }
                 } else {
+                    AppConstantValues.isFirstTimeRegisterviaSocial = false
                     SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
                 }
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["email"].stringValue as AnyObject, key: "Email")

@@ -18,7 +18,7 @@ class TermsCondsController: BaseViewController, UIWebViewDelegate {
         NavigationHelper.helper.headerViewController?.isShowNavBar(isShow: true)
         NavigationHelper.helper.headerViewController?.leftButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
         self.termsView.delegate = self
-        let url = URL (string: "https://sociosquare.socioadvocacy.com/Terms")
+        let url = URL (string: "https://app.socioadvocacy.com/2.0/terms")
         let requestObj = URLRequest(url: url!)
         self.termsView.loadRequest(requestObj)
         // Do any additional setup after loading the view.
