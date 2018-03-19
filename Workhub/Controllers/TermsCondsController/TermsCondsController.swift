@@ -24,8 +24,6 @@ class TermsCondsController: BaseViewController, UIWebViewDelegate {
         // Do any additional setup after loading the view.
     }
     
-    
-    
     func webViewDidStartLoad(_ webView: UIWebView) {
         circleIndicator.isHidden = false
         circleIndicator.animate()
