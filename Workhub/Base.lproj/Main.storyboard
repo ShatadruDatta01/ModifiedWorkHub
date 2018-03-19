@@ -2954,10 +2954,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqx-F1-IRm">
-                                <rect key="frame" x="39.5" y="308.5" width="296" height="50"/>
+                                <rect key="frame" x="36.5" y="308.5" width="302" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Check Internet Connection !" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vW-pV-fdY">
-                                        <rect key="frame" x="51" y="9" width="237" height="32"/>
+                                        <rect key="frame" x="51" y="9" width="243" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="FhG-Cl-ile"/>
                                         </constraints>
