@@ -1271,17 +1271,9 @@
 		C34E1D151FBD809500CE777C /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				C34E1D161FBD809500CE777C /* Database Manager */,
 				C34E1D171FBD809500CE777C /* Managed Object Class */,
 			);
 			path = "Data Model";
-			sourceTree = "<group>";
-		};
-		C34E1D161FBD809500CE777C /* Database Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Database Manager";
 			sourceTree = "<group>";
 		};
 		C34E1D171FBD809500CE777C /* Managed Object Class */ = {
