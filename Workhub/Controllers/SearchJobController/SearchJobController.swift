@@ -477,12 +477,12 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
         cell.jobType = "search"
         cell.datasource = self.arrJob[indexPath.row] as AnyObject
         cell.didCallLoader = {
+            self.circleIndicator.isHidden = false
+            self.circleIndicator.animate()
         }
         cell.didSendValue = { text, check in
             if check {
-                self.circleIndicator.isHidden = false
-                self.circleIndicator.animate()
-                
+
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully saved", didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
@@ -490,6 +490,8 @@ extension SearchJobController: UITableViewDelegate, UITableViewDataSource {
                 })
                 self.userJobListAPICall(zipCode: AppConstantValues.zipcode)
             } else {
+                self.circleIndicator.isHidden = true
+                self.circleIndicator.stop()
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: text, didSubmit: { (text) in
                     debugPrint("No Code")
                 }, didFinish: {
@@ -667,9 +669,6 @@ extension SearchJobController {
             print(responseDict!)
             if isSuccess {
                 
-//                self.startLoading = false
-//                self.cameraImage = false
-                //self.tblMenu.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
                 AppConstantValues.name = responseDict!["result"]!["data"]["name"].stringValue
                 AppConstantValues.location = responseDict!["result"]!["data"]["location"].stringValue
                 AppConstantValues.experience = responseDict!["result"]!["data"]["experience"].stringValue
@@ -694,11 +693,7 @@ extension SearchJobController {
                 
                 REMOVE_OBJ_FOR_KEY(key: "UserPic")
                 SET_OBJ_FOR_KEY(obj: responseDict!["result"]!["data"]["pic"].stringValue as AnyObject, key: "UserPic")
-//                ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: "Successfully updated your profile", didSubmit: { (text) in
-//                    debugPrint("No Code")
-//                }, didFinish: {
-//                    debugPrint("No Code")
-//                })
+
             } else {
                 
                 ToastController.showAddOrClearPopUp(sourceViewController: NavigationHelper.helper.mainContainerViewController!, alertMessage: responseDict!["result"]!["error"]["msgUser"].stringValue, didSubmit: { (text) in
